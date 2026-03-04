@@ -133,7 +133,7 @@ export default function App() {
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
-            <span style={{ fontSize: 36 }}>&#9749;</span>
+            <img src="/logo.jpg" alt="Koffee Review" style={{ width: 60, height: 60, borderRadius: "50%", objectFit: "cover" }} />
             <div>
               <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 38, letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 OUR FAIR DINKUM
