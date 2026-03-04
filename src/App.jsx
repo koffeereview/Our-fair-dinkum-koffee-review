@@ -16,7 +16,7 @@ function parseCSV(text) {
 }
 
 const ScoreRing = ({ score }) => {
-  const color = score >= 8 ? "#4ade80" : score >= 6 ? "#facc15" : "#f87171";
+  const color = score >= 7.5 ? "#4ade80" : score >= 5 ? "#facc15" : "#f87171";
   const pct = (score / 10) * 100;
   const r = 28, circ = 2 * Math.PI * r;
   return (
@@ -35,25 +35,27 @@ const ScoreRing = ({ score }) => {
   );
 };
 
-const VerdictBadge = ({ verdict }) => (
-  <div style={{
-    padding: "4px 14px", borderRadius: 20, fontSize: 11, fontWeight: 700, letterSpacing: 2,
-    background: verdict === "GO" ? "rgba(74,222,128,0.15)" : "rgba(248,113,113,0.15)",
-    color: verdict === "GO" ? "#4ade80" : "#f87171",
-    border: `1px solid ${verdict === "GO" ? "rgba(74,222,128,0.3)" : "rgba(248,113,113,0.3)"}`,
-  }}>
-    {verdict === "GO" ? "✓ GO" : "✕ BIN"}
-  </div>
-);
+const VerdictBadge = ({ verdict, score }) => {
+  const color = score >= 7.5 ? "#4ade80" : score >= 5 ? "#facc15" : "#f87171";
+  const bg = score >= 7.5 ? "rgba(74,222,128,0.15)" : score >= 5 ? "rgba(250,204,21,0.15)" : "rgba(248,113,113,0.15)";
+  const border = score >= 7.5 ? "rgba(74,222,128,0.3)" : score >= 5 ? "rgba(250,204,21,0.3)" : "rgba(248,113,113,0.3)";
+  return (
+    <div style={{
+      padding: "4px 14px", borderRadius: 20, fontSize: 11, fontWeight: 700, letterSpacing: 2,
+      background: bg, color, border: `1px solid ${border}`,
+    }}>
+      {verdict?.toUpperCase() || "UNRATED"}
+    </div>
+  );
+};
 
 export default function App() {
   const [cafes, setCafes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState("All");
   const [city, setCity] = useState("All");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
-  const [sort, setSort] = useState("score");
+  const [sort, setSort] = useState("high");
 
   useEffect(() => {
     fetch(SHEET_URL)
@@ -66,16 +68,14 @@ export default function App() {
   }, []);
 
   const cities = ["All", ...new Set(cafes.map(c => c.city))];
-  const verdicts = ["All", "GO", "BIN"];
 
   let filtered = cafes
     .filter(c => city === "All" || c.city === city)
-    .filter(c => filter === "All" || c.verdict === filter)
     .filter(c => c.name?.toLowerCase().includes(search.toLowerCase()) || c.suburb?.toLowerCase().includes(search.toLowerCase()))
-    .sort((a, b) => sort === "score" ? b.score - a.score : a.name?.localeCompare(b.name));
+    .sort((a, b) => sort === "high" ? b.score - a.score : a.score - b.score);
 
-  const go = cafes.filter(c => c.verdict === "GO").length;
-  const bin = cafes.filter(c => c.verdict === "BIN").length;
+  const mustVisit = cafes.filter(c => c.score >= 7.5).length;
+  const avoid = cafes.filter(c => c.score < 5).length;
   const avg = cafes.length ? (cafes.reduce((s, c) => s + c.score, 0) / cafes.length).toFixed(1) : "0";
 
   return (
@@ -97,14 +97,12 @@ export default function App() {
         </div>
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafés reviewed across Australia · Know before you go</p>
 
-        {loading ? (
-          <div style={{ textAlign: "center", padding: 40, color: "rgba(255,255,255,0.4)" }}>Loading cafés...</div>
-        ) : (
+        {!loading && (
           <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
             {[
               { label: "Reviewed", val: cafes.length },
-              { label: "Worth Going", val: go, color: "#4ade80" },
-              { label: "Binned", val: bin, color: "#f87171" },
+              { label: "Must Visit", val: mustVisit, color: "#4ade80" },
+              { label: "Avoid", val: avoid, color: "#f87171" },
               { label: "Avg Score", val: avg, color: "#facc15" },
             ].map(s => (
               <div key={s.label} style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px" }}>
@@ -119,27 +117,24 @@ export default function App() {
       <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
         <input placeholder="Search café or suburb..." value={search} onChange={e => setSearch(e.target.value)}
           style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
           {cities.map(c => (
             <button key={c} onClick={() => setCity(c)} style={{ padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", border: "1px solid rgba(255,255,255,0.15)", background: city === c ? "rgba(197,157,80,0.2)" : "transparent", color: city === c ? "#c8a96e" : "rgba(255,255,255,0.5)", transition: "all 0.2s" }}>
               {c}
             </button>
           ))}
-          <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px" }} />
-          {verdicts.map(v => (
-            <button key={v} onClick={() => setFilter(v)} style={{ padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", border: `1px solid ${filter === v && v === "GO" ? "rgba(74,222,128,0.4)" : filter === v && v === "BIN" ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"}`, background: filter === v && v === "GO" ? "rgba(74,222,128,0.15)" : filter === v && v === "BIN" ? "rgba(248,113,113,0.15)" : filter === v ? "rgba(255,255,255,0.08)" : "transparent", color: filter === v && v === "GO" ? "#4ade80" : filter === v && v === "BIN" ? "#f87171" : "rgba(255,255,255,0.5)", transition: "all 0.2s" }}>
-              {v === "GO" ? "✓ GO" : v === "BIN" ? "✕ BIN" : v}
-            </button>
-          ))}
-          <div style={{ marginLeft: "auto" }}>
-            <button onClick={() => setSort(s => s === "score" ? "name" : "score")} style={{ padding: "7px 14px", borderRadius: 20, fontSize: 12, cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>
-              Sort: {sort === "score" ? "Score ↓" : "A–Z"}
-            </button>
-          </div>
+          <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
+          <button onClick={() => setSort("high")} style={{ padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", border: `1px solid ${sort === "high" ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"}`, background: sort === "high" ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" ? "#4ade80" : "rgba(255,255,255,0.5)", transition: "all 0.2s" }}>
+            ↑ High Score
+          </button>
+          <button onClick={() => setSort("low")} style={{ padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", border: `1px solid ${sort === "low" ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"}`, background: sort === "low" ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" ? "#f87171" : "rgba(255,255,255,0.5)", transition: "all 0.2s" }}>
+            ↓ Low Score
+          </button>
         </div>
       </div>
 
       <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
+        {loading && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading cafés...</div>}
         {!loading && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafés found</div>}
         {filtered.map(cafe => (
           <div key={cafe.id} onClick={() => setSelected(selected?.id === cafe.id ? null : cafe)}
@@ -151,7 +146,7 @@ export default function App() {
               <div style={{ flex: 1 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                   <span style={{ fontWeight: 600, fontSize: 16 }}>{cafe.name}</span>
-                  <VerdictBadge verdict={cafe.verdict} />
+                  <VerdictBadge verdict={cafe.verdict} score={cafe.score} />
                 </div>
                 <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} · {cafe.price}</div>
               </div>
@@ -161,9 +156,9 @@ export default function App() {
                 <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>"{cafe.notes}"</p>
                 <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
                   <div style={{ flex: 1, height: 4, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
-                    <div style={{ height: "100%", width: `${cafe.score * 10}%`, background: cafe.score >= 8 ? "linear-gradient(90deg, #4ade80, #22c55e)" : cafe.score >= 6 ? "linear-gradient(90deg, #facc15, #f59e0b)" : "linear-gradient(90deg, #f87171, #ef4444)", borderRadius: 4 }} />
+                    <div style={{ height: "100%", width: `${cafe.score * 10}%`, background: cafe.score >= 7.5 ? "linear-gradient(90deg, #4ade80, #22c55e)" : cafe.score >= 5 ? "linear-gradient(90deg, #facc15, #f59e0b)" : "linear-gradient(90deg, #f87171, #ef4444)", borderRadius: 4 }} />
                   </div>
-                  <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, color: cafe.score >= 8 ? "#4ade80" : cafe.score >= 6 ? "#facc15" : "#f87171" }}>{cafe.score}/10</span>
+                  <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, color: cafe.score >= 7.5 ? "#4ade80" : cafe.score >= 5 ? "#facc15" : "#f87171" }}>{cafe.score}/10</span>
                 </div>
               </div>
             )}
