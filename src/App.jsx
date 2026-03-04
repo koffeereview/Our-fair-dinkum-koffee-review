@@ -15,8 +15,35 @@ function parseCSV(text) {
   });
 }
 
+function getScoreColor(score) {
+  if (score >= 9.0) return "#FFD700";
+  if (score >= 8.0) return "#4ade80";
+  if (score >= 7.0) return "#2dd4bf";
+  if (score >= 6.0) return "#facc15";
+  if (score >= 5.0) return "#fb923c";
+  return "#f87171";
+}
+
+function getScoreBg(score) {
+  if (score >= 9.0) return "rgba(255,215,0,0.15)";
+  if (score >= 8.0) return "rgba(74,222,128,0.15)";
+  if (score >= 7.0) return "rgba(45,212,191,0.15)";
+  if (score >= 6.0) return "rgba(250,204,21,0.15)";
+  if (score >= 5.0) return "rgba(251,146,60,0.15)";
+  return "rgba(248,113,113,0.15)";
+}
+
+function getScoreBorder(score) {
+  if (score >= 9.0) return "rgba(255,215,0,0.3)";
+  if (score >= 8.0) return "rgba(74,222,128,0.3)";
+  if (score >= 7.0) return "rgba(45,212,191,0.3)";
+  if (score >= 6.0) return "rgba(250,204,21,0.3)";
+  if (score >= 5.0) return "rgba(251,146,60,0.3)";
+  return "rgba(248,113,113,0.3)";
+}
+
 const ScoreRing = ({ score }) => {
-  const color = score >= 7.5 ? "#4ade80" : score >= 5 ? "#facc15" : "#f87171";
+  const color = getScoreColor(score);
   const pct = (score / 10) * 100;
   const r = 28, circ = 2 * Math.PI * r;
   return (
@@ -35,19 +62,24 @@ const ScoreRing = ({ score }) => {
   );
 };
 
-const VerdictBadge = ({ verdict, score }) => {
-  const color = score >= 7.5 ? "#4ade80" : score >= 5 ? "#facc15" : "#f87171";
-  const bg = score >= 7.5 ? "rgba(74,222,128,0.15)" : score >= 5 ? "rgba(250,204,21,0.15)" : "rgba(248,113,113,0.15)";
-  const border = score >= 7.5 ? "rgba(74,222,128,0.3)" : score >= 5 ? "rgba(250,204,21,0.3)" : "rgba(248,113,113,0.3)";
-  return (
-    <div style={{
-      padding: "4px 14px", borderRadius: 20, fontSize: 11, fontWeight: 700, letterSpacing: 2,
-      background: bg, color, border: `1px solid ${border}`,
-    }}>
-      {verdict?.toUpperCase() || "UNRATED"}
-    </div>
-  );
-};
+const VerdictBadge = ({ verdict, score }) => (
+  <div style={{
+    padding: "4px 14px", borderRadius: 20, fontSize: 11, fontWeight: 700, letterSpacing: 2,
+    background: getScoreBg(score), color: getScoreColor(score), border: `1px solid ${getScoreBorder(score)}`,
+  }}>
+    {verdict?.toUpperCase() || "UNRATED"}
+  </div>
+);
+
+function shareCard(cafe) {
+  const text = `☕ ${cafe.name} — ${cafe.score}/10 (${cafe.verdict})\n📍 ${cafe.suburb}, ${cafe.city}\n\nCheck more reviews at koffeereview.com.au`;
+  if (navigator.share) {
+    navigator.share({ title: cafe.name, text });
+  } else {
+    const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, "_blank");
+  }
+}
 
 export default function App() {
   const [cafes, setCafes] = useState([]);
@@ -60,15 +92,11 @@ export default function App() {
   useEffect(() => {
     fetch(SHEET_URL)
       .then(r => r.text())
-      .then(text => {
-        setCafes(parseCSV(text));
-        setLoading(false);
-      })
+      .then(text => { setCafes(parseCSV(text)); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 
   const cities = ["All", ...new Set(cafes.map(c => c.city))];
-
   let filtered = cafes
     .filter(c => city === "All" || c.city === city)
     .filter(c => c.name?.toLowerCase().includes(search.toLowerCase()) || c.suburb?.toLowerCase().includes(search.toLowerCase()))
@@ -83,16 +111,40 @@ export default function App() {
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
       <div style={{ position: "fixed", inset: 0, opacity: 0.03, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")", pointerEvents: "none", zIndex: 999 }} />
 
+      {/* Header */}
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
-          <span style={{ fontSize: 36 }}>☕</span>
-          <div>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 38, letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              OUR FAIR DINKUM
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
+            <span style={{ fontSize: 36 }}>☕</span>
+            <div>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 38, letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                OUR FAIR DINKUM
+              </div>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
+                KOFFEE REVIEW
+              </div>
             </div>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
-              KOFFEE REVIEW
-            </div>
+          </div>
+          {/* Social Links */}
+          <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 8 }}>
+            <a href="https://www.instagram.com/ourfairdinkumkoffee" target="_blank" rel="noreferrer"
+              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
+              onMouseOver={e => e.target.style.color="#E1306C"}
+              onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
+              IG
+            </a>
+            <a href="https://www.tiktok.com/@ourfairdinkumkoffee" target="_blank" rel="noreferrer"
+              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
+              onMouseOver={e => e.target.style.color="#69C9D0"}
+              onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
+              TT
+            </a>
+            <a href="https://www.youtube.com/@ourfairdinkumkoffee" target="_blank" rel="noreferrer"
+              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
+              onMouseOver={e => e.target.style.color="#FF0000"}
+              onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
+              YT
+            </a>
           </div>
         </div>
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafés reviewed across Australia · Know before you go</p>
@@ -114,6 +166,7 @@ export default function App() {
         )}
       </div>
 
+      {/* Controls */}
       <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
         <input placeholder="Search café or suburb..." value={search} onChange={e => setSearch(e.target.value)}
           style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
@@ -133,14 +186,15 @@ export default function App() {
         </div>
       </div>
 
+      {/* Cards */}
       <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
         {loading && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading cafés...</div>}
         {!loading && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafés found</div>}
         {filtered.map(cafe => (
-          <div key={cafe.id} onClick={() => setSelected(selected?.id === cafe.id ? null : cafe)}
-            style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${selected?.id === cafe.id ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"}`, borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}>
-            {cafe.score >= 8.5 && <div style={{ position: "absolute", top: -30, right: -30, width: 120, height: 120, background: "radial-gradient(circle, rgba(74,222,128,0.06), transparent 70%)", pointerEvents: "none" }} />}
-            {cafe.score < 5 && <div style={{ position: "absolute", top: -30, right: -30, width: 120, height: 120, background: "radial-gradient(circle, rgba(248,113,113,0.06), transparent 70%)", pointerEvents: "none" }} />}
+          <div key={cafe.id}
+            style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${selected?.id === cafe.id ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"}`, borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}
+            onClick={() => setSelected(selected?.id === cafe.id ? null : cafe)}>
+
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
               <ScoreRing score={cafe.score} />
               <div style={{ flex: 1 }}>
@@ -151,14 +205,39 @@ export default function App() {
                 <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} · {cafe.price}</div>
               </div>
             </div>
+
             {selected?.id === cafe.id && (
               <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>"{cafe.notes}"</p>
+
                 <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
                   <div style={{ flex: 1, height: 4, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
-                    <div style={{ height: "100%", width: `${cafe.score * 10}%`, background: cafe.score >= 7.5 ? "linear-gradient(90deg, #4ade80, #22c55e)" : cafe.score >= 5 ? "linear-gradient(90deg, #facc15, #f59e0b)" : "linear-gradient(90deg, #f87171, #ef4444)", borderRadius: 4 }} />
+                    <div style={{ height: "100%", width: `${cafe.score * 10}%`, background: `linear-gradient(90deg, ${getScoreColor(cafe.score)}, ${getScoreColor(cafe.score)}99)`, borderRadius: 4 }} />
                   </div>
-                  <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, color: cafe.score >= 7.5 ? "#4ade80" : cafe.score >= 5 ? "#facc15" : "#f87171" }}>{cafe.score}/10</span>
+                  <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, color: getScoreColor(cafe.score) }}>{cafe.score}/10</span>
+                </div>
+
+                {/* Action buttons */}
+                <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
+                  
+                    href={`https://www.google.com/maps/search/${encodeURIComponent(cafe.name + " " + cafe.suburb + " " + cafe.city)}`}
+                    target="_blank" rel="noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
+                    📍 Maps
+                  </a>
+                  <button
+                    onClick={e => { e.stopPropagation(); shareCard(cafe); }}
+                    style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>
+                    📤 Share
+                  </button>
+                  
+                    href={`https://wa.me/?text=${encodeURIComponent(`☕ ${cafe.name} — ${cafe.score}/10\n📍 ${cafe.suburb}, ${cafe.city}\n\nSee full review at koffeereview.com.au`)}`}
+                    target="_blank" rel="noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(37,211,102,0.1)", border: "1px solid rgba(37,211,102,0.2)", color: "#25D366", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
+                    💬 WhatsApp
+                  </button>
                 </div>
               </div>
             )}
