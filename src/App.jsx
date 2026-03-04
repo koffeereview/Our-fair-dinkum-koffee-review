@@ -72,12 +72,11 @@ const VerdictBadge = ({ verdict, score }) => (
 );
 
 function shareCard(cafe) {
-  const text = `☕ ${cafe.name} — ${cafe.score}/10 (${cafe.verdict})\n📍 ${cafe.suburb}, ${cafe.city}\n\nCheck more reviews at koffeereview.com.au`;
+  const text = "Coffee: " + cafe.name + " - " + cafe.score + "/10 (" + cafe.verdict + ")\nLocation: " + cafe.suburb + ", " + cafe.city + "\n\nSee more at koffeereview.com.au";
   if (navigator.share) {
     navigator.share({ title: cafe.name, text });
   } else {
-    const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
-    window.open(waUrl, "_blank");
+    window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
   }
 }
 
@@ -111,11 +110,10 @@ export default function App() {
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
       <div style={{ position: "fixed", inset: 0, opacity: 0.03, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")", pointerEvents: "none", zIndex: 999 }} />
 
-      {/* Header */}
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
-            <span style={{ fontSize: 36 }}>☕</span>
+            <span style={{ fontSize: 36 }}>&#9749;</span>
             <div>
               <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 38, letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 OUR FAIR DINKUM
@@ -125,29 +123,22 @@ export default function App() {
               </div>
             </div>
           </div>
-          {/* Social Links */}
           <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 8 }}>
             <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
-              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
-              onMouseOver={e => e.target.style.color="#E1306C"}
-              onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
+              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 13, fontWeight: 600, letterSpacing: 1, padding: "6px 12px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20 }}>
               IG
             </a>
             <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
-              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
-              onMouseOver={e => e.target.style.color="#69C9D0"}
-              onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
+              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 13, fontWeight: 600, letterSpacing: 1, padding: "6px 12px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20 }}>
               TT
             </a>
             <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
-              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
-              onMouseOver={e => e.target.style.color="#FF0000"}
-              onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
+              style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 13, fontWeight: 600, letterSpacing: 1, padding: "6px 12px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20 }}>
               YT
             </a>
           </div>
         </div>
-        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafés reviewed across Australia · Know before you go</p>
+        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafes reviewed across Australia - Know before you go</p>
 
         {!loading && (
           <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
@@ -166,9 +157,8 @@ export default function App() {
         )}
       </div>
 
-      {/* Controls */}
       <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
-        <input placeholder="Search café or suburb..." value={search} onChange={e => setSearch(e.target.value)}
+        <input placeholder="Search cafe or suburb..." value={search} onChange={e => setSearch(e.target.value)}
           style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
           {cities.map(c => (
@@ -178,18 +168,17 @@ export default function App() {
           ))}
           <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
           <button onClick={() => setSort("high")} style={{ padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", border: `1px solid ${sort === "high" ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"}`, background: sort === "high" ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" ? "#4ade80" : "rgba(255,255,255,0.5)", transition: "all 0.2s" }}>
-            ↑ High Score
+            High Score
           </button>
           <button onClick={() => setSort("low")} style={{ padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", border: `1px solid ${sort === "low" ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"}`, background: sort === "low" ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" ? "#f87171" : "rgba(255,255,255,0.5)", transition: "all 0.2s" }}>
-            ↓ Low Score
+            Low Score
           </button>
         </div>
       </div>
 
-      {/* Cards */}
       <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
-        {loading && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading cafés...</div>}
-        {!loading && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafés found</div>}
+        {loading && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading cafes...</div>}
+        {!loading && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafes found</div>}
         {filtered.map(cafe => (
           <div key={cafe.id}
             style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${selected?.id === cafe.id ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"}`, borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}
@@ -202,42 +191,39 @@ export default function App() {
                   <span style={{ fontWeight: 600, fontSize: 16 }}>{cafe.name}</span>
                   <VerdictBadge verdict={cafe.verdict} score={cafe.score} />
                 </div>
-                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} · {cafe.price}</div>
+                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} - {cafe.price}</div>
               </div>
             </div>
 
             {selected?.id === cafe.id && (
               <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>"{cafe.notes}"</p>
-
                 <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
                   <div style={{ flex: 1, height: 4, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
                     <div style={{ height: "100%", width: `${cafe.score * 10}%`, background: `linear-gradient(90deg, ${getScoreColor(cafe.score)}, ${getScoreColor(cafe.score)}99)`, borderRadius: 4 }} />
                   </div>
                   <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, color: getScoreColor(cafe.score) }}>{cafe.score}/10</span>
                 </div>
-
-                {/* Action buttons */}
                 <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
                   
-                    href={`https://www.google.com/maps/search/${encodeURIComponent(cafe.name + " " + cafe.suburb + " " + cafe.city)}`}
+                    href={"https://www.google.com/maps/search/" + encodeURIComponent(cafe.name + " " + cafe.suburb + " " + cafe.city)}
                     target="_blank" rel="noreferrer"
                     onClick={e => e.stopPropagation()}
                     style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
-                    📍 Maps
+                    Maps
                   </a>
                   <button
                     onClick={e => { e.stopPropagation(); shareCard(cafe); }}
                     style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>
-                    📤 Share
+                    Share
                   </button>
                   
-                    href={`https://wa.me/?text=${encodeURIComponent(`☕ ${cafe.name} — ${cafe.score}/10\n📍 ${cafe.suburb}, ${cafe.city}\n\nSee full review at koffeereview.com.au`)}`}
+                    href={"https://wa.me/?text=" + encodeURIComponent("Coffee: " + cafe.name + " - " + cafe.score + "/10\nLocation: " + cafe.suburb + ", " + cafe.city + "\n\nSee full review at koffeereview.com.au")}
                     target="_blank" rel="noreferrer"
                     onClick={e => e.stopPropagation()}
                     style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(37,211,102,0.1)", border: "1px solid rgba(37,211,102,0.2)", color: "#25D366", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
-                    💬 WhatsApp
-                  </button>
+                    WhatsApp
+                  </a>
                 </div>
               </div>
             )}
