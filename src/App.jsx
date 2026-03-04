@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const cafes = [
-  { id: 1, name: "Ona Coffee", city: "Melbourne", suburb: "Fitzroy", score: 9.2, price: "$$", vibe: "Specialty", verdict: "GO", notes: "Exceptional single origin, the pour over is elite. Staff really know their stuff.", drinks: ["Flat White", "Pour Over", "Cold Brew"], tags: ["Specialty", "Quiet", "WiFi"] },
-  { id: 2, name: "Blackstar Coffee Roasters", city: "Brisbane", suburb: "West End", score: 8.7, price: "$$", vibe: "Roastery", verdict: "GO", notes: "Their house blend is a banger. Great toasties too. Gets packed on weekends.", drinks: ["Flat White", "Espresso", "Batch Brew"], tags: ["Roastery", "Breakfast", "Busy"] },
-  { id: 3, name: "Gloria Jean's QLD", city: "Brisbane", suburb: "City", score: 3.1, price: "$", vibe: "Chain", verdict: "BIN", notes: "Mate. Just... no. Burnt milk, watery espresso. This one went straight in the bin.", drinks: ["Latte", "Cap"], tags: ["Chain", "Quick"] },
-  { id: 4, name: "Proud Mary", city: "Melbourne", suburb: "Collingwood", score: 8.9, price: "$$", vibe: "Specialty", verdict: "GO", notes: "World class. The cortado changed my life a bit. Queue is worth it every time.", drinks: ["Cortado", "Filter", "Nitro"], tags: ["Specialty", "Iconic", "Queue"] },
-  { id: 5, name: "Campos Coffee", city: "Melbourne", suburb: "Carlton", score: 7.4, price: "$$", vibe: "Cafe", verdict: "GO", notes: "Solid and consistent. Nothing that blows your mind but you won't be disappointed either.", drinks: ["Flat White", "Oat Latte"], tags: ["Reliable", "Good Vibes"] },
-  { id: 6, name: "Some Random Servo", city: "Brisbane", suburb: "Bowen Hills", score: 1.8, price: "$", vibe: "Servo", verdict: "BIN", notes: "They called this a flat white. I called it a war crime. Absolute bin throw.", drinks: ["'Coffee'"], tags: ["Avoid", "Tragic"] },
-  { id: 7, name: "Merlo Coffee", city: "Brisbane", suburb: "Newstead", score: 7.8, price: "$$", vibe: "Roastery", verdict: "GO", notes: "Brisbane institution. The roastery bar is where it's at — ask for the daily filter.", drinks: ["Filter", "Espresso", "Cold Brew"], tags: ["Local Legend", "Roastery"] },
-  { id: 8, name: "Seven Seeds", city: "Melbourne", suburb: "Carlton", score: 9.0, price: "$$", vibe: "Specialty", verdict: "GO", notes: "Consistently elite. The warehouse space is a vibe, and every cup is dialled in.", drinks: ["Batch Brew", "Aeropress", "Flat White"], tags: ["Specialty", "Iconic", "Spacious"] },
-];
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
+
+function parseCSV(text) {
+  const lines = text.trim().split("\n");
+  const headers = lines[0].split(",").map(h => h.trim().replace(/"/g, ""));
+  return lines.slice(1).map((line, i) => {
+    const values = line.split(",").map(v => v.trim().replace(/"/g, ""));
+    const obj = {};
+    headers.forEach((h, idx) => obj[h] = values[idx] || "");
+    obj.score = parseFloat(obj.score) || 0;
+    obj.id = i + 1;
+    return obj;
+  });
+}
 
 const ScoreRing = ({ score }) => {
   const color = score >= 8 ? "#4ade80" : score >= 6 ? "#facc15" : "#f87171";
@@ -43,29 +47,42 @@ const VerdictBadge = ({ verdict }) => (
 );
 
 export default function App() {
+  const [cafes, setCafes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("All");
   const [city, setCity] = useState("All");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
   const [sort, setSort] = useState("score");
 
-  const cities = ["All", "Brisbane", "Melbourne"];
+  useEffect(() => {
+    fetch(SHEET_URL)
+      .then(r => r.text())
+      .then(text => {
+        setCafes(parseCSV(text));
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const cities = ["All", ...new Set(cafes.map(c => c.city))];
   const verdicts = ["All", "GO", "BIN"];
 
   let filtered = cafes
     .filter(c => city === "All" || c.city === city)
     .filter(c => filter === "All" || c.verdict === filter)
-    .filter(c => c.name.toLowerCase().includes(search.toLowerCase()) || c.suburb.toLowerCase().includes(search.toLowerCase()))
-    .sort((a, b) => sort === "score" ? b.score - a.score : a.name.localeCompare(b.name));
+    .filter(c => c.name?.toLowerCase().includes(search.toLowerCase()) || c.suburb?.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => sort === "score" ? b.score - a.score : a.name?.localeCompare(b.name));
 
   const go = cafes.filter(c => c.verdict === "GO").length;
   const bin = cafes.filter(c => c.verdict === "BIN").length;
-  const avg = (cafes.reduce((s, c) => s + c.score, 0) / cafes.length).toFixed(1);
+  const avg = cafes.length ? (cafes.reduce((s, c) => s + c.score, 0) / cafes.length).toFixed(1) : "0";
 
   return (
     <div style={{ minHeight: "100vh", background: "#0a0a0a", fontFamily: "'DM Sans', sans-serif", color: "#fff" }}>
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
       <div style={{ position: "fixed", inset: 0, opacity: 0.03, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")", pointerEvents: "none", zIndex: 999 }} />
+
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
           <span style={{ fontSize: 36 }}>☕</span>
@@ -79,20 +96,26 @@ export default function App() {
           </div>
         </div>
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafés reviewed across Australia · Know before you go</p>
-        <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
-          {[
-            { label: "Reviewed", val: cafes.length },
-            { label: "Worth Going", val: go, color: "#4ade80" },
-            { label: "Binned", val: bin, color: "#f87171" },
-            { label: "Avg Score", val: avg, color: "#facc15" },
-          ].map(s => (
-            <div key={s.label} style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px" }}>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: s.color || "#fff", lineHeight: 1 }}>{s.val}</div>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
+
+        {loading ? (
+          <div style={{ textAlign: "center", padding: 40, color: "rgba(255,255,255,0.4)" }}>Loading cafés...</div>
+        ) : (
+          <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
+            {[
+              { label: "Reviewed", val: cafes.length },
+              { label: "Worth Going", val: go, color: "#4ade80" },
+              { label: "Binned", val: bin, color: "#f87171" },
+              { label: "Avg Score", val: avg, color: "#facc15" },
+            ].map(s => (
+              <div key={s.label} style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px" }}>
+                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: s.color || "#fff", lineHeight: 1 }}>{s.val}</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
       <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
         <input placeholder="Search café or suburb..." value={search} onChange={e => setSearch(e.target.value)}
           style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
@@ -115,8 +138,9 @@ export default function App() {
           </div>
         </div>
       </div>
+
       <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
-        {filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafés found</div>}
+        {!loading && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafés found</div>}
         {filtered.map(cafe => (
           <div key={cafe.id} onClick={() => setSelected(selected?.id === cafe.id ? null : cafe)}
             style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${selected?.id === cafe.id ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"}`, borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}>
@@ -129,23 +153,12 @@ export default function App() {
                   <span style={{ fontWeight: 600, fontSize: 16 }}>{cafe.name}</span>
                   <VerdictBadge verdict={cafe.verdict} />
                 </div>
-                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} · {cafe.price} · {cafe.vibe}</div>
-                <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-                  {cafe.tags.map(t => (
-                    <span key={t} style={{ fontSize: 10, padding: "2px 8px", borderRadius: 10, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.5)", letterSpacing: 0.5 }}>{t}</span>
-                  ))}
-                </div>
+                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} · {cafe.price}</div>
               </div>
             </div>
             {selected?.id === cafe.id && (
               <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>"{cafe.notes}"</p>
-                <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Drinks tried:</span>
-                  {cafe.drinks.map(d => (
-                    <span key={d} style={{ fontSize: 12, padding: "3px 10px", borderRadius: 20, background: "rgba(197,157,80,0.1)", color: "#c8a96e", border: "1px solid rgba(197,157,80,0.2)" }}>{d}</span>
-                  ))}
-                </div>
                 <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
                   <div style={{ flex: 1, height: 4, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
                     <div style={{ height: "100%", width: `${cafe.score * 10}%`, background: cafe.score >= 8 ? "linear-gradient(90deg, #4ade80, #22c55e)" : cafe.score >= 6 ? "linear-gradient(90deg, #facc15, #f59e0b)" : "linear-gradient(90deg, #f87171, #ef4444)", borderRadius: 4 }} />
