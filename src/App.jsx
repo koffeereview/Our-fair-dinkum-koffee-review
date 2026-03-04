@@ -127,19 +127,19 @@ export default function App() {
           </div>
           {/* Social Links */}
           <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 8 }}>
-            <a href="https://www.instagram.com/ourfairdinkumkoffee" target="_blank" rel="noreferrer"
+            <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
               style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
               onMouseOver={e => e.target.style.color="#E1306C"}
               onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
               IG
             </a>
-            <a href="https://www.tiktok.com/@ourfairdinkumkoffee" target="_blank" rel="noreferrer"
+            <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
               style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
               onMouseOver={e => e.target.style.color="#69C9D0"}
               onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
               TT
             </a>
-            <a href="https://www.youtube.com/@ourfairdinkumkoffee" target="_blank" rel="noreferrer"
+            <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
               style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: 22, transition: "color 0.2s" }}
               onMouseOver={e => e.target.style.color="#FF0000"}
               onMouseOut={e => e.target.style.color="rgba(255,255,255,0.5)"}>
