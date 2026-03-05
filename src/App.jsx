@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
@@ -95,13 +95,31 @@ function VerdictBadge(props) {
   );
 }
 
+const SCORE_BUCKETS = [
+  { label: "9+ (Elite)", min: 9.0, max: 10, ref: 9.5 },
+  { label: "8s (Great)", min: 8.0, max: 8.99, ref: 8.5 },
+  { label: "7s (Solid)", min: 7.0, max: 7.99, ref: 7.5 },
+  { label: "6s (Decent)", min: 6.0, max: 6.99, ref: 6.5 },
+  { label: "5s (Meh)", min: 5.0, max: 5.99, ref: 5.5 },
+  { label: "4s (Risky)", min: 4.0, max: 4.99, ref: 4.5 },
+  { label: "3s (Bad)", min: 3.0, max: 3.99, ref: 3.5 },
+  { label: "2s (Terrible)", min: 2.0, max: 2.99, ref: 2.5 },
+  { label: "1s (Crime)", min: 1.0, max: 1.99, ref: 1.5 },
+];
+
 export default function App() {
   const [cafes, setCafes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [city, setCity] = useState("All");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
-  const [sort, setSort] = useState("high");
+  const [sort, setSort] = useState("all");
+  const [quickFilter, setQuickFilter] = useState(null);
+  const [scoreBucket, setScoreBucket] = useState(null);
+  const [scoreDropdown, setScoreDropdown] = useState(false);
+  const [cityDropdown, setCityDropdown] = useState(false);
+  const scoreRef = useRef(null);
+  const cityRef = useRef(null);
 
   useEffect(function() {
     fetch(SHEET_URL)
@@ -110,7 +128,28 @@ export default function App() {
       .catch(function() { setLoading(false); });
   }, []);
 
-  const allCities = ["All"].concat(Array.from(new Set(cafes.map(function(c) { return c.city; }))));
+  useEffect(function() {
+    function handleClick(e) {
+      if (scoreRef.current && !scoreRef.current.contains(e.target)) setScoreDropdown(false);
+      if (cityRef.current && !cityRef.current.contains(e.target)) setCityDropdown(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return function() { document.removeEventListener("mousedown", handleClick); };
+  }, []);
+
+  const allCities = Array.from(new Set(cafes.map(function(c) { return c.city; }))).sort();
+  const mustVisit = cafes.filter(function(c) { return c.score >= 7.5; }).length;
+  const avoid = cafes.filter(function(c) { return c.score < 5; }).length;
+  const avg = cafes.length ? (cafes.reduce(function(s, c) { return s + c.score; }, 0) / cafes.length).toFixed(1) : "0";
+
+  function handleStatClick(type) {
+    if (quickFilter === type) { setQuickFilter(null); } else { setQuickFilter(type); setScoreBucket(null); }
+  }
+
+  function handleBucketSelect(bucket) {
+    if (scoreBucket === bucket.label) { setScoreBucket(null); } else { setScoreBucket(bucket.label); setQuickFilter(null); }
+    setScoreDropdown(false);
+  }
 
   const filtered = cafes
     .filter(function(c) { return city === "All" || c.city === city; })
@@ -118,11 +157,20 @@ export default function App() {
       const s = search.toLowerCase();
       return (c.name && c.name.toLowerCase().includes(s)) || (c.suburb && c.suburb.toLowerCase().includes(s));
     })
-    .sort(function(a, b) { return sort === "high" ? b.score - a.score : a.score - b.score; });
-
-  const mustVisit = cafes.filter(function(c) { return c.score >= 7.5; }).length;
-  const avoid = cafes.filter(function(c) { return c.score < 5; }).length;
-  const avg = cafes.length ? (cafes.reduce(function(s, c) { return s + c.score; }, 0) / cafes.length).toFixed(1) : "0";
+    .filter(function(c) {
+      if (quickFilter === "must") return c.score >= 7.5;
+      if (quickFilter === "avoid") return c.score < 5;
+      if (scoreBucket) {
+        const bucket = SCORE_BUCKETS.find(function(b) { return b.label === scoreBucket; });
+        if (bucket) return c.score >= bucket.min && c.score <= bucket.max;
+      }
+      return true;
+    })
+    .sort(function(a, b) {
+      if (sort === "high") return b.score - a.score;
+      if (sort === "low") return a.score - b.score;
+      return (a.name || "").localeCompare(b.name || "");
+    });
 
   const btnBase = { padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", transition: "all 0.2s" };
 
@@ -156,40 +204,38 @@ export default function App() {
 
         {!loading && (
           <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
-            {[
-              { label: "Reviewed", val: cafes.length },
-              { label: "Must Visit", val: mustVisit, color: "#4ade80" },
-              { label: "Avoid", val: avoid, color: "#f87171" },
-              { label: "Avg Score", val: avg, color: "#facc15" },
-            ].map(function(s) {
-              return (
-                <div key={s.label} style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px" }}>
-                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: s.color || "#fff", lineHeight: 1 }}>{s.val}</div>
-                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>{s.label}</div>
-                </div>
-              );
-            })}
+            <div style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px" }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Reviewed</div>
+            </div>
+            <div onClick={function() { handleStatClick("must"); }}
+              style={{ flex: 1, background: quickFilter === "must" ? "rgba(74,222,128,0.2)" : "rgba(255,255,255,0.04)", border: "1px solid " + (quickFilter === "must" ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.08)"), borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#4ade80", lineHeight: 1 }}>{mustVisit}</div>
+              <div style={{ fontSize: 11, color: quickFilter === "must" ? "#4ade80" : "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Must Visit</div>
+            </div>
+            <div onClick={function() { handleStatClick("avoid"); }}
+              style={{ flex: 1, background: quickFilter === "avoid" ? "rgba(248,113,113,0.2)" : "rgba(255,255,255,0.04)", border: "1px solid " + (quickFilter === "avoid" ? "rgba(248,113,113,0.5)" : "rgba(255,255,255,0.08)"), borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#f87171", lineHeight: 1 }}>{avoid}</div>
+              <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#f87171" : "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Avoid</div>
+            </div>
+            <div style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px" }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#facc15", lineHeight: 1 }}>{avg}</div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Avg Score</div>
+            </div>
           </div>
         )}
       </div>
 
       <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
-        <input
-          placeholder="Search cafe or suburb..."
-          value={search}
+        <input placeholder="Search cafe or suburb..." value={search}
           onChange={function(e) { setSearch(e.target.value); }}
-          style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }}
-        />
+          style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
+
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-          {allCities.map(function(c) {
-            return (
-              <button key={c} onClick={function() { setCity(c); }}
-                style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: city === c ? "rgba(197,157,80,0.2)" : "transparent", color: city === c ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>
-                {c}
-              </button>
-            );
-          })}
-          <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
+          <button onClick={function() { setSort("all"); }}
+            style={{ ...btnBase, border: "1px solid " + (sort === "all" ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>
+            All
+          </button>
           <button onClick={function() { setSort("high"); }}
             style={{ ...btnBase, border: "1px solid " + (sort === "high" ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" ? "#4ade80" : "rgba(255,255,255,0.5)" }}>
             High Score
@@ -198,6 +244,72 @@ export default function App() {
             style={{ ...btnBase, border: "1px solid " + (sort === "low" ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" ? "#f87171" : "rgba(255,255,255,0.5)" }}>
             Low Score
           </button>
+
+          <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
+
+          {/* Score dropdown */}
+          <div ref={scoreRef} style={{ position: "relative" }}>
+            <button onClick={function() { setScoreDropdown(!scoreDropdown); setCityDropdown(false); }}
+              style={{ ...btnBase, border: "1px solid " + (scoreBucket ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: scoreBucket ? "rgba(197,157,80,0.15)" : "transparent", color: scoreBucket ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
+              {scoreBucket ? scoreBucket : "Score"} {scoreDropdown ? "▲" : "▼"}
+            </button>
+            {scoreDropdown && (
+              <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 190, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
+                {scoreBucket && (
+                  <div onClick={function() { setScoreBucket(null); setScoreDropdown(false); }}
+                    style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                    Clear filter
+                  </div>
+                )}
+                {SCORE_BUCKETS.map(function(bucket) {
+                  const isActive = scoreBucket === bucket.label;
+                  const col = getScoreColor(bucket.ref);
+                  return (
+                    <div key={bucket.label} onClick={function() { handleBucketSelect(bucket); }}
+                      style={{ padding: "13px 20px", fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", background: isActive ? "rgba(255,255,255,0.06)" : "transparent", color: isActive ? col : "#fff", transition: "background 0.15s" }}>
+                      <span style={{ fontWeight: isActive ? 600 : 400 }}>{bucket.label}</span>
+                      {isActive && <span style={{ color: col, fontSize: 16 }}>&#10003;</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* City dropdown */}
+          <div ref={cityRef} style={{ position: "relative" }}>
+            <button onClick={function() { setCityDropdown(!cityDropdown); setScoreDropdown(false); }}
+              style={{ ...btnBase, border: "1px solid " + (city !== "All" ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: city !== "All" ? "rgba(197,157,80,0.15)" : "transparent", color: city !== "All" ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
+              {city !== "All" ? city : "City"} {cityDropdown ? "▲" : "▼"}
+            </button>
+            {cityDropdown && (
+              <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 170, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
+                {city !== "All" && (
+                  <div onClick={function() { setCity("All"); setCityDropdown(false); }}
+                    style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                    Clear filter
+                  </div>
+                )}
+                {allCities.map(function(c) {
+                  const isActive = city === c;
+                  return (
+                    <div key={c} onClick={function() { setCity(c); setCityDropdown(false); }}
+                      style={{ padding: "13px 20px", fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", background: isActive ? "rgba(255,255,255,0.06)" : "transparent", color: isActive ? "#c8a96e" : "#fff", transition: "background 0.15s" }}>
+                      <span style={{ fontWeight: isActive ? 600 : 400 }}>{c}</span>
+                      {isActive && <span style={{ color: "#c8a96e", fontSize: 16 }}>&#10003;</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {(scoreBucket || quickFilter || city !== "All") && (
+            <button onClick={function() { setScoreBucket(null); setQuickFilter(null); setCity("All"); }}
+              style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>
+              Clear
+            </button>
+          )}
         </div>
       </div>
 
@@ -210,7 +322,6 @@ export default function App() {
             <div key={cafe.id}
               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s" }}
               onClick={function() { setSelected(isSelected ? null : cafe); }}>
-
               <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
                 <ScoreRing score={cafe.score} />
                 <div style={{ flex: 1 }}>
@@ -221,7 +332,6 @@ export default function App() {
                   <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} - {cafe.price}</div>
                 </div>
               </div>
-
               {isSelected && (
                 <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                   <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>"{cafe.notes}"</p>
