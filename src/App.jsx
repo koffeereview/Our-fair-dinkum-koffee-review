@@ -107,6 +107,13 @@ const SCORE_BUCKETS = [
   { label: "1s (Crime)", min: 1.0, max: 1.99, ref: 1.5 },
 ];
 
+function clearAll(setSort, setQuickFilter, setScoreBucket, setCity) {
+  setSort("all");
+  setQuickFilter(null);
+  setScoreBucket(null);
+  setCity("All");
+}
+
 export default function App() {
   const [cafes, setCafes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -143,7 +150,18 @@ export default function App() {
   const avg = cafes.length ? (cafes.reduce(function(s, c) { return s + c.score; }, 0) / cafes.length).toFixed(1) : "0";
 
   function handleStatClick(type) {
-    if (quickFilter === type) { setQuickFilter(null); } else { setQuickFilter(type); setScoreBucket(null); }
+    if (quickFilter === type) { setQuickFilter(null); } else { setQuickFilter(type); setScoreBucket(null); setSort("all"); }
+  }
+
+  function handleSortClick(val) {
+    setSort(val);
+    setQuickFilter(null);
+    setScoreBucket(null);
+  }
+
+  function handleReviewedClick() {
+    clearAll(setSort, setQuickFilter, setScoreBucket, setCity);
+    setSearch("");
   }
 
   function handleBucketSelect(bucket) {
@@ -204,7 +222,8 @@ export default function App() {
 
         {!loading && (
           <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
-            <div style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px" }}>
+            <div onClick={handleReviewedClick}
+              style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
               <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
               <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Reviewed</div>
             </div>
@@ -232,22 +251,21 @@ export default function App() {
           style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
 
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-          <button onClick={function() { setSort("all"); }}
-            style={{ ...btnBase, border: "1px solid " + (sort === "all" ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>
+          <button onClick={function() { handleSortClick("all"); }}
+            style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>
             All
           </button>
-          <button onClick={function() { setSort("high"); }}
-            style={{ ...btnBase, border: "1px solid " + (sort === "high" ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" ? "#4ade80" : "rgba(255,255,255,0.5)" }}>
+          <button onClick={function() { handleSortClick("high"); }}
+            style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" && !quickFilter ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4ade80" : "rgba(255,255,255,0.5)" }}>
             High Score
           </button>
-          <button onClick={function() { setSort("low"); }}
-            style={{ ...btnBase, border: "1px solid " + (sort === "low" ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" ? "#f87171" : "rgba(255,255,255,0.5)" }}>
+          <button onClick={function() { handleSortClick("low"); }}
+            style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" && !quickFilter ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#f87171" : "rgba(255,255,255,0.5)" }}>
             Low Score
           </button>
 
           <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
 
-          {/* Score dropdown */}
           <div ref={scoreRef} style={{ position: "relative" }}>
             <button onClick={function() { setScoreDropdown(!scoreDropdown); setCityDropdown(false); }}
               style={{ ...btnBase, border: "1px solid " + (scoreBucket ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: scoreBucket ? "rgba(197,157,80,0.15)" : "transparent", color: scoreBucket ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
@@ -276,7 +294,6 @@ export default function App() {
             )}
           </div>
 
-          {/* City dropdown */}
           <div ref={cityRef} style={{ position: "relative" }}>
             <button onClick={function() { setCityDropdown(!cityDropdown); setScoreDropdown(false); }}
               style={{ ...btnBase, border: "1px solid " + (city !== "All" ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: city !== "All" ? "rgba(197,157,80,0.15)" : "transparent", color: city !== "All" ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
@@ -305,7 +322,7 @@ export default function App() {
           </div>
 
           {(scoreBucket || quickFilter || city !== "All") && (
-            <button onClick={function() { setScoreBucket(null); setQuickFilter(null); setCity("All"); }}
+            <button onClick={function() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); }}
               style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>
               Clear
             </button>
