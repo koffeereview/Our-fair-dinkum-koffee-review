@@ -219,6 +219,7 @@ export default function App() {
           </div>
         </div>
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafes reviewed across Australia - Know before you go</p>
+        <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, marginTop: 4 }}>We order the same thing every time, Latte & Double Shot Espresso.
 
         {!loading && (
           <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
