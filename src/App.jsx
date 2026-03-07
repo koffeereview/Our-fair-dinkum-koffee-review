@@ -116,6 +116,7 @@ function MapView(props) {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const [selectedCafe, setSelectedCafe] = useState(null);
+  const [locationError, setLocationError] = useState(false);
 
   useEffect(function() {
     if (mapInstanceRef.current) return;
@@ -123,10 +124,9 @@ function MapView(props) {
     if (!L) return;
 
     const validCafes = cafes.filter(function(c) { return c.lat && c.lng; });
-    if (validCafes.length === 0) return;
 
-    const avgLat = validCafes.reduce(function(s, c) { return s + c.lat; }, 0) / validCafes.length;
-    const avgLng = validCafes.reduce(function(s, c) { return s + c.lng; }, 0) / validCafes.length;
+    const avgLat = validCafes.length > 0 ? validCafes.reduce(function(s, c) { return s + c.lat; }, 0) / validCafes.length : -27.4698;
+    const avgLng = validCafes.length > 0 ? validCafes.reduce(function(s, c) { return s + c.lng; }, 0) / validCafes.length : 153.0251;
 
     const map = L.map(mapRef.current).setView([avgLat, avgLng], 11);
     mapInstanceRef.current = map;
@@ -135,6 +135,31 @@ function MapView(props) {
       attribution: ""
     }).addTo(map);
 
+    // Ask for user location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          const userLat = position.coords.latitude;
+          const userLng = position.coords.longitude;
+
+          map.setView([userLat, userLng], 13);
+
+          // You are here pin
+          const youAreHereIcon = L.divIcon({
+            html: '<div style="background:#3b82f6;border:3px solid #fff;border-radius:50%;width:16px;height:16px;box-shadow:0 0 0 4px rgba(59,130,246,0.3);"></div>',
+            className: "",
+            iconSize: [16, 16],
+            iconAnchor: [8, 8],
+          });
+          L.marker([userLat, userLng], { icon: youAreHereIcon }).addTo(map).bindPopup("You are here");
+        },
+        function() {
+          setLocationError(true);
+        }
+      );
+    }
+
+    // Add cafe pins
     validCafes.forEach(function(cafe) {
       const color = getScoreColor(cafe.score);
       const markerHtml = '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.5);overflow:hidden;">' +
@@ -158,8 +183,11 @@ function MapView(props) {
 
   return (
     <div style={{ position: "relative" }}>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+      {locationError && (
+        <div style={{ background: "rgba(251,146,60,0.15)", border: "1px solid rgba(251,146,60,0.3)", borderRadius: 10, padding: "10px 16px", marginBottom: 12, fontSize: 13, color: "#fb923c" }}>
+          Location access denied — showing all cafes
+        </div>
+      )}
       <div ref={mapRef} style={{ height: "60vh", width: "100%", borderRadius: 16, overflow: "hidden" }} />
 
       {selectedCafe && (
