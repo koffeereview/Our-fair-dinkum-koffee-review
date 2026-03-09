@@ -111,18 +111,18 @@ function clearAll(setSort, setQuickFilter, setScoreBucket, setCity) {
   setCity("All");
 }
 
-function ScoreChart(props) {
-  const cafes = props.cafes;
+function ScoreChart({ cafes }) {
+  const [open, setOpen] = useState(false);
   const buckets = [
-    { label: "9+", min: 9.0, max: 10, ref: 9.5 },
-    { label: "8s", min: 8.0, max: 8.99, ref: 8.5 },
-    { label: "7s", min: 7.0, max: 7.99, ref: 7.5 },
-    { label: "6s", min: 6.0, max: 6.99, ref: 6.5 },
-    { label: "5s", min: 5.0, max: 5.99, ref: 5.5 },
-    { label: "4s", min: 4.0, max: 4.99, ref: 4.5 },
-    { label: "3s", min: 3.0, max: 3.99, ref: 3.5 },
-    { label: "2s", min: 2.0, max: 2.99, ref: 2.5 },
-    { label: "1s", min: 1.0, max: 1.99, ref: 1.5 },
+    { label:"9+", min:9.0, max:10, ref:9.5 },
+    { label:"8s", min:8.0, max:8.99, ref:8.5 },
+    { label:"7s", min:7.0, max:7.99, ref:7.5 },
+    { label:"6s", min:6.0, max:6.99, ref:6.5 },
+    { label:"5s", min:5.0, max:5.99, ref:5.5 },
+    { label:"4s", min:4.0, max:4.99, ref:4.5 },
+    { label:"3s", min:3.0, max:3.99, ref:3.5 },
+    { label:"2s", min:2.0, max:2.99, ref:2.5 },
+    { label:"1s", min:1.0, max:1.99, ref:1.5 },
   ];
   const counts = buckets.map(function(b) {
     return cafes.filter(function(c) { return c.score >= b.min && c.score <= b.max; }).length;
@@ -130,22 +130,30 @@ function ScoreChart(props) {
   const max = Math.max.apply(null, counts) || 1;
 
   return (
-    <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: "16px 20px", marginTop: 24 }}>
-      <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", letterSpacing: 1, marginBottom: 12 }}>SCORE DISTRIBUTION</div>
-      {buckets.map(function(b, i) {
-        const count = counts[i];
-        const pct = (count / max) * 100;
-        const color = getScoreColor(b.ref);
-        return (
-          <div key={b.label} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-            <div style={{ width: 24, fontSize: 11, color: color, fontFamily: "'Bebas Neue', sans-serif", letterSpacing: 1 }}>{b.label}</div>
-            <div style={{ flex: 1, height: 8, background: "rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden" }}>
-              <div style={{ height: "100%", width: pct + "%", background: color, borderRadius: 4, transition: "width 1s ease", opacity: 0.8 }} />
-            </div>
-            <div style={{ width: 20, fontSize: 11, color: "rgba(255,255,255,0.4)", textAlign: "right" }}>{count}</div>
-          </div>
-        );
-      })}
+    <div style={{ background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:16, marginTop:16, overflow:"hidden" }}>
+      <div onClick={function() { setOpen(!open); }}
+        style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 20px", cursor:"pointer" }}>
+        <div style={{ fontSize:11, color:"rgba(255,255,255,0.3)", letterSpacing:1 }}>SCORE DISTRIBUTION</div>
+        <div style={{ color:"rgba(255,255,255,0.3)", fontSize:14, transition:"transform 0.3s", transform:open?"rotate(180deg)":"rotate(0deg)" }}>▼</div>
+      </div>
+      {open && (
+        <div style={{ padding:"0 20px 16px" }}>
+          {buckets.map(function(b, i) {
+            const count = counts[i];
+            const pct = (count / max) * 100;
+            const color = getScoreColor(b.ref);
+            return (
+              <div key={b.label} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:6 }}>
+                <div style={{ width:24, fontSize:11, color, fontFamily:"'Bebas Neue',sans-serif", letterSpacing:1 }}>{b.label}</div>
+                <div style={{ flex:1, height:8, background:"rgba(255,255,255,0.06)", borderRadius:4, overflow:"hidden" }}>
+                  <div style={{ height:"100%", width:pct+"%", background:color, borderRadius:4, opacity:0.8 }}/>
+                </div>
+                <div style={{ width:20, fontSize:11, color:"rgba(255,255,255,0.4)", textAlign:"right" }}>{count}</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
