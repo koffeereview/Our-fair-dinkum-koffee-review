@@ -111,6 +111,61 @@ function clearAll(setSort, setQuickFilter, setScoreBucket, setCity) {
   setCity("All");
 }
 
+function ScoreChart(props) {
+  const cafes = props.cafes;
+  const buckets = [
+    { label: "9+", min: 9.0, max: 10, ref: 9.5 },
+    { label: "8s", min: 8.0, max: 8.99, ref: 8.5 },
+    { label: "7s", min: 7.0, max: 7.99, ref: 7.5 },
+    { label: "6s", min: 6.0, max: 6.99, ref: 6.5 },
+    { label: "5s", min: 5.0, max: 5.99, ref: 5.5 },
+    { label: "4s", min: 4.0, max: 4.99, ref: 4.5 },
+    { label: "3s", min: 3.0, max: 3.99, ref: 3.5 },
+    { label: "2s", min: 2.0, max: 2.99, ref: 2.5 },
+    { label: "1s", min: 1.0, max: 1.99, ref: 1.5 },
+  ];
+  const counts = buckets.map(function(b) {
+    return cafes.filter(function(c) { return c.score >= b.min && c.score <= b.max; }).length;
+  });
+  const max = Math.max.apply(null, counts) || 1;
+
+  return (
+    <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: "16px 20px", marginTop: 24 }}>
+      <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", letterSpacing: 1, marginBottom: 12 }}>SCORE DISTRIBUTION</div>
+      {buckets.map(function(b, i) {
+        const count = counts[i];
+        const pct = (count / max) * 100;
+        const color = getScoreColor(b.ref);
+        return (
+          <div key={b.label} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+            <div style={{ width: 24, fontSize: 11, color: color, fontFamily: "'Bebas Neue', sans-serif", letterSpacing: 1 }}>{b.label}</div>
+            <div style={{ flex: 1, height: 8, background: "rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden" }}>
+              <div style={{ height: "100%", width: pct + "%", background: color, borderRadius: 4, transition: "width 1s ease", opacity: 0.8 }} />
+            </div>
+            <div style={{ width: 20, fontSize: 11, color: "rgba(255,255,255,0.4)", textAlign: "right" }}>{count}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function PullQuote(props) {
+  const cafes = props.cafes;
+  const withNotes = cafes.filter(function(c) { return c.notes && c.notes.length > 10; });
+  if (withNotes.length === 0) return null;
+  const random = withNotes[Math.floor(Math.random() * withNotes.length)];
+  return (
+    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "14px 20px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start" }}>
+      <div style={{ color: "rgba(197,157,80,0.5)", fontSize: 28, lineHeight: 1, marginTop: -4 }}>"</div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5 }}>{random.notes}</div>
+        <div style={{ fontSize: 11, color: "rgba(197,157,80,0.6)", marginTop: 6 }}>— {random.name} {random.score}/10</div>
+      </div>
+    </div>
+  );
+}
+
 function MapView(props) {
   const cafes = props.cafes;
   const mapRef = useRef(null);
@@ -124,60 +179,38 @@ function MapView(props) {
     if (!L) return;
 
     const validCafes = cafes.filter(function(c) { return c.lat && c.lng; });
-
     const avgLat = validCafes.length > 0 ? validCafes.reduce(function(s, c) { return s + c.lat; }, 0) / validCafes.length : -27.4698;
     const avgLng = validCafes.length > 0 ? validCafes.reduce(function(s, c) { return s + c.lng; }, 0) / validCafes.length : 153.0251;
 
     const map = L.map(mapRef.current).setView([avgLat, avgLng], 11);
     mapInstanceRef.current = map;
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: ""
-    }).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "" }).addTo(map);
 
-    // Ask for user location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
           const userLat = position.coords.latitude;
           const userLng = position.coords.longitude;
-
           map.setView([userLat, userLng], 13);
-
-          // You are here pin
           const youAreHereIcon = L.divIcon({
             html: '<div style="background:#3b82f6;border:3px solid #fff;border-radius:50%;width:16px;height:16px;box-shadow:0 0 0 4px rgba(59,130,246,0.3);"></div>',
-            className: "",
-            iconSize: [16, 16],
-            iconAnchor: [8, 8],
+            className: "", iconSize: [16, 16], iconAnchor: [8, 8],
           });
           L.marker([userLat, userLng], { icon: youAreHereIcon }).addTo(map).bindPopup("You are here");
         },
-        function() {
-          setLocationError(true);
-        }
+        function() { setLocationError(true); }
       );
     }
 
-    // Add cafe pins
     validCafes.forEach(function(cafe) {
       const color = getScoreColor(cafe.score);
-      const markerHtml = '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.5);overflow:hidden;">' +
-        '<img src="/logo.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" />' +
-        '</div>' +
+      const markerHtml = '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.5);overflow:hidden;">' +
+        '<img src="/logo.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div>' +
         '<div style="background:' + color + ';color:#000;border-radius:10px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 5px;">' + cafe.score + '</div>';
-
-      const icon = L.divIcon({
-        html: markerHtml,
-        className: "",
-        iconSize: [40, 55],
-        iconAnchor: [20, 55],
-      });
-
+      const icon = L.divIcon({ html: markerHtml, className: "", iconSize: [40, 55], iconAnchor: [20, 55] });
       const marker = L.marker([cafe.lat, cafe.lng], { icon: icon }).addTo(map);
-      marker.on("click", function() {
-        setSelectedCafe(cafe);
-      });
+      marker.on("click", function() { setSelectedCafe(cafe); });
     });
   }, [cafes]);
 
@@ -189,9 +222,8 @@ function MapView(props) {
         </div>
       )}
       <div ref={mapRef} style={{ height: "60vh", width: "100%", borderRadius: 16, overflow: "hidden" }} />
-
       {selectedCafe && (
-        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "#111", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "20px 20px 0 0", padding: 20, zIndex: 1000, maxWidth: 800, margin: "0 auto" }}>
+        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "#111", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "20px 20px 0 0", padding: 20, zIndex: 1000 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12 }}>
             <ScoreRing score={selectedCafe.score} />
             <div style={{ flex: 1 }}>
@@ -202,25 +234,17 @@ function MapView(props) {
               <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{selectedCafe.suburb}, {selectedCafe.city} - {selectedCafe.price}</div>
             </div>
             <button onClick={function() { setSelectedCafe(null); }}
-              style={{ background: "rgba(255,255,255,0.1)", border: "none", color: "#fff", borderRadius: "50%", width: 30, height: 30, cursor: "pointer", fontSize: 16 }}>
-              ×
-            </button>
+              style={{ background: "rgba(255,255,255,0.1)", border: "none", color: "#fff", borderRadius: "50%", width: 30, height: 30, cursor: "pointer", fontSize: 16 }}>×</button>
           </div>
           <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", fontStyle: "italic", margin: "0 0 12px" }}>"{selectedCafe.notes}"</p>
           <div style={{ display: "flex", gap: 8 }}>
             <a href={getMapsUrl(selectedCafe)} target="_blank" rel="noreferrer"
-              style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
-              Maps
-            </a>
+              style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Maps</a>
             <button onClick={function() { doShare(selectedCafe); }}
-              style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>
-              Share
-            </button>
+              style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>Share</button>
             {selectedCafe.link && (
               <a href={selectedCafe.link} target="_blank" rel="noreferrer"
-                style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(197,157,80,0.15)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
-                Our Review
-              </a>
+                style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(197,157,80,0.15)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Our Review</a>
             )}
           </div>
         </div>
@@ -258,7 +282,6 @@ export default function App() {
       link.rel = "stylesheet";
       link.href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css";
       document.head.appendChild(link);
-
       const script = document.createElement("script");
       script.src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
       script.onload = function() { setLeafletLoaded(true); };
@@ -284,15 +307,12 @@ export default function App() {
   }
 
   function handleSortClick(val) {
-    setSort(val);
-    setQuickFilter(null);
-    setScoreBucket(null);
+    setSort(val); setQuickFilter(null); setScoreBucket(null);
   }
 
   function handleReviewedClick() {
     clearAll(setSort, setQuickFilter, setScoreBucket, setCity);
-    setSearch("");
-    setView("list");
+    setSearch(""); setView("list");
   }
 
   function handleBucketSelect(bucket) {
@@ -340,7 +360,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 8 }}>
+          <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 8 }}>
             <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
               style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", padding: "6px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -356,10 +376,12 @@ export default function App() {
           </div>
         </div>
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafes reviewed across Australia - Know before you go</p>
-        <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, marginTop: 4 }}>One Latte & One Double Shot Espresso Please.</p>
+        <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, marginTop: 4 }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
+
+        {!loading && <ScoreChart cafes={cafes} />}
 
         {!loading && (
-          <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
+          <div style={{ display: "flex", gap: 16, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
               style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
               <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
@@ -391,23 +413,18 @@ export default function App() {
       ) : (
         <>
           <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
+            {!loading && cafes.length > 0 && <PullQuote cafes={cafes} />}
             <input placeholder="Search cafe or suburb..." value={search}
               onChange={function(e) { setSearch(e.target.value); }}
               style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
               <button onClick={function() { handleSortClick("all"); }}
-                style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>
-                All
-              </button>
+                style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>All</button>
               <button onClick={function() { handleSortClick("high"); }}
-                style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" && !quickFilter ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4ade80" : "rgba(255,255,255,0.5)" }}>
-                High Score
-              </button>
+                style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" && !quickFilter ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4ade80" : "rgba(255,255,255,0.5)" }}>High Score</button>
               <button onClick={function() { handleSortClick("low"); }}
-                style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" && !quickFilter ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#f87171" : "rgba(255,255,255,0.5)" }}>
-                Low Score
-              </button>
+                style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" && !quickFilter ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#f87171" : "rgba(255,255,255,0.5)" }}>Low Score</button>
 
               <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
 
@@ -420,9 +437,7 @@ export default function App() {
                   <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 190, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
                     {scoreBucket && (
                       <div onClick={function() { setScoreBucket(null); setScoreDropdown(false); }}
-                        style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        Clear filter
-                      </div>
+                        style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>Clear filter</div>
                     )}
                     {SCORE_BUCKETS.map(function(bucket) {
                       const isActive = scoreBucket === bucket.label;
@@ -448,9 +463,7 @@ export default function App() {
                   <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 170, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
                     {city !== "All" && (
                       <div onClick={function() { setCity("All"); setCityDropdown(false); }}
-                        style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        Clear filter
-                      </div>
+                        style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>Clear filter</div>
                     )}
                     {allCities.map(function(c) {
                       const isActive = city === c;
@@ -468,9 +481,7 @@ export default function App() {
 
               {(scoreBucket || quickFilter || city !== "All") && (
                 <button onClick={function() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); }}
-                  style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>
-                  Clear
-                </button>
+                  style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>Clear</button>
               )}
             </div>
           </div>
@@ -506,26 +517,18 @@ export default function App() {
                       <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
                         <a href={getMapsUrl(cafe)} target="_blank" rel="noreferrer"
                           onClick={function(e) { e.stopPropagation(); }}
-                          style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
-                          Maps
-                        </a>
+                          style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Maps</a>
                         <button onClick={function(e) { e.stopPropagation(); doShare(cafe); }}
-                          style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>
-                          Share
-                        </button>
+                          style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>Share</button>
                         {cafe.link && (
                           <a href={cafe.link} target="_blank" rel="noreferrer"
                             onClick={function(e) { e.stopPropagation(); }}
-                            style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(197,157,80,0.15)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
-                            Our Review
-                          </a>
+                            style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(197,157,80,0.15)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Our Review</a>
                         )}
                         {!cafe.link && (
                           <a href={getMapsUrl(cafe)} target="_blank" rel="noreferrer"
                             onClick={function(e) { e.stopPropagation(); }}
-                            style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>
-                            WhatsApp
-                          </a>
+                            style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Direction</a>
                         )}
                       </div>
                     </div>
