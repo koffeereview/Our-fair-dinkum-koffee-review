@@ -270,17 +270,16 @@ function AboutDrawer({ open, onClose }) {
       )}
       <div style={{
         position:"fixed", top:0, left:0, bottom:0, width:"min(340px, 90vw)",
-background:"#111", borderRight:"1px solid rgba(255,255,255,0.08)",
-transform:open?"translateX(0)":"translateX(-100%)",
-transition:"transform 0.35s cubic-bezier(0.4,0,0.2,1)",
-zIndex:201, overflowY:"scroll", padding:"40px 24px 60px",
-WebkitOverflowScrolling:"touch"
+        background:"#111", borderRight:"1px solid rgba(255,255,255,0.08)",
+        transform:open?"translateX(0)":"translateX(-100%)",
+        transition:"transform 0.35s cubic-bezier(0.4,0,0.2,1)",
+        zIndex:201, overflowY:"scroll", padding:"40px 24px 60px",
+        WebkitOverflowScrolling:"touch"
       }}>
         <button onClick={onClose}
           style={{ position:"absolute", top:16, right:16, background:"rgba(255,255,255,0.08)", border:"none", color:"#fff", borderRadius:"50%", width:32, height:32, cursor:"pointer", fontSize:18, display:"flex", alignItems:"center", justifyContent:"center" }}>
           ×
         </button>
-
         <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:28 }}>
           <img src="/logo.jpg" style={{ width:52, height:52, borderRadius:"50%", objectFit:"cover" }}/>
           <div>
@@ -288,7 +287,6 @@ WebkitOverflowScrolling:"touch"
             <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:12, letterSpacing:4, color:"rgba(255,255,255,0.3)" }}>KOFFEE REVIEW</div>
           </div>
         </div>
-
         <div style={{ marginBottom:28 }}>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>OUR STORY</div>
           <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>
@@ -304,7 +302,6 @@ WebkitOverflowScrolling:"touch"
             Now in 2026, we've built this website so it's easy for anyone to search for cafes and find real ratings before they visit.
           </p>
         </div>
-
         <div style={{ marginBottom:28 }}>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>OUR METHOD</div>
           <div style={{ background:"rgba(197,157,80,0.08)", border:"1px solid rgba(197,157,80,0.2)", borderRadius:12, padding:"12px 16px", marginBottom:16 }}>
@@ -335,7 +332,6 @@ WebkitOverflowScrolling:"touch"
             </p>
           </div>
         </div>
-
         <div>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>FIND US ON</div>
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
@@ -391,7 +387,7 @@ export default function App() {
   const [cityDropdown, setCityDropdown] = useState(false);
   const [view, setView] = useState("list");
   const [leafletLoaded, setLeafletLoaded] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false); // ← FIX 1: state added
+  const [aboutOpen, setAboutOpen] = useState(false);
   const scoreRef = useRef(null);
   const cityRef = useRef(null);
 
@@ -473,26 +469,27 @@ export default function App() {
     <div style={{ minHeight: "100vh", background: "#0a0a0a", fontFamily: "'DM Sans', sans-serif", color: "#fff" }}>
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-      {/* ← FIX 2: drawer rendered here */}
       <AboutDrawer open={aboutOpen} onClose={function() { setAboutOpen(false); }} />
 
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
+
           <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
-            {/* ← FIX 3: hamburger button */}
             <button onClick={function() { setAboutOpen(true); }}
               style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "rgba(255,255,255,0.6)", padding: "8px 10px", cursor: "pointer", fontSize: 16, marginRight: 4, alignSelf: "center" }}>
               ☰
             </button>
             <img src="/logo.jpg" alt="Koffee Review" style={{ width: 60, height: 60, borderRadius: "50%", objectFit: "cover" }} />
             <div>
-             <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(38px, 8vw)", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-  OUR FAIR DINKUM
-</div>
-<div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(18px, 4vw)", letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
-  KOFFEE REVIEW
-</div>
-</div>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(38px, 8vw)", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                OUR FAIR DINKUM
+              </div>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(18px, 4vw)", letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
+                KOFFEE REVIEW
+              </div>
+            </div>
+          </div>
+
           <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 8 }}>
             <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
               style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", padding: "6px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -507,6 +504,7 @@ export default function App() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
             </a>
           </div>
+
         </div>
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafes reviewed across Australia - Know before you go</p>
         <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, marginTop: 4 }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
