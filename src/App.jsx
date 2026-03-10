@@ -493,7 +493,6 @@ export default function App() {
   KOFFEE REVIEW
 </div>
 </div>
-              </div>
             </div>
           </div>
           <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 8 }}>
