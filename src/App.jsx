@@ -445,14 +445,14 @@ export default function App() {
             <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(46px, 7vw)", whiteSpace: "nowrap", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               OUR FAIR DINKUM
             </div>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(20px, 3.5vw)", whiteSpace: "nowrap", letterSpacing: 6, color: color: "rgba(255,255,255,0.75)", }}>
-              KOFFEE REVIEW
-            </div>
+           <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(20px, 3.5vw)", whiteSpace: "nowrap", letterSpacing: 6, color: "rgba(255,255,255,0.75)" }}>
+  KOFFEE REVIEW
+</div>
           </div>
         </div>
 
         {/* TAGLINES */}
-        <p style={{ color: color: "#f5e6c8", fontSize: 13, margin: "0 0 4px" }}>600+ cafes reviewed across Australia - Know before you go</p>
+        <p style={{ color: "#f5e6c8", fontSize: 13, margin: "0 0 4px" }}>600+ cafes reviewed across Australia - Know before you go</p>
         <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, margin: "0 0 14px" }}>One Latte & One Double Shot Espresso Please.</p>
 
         {/* SOCIAL ICONS — brand accurate */}
