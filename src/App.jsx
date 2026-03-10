@@ -260,6 +260,7 @@ function MapView(props) {
     </div>
   );
 }
+
 function AboutDrawer({ open, onClose }) {
   return (
     <>
@@ -279,7 +280,6 @@ function AboutDrawer({ open, onClose }) {
           ×
         </button>
 
-        {/* Logo */}
         <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:28 }}>
           <img src="/logo.jpg" style={{ width:52, height:52, borderRadius:"50%", objectFit:"cover" }}/>
           <div>
@@ -288,7 +288,6 @@ function AboutDrawer({ open, onClose }) {
           </div>
         </div>
 
-        {/* Our Story */}
         <div style={{ marginBottom:28 }}>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>OUR STORY</div>
           <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>
@@ -305,7 +304,6 @@ function AboutDrawer({ open, onClose }) {
           </p>
         </div>
 
-        {/* Our Method */}
         <div style={{ marginBottom:28 }}>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>OUR METHOD</div>
           <div style={{ background:"rgba(197,157,80,0.08)", border:"1px solid rgba(197,157,80,0.2)", borderRadius:12, padding:"12px 16px", marginBottom:16 }}>
@@ -337,7 +335,6 @@ function AboutDrawer({ open, onClose }) {
           </div>
         </div>
 
-        {/* Find Us */}
         <div>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>FIND US ON</div>
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
@@ -375,11 +372,11 @@ function AboutDrawer({ open, onClose }) {
             </a>
           </div>
         </div>
-
       </div>
     </>
   );
 }
+
 export default function App() {
   const [cafes, setCafes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -393,6 +390,7 @@ export default function App() {
   const [cityDropdown, setCityDropdown] = useState(false);
   const [view, setView] = useState("list");
   const [leafletLoaded, setLeafletLoaded] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false); // ← FIX 1: state added
   const scoreRef = useRef(null);
   const cityRef = useRef(null);
 
@@ -474,9 +472,17 @@ export default function App() {
     <div style={{ minHeight: "100vh", background: "#0a0a0a", fontFamily: "'DM Sans', sans-serif", color: "#fff" }}>
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
+      {/* ← FIX 2: drawer rendered here */}
+      <AboutDrawer open={aboutOpen} onClose={function() { setAboutOpen(false); }} />
+
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
+            {/* ← FIX 3: hamburger button */}
+            <button onClick={function() { setAboutOpen(true); }}
+              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "rgba(255,255,255,0.6)", padding: "8px 10px", cursor: "pointer", fontSize: 16, marginRight: 4, alignSelf: "center" }}>
+              ☰
+            </button>
             <img src="/logo.jpg" alt="Koffee Review" style={{ width: 60, height: 60, borderRadius: "50%", objectFit: "cover" }} />
             <div>
               <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 38, letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
