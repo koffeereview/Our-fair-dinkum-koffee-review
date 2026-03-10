@@ -273,7 +273,7 @@ function AboutDrawer({ open, onClose }) {
         background:"#111", borderRight:"1px solid rgba(255,255,255,0.08)",
         transform:open?"translateX(0)":"translateX(-100%)",
         transition:"transform 0.35s cubic-bezier(0.4,0,0.2,1)",
-        zIndex:201, overflowY:"auto", padding:"40px 24px 60px"
+        zIndex:201, overflowY:"auto", padding:"40px 24px 120px"
       }}>
         <button onClick={onClose}
           style={{ position:"absolute", top:16, right:16, background:"rgba(255,255,255,0.08)", border:"none", color:"#fff", borderRadius:"50%", width:32, height:32, cursor:"pointer", fontSize:18, display:"flex", alignItems:"center", justifyContent:"center" }}>
