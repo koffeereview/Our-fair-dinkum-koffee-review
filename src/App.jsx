@@ -472,42 +472,43 @@ export default function App() {
       <AboutDrawer open={aboutOpen} onClose={function() { setAboutOpen(false); }} />
 
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
 
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 4 }}>
-            <button onClick={function() { setAboutOpen(true); }}
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "rgba(255,255,255,0.6)", padding: "8px 10px", cursor: "pointer", fontSize: 16, marginRight: 4, alignSelf: "center" }}>
-              ☰
-            </button>
-            <img src="/logo.jpg" alt="Koffee Review" style={{ width: 60, height: 60, borderRadius: "50%", objectFit: "cover" }} />
-            <div>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(38px, 5.5vw)", whiteSpace: "nowrap", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                OUR FAIR DINKUM
-              </div>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(18px, 2.8vw)", letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
-                KOFFEE REVIEW
-              </div>
+        {/* HEADER ROW — hamburger + logo + title only */}
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 16 }}>
+          <button onClick={function() { setAboutOpen(true); }}
+            style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "rgba(255,255,255,0.6)", padding: "8px 10px", cursor: "pointer", fontSize: 16, flexShrink: 0 }}>
+            ☰
+          </button>
+          <img src="/logo.jpg" alt="Koffee Review" style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+          <div>
+            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(46px, 7vw)", whiteSpace: "nowrap", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              OUR FAIR DINKUM
+            </div>
+            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(20px, 3.5vw)", whiteSpace: "nowrap", letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
+              KOFFEE REVIEW
             </div>
           </div>
-
-          <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 8, flexShrink: 0 }}>
-            <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
-              style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", padding: "6px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
-              style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", padding: "6px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
-            </a>
-            <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
-              style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", padding: "6px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-            </a>
-          </div>
-
         </div>
-        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 8 }}>600+ cafes reviewed across Australia - Know before you go</p>
-        <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, marginTop: 4 }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
+
+        {/* TAGLINES */}
+        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, margin: "0 0 4px" }}>600+ cafes reviewed across Australia - Know before you go</p>
+        <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, margin: "0 0 14px" }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
+
+        {/* SOCIAL ICONS — own row, below taglines */}
+        <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 4 }}>
+          <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
+            style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", padding: "8px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
+            style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", padding: "8px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
+            style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", padding: "8px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+        </div>
 
         {!loading && <ScoreChart cafes={cafes} />}
 
