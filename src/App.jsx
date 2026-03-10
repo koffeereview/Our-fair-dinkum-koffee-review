@@ -481,10 +481,10 @@ export default function App() {
             </button>
             <img src="/logo.jpg" alt="Koffee Review" style={{ width: 60, height: 60, borderRadius: "50%", objectFit: "cover" }} />
             <div>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(38px, 8vw)", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(38px, 5.5vw)", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 OUR FAIR DINKUM
               </div>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(18px, 4vw)", letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(18px, 2.8vw)", letterSpacing: 6, color: "rgba(255,255,255,0.35)" }}>
                 KOFFEE REVIEW
               </div>
             </div>
