@@ -128,7 +128,6 @@ function ScoreChart({ cafes }) {
     return cafes.filter(function(c) { return c.score >= b.min && c.score <= b.max; }).length;
   });
   const max = Math.max.apply(null, counts) || 1;
-
   return (
     <div style={{ background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:16, marginTop:16, overflow:"hidden" }}>
       <div onClick={function() { setOpen(!open); }}
@@ -185,16 +184,12 @@ function MapView(props) {
     if (mapInstanceRef.current) return;
     const L = window.L;
     if (!L) return;
-
     const validCafes = cafes.filter(function(c) { return c.lat && c.lng; });
     const avgLat = validCafes.length > 0 ? validCafes.reduce(function(s, c) { return s + c.lat; }, 0) / validCafes.length : -27.4698;
     const avgLng = validCafes.length > 0 ? validCafes.reduce(function(s, c) { return s + c.lng; }, 0) / validCafes.length : 153.0251;
-
     const map = L.map(mapRef.current).setView([avgLat, avgLng], 11);
     mapInstanceRef.current = map;
-
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "" }).addTo(map);
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
@@ -210,7 +205,6 @@ function MapView(props) {
         function() { setLocationError(true); }
       );
     }
-
     validCafes.forEach(function(cafe) {
       const color = getScoreColor(cafe.score);
       const markerHtml = '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.5);overflow:hidden;">' +
@@ -289,18 +283,10 @@ function AboutDrawer({ open, onClose }) {
         </div>
         <div style={{ marginBottom:28 }}>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>OUR STORY</div>
-          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>
-            In 2021, we started Koffee Review with a simple question. There are so many coffee shops out there, so when you're spending $4.50 to $5 on a cup back in 2021, shouldn't it actually be good?
-          </p>
-          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>
-            We're coffee lovers who drink 6 to 7 coffees a day. So we decided to travel across the country, visit different cafes, and review them based on what we personally feel about the coffee. No sponsorships, no agendas. Just our honest opinion.
-          </p>
-          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>
-            Over 600 cafes reviewed across Australia and yes, even a few from Spain, and we're still going.
-          </p>
-          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:0 }}>
-            Now in 2026, we've built this website so it's easy for anyone to search for cafes and find real ratings before they visit.
-          </p>
+          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>In 2021, we started Koffee Review with a simple question. There are so many coffee shops out there, so when you're spending $4.50 to $5 on a cup back in 2021, shouldn't it actually be good?</p>
+          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>We're coffee lovers who drink 6 to 7 coffees a day. So we decided to travel across the country, visit different cafes, and review them based on what we personally feel about the coffee. No sponsorships, no agendas. Just our honest opinion.</p>
+          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:"0 0 10px" }}>Over 600 cafes reviewed across Australia and yes, even a few from Spain, and we're still going.</p>
+          <p style={{ fontSize:13, color:"rgba(255,255,255,0.65)", lineHeight:1.9, margin:0 }}>Now in 2026, we've built this website so it's easy for anyone to search for cafes and find real ratings before they visit.</p>
         </div>
         <div style={{ marginBottom:28 }}>
           <div style={{ fontSize:11, color:"rgba(197,157,80,0.7)", letterSpacing:2, marginBottom:12 }}>OUR METHOD</div>
@@ -308,9 +294,7 @@ function AboutDrawer({ open, onClose }) {
             <div style={{ fontSize:13, color:"#c8a96e", fontWeight:700, marginBottom:4 }}>Same order. Every time.</div>
             <div style={{ fontSize:12, color:"rgba(255,255,255,0.5)", lineHeight:1.7 }}>One Latte & One Double Shot Espresso, no exceptions. That's how we keep every review fair and consistent.</div>
           </div>
-          <p style={{ fontSize:12, color:"rgba(255,255,255,0.45)", lineHeight:1.7, margin:"0 0 16px" }}>
-            We look for balance, strength, and whether it leaves you wanting another sip. We don't overhype. We score coffee purely on the taste we personally enjoy.
-          </p>
+          <p style={{ fontSize:12, color:"rgba(255,255,255,0.45)", lineHeight:1.7, margin:"0 0 16px" }}>We look for balance, strength, and whether it leaves you wanting another sip. We don't overhype. We score coffee purely on the taste we personally enjoy.</p>
           {[
             { range:"5.1 to 5.9", label:"Just Okay", desc:"Average cup. Drinkable, not memorable.", ref:5.5 },
             { range:"6.1 to 6.9", label:"Good Coffee", desc:"If we're around, we'll have it but we won't travel for it.", ref:6.5 },
@@ -327,9 +311,7 @@ function AboutDrawer({ open, onClose }) {
             );
           })}
           <div style={{ marginTop:16, padding:"12px 16px", background:"rgba(255,255,255,0.03)", borderRadius:12, border:"1px solid rgba(255,255,255,0.06)" }}>
-            <p style={{ fontSize:13, color:"rgba(197,157,80,0.8)", fontStyle:"italic", margin:0, textAlign:"center", lineHeight:1.6 }}>
-              600+ cups in. Still chasing that perfect 10.
-            </p>
+            <p style={{ fontSize:13, color:"rgba(197,157,80,0.8)", fontStyle:"italic", margin:0, textAlign:"center", lineHeight:1.6 }}>600+ cups in. Still chasing that perfect 10.</p>
           </div>
         </div>
         <div>
@@ -338,34 +320,22 @@ function AboutDrawer({ open, onClose }) {
             <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
               style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              <div>
-                <div style={{ fontSize:13, fontWeight:600 }}>Instagram</div>
-                <div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div>
-              </div>
+              <div><div style={{ fontSize:13, fontWeight:600 }}>Instagram</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div></div>
             </a>
             <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
               style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
-              <div>
-                <div style={{ fontSize:13, fontWeight:600 }}>TikTok</div>
-                <div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div>
-              </div>
+              <div><div style={{ fontSize:13, fontWeight:600 }}>TikTok</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div></div>
             </a>
             <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
               style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-              <div>
-                <div style={{ fontSize:13, fontWeight:600 }}>YouTube</div>
-                <div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div>
-              </div>
+              <div><div style={{ fontSize:13, fontWeight:600 }}>YouTube</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div></div>
             </a>
             <a href="https://linktr.ee/koffeereview" target="_blank" rel="noreferrer"
               style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(197,157,80,0.08)", border:"1px solid rgba(197,157,80,0.2)", borderRadius:12, textDecoration:"none", color:"#c8a96e" }}>
               <span style={{ fontSize:20 }}>🔗</span>
-              <div>
-                <div style={{ fontSize:13, fontWeight:600 }}>Linktree</div>
-                <div style={{ fontSize:11, color:"rgba(197,157,80,0.5)" }}>linktr.ee/koffeereview</div>
-              </div>
+              <div><div style={{ fontSize:13, fontWeight:600 }}>Linktree</div><div style={{ fontSize:11, color:"rgba(197,157,80,0.5)" }}>linktr.ee/koffeereview</div></div>
             </a>
           </div>
         </div>
@@ -427,16 +397,8 @@ export default function App() {
   function handleStatClick(type) {
     if (quickFilter === type) { setQuickFilter(null); } else { setQuickFilter(type); setScoreBucket(null); setSort("all"); }
   }
-
-  function handleSortClick(val) {
-    setSort(val); setQuickFilter(null); setScoreBucket(null);
-  }
-
-  function handleReviewedClick() {
-    clearAll(setSort, setQuickFilter, setScoreBucket, setCity);
-    setSearch(""); setView("list");
-  }
-
+  function handleSortClick(val) { setSort(val); setQuickFilter(null); setScoreBucket(null); }
+  function handleReviewedClick() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); setSearch(""); setView("list"); }
   function handleBucketSelect(bucket) {
     if (scoreBucket === bucket.label) { setScoreBucket(null); } else { setScoreBucket(bucket.label); setQuickFilter(null); }
     setScoreDropdown(false);
@@ -468,12 +430,11 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: "#0a0a0a", fontFamily: "'DM Sans', sans-serif", color: "#fff" }}>
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
       <AboutDrawer open={aboutOpen} onClose={function() { setAboutOpen(false); }} />
 
       <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
 
-        {/* HEADER ROW — hamburger + logo + title only */}
+        {/* HEADER ROW */}
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 16 }}>
           <button onClick={function() { setAboutOpen(true); }}
             style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "rgba(255,255,255,0.6)", padding: "8px 10px", cursor: "pointer", fontSize: 16, flexShrink: 0 }}>
@@ -494,20 +455,27 @@ export default function App() {
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, margin: "0 0 4px" }}>600+ cafes reviewed across Australia - Know before you go</p>
         <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, margin: "0 0 14px" }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
 
-        {/* SOCIAL ICONS — own row, below taglines */}
+        {/* SOCIAL ICONS — brand accurate */}
         <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 4 }}>
+
+          {/* Instagram — gradient purple/pink bg, white icon */}
           <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
-            style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", padding: "8px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: 12, background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)", color: "#fff", flexShrink: 0 }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
+
+          {/* TikTok — black bg, white icon with cyan/red accent */}
           <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
-            style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", padding: "8px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: 12, background: "#000", border: "1px solid #333", color: "#fff", flexShrink: 0, position: "relative" }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
           </a>
+
+          {/* YouTube — red bg, white play icon */}
           <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
-            style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", padding: "8px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: 12, background: "#ff0000", color: "#fff", flexShrink: 0 }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
+
         </div>
 
         {!loading && <ScoreChart cafes={cafes} />}
@@ -549,7 +517,6 @@ export default function App() {
             <input placeholder="Search cafe or suburb..." value={search}
               onChange={function(e) { setSearch(e.target.value); }}
               style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
-
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
               <button onClick={function() { handleSortClick("all"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>All</button>
@@ -557,9 +524,7 @@ export default function App() {
                 style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" && !quickFilter ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4ade80" : "rgba(255,255,255,0.5)" }}>High Score</button>
               <button onClick={function() { handleSortClick("low"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" && !quickFilter ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#f87171" : "rgba(255,255,255,0.5)" }}>Low Score</button>
-
               <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
-
               <div ref={scoreRef} style={{ position: "relative" }}>
                 <button onClick={function() { setScoreDropdown(!scoreDropdown); setCityDropdown(false); }}
                   style={{ ...btnBase, border: "1px solid " + (scoreBucket ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: scoreBucket ? "rgba(197,157,80,0.15)" : "transparent", color: scoreBucket ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
@@ -585,7 +550,6 @@ export default function App() {
                   </div>
                 )}
               </div>
-
               <div ref={cityRef} style={{ position: "relative" }}>
                 <button onClick={function() { setCityDropdown(!cityDropdown); setScoreDropdown(false); }}
                   style={{ ...btnBase, border: "1px solid " + (city !== "All" ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: city !== "All" ? "rgba(197,157,80,0.15)" : "transparent", color: city !== "All" ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
@@ -610,7 +574,6 @@ export default function App() {
                   </div>
                 )}
               </div>
-
               {(scoreBucket || quickFilter || city !== "All") && (
                 <button onClick={function() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); }}
                   style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>Clear</button>
