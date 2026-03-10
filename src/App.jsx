@@ -493,8 +493,6 @@ export default function App() {
   KOFFEE REVIEW
 </div>
 </div>
-            </div>
-          </div>
           <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 8 }}>
             <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
               style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", padding: "6px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
