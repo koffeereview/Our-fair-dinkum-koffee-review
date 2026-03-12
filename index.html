@@ -2,23 +2,84 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="google-site-verification" content="PDD-zfX9NABu-k_WRy7LKRQ4JjYAosvWHmUrw4Ulm0c" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Fair Dinkum Koffee Review</title>
-    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+
+    <!-- PRIMARY SEO -->
+    <title>Our Fair Dinkum Koffee Review | 600+ Café Reviews Across Australia</title>
+    <meta name="description" content="Honest Australian café reviews. 600+ coffees reviewed across Brisbane, Melbourne, Gold Coast and more. We order the same thing every time — One Latte & One Double Shot Espresso. Know before you go." />
+    <meta name="keywords" content="coffee review australia, café review brisbane, best coffee brisbane, best coffee melbourne, australian coffee review, koffee review, fair dinkum coffee, café ratings australia, brisbane café guide, gold coast coffee" />
+    <meta name="author" content="Our Fair Dinkum Koffee Review" />
+    <link rel="canonical" href="https://koffeereview.com.au" />
+
+    <!-- OPEN GRAPH (Facebook, LinkedIn previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://koffeereview.com.au" />
+    <meta property="og:title" content="Our Fair Dinkum Koffee Review | 600+ Café Reviews Across Australia" />
+    <meta property="og:description" content="Honest Australian café reviews. 600+ coffees reviewed across Brisbane, Melbourne, Gold Coast and more. Know before you go." />
+    <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+    <meta property="og:site_name" content="Our Fair Dinkum Koffee Review" />
+    <meta property="og:locale" content="en_AU" />
+
+    <!-- TWITTER / X CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://koffeereview.com.au" />
+    <meta name="twitter:title" content="Our Fair Dinkum Koffee Review | 600+ Café Reviews Across Australia" />
+    <meta name="twitter:description" content="Honest Australian café reviews. 600+ coffees reviewed. Know before you go." />
+    <meta name="twitter:image" content="https://koffeereview.com.au/logo.jpg" />
+
+    <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#c8a96e" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Koffee Review" />
     <link rel="apple-touch-icon" href="/logo.jpg" />
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+
+    <!-- STRUCTURED DATA (Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Our Fair Dinkum Koffee Review",
+      "url": "https://koffeereview.com.au",
+      "description": "Honest Australian café reviews. 600+ coffees reviewed across Brisbane, Melbourne, Gold Coast and more.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://koffeereview.com.au/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Our Fair Dinkum Koffee Review",
+      "url": "https://koffeereview.com.au",
+      "logo": "https://koffeereview.com.au/logo.jpg",
+      "sameAs": [
+        "https://www.instagram.com/koffeereview",
+        "https://www.tiktok.com/@koffeereview",
+        "https://www.youtube.com/@koffeereview"
+      ]
+    }
+    </script>
+
+    <!-- SERVICE WORKER -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
-      }
-    </script>
   </body>
 </html>
