@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Café — Koffee Review</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; font-family: 'DM Sans', sans-serif; color: #fff; min-height: 100vh; padding: 24px 16px 60px; }
+
+    .header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .header img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .header-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; background: linear-gradient(135deg, #f5e6c8, #c8a96e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .header-sub { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 3px; font-family: 'Bebas Neue', sans-serif; }
+
+    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; margin-bottom: 12px; }
+    .section-label { font-size: 10px; color: rgba(197,157,80,0.7); letter-spacing: 2px; margin-bottom: 14px; }
+
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label { display: block; font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 6px; letter-spacing: 0.5px; }
+    .field input, .field select, .field textarea {
+      width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 12px 14px; color: #fff; font-size: 14px;
+      font-family: 'DM Sans', sans-serif; outline: none; transition: border 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: rgba(197,157,80,0.5); }
+    .field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+    .field select option { background: #1a1a1a; color: #fff; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .score-preview {
+      display: none; padding: 4px 14px; border-radius: 20px;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      margin-top: 8px; transition: all 0.3s; width: fit-content;
+    }
+
+    .custom-field { margin-top: 10px; display: none; }
+    .custom-field.visible { display: block; }
+
+    .loc-btn { width: 100%; padding: 11px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 4px; }
+
+    .submit-btn {
+      width: 100%; padding: 16px; border-radius: 14px; border: none;
+      background: linear-gradient(135deg, #c8a96e, #f5e6c8);
+      color: #0a0a0a; font-size: 15px; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; cursor: pointer;
+      letter-spacing: 1px; margin-top: 8px; transition: opacity 0.2s;
+    }
+    .submit-btn:active { opacity: 0.8; }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .success { display: none; text-align: center; padding: 60px 20px; }
+    .success .icon { font-size: 52px; margin-bottom: 16px; }
+    .success h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; color: #c8a96e; margin-bottom: 8px; }
+    .success p { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 28px; line-height: 1.7; }
+    .success .add-another { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 13px 28px; border-radius: 12px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+    .error-msg { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); border-radius: 10px; padding: 12px 16px; font-size: 13px; color: #f87171; margin-top: 12px; display: none; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="https://koffeereview.com.au/logo.jpg" alt="Koffee Review" />
+    <div>
+      <div class="header-title">ADD CAFÉ</div>
+      <div class="header-sub">KOFFEE REVIEW</div>
+    </div>
+  </div>
+
+  <div id="formWrap">
+
+    <div class="card">
+      <div class="section-label">CAFÉ DETAILS</div>
+      <div class="row">
+        <div class="field">
+          <label>ID #</label>
+          <input type="number" id="id" placeholder="e.g. 88" />
+        </div>
+        <div class="field">
+          <label>Price</label>
+          <select id="price">
+            <option value="">Select</option>
+            <option value="$">$ (under $5.50)</option>
+            <option value="$$">$$ ($5.50–$6.50)</option>
+            <option value="$$$">$$$ ($6.80+)</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Café Name</label>
+        <input type="text" id="name" placeholder="e.g. Luv Beans Espresso" />
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>City</label>
+          <input type="text" id="city" placeholder="e.g. Brisbane" />
+        </div>
+        <div class="field">
+          <label>Suburb</label>
+          <input type="text" id="suburb" placeholder="e.g. Newstead" />
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">SCORE & VERDICT</div>
+      <div class="field">
+        <label>Score (e.g. 7.5)</label>
+        <input type="number" id="score" placeholder="0.0 – 10.0" step="0.1" min="0" max="10" oninput="updateScorePreview()" />
+        <div id="scorePreview" class="score-preview"></div>
+      </div>
+      <div class="field">
+        <label>Verdict</label>
+        <select id="verdict" onchange="toggleCustomVerdict()">
+          <option value="">Select verdict</option>
+          <option value="AVOID">Below 3.9 — AVOID</option>
+          <option value="NOT FOR US">4.1 to 4.9 — NOT FOR US</option>
+          <option value="JUST OKAY">5.1 to 5.4 — JUST OKAY</option>
+          <option value="AVERAGE">5.5 to 5.9 — AVERAGE</option>
+          <option value="TAKE OR LEAVE">6.1 to 6.4 — TAKE OR LEAVE</option>
+          <option value="DECENT">6.5 to 6.9 — DECENT</option>
+          <option value="SOLID">7.1 to 7.4 — SOLID</option>
+          <option value="LOVED">7.5 to 7.9 — LOVED</option>
+          <option value="GREAT">8.1 to 8.9 — GREAT</option>
+          <option value="ELITE">9.1 to 9.9 — ELITE / ANYTIME COFFEE</option>
+          <option value="custom">✏️ Custom verdict...</option>
+        </select>
+        <div class="custom-field" id="customVerdictWrap">
+          <input type="text" id="customVerdict" placeholder="Type your custom verdict..." />
+        </div>
+      </div>
+      <div class="field">
+        <label>Notes / Review</label>
+        <textarea id="notes" placeholder="Flavour-forward and honest. e.g. Silky latte with a caramel finish — easy to drink and easy to love."></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">LOCATION</div>
+      <div class="row">
+        <div class="field">
+          <label>Latitude</label>
+          <input type="number" id="lat" placeholder="-27.4698" step="0.000001" />
+        </div>
+        <div class="field">
+          <label>Longitude</label>
+          <input type="number" id="lng" placeholder="153.0251" step="0.000001" />
+        </div>
+      </div>
+      <button class="loc-btn" onclick="getLocation()">📍 Use My Current Location</button>
+    </div>
+
+    <div class="card">
+      <div class="section-label">LINKS (OPTIONAL)</div>
+      <div class="field">
+        <label>Instagram / Review Link</label>
+        <input type="url" id="link" placeholder="https://www.instagram.com/p/..." />
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitForm()">ADD TO KOFFEE REVIEW ☕</button>
+    <div class="error-msg" id="errorMsg"></div>
+
+  </div>
+
+  <div class="success" id="successMsg">
+    <div class="icon">☕</div>
+    <h2>CAFÉ ADDED!</h2>
+    <p>It'll appear on koffeereview.com.au<br>within 2 minutes.</p>
+    <button class="add-another" onclick="resetForm()">+ Add Another Café</button>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzRb_6-XOCdlghD78WZZIxM2lULrQ8lgKXBXOXDgJAVKuaq862fXNdUYKKa1ZV3-Bl3zg/exec";
+
+    function getScoreColor(score) {
+      if (score >= 9.0) return "#FFD700";
+      if (score >= 8.0) return "#4ade80";
+      if (score >= 7.0) return "#2dd4bf";
+      if (score >= 6.0) return "#facc15";
+      if (score >= 5.0) return "#fb923c";
+      return "#f87171";
+    }
+
+    function updateScorePreview() {
+      const score = parseFloat(document.getElementById("score").value);
+      const preview = document.getElementById("scorePreview");
+      if (isNaN(score) || score < 0 || score > 10) { preview.style.display = "none"; return; }
+      const color = getScoreColor(score);
+      preview.style.display = "block";
+      preview.style.background = color + "22";
+      preview.style.color = color;
+      preview.style.border = "1px solid " + color + "55";
+      preview.textContent = score.toFixed(1) + " / 10";
+    }
+
+    function toggleCustomVerdict() {
+      const select = document.getElementById("verdict");
+      const wrap = document.getElementById("customVerdictWrap");
+      if (select.value === "custom") {
+        wrap.classList.add("visible");
+        document.getElementById("customVerdict").focus();
+      } else {
+        wrap.classList.remove("visible");
+      }
+    }
+
+    function getLocation() {
+      if (!navigator.geolocation) { alert("Geolocation not supported on this device"); return; }
+      navigator.geolocation.getCurrentPosition(
+        function(pos) {
+          document.getElementById("lat").value = pos.coords.latitude.toFixed(6);
+          document.getElementById("lng").value = pos.coords.longitude.toFixed(6);
+        },
+        function() { alert("Could not get location. Please enter manually."); }
+      );
+    }
+
+    function getVerdict() {
+      const select = document.getElementById("verdict");
+      if (select.value === "custom") return document.getElementById("customVerdict").value.trim();
+      return select.value;
+    }
+
+    function submitForm() {
+      const id = document.getElementById("id").value.trim();
+      const name = document.getElementById("name").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const suburb = document.getElementById("suburb").value.trim();
+      const score = document.getElementById("score").value.trim();
+      const price = document.getElementById("price").value;
+      const verdict = getVerdict();
+      const notes = document.getElementById("notes").value.trim();
+      const lat = document.getElementById("lat").value.trim();
+      const lng = document.getElementById("lng").value.trim();
+      const link = document.getElementById("link").value.trim();
+
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.style.display = "none";
+
+      if (!id || !name || !city || !suburb || !score || !price || !verdict || !notes) {
+        errorMsg.textContent = "Please fill in all required fields — ID, Name, City, Suburb, Score, Price, Verdict and Notes.";
+        errorMsg.style.display = "block";
+        return;
+      }
+
+      const btn = document.getElementById("submitBtn");
+      btn.disabled = true;
+      btn.textContent = "Submitting...";
+
+      const payload = {
+        id: parseInt(id),
+        name, city, suburb,
+        score: parseFloat(score),
+        price, verdict, notes,
+        lat: parseFloat(lat) || 0,
+        lng: parseFloat(lng) || 0,
+        link
+      };
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.success) {
+          document.getElementById("formWrap").style.display = "none";
+          document.getElementById("successMsg").style.display = "block";
+        } else { throw new Error(); }
+      })
+      .catch(function() {
+        errorMsg.textContent = "Something went wrong. Check your internet and try again.";
+        errorMsg.style.display = "block";
+        btn.disabled = false;
+        btn.textContent = "ADD TO KOFFEE REVIEW ☕";
+      });
+    }
+
+    function resetForm() {
+      document.getElementById("formWrap").style.display = "block";
+      document.getElementById("successMsg").style.display = "none";
+      document.getElementById("submitBtn").disabled = false;
+      document.getElementById("submitBtn").textContent = "ADD TO KOFFEE REVIEW ☕";
+      document.querySelectorAll("input, textarea").forEach(function(el) { el.value = ""; });
+      document.querySelectorAll("select").forEach(function(el) { el.selectedIndex = 0; });
+      document.getElementById("scorePreview").style.display = "none";
+      document.getElementById("customVerdictWrap").classList.remove("visible");
+    }
+  </script>
+
+</body>
+</html>
