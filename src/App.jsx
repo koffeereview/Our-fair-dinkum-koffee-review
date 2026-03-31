@@ -341,6 +341,9 @@ function AboutDrawer({ open, onClose }) {
                 <div style={{ marginTop:16, padding:"12px 16px", background:"rgba(255,255,255,0.03)", borderRadius:12, border:"1px solid rgba(255,255,255,0.06)" }}>
                   <p style={{ fontSize:13, color:"rgba(197,157,80,0.8)", fontStyle:"italic", margin:0, textAlign:"center", lineHeight:1.6 }}>600+ cups in. Still chasing that perfect 10.</p>
                 </div>
+                <a href="/how-we-score.html" style={{ display:"block", marginTop:14, textAlign:"center", fontSize:13, color:"#c8a96e", textDecoration:"none", padding:"12px", borderRadius:12, border:"1px solid rgba(197,157,80,0.25)", background:"rgba(197,157,80,0.06)" }}>
+                  Read the full methodology →
+                </a>
               </div>
             )}
           </div>
@@ -493,7 +496,7 @@ export default function App() {
 
         {/* TAGLINES */}
         <p style={{ color: "#f5e6c8", fontSize: 13, margin: "0 0 4px" }}>600+ cafes reviewed across Australia - Know before you go</p>
-        <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, margin: "0 0 14px" }}>One Latte & One Double Shot Espresso PLEASE.</p>
+        <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, margin: "0 0 14px" }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
 
         {/* SOCIAL ICONS */}
         <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 4 }}>
