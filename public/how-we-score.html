@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How We Score Every Café in Australia — Koffee Review</title>
+  <meta name="description" content="Wondering how Koffee Review scores cafés? Here's the exact methodology behind every latte and espresso rating — 600+ cafés, one standardised system, zero exceptions." />
+  <meta property="og:title" content="How We Score Every Café in Australia — Koffee Review" />
+  <meta property="og:description" content="600+ cafés, one standardised system, zero exceptions. Here's exactly how we score." />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <meta property="og:url" content="https://koffeereview.com.au/how-we-score.html" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; font-family: 'DM Sans', sans-serif; color: #fff; }
+
+    /* HEADER */
+    .site-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .site-header-left { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .site-header img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .site-header-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; background: linear-gradient(135deg, #f5e6c8, #c8a96e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .back-btn { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .back-btn:hover { color: #c8a96e; }
+
+    /* HERO */
+    .hero { max-width: 720px; margin: 0 auto; padding: 48px 24px 32px; }
+    .hero-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 2px; background: rgba(197,157,80,0.1); color: #c8a96e; border: 1px solid rgba(197,157,80,0.3); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 6vw, 52px); letter-spacing: 2px; line-height: 1.1; background: linear-gradient(135deg, #f5e6c8, #c8a96e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+    .hero-meta { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 1px; margin-bottom: 32px; }
+    .hero-intro { font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.8; font-weight: 400; border-left: 3px solid rgba(197,157,80,0.5); padding-left: 20px; }
+
+    /* CONTENT */
+    .content { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 40px 0; }
+
+    h2 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: #f5e6c8; margin: 40px 0 16px; }
+    p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.9; margin-bottom: 16px; }
+    strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+    em { color: rgba(197,157,80,0.8); font-style: italic; }
+
+    /* HIGHLIGHT BOX */
+    .highlight { background: rgba(197,157,80,0.07); border: 1px solid rgba(197,157,80,0.2); border-radius: 14px; padding: 20px 24px; margin: 24px 0; }
+    .highlight p { margin: 0; font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.8; }
+    .highlight strong { color: #c8a96e; }
+
+    /* SCORE TABLE */
+    .score-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .score-table th { font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.3); text-align: left; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .score-table td { padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; vertical-align: middle; }
+    .score-table tr:last-child td { border-bottom: none; }
+    .score-num { font-family: 'Bebas Neue', sans-serif; font-size: 18px; }
+    .score-verdict { font-weight: 700; font-size: 12px; letter-spacing: 1px; }
+    .score-desc { color: rgba(255,255,255,0.45); font-size: 13px; line-height: 1.5; }
+
+    /* NOT JUDGING SECTION */
+    .not-judging { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+    .not-judging-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px; }
+    .not-judging-item .label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(248,113,113,0.7); margin-bottom: 6px; }
+    .not-judging-item .desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+    /* STICKER SECTION */
+    .sticker-box { background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(197,157,80,0.05)); border: 1px solid rgba(255,215,0,0.25); border-radius: 16px; padding: 28px 24px; margin: 32px 0; text-align: center; }
+    .sticker-box .score-big { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: #FFD700; line-height: 1; margin-bottom: 8px; }
+    .sticker-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: #f5e6c8; margin-bottom: 12px; }
+    .sticker-box p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.8; margin: 0; max-width: 480px; margin: 0 auto; }
+
+    /* CLOSING */
+    .closing { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px 24px; margin-top: 40px; text-align: center; }
+    .closing p { font-size: 18px; color: rgba(197,157,80,0.9); font-style: italic; line-height: 1.7; margin-bottom: 20px; }
+    .closing-sub { font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 24px !important; }
+    .browse-btn { display: inline-block; padding: 14px 32px; border-radius: 12px; background: linear-gradient(135deg, #c8a96e, #f5e6c8); color: #0a0a0a; font-size: 14px; font-weight: 700; text-decoration: none; letter-spacing: 1px; }
+
+    /* SOCIAL */
+    .social-row { display: flex; justify-content: center; gap: 12px; margin-top: 32px; }
+    .social-link { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; }
+
+    @media (max-width: 480px) {
+      .not-judging { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <div class="site-header">
+    <a href="https://koffeereview.com.au" class="site-header-left" style="text-decoration:none;">
+      <img src="/logo.jpg" alt="Koffee Review" />
+      <div class="site-header-title">KOFFEE REVIEW</div>
+    </a>
+    <a href="https://koffeereview.com.au" class="back-btn">← Back to reviews</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">OUR METHODOLOGY</div>
+    <h1>How We Score Every Café in Australia</h1>
+    <div class="hero-meta">KOFFEE REVIEW &nbsp;·&nbsp; 600+ CAFÉS &nbsp;·&nbsp; ONE SYSTEM</div>
+    <p class="hero-intro">There's a reason people trust a score more when they understand how it was made. Here's exactly how we do it — no exceptions, no favours, no sponsored results.</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <hr class="divider" />
+
+    <h2>Why Standardisation Matters</h2>
+    <p>Most café reviews are useless. Not because the reviewer doesn't know coffee but because every review is measuring something different. One reviewer judges the latte art. Another focuses on the ambience. A third scores the whole menu. You end up with ratings that reflect the reviewer's mood, the table they sat at, and whether the waitstaff smiled at them.</p>
+    <p>That's not a review. That's a vibe check.</p>
+    <div class="highlight">
+      <p>The only way to compare 600 cafés honestly is to hold every variable constant except the coffee itself. <strong>Same drinks. Same order. Same methodology. Every time.</strong> That's what Koffee Review does.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <h2>The Two Drinks. Every Time.</h2>
+    <p>At every café we visit, we order exactly two things:</p>
+    <div class="highlight">
+      <p style="font-size:18px; text-align:center;"><strong>One Latte &nbsp;·&nbsp; One Double Shot Espresso</strong></p>
+    </div>
+    <p>That's it. We don't order the batch brew. We don't try the pour-over. We don't ask what they're proud of. We order the same two drinks we ordered at the last place and the place before that.</p>
+    <p>Why these two? Because they're the most ordered drinks in Australian cafés. The latte tests the balance of milk and espresso which is the most technically demanding skill for a barista. The double shot espresso reveals the coffee in its purest form meaning the bean, the grind, the extraction. Together, they tell you almost everything you need to know about whether a café can make coffee.</p>
+    <p><strong>If a café can't execute these two drinks, it can't execute anything.</strong></p>
+
+    <hr class="divider" />
+
+    <h2>The Scoring System</h2>
+    <p>Every café gets a single score out of 10, based purely on the taste we personally enjoy. No technical rubric. No judging panel. Just whether the coffee is good.</p>
+
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th>SCORE</th>
+          <th>VERDICT</th>
+          <th>WHAT IT MEANS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="score-num" style="color:#f87171">Below 3.9</span></td>
+          <td><span class="score-verdict" style="color:#f87171">AVOID</span></td>
+          <td class="score-desc">Not coffee. An offence.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#fb923c">4.0 to 4.9</span></td>
+          <td><span class="score-verdict" style="color:#fb923c">NOT FOR US</span></td>
+          <td class="score-desc">We won't finish it.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#fb923c">5.1 to 5.4</span></td>
+          <td><span class="score-verdict" style="color:#fb923c">JUST OKAY</span></td>
+          <td class="score-desc">Drinkable. Forgettable.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#facc15">5.5 to 5.9</span></td>
+          <td><span class="score-verdict" style="color:#facc15">AVERAGE</span></td>
+          <td class="score-desc">Average cup. Not memorable.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#facc15">6.1 to 6.4</span></td>
+          <td><span class="score-verdict" style="color:#facc15">TAKE OR LEAVE</span></td>
+          <td class="score-desc">If we're around, maybe. Won't travel for it.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#facc15">6.5 to 6.9</span></td>
+          <td><span class="score-verdict" style="color:#facc15">DECENT</span></td>
+          <td class="score-desc">Good enough. Not exciting.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#2dd4bf">7.1 to 7.4</span></td>
+          <td><span class="score-verdict" style="color:#2dd4bf">SOLID</span></td>
+          <td class="score-desc">Consistently good. Worth a visit.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#2dd4bf">7.5 to 7.9</span></td>
+          <td><span class="score-verdict" style="color:#2dd4bf">LOVED</span></td>
+          <td class="score-desc">We'd travel up to 5km just for this again.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#4ade80">8.1 to 8.9</span></td>
+          <td><span class="score-verdict" style="color:#4ade80">GREAT 👑</span></td>
+          <td class="score-desc">Top tier. Sits on the king seat.</td>
+        </tr>
+        <tr>
+          <td><span class="score-num" style="color:#FFD700">9.1 to 9.9</span></td>
+          <td><span class="score-verdict" style="color:#FFD700">ELITE</span></td>
+          <td class="score-desc">Rare level. We'll go anywhere for this, any time.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>A 5.0 is not an insult. It means exactly what it says. Most cafés in Australia are average. A 5.0 is honest.</p>
+
+    <hr class="divider" />
+
+    <h2>We Don't Overhype</h2>
+    <p>We score coffee purely on taste we personally enjoy. That's it. Not the playlist. Not the interior design. Not the latte art or the origin story on the menu. Not whether the barista was chatty or the café was fully booked on a Sunday.</p>
+    <p>We don't care if the fit-out cost half a million dollars. We don't care if the bean is single origin, micro-lot, or from a farm with a certified B Corp status. We don't care if the café has a five-star Google rating.</p>
+    <p><strong>We care about what's in the cup.</strong></p>
+
+    <hr class="divider" />
+
+    <h2>What We're Not Judging</h2>
+    <div class="not-judging">
+      <div class="not-judging-item">
+        <div class="label">✕ AMBIENCE</div>
+        <div class="desc">Exposed brick, good playlists, great lighting — None of it. The score is about the coffee only.</div>
+      </div>
+      <div class="not-judging-item">
+        <div class="label">✕ PRICE</div>
+        <div class="desc">A $6.50 latte and a $4.50 latte are judged the exact same way. Expensive coffee that tastes average gets an average score.</div>
+      </div>
+      <div class="not-judging-item">
+        <div class="label">✕ SERVICE</div>
+        <div class="desc">Friendliness, speed, the whole vibe of the staff. All irrelevant. A surly barista who makes elite espresso gets the score the espresso deserves.</div>
+      </div>
+      <div class="not-judging-item">
+        <div class="label">✕ BRANDING</div>
+        <div class="desc">Gorgeous cups, a beautiful fit-out, a great Instagram grid. None of it moves the needle.</div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <h2>The 8.0+ Sticker</h2>
+    <div class="sticker-box">
+      <div class="score-big">8.0+</div>
+      <h3>THE KOFFEE REVIEW STAMP</h3>
+      <p>Cafés that score 8.0 or above earn the Koffee Review stamp of approval. This cannot be applied for. It cannot be purchased. It is given when the coffee earns it and not before.</p>
+    </div>
+    <p>The sticker exists because a score on a phone screen is easy to scroll past. A sticker on a café window is a permanent physical statement about the quality of what they serve and what it took to earn it.</p>
+
+    <hr class="divider" />
+
+    <h2>Why We Never Change the Order</h2>
+    <p>We get asked this a lot. "Did you try the filter coffee?" "Their batch brew is better." "You should have ordered the single origin."</p>
+    <p>We understand. But the moment we start ordering different things at different cafés, the comparisons become meaningless. The cafés that score well on our system are cafés that have their fundamentals right. <strong>Get the latte and the espresso right and you can offer anything else on the menu with confidence.</strong></p>
+
+    <hr class="divider" />
+
+    <!-- CLOSING -->
+    <div class="closing">
+      <p>"We order the same thing every time.<br>One latte. One double shot espresso. One score.<br>No BS."</p>
+      <p class="closing-sub">600+ cups in. Still chasing that perfect 10.</p>
+      <a href="https://koffeereview.com.au" class="browse-btn">BROWSE ALL CAFÉ REVIEWS ☕</a>
+    </div>
+
+    <!-- SOCIAL -->
+    <div class="social-row">
+      <a href="https://www.instagram.com/koffeereview" target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.tiktok.com/@koffeereview" target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
+        TikTok
+      </a>
+      <a href="https://www.youtube.com/@koffeereview" target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        YouTube
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
