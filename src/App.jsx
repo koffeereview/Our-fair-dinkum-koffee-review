@@ -309,6 +309,12 @@ function AboutDrawer({ open, onClose }) {
             )}
           </div>
 
+          {/* LEADERBOARD LINK */}
+          <a href="/leaderboard.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,215,0,0.25)", background:"rgba(255,215,0,0.06)", textDecoration:"none" }}>
+            <span style={{ fontSize:14, fontWeight:600, color:"#FFD700" }}>🏆 Leaderboard</span>
+            <span style={{ fontSize:12, color:"rgba(255,215,0,0.5)" }}>→</span>
+          </a>
+
           {/* OUR METHOD */}
           <div style={{ borderRadius:14, border:"1px solid " + (expanded==="method" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
             <button onClick={function() { toggle("method"); }}
