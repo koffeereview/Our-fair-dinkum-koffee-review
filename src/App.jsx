@@ -707,50 +707,40 @@ export default function App() {
                         <button onClick={function(e) {
                           e.stopPropagation();
                           const color = getScoreColor(cafe.score);
-                          const cardId = "share-card-" + cafe.id;
 
-                          // Load html2canvas if not already loaded
                           function generateCard() {
-                            const card = document.getElementById(cardId);
+                            const card = document.createElement("div");
+                            card.style.cssText = "position:fixed;top:-9999px;left:-9999px;background:#0a0a0a;border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;align-items:center;gap:16px;border:2px solid " + color + "55;width:320px;font-family:sans-serif;";
+                            card.innerHTML = `
+                              <div style="display:flex;align-items:center;gap:10px;width:100%;">
+                                <img src="https://koffeereview.com.au/logo.jpg" crossorigin="anonymous" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" />
+                                <div>
+                                  <div style="font-size:11px;letter-spacing:3px;color:#c8a96e;font-weight:700;">KOFFEE REVIEW</div>
+                                  <div style="font-size:10px;color:rgba(255,255,255,0.6);">koffeereview.com.au</div>
+                                </div>
+                              </div>
+                              <div style="position:relative;width:110px;height:110px;">
+                                <svg width="110" height="110" style="transform:rotate(-90deg);"><circle cx="55" cy="55" r="44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="7"/><circle cx="55" cy="55" r="44" fill="none" stroke="${color}" stroke-width="7" stroke-dasharray="276" stroke-dashoffset="${276 - (cafe.score / 10) * 276}" stroke-linecap="round"/></svg>
+                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                                  <span style="font-size:30px;font-weight:700;color:${color};line-height:1;">${cafe.score}</span>
+                                  <span style="font-size:11px;color:rgba(255,255,255,0.3);">/10</span>
+                                </div>
+                              </div>
+                              <div style="text-align:center;">
+                                <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;">${cafe.name}</div>
+                                <div style="font-size:13px;color:rgba(255,255,255,0.4);">${cafe.suburb}, ${cafe.city}</div>
+                              </div>
+                              <div style="padding:6px 20px;border-radius:20px;background:${color}22;border:1px solid ${color}55;font-size:12px;font-weight:700;letter-spacing:3px;color:${color};">${cafe.verdict ? cafe.verdict.toUpperCase() : "RATED"}</div>
+                              <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px;margin-top:4px;">ONE LATTE · ONE DOUBLE SHOT</div>
+                            `;
+                            document.body.appendChild(card);
                             window.html2canvas(card, { backgroundColor: "#0a0a0a", scale: 3, useCORS: true }).then(function(canvas) {
-                              const link = document.createElement("a");
-                              link.download = cafe.name.replace(/\s+/g, "-").toLowerCase() + "-koffee-review.png";
-                              link.href = canvas.toDataURL("image/png");
-                              link.click();
                               document.body.removeChild(card);
+                              const win = window.open("", "_blank");
+                              win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${cafe.name} — Koffee Review</title><style>*{margin:0;padding:0;}body{background:#0a0a0a;display:flex;align-items:center;justify-content:center;min-height:100vh;}img{max-width:100%;border-radius:24px;}</style></head><body><img src="${canvas.toDataURL("image/png")}" /></body></html>`);
+                              win.document.close();
                             });
                           }
-
-                          // Build card element
-                          const existing = document.getElementById(cardId);
-                          if (existing) document.body.removeChild(existing);
-                          const card = document.createElement("div");
-                          card.id = cardId;
-                          card.style.cssText = "position:fixed;top:-9999px;left:-9999px;background:#0a0a0a;border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;align-items:center;gap:16px;border:2px solid " + color + "55;width:320px;font-family:sans-serif;";
-                          const pct = (cafe.score / 10) * 201;
-                          card.innerHTML = `
-                            <div style="display:flex;align-items:center;gap:10px;width:100%;">
-                              <img src="https://koffeereview.com.au/logo.jpg" crossorigin="anonymous" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" />
-                              <div>
-                                <div style="font-size:11px;letter-spacing:3px;color:#c8a96e;font-weight:700;">KOFFEE REVIEW</div>
-                                <div style="font-size:10px;color:rgba(255,255,255,0.6);">koffeereview.com.au</div>
-                              </div>
-                            </div>
-                            <div style="position:relative;width:110px;height:110px;">
-                              <svg width="110" height="110" style="transform:rotate(-90deg);"><circle cx="55" cy="55" r="44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="7"/><circle cx="55" cy="55" r="44" fill="none" stroke="${color}" stroke-width="7" stroke-dasharray="276" stroke-dashoffset="${276 - (cafe.score / 10) * 276}" stroke-linecap="round"/></svg>
-                              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-                                <span style="font-size:30px;font-weight:700;color:${color};line-height:1;">${cafe.score}</span>
-                                <span style="font-size:11px;color:rgba(255,255,255,0.3);">/10</span>
-                              </div>
-                            </div>
-                            <div style="text-align:center;">
-                              <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;">${cafe.name}</div>
-                              <div style="font-size:13px;color:rgba(255,255,255,0.4);">${cafe.suburb}, ${cafe.city}</div>
-                            </div>
-                            <div style="padding:6px 20px;border-radius:20px;background:${color}22;border:1px solid ${color}55;font-size:12px;font-weight:700;letter-spacing:3px;color:${color};">${cafe.verdict ? cafe.verdict.toUpperCase() : "RATED"}</div>
-                            <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px;margin-top:4px;">ONE LATTE · ONE DOUBLE SHOT</div>
-                          `;
-                          document.body.appendChild(card);
 
                           if (window.html2canvas) {
                             generateCard();
