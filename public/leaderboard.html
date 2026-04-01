@@ -362,15 +362,6 @@
     </p>
   </div>
 
-  <!-- FILTER BAR -->
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterCity('all', this)">All Cities</button>
-    <button class="filter-btn" onclick="filterCity('Brisbane', this)">Brisbane</button>
-    <button class="filter-btn" onclick="filterCity('Melbourne', this)">Melbourne</button>
-    <button class="filter-btn" onclick="filterCity('Gold Coast', this)">Gold Coast</button>
-    <button class="filter-btn" onclick="filterCity('Sunshine Coast', this)">Sunshine Coast</button>
-  </div>
-
   <!-- LEADERBOARD TABLE -->
   <div class="leaderboard">
     <div class="leaderboard-header">
@@ -466,26 +457,6 @@
       }).join("");
     }
 
-    function buildCityFilters(cafes) {
-      const cities = Array.from(new Set(cafes.map(function(c) { return c.city; }))).sort();
-      const bar = document.querySelector(".filter-bar");
-      bar.innerHTML = '<button class="filter-btn active" onclick="filterCity(\'all\', this)">All Cities</button>';
-      cities.forEach(function(city) {
-        const btn = document.createElement("button");
-        btn.className = "filter-btn";
-        btn.textContent = city;
-        btn.setAttribute("onclick", "filterCity('" + city + "', this)");
-        bar.appendChild(btn);
-      });
-    }
-
-    function filterCity(city, btn) {
-      document.querySelectorAll(".filter-btn").forEach(function(b) { b.classList.remove("active"); });
-      btn.classList.add("active");
-      const filtered = city === "all" ? allCafes : allCafes.filter(function(c) { return c.city === city; });
-      renderList(filtered);
-    }
-
     // Load from sheet
     document.getElementById("leaderboard-list").innerHTML = '<div style="text-align:center;padding:40px;color:#888;letter-spacing:2px;font-size:12px;">LOADING...</div>';
 
@@ -493,7 +464,6 @@
       .then(function(r) { return r.text(); })
       .then(function(text) {
         allCafes = parseCSV(text);
-        buildCityFilters(allCafes);
         renderList(allCafes);
       })
       .catch(function() {
