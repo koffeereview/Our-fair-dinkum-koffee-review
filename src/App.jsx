@@ -546,6 +546,10 @@ export default function App() {
                       style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif" }} />
                     <button onClick={function() {
                       if (!suggestName.trim() || !suggestCity.trim()) return;
+                      fetch("https://script.google.com/macros/s/AKfycbwTVM63tGIyn7WyCXq7VDsK8aW4g0fN6M5YeV7xRq4NblfL1ZnSN2apOiCQEUVbuDct/exec", {
+                        method: "POST",
+                        body: JSON.stringify({ name: suggestName, suburb: suggestSuburb, city: suggestCity })
+                      }).catch(function() {});
                       setSuggestDone(true);
                     }} style={{ padding: "13px", borderRadius: 12, background: "linear-gradient(135deg, #c8a96e, #f5e6c8)", border: "none", color: "#0a0a0a", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
                       <img src="/logo.jpg" style={{ width: 20, height: 20, borderRadius: "50%", objectFit: "cover" }} />
