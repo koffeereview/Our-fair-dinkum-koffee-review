@@ -401,6 +401,11 @@ export default function App() {
   const [view, setView] = useState("list");
   const [leafletLoaded, setLeafletLoaded] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [suggestOpen, setSuggestOpen] = useState(false);
+  const [suggestName, setSuggestName] = useState("");
+  const [suggestSuburb, setSuggestSuburb] = useState("");
+  const [suggestCity, setSuggestCity] = useState("");
+  const [suggestDone, setSuggestDone] = useState(false);
   const scoreRef = useRef(null);
   const cityRef = useRef(null);
 
@@ -498,8 +503,9 @@ export default function App() {
         <p style={{ color: "#f5e6c8", fontSize: 13, margin: "0 0 4px" }}>600+ cafes reviewed across Australia - Know before you go</p>
         <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, margin: "0 0 14px" }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
 
-        {/* SOCIAL ICONS */}
-        <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 4 }}>
+        {/* SOCIAL ICONS + SUGGEST */}
+        <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
             style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 33, height: 33, borderRadius: 10, background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)", color: "#fff", flexShrink: 0 }}>
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -512,7 +518,52 @@ export default function App() {
             style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 33, height: 33, borderRadius: 10, background: "#ff0000", color: "#fff", flexShrink: 0 }}>
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
+          </div>
+          <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); }}
+            style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4, padding: 0 }}>
+            <span style={{ fontSize: 11, color: "#c8a96e" }}>Suggest a Café</span>
+            <span style={{ fontSize: 11, color: "#FFD700", fontWeight: 700 }}>→</span>
+          </button>
         </div>
+
+        {/* SUGGEST MODAL */}
+        {suggestOpen && (
+          <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", zIndex: 300, display: "flex", alignItems: "flex-end", justifyContent: "center" }}
+            onClick={function(e) { if (e.target === e.currentTarget) setSuggestOpen(false); }}>
+            <div style={{ background: "#111", borderRadius: "20px 20px 0 0", padding: 24, width: "100%", maxWidth: 500, border: "1px solid rgba(255,255,255,0.08)" }}>
+              {!suggestDone ? (
+                <>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: "#c8a96e", letterSpacing: 1 }}>SUGGEST A CAFÉ</div>
+                    <button onClick={function() { setSuggestOpen(false); }} style={{ background: "rgba(255,255,255,0.08)", border: "none", color: "#fff", borderRadius: "50%", width: 28, height: 28, cursor: "pointer", fontSize: 16 }}>×</button>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                    <input value={suggestName} onChange={function(e) { setSuggestName(e.target.value); }} placeholder="Café name"
+                      style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif" }} />
+                    <input value={suggestSuburb} onChange={function(e) { setSuggestSuburb(e.target.value); }} placeholder="Suburb"
+                      style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif" }} />
+                    <input value={suggestCity} onChange={function(e) { setSuggestCity(e.target.value); }} placeholder="City"
+                      style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif" }} />
+                    <button onClick={function() {
+                      if (!suggestName.trim() || !suggestCity.trim()) return;
+                      setSuggestDone(true);
+                    }} style={{ padding: "13px", borderRadius: 12, background: "linear-gradient(135deg, #c8a96e, #f5e6c8)", border: "none", color: "#0a0a0a", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                      <img src="/logo.jpg" style={{ width: 20, height: 20, borderRadius: "50%", objectFit: "cover" }} />
+                      Submit Suggestion
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div style={{ textAlign: "center", padding: "20px 0" }}>
+                  <div style={{ fontSize: 40, marginBottom: 12 }}>☕</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: "#c8a96e", marginBottom: 8 }}>Thanks!</div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 20 }}>We'll add {suggestName} to our visit list.</div>
+                  <button onClick={function() { setSuggestOpen(false); }} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", padding: "10px 24px", borderRadius: 10, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Close</button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {!loading && <ScoreChart cafes={cafes} />}
 
@@ -649,8 +700,37 @@ export default function App() {
                         <a href={getMapsUrl(cafe)} target="_blank" rel="noreferrer"
                           onClick={function(e) { e.stopPropagation(); }}
                           style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Maps</a>
-                        <button onClick={function(e) { e.stopPropagation(); doShare(cafe); }}
-                          style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>Share</button>
+                        <button onClick={function(e) {
+                          e.stopPropagation();
+                          const color = getScoreColor(cafe.score);
+                          const cardHtml = `
+                            <div style="background:#0a0a0a;border-radius:20px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid ${color}44;width:260px;font-family:sans-serif;">
+                              <div style="display:flex;align-items:center;gap:8px;width:100%;">
+                                <img src="https://koffeereview.com.au/logo.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;" />
+                                <div>
+                                  <div style="font-size:9px;letter-spacing:2px;color:rgba(197,157,80,0.7);">KOFFEE REVIEW</div>
+                                  <div style="font-size:8px;color:rgba(255,255,255,0.7);">koffeereview.com.au</div>
+                                </div>
+                              </div>
+                              <div style="position:relative;width:80px;height:80px;">
+                                <svg width="80" height="80" style="transform:rotate(-90deg);"><circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/><circle cx="40" cy="40" r="32" fill="none" stroke="${color}" stroke-width="6" stroke-dasharray="201" stroke-dashoffset="${201 - (cafe.score / 10) * 201}" stroke-linecap="round"/></svg>
+                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                                  <span style="font-size:22px;font-weight:700;color:${color};line-height:1;">${cafe.score}</span>
+                                  <span style="font-size:9px;color:rgba(255,255,255,0.3);">/10</span>
+                                </div>
+                              </div>
+                              <div style="text-align:center;">
+                                <div style="font-size:15px;font-weight:600;color:#fff;">${cafe.name}</div>
+                                <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;">${cafe.suburb}, ${cafe.city}</div>
+                              </div>
+                              <div style="padding:4px 14px;border-radius:20px;background:${color}22;border:1px solid ${color}55;font-size:10px;font-weight:700;letter-spacing:2px;color:${color};">${cafe.verdict ? cafe.verdict.toUpperCase() : "RATED"}</div>
+                              <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-top:4px;">ONE LATTE · ONE DOUBLE SHOT</div>
+                            </div>`;
+                          const win = window.open("", "_blank", "width=320,height=420");
+                          win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${cafe.name} — Koffee Review</title><style>body{margin:0;background:#0a0a0a;display:flex;align-items:center;justify-content:center;min-height:100vh;}</style></head><body>${cardHtml}<script>setTimeout(function(){window.print();},500);<\/script></body></html>`);
+                          win.document.close();
+                        }}
+                          style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", fontSize: 12, cursor: "pointer", fontWeight: 500 }}>Share Card</button>
                         {cafe.link && (
                           <a href={cafe.link} target="_blank" rel="noreferrer"
                             onClick={function(e) { e.stopPropagation(); }}
