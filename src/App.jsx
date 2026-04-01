@@ -771,15 +771,40 @@ export default function App() {
         </>
       )}
       {shareCardUrl && (
-        <div onClick={function() { setShareCardUrl(null); }}
+        <div onClick={function(e) { if (e.target === e.currentTarget) setShareCardUrl(null); }}
           style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24 }}>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 16, letterSpacing: 1 }}>LONG PRESS IMAGE TO SAVE OR SHARE</div>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 16, letterSpacing: 1 }}>YOUR SCORE CARD</div>
           <img src={shareCardUrl} alt="Score Card"
             style={{ maxWidth: "min(320px, 90vw)", borderRadius: 24, boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} />
-          <button onClick={function() { setShareCardUrl(null); }}
-            style={{ marginTop: 24, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)", padding: "10px 28px", borderRadius: 12, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
-            Close
-          </button>
+          <div style={{ display: "flex", gap: 10, marginTop: 24 }}>
+            <button onClick={function() {
+              const link = document.createElement("a");
+              link.download = "koffee-review-score-card.png";
+              link.href = shareCardUrl;
+              link.click();
+            }} style={{ background: "rgba(197,157,80,0.15)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", padding: "11px 20px", borderRadius: 12, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 600 }}>
+              ↓ Save
+            </button>
+            <button onClick={function() {
+              if (navigator.share) {
+                fetch(shareCardUrl).then(function(r) { return r.blob(); }).then(function(blob) {
+                  const file = new File([blob], "koffee-review-score-card.png", { type: "image/png" });
+                  navigator.share({ files: [file], title: "Koffee Review Score Card" }).catch(function() {});
+                });
+              } else {
+                const link = document.createElement("a");
+                link.download = "koffee-review-score-card.png";
+                link.href = shareCardUrl;
+                link.click();
+              }
+            }} style={{ background: "rgba(197,157,80,0.15)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", padding: "11px 20px", borderRadius: 12, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 600 }}>
+              ↑ Share
+            </button>
+            <button onClick={function() { setShareCardUrl(null); }}
+              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)", padding: "11px 20px", borderRadius: 12, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
+              Close
+            </button>
+          </div>
         </div>
       )}
     </div>
