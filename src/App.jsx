@@ -406,6 +406,7 @@ export default function App() {
   const [suggestSuburb, setSuggestSuburb] = useState("");
   const [suggestCity, setSuggestCity] = useState("");
   const [suggestDone, setSuggestDone] = useState(false);
+  const [shareCardUrl, setShareCardUrl] = useState(null);
   const scoreRef = useRef(null);
   const cityRef = useRef(null);
 
@@ -736,9 +737,7 @@ export default function App() {
                             document.body.appendChild(card);
                             window.html2canvas(card, { backgroundColor: "#0a0a0a", scale: 3, useCORS: true }).then(function(canvas) {
                               document.body.removeChild(card);
-                              const win = window.open("", "_blank");
-                              win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${cafe.name} — Koffee Review</title><style>*{margin:0;padding:0;}body{background:#0a0a0a;display:flex;align-items:center;justify-content:center;min-height:100vh;}img{max-width:100%;border-radius:24px;}</style></head><body><img src="${canvas.toDataURL("image/png")}" /></body></html>`);
-                              win.document.close();
+                              setShareCardUrl(canvas.toDataURL("image/png"));
                             });
                           }
 
@@ -770,6 +769,18 @@ export default function App() {
             })}
           </div>
         </>
+      )}
+      {shareCardUrl && (
+        <div onClick={function() { setShareCardUrl(null); }}
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24 }}>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 16, letterSpacing: 1 }}>LONG PRESS IMAGE TO SAVE OR SHARE</div>
+          <img src={shareCardUrl} alt="Score Card"
+            style={{ maxWidth: "min(320px, 90vw)", borderRadius: 24, boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} />
+          <button onClick={function() { setShareCardUrl(null); }}
+            style={{ marginTop: 24, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.6)", padding: "10px 28px", borderRadius: 12, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>
+            Close
+          </button>
+        </div>
       )}
     </div>
   );
