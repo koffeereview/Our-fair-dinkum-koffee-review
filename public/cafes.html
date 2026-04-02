@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Fair Dinkum Koffee Review | 600+ Café Reviews Across Australia</title>
+  <meta name="description" content="Honest Australian café reviews. 600+ coffees reviewed across Brisbane, Melbourne, Gold Coast and more. We order the same thing every time — One Latte and One Double Shot Espresso. Know before you go." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://koffeereview.com.au/cafes" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; color: #fff; font-family: sans-serif; padding: 24px; max-width: 800px; margin: 0 auto; }
+    h1 { color: #c8a96e; margin-bottom: 8px; font-size: 24px; }
+    h2 { color: #f5e6c8; margin: 32px 0 16px; font-size: 18px; }
+    p { color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px; }
+    .back { display: inline-block; color: #c8a96e; text-decoration: none; margin-bottom: 24px; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+    th { text-align: left; padding: 10px 12px; font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: rgba(255,255,255,0.7); }
+    td.score { color: #c8a96e; font-weight: 700; }
+    td.name { color: #fff; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <a href="https://koffeereview.com.au" class="back">← Back to Koffee Review</a>
+  <h1>Our Fair Dinkum Koffee Review</h1>
+  <p>600+ cafés reviewed across Australia. One latte and one double shot espresso every time. Know before you go.</p>
+
+  <h2>Brisbane Cafés</h2>
+  <table>
+    <thead><tr><th>Café</th><th>Suburb</th><th>Score</th><th>Verdict</th></tr></thead>
+    <tbody id="brisbane"></tbody>
+  </table>
+
+  <h2>Gold Coast Cafés</h2>
+  <table>
+    <thead><tr><th>Café</th><th>Suburb</th><th>Score</th><th>Verdict</th></tr></thead>
+    <tbody id="goldcoast"></tbody>
+  </table>
+
+  <h2>Sunshine Coast Cafés</h2>
+  <table>
+    <thead><tr><th>Café</th><th>Suburb</th><th>Score</th><th>Verdict</th></tr></thead>
+    <tbody id="sunshinecoast"></tbody>
+  </table>
+
+  <h2>Melbourne Cafés</h2>
+  <table>
+    <thead><tr><th>Café</th><th>Suburb</th><th>Score</th><th>Verdict</th></tr></thead>
+    <tbody id="melbourne"></tbody>
+  </table>
+
+  <h2>Other Australian Cafés</h2>
+  <table>
+    <thead><tr><th>Café</th><th>Suburb</th><th>City</th><th>Score</th><th>Verdict</th></tr></thead>
+    <tbody id="other"></tbody>
+  </table>
+
+  <p style="margin-top:40px; font-size:13px;">All cafés reviewed by Koffee Review using the same method — one latte and one double shot espresso. No sponsorships. No agendas. Just honest scores. <a href="https://koffeereview.com.au/how-we-score.html" style="color:#c8a96e;">Read how we score →</a></p>
+
+  <script>
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
+    const SPAIN = ["barcelona", "catalonia", "spain"];
+
+    fetch(SHEET_URL).then(function(r) { return r.text(); }).then(function(text) {
+      const lines = text.trim().split("\n");
+      const headers = lines[0].split(",").map(function(h) { return h.trim().replace(/"/g,""); });
+      const cafes = lines.slice(1).map(function(line) {
+        const vals = line.split(",").map(function(v) { return v.trim().replace(/"/g,""); });
+        const obj = {};
+        headers.forEach(function(h,i) { obj[h] = vals[i] || ""; });
+        obj.score = parseFloat(obj.score) || 0;
+        return obj;
+      }).filter(function(c) { return c.name && c.score > 0 && !SPAIN.includes((c.city||"").toLowerCase()); });
+
+      function rows(list, showCity) {
+        return list.sort(function(a,b) { return b.score - a.score; }).map(function(c) {
+          const cityCol = showCity ? "<td>" + c.city + "</td>" : "";
+          return "<tr><td class='name'>" + c.name + "</td><td>" + c.suburb + "</td>" + cityCol + "<td class='score'>" + c.score.toFixed(1) + "</td><td>" + (c.verdict||"") + "</td></tr>";
+        }).join("");
+      }
+
+      const brisbane = cafes.filter(function(c) { return (c.city||"").toLowerCase().includes("brisbane"); });
+      const goldcoast = cafes.filter(function(c) { return (c.city||"").toLowerCase().includes("gold coast"); });
+      const sunshine = cafes.filter(function(c) { return (c.city||"").toLowerCase().includes("sunshine"); });
+      const melbourne = cafes.filter(function(c) { return (c.city||"").toLowerCase().includes("melbourne"); });
+      const other = cafes.filter(function(c) {
+        const city = (c.city||"").toLowerCase();
+        return !city.includes("brisbane") && !city.includes("gold coast") && !city.includes("sunshine") && !city.includes("melbourne");
+      });
+
+      document.getElementById("brisbane").innerHTML = rows(brisbane, false);
+      document.getElementById("goldcoast").innerHTML = rows(goldcoast, false);
+      document.getElementById("sunshinecoast").innerHTML = rows(sunshine, false);
+      document.getElementById("melbourne").innerHTML = rows(melbourne, false);
+      document.getElementById("other").innerHTML = rows(other, true);
+    });
+  </script>
+</body>
+</html>
