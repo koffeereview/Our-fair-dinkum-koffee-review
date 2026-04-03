@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Coffee in Brisbane 2026 | Koffee Review</title>
+  <meta name="description" content="The definitive guide to the best coffee in Brisbane. 100+ cafés reviewed and scored by Koffee Review. One latte, one double shot espresso, one honest score. Know before you go." />
+  <meta property="og:title" content="Best Coffee in Brisbane 2026 | Koffee Review" />
+  <meta property="og:description" content="60+ Brisbane cafés reviewed and scored. Find the best coffee near you." />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <meta property="og:url" content="https://koffeereview.com.au/best-coffee-brisbane.html" />
+  <link rel="canonical" href="https://koffeereview.com.au/best-coffee-brisbane.html" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; color: #fff; font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .nav-logo span { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; background: linear-gradient(135deg, #f5e6c8, #c8a96e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-back { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .nav-back:hover { color: #c8a96e; }
+
+    /* HERO */
+    .hero { padding: 48px 24px 32px; max-width: 800px; margin: 0 auto; }
+    .hero-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 2px; background: rgba(197,157,80,0.1); color: #c8a96e; border: 1px solid rgba(197,157,80,0.3); margin-bottom: 16px; }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 6vw, 56px); letter-spacing: 2px; line-height: 1.1; background: linear-gradient(135deg, #f5e6c8, #c8a96e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 600px; }
+
+    /* STATS */
+    .stats { display: flex; gap: 16px; padding: 24px; max-width: 800px; margin: 0 auto; flex-wrap: wrap; }
+    .stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 20px; flex: 1; min-width: 120px; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: #c8a96e; line-height: 1; }
+    .stat-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; letter-spacing: 0.5px; }
+
+    /* MAP */
+    .map-section { max-width: 800px; margin: 0 auto; padding: 0 24px 32px; }
+    .map-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: #f5e6c8; margin-bottom: 12px; }
+    #map { height: 420px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+
+    /* CAFE LIST */
+    .cafe-list { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+    .cafe-list h2 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: #f5e6c8; margin-bottom: 16px; }
+
+    .suburb-group { margin-bottom: 32px; }
+    .suburb-title { font-size: 11px; letter-spacing: 3px; color: rgba(197,157,80,0.6); margin-bottom: 10px; text-transform: uppercase; }
+
+    .cafe-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 16px 20px; margin-bottom: 8px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; transition: border 0.2s; }
+    .cafe-card:hover { border-color: rgba(197,157,80,0.3); }
+    .cafe-score { font-family: 'Bebas Neue', sans-serif; font-size: 24px; min-width: 48px; text-align: center; line-height: 1; }
+    .cafe-info { flex: 1; }
+    .cafe-name { font-weight: 600; font-size: 15px; color: #fff; margin-bottom: 2px; }
+    .cafe-suburb { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .cafe-verdict { font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 3px 10px; border-radius: 20px; }
+
+    /* SORT */
+    .sort-bar { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .sort-btn { padding: 7px 16px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.5); font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+    .sort-btn.active { border-color: rgba(197,157,80,0.5); background: rgba(197,157,80,0.15); color: #c8a96e; }
+
+    /* FOOTER */
+    .footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 24px; text-align: center; }
+    .footer p { font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 16px; line-height: 1.7; }
+    .footer a { color: #c8a96e; text-decoration: none; }
+    .browse-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 12px; background: linear-gradient(135deg, #c8a96e, #f5e6c8); color: #0a0a0a; font-weight: 700; font-size: 14px; text-decoration: none; margin-top: 8px; }
+    .browse-btn img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
+
+    .loading { text-align: center; padding: 60px; color: rgba(255,255,255,0.3); font-size: 13px; letter-spacing: 2px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://koffeereview.com.au" class="nav-logo">
+      <img src="/logo.jpg" alt="Koffee Review" />
+      <span>KOFFEE REVIEW</span>
+    </a>
+    <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">BRISBANE GUIDE</div>
+    <h1>Best Coffee in Brisbane</h1>
+    <p>Every café reviewed with the same two drinks — one latte and one double shot espresso. No sponsorships, no agendas. Just honest scores from 100+ Brisbane cafés.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num" id="total-count">...</div>
+      <div class="stat-label">Cafés Reviewed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="must-visit">...</div>
+      <div class="stat-label">Must Visit (7.5+)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="avg-score">...</div>
+      <div class="stat-label">Avg Score</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="suburb-count">...</div>
+      <div class="stat-label">Suburbs</div>
+    </div>
+  </div>
+
+  <div class="map-section">
+    <h2>Find Coffee Near You</h2>
+    <div id="map"></div>
+  </div>
+
+  <div class="cafe-list">
+    <h2>All Brisbane Cafés</h2>
+    <div class="sort-bar">
+      <button class="sort-btn active" onclick="sortList('score', this)">Highest Score</button>
+      <button class="sort-btn" onclick="sortList('name', this)">A to Z</button>
+      <button class="sort-btn" onclick="sortList('suburb', this)">By Suburb</button>
+    </div>
+    <div id="cafe-list-content"><div class="loading">LOADING CAFÉS...</div></div>
+  </div>
+
+  <div class="footer">
+    <p>All scores based on one latte and one double shot espresso, ordered the same way every time.<br />
+    No café pays for placement. <a href="/how-we-score.html">Read how we score →</a></p>
+    <a href="https://koffeereview.com.au" class="browse-btn">
+      <img src="/logo.jpg" alt="Koffee Review" />
+      Browse All Café Reviews
+    </a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
+
+    function getScoreColor(score) {
+      if (score >= 9.0) return "#FFD700";
+      if (score >= 8.0) return "#4ade80";
+      if (score >= 7.0) return "#2dd4bf";
+      if (score >= 6.0) return "#facc15";
+      if (score >= 5.0) return "#fb923c";
+      return "#f87171";
+    }
+
+    function getVerdict(score) {
+      if (score >= 9.1) return "ELITE";
+      if (score >= 8.1) return "GREAT";
+      if (score >= 7.5) return "LOVED";
+      if (score >= 7.1) return "SOLID";
+      if (score >= 6.5) return "DECENT";
+      if (score >= 6.1) return "TAKE OR LEAVE";
+      if (score >= 5.5) return "AVERAGE";
+      if (score >= 5.1) return "JUST OKAY";
+      if (score >= 4.1) return "NOT FOR US";
+      return "AVOID";
+    }
+
+    let allCafes = [];
+    let currentSort = "score";
+    let map = null;
+
+    function parseCSV(text) {
+      const lines = text.trim().split("\n");
+      const headers = lines[0].split(",").map(function(h) { return h.trim().replace(/"/g, ""); });
+      return lines.slice(1).map(function(line) {
+        const vals = line.split(",").map(function(v) { return v.trim().replace(/"/g, ""); });
+        const obj = {};
+        headers.forEach(function(h, i) { obj[h] = vals[i] || ""; });
+        obj.score = parseFloat(obj.score) || 0;
+        obj.lat = parseFloat(obj.lat) || 0;
+        obj.lng = parseFloat(obj.lng) || 0;
+        return obj;
+      }).filter(function(c) {
+        return c.name && c.score > 0 && (c.city || "").toLowerCase().includes("brisbane");
+      });
+    }
+
+    function updateStats(cafes) {
+      document.getElementById("total-count").textContent = cafes.length;
+      document.getElementById("must-visit").textContent = cafes.filter(function(c) { return c.score >= 7.5; }).length;
+      const avg = cafes.reduce(function(s, c) { return s + c.score; }, 0) / cafes.length;
+      document.getElementById("avg-score").textContent = avg.toFixed(1);
+      const suburbs = new Set(cafes.map(function(c) { return c.suburb; })).size;
+      document.getElementById("suburb-count").textContent = suburbs;
+    }
+
+    function initMap(cafes) {
+      const validCafes = cafes.filter(function(c) { return c.lat && c.lng; });
+      if (!validCafes.length) return;
+      const avgLat = validCafes.reduce(function(s, c) { return s + c.lat; }, 0) / validCafes.length;
+      const avgLng = validCafes.reduce(function(s, c) { return s + c.lng; }, 0) / validCafes.length;
+      map = L.map("map").setView([avgLat, avgLng], 12);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "" }).addTo(map);
+
+      validCafes.forEach(function(cafe) {
+        const color = getScoreColor(cafe.score);
+        const icon = L.divIcon({
+          html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.5);"><img src="/logo.jpg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;" /></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 4px;">' + cafe.score + '</div>',
+          className: "", iconSize: [38, 52], iconAnchor: [19, 52]
+        });
+        L.marker([cafe.lat, cafe.lng], { icon: icon }).addTo(map)
+          .bindPopup("<strong>" + cafe.name + "</strong><br/>" + cafe.suburb + "<br/><span style='color:" + color + ";font-weight:700;'>" + cafe.score + "/10</span> " + getVerdict(cafe.score));
+      });
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          const youIcon = L.divIcon({
+            html: '<div style="background:#3b82f6;border:3px solid #fff;border-radius:50%;width:16px;height:16px;box-shadow:0 0 0 4px rgba(59,130,246,0.3);"></div>',
+            className: "", iconSize: [16, 16], iconAnchor: [8, 8]
+          });
+          L.marker([pos.coords.latitude, pos.coords.longitude], { icon: youIcon }).addTo(map).bindPopup("You are here");
+        });
+      }
+    }
+
+    function renderList(cafes, sort) {
+      const container = document.getElementById("cafe-list-content");
+      let sorted = [...cafes];
+      if (sort === "score") sorted.sort(function(a, b) { return b.score - a.score; });
+      if (sort === "name") sorted.sort(function(a, b) { return a.name.localeCompare(b.name); });
+      if (sort === "suburb") sorted.sort(function(a, b) { return (a.suburb || "").localeCompare(b.suburb || ""); });
+
+      if (sort === "suburb") {
+        const groups = {};
+        sorted.forEach(function(c) {
+          const s = c.suburb || "Other";
+          if (!groups[s]) groups[s] = [];
+          groups[s].push(c);
+        });
+        container.innerHTML = Object.keys(groups).sort().map(function(suburb) {
+          return '<div class="suburb-group"><div class="suburb-title">' + suburb + '</div>' +
+            groups[suburb].map(function(c) { return cafeCardHTML(c); }).join("") + '</div>';
+        }).join("");
+      } else {
+        container.innerHTML = sorted.map(function(c) { return cafeCardHTML(c); }).join("");
+      }
+    }
+
+    function cafeCardHTML(cafe) {
+      const color = getScoreColor(cafe.score);
+      const verdict = cafe.verdict || getVerdict(cafe.score);
+      return '<div class="cafe-card">' +
+        '<div class="cafe-score" style="color:' + color + ';">' + cafe.score.toFixed(1) + '</div>' +
+        '<div class="cafe-info">' +
+          '<div class="cafe-name">' + cafe.name + '</div>' +
+          '<div class="cafe-suburb">' + cafe.suburb + ' · ' + (cafe.price || "") + '</div>' +
+        '</div>' +
+        '<div class="cafe-verdict" style="background:' + color + '22;color:' + color + ';border:1px solid ' + color + '55;">' + verdict.toUpperCase() + '</div>' +
+        '</div>';
+    }
+
+    function sortList(sort, btn) {
+      currentSort = sort;
+      document.querySelectorAll(".sort-btn").forEach(function(b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      renderList(allCafes, sort);
+    }
+
+    fetch(SHEET_URL)
+      .then(function(r) { return r.text(); })
+      .then(function(text) {
+        allCafes = parseCSV(text);
+        updateStats(allCafes);
+        initMap(allCafes);
+        renderList(allCafes, "score");
+      })
+      .catch(function() {
+        document.getElementById("cafe-list-content").innerHTML = '<div class="loading">Could not load cafés. Please try again.</div>';
+      });
+  </script>
+
+</body>
+</html>
