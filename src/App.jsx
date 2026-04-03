@@ -311,8 +311,14 @@ function AboutDrawer({ open, onClose }) {
 
           {/* LEADERBOARD LINK */}
           <a href="/leaderboard.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,215,0,0.25)", background:"rgba(255,215,0,0.06)", textDecoration:"none" }}>
-            <span style={{ fontSize:14, fontWeight:600, color:"#FFD700" }}>🏆 Leaderboard</span>
+            <span style={{ fontSize:14, fontWeight:600, color:"#FFD700" }}>Leaderboard</span>
             <span style={{ fontSize:12, color:"rgba(255,215,0,0.5)" }}>→</span>
+          </a>
+
+          {/* BEST BRISBANE LINK */}
+          <a href="/best-coffee-brisbane.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(197,157,80,0.25)", background:"rgba(197,157,80,0.06)", textDecoration:"none" }}>
+            <span style={{ fontSize:14, fontWeight:600, color:"#c8a96e" }}>Best Coffee in Brisbane</span>
+            <span style={{ fontSize:12, color:"rgba(197,157,80,0.5)" }}>→</span>
           </a>
 
           {/* OUR METHOD */}
