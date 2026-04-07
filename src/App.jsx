@@ -4,9 +4,29 @@ const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I
 
 function parseCSV(text) {
   const lines = text.trim().split("\n");
-  const headers = lines[0].split(",").map(function(h) { return h.trim().replace(/"/g, ""); });
+  
+  function splitCSVLine(line) {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === "," && !inQuotes) {
+        result.push(current.trim());
+        current = "";
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim());
+    return result;
+  }
+
+  const headers = splitCSVLine(lines[0]);
   return lines.slice(1).map(function(line, i) {
-    const values = line.split(",").map(function(v) { return v.trim().replace(/"/g, ""); });
+    const values = splitCSVLine(line);
     const obj = {};
     headers.forEach(function(h, idx) { obj[h] = values[idx] || ""; });
     obj.score = parseFloat(obj.score) || 0;
