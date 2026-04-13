@@ -272,13 +272,15 @@
       }
 
       if (cafe.lat && cafe.lng) {
-        const map = L.map("map").setView([cafe.lat, cafe.lng], 15);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "" }).addTo(map);
-        const icon = L.divIcon({
-          html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.5);"><img src="/logo.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 5px;">' + cafe.score + '</div>',
-          className: "", iconSize: [40, 55], iconAnchor: [20, 55]
-        });
-        L.marker([cafe.lat, cafe.lng], { icon: icon }).addTo(map);
+        setTimeout(function() {
+          const map = L.map("map").setView([cafe.lat, cafe.lng], 15);
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "" }).addTo(map);
+          const icon = L.divIcon({
+            html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.5);"><img src="/logo.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 5px;">' + cafe.score + '</div>',
+            className: "", iconSize: [40, 55], iconAnchor: [20, 55]
+          });
+          L.marker([cafe.lat, cafe.lng], { icon: icon }).addTo(map);
+        }, 300);
       } else {
         document.getElementById("map").style.display = "none";
       }
