@@ -196,11 +196,10 @@ function renderHTML(cafe) {
       <button class="btn btn-share" onclick="generateShareCard()">Share Card</button>
     </div>
 
-    ${cafe.lat && cafe.lng ? `
     <div class="section">
       <h2>FIND US</h2>
-      <div id="map"></div>
-    </div>` : ""}
+      ${(cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 && Math.abs(cafe.lng) > 1) ? `<div id="map"></div>` : `<a href="${getMapsUrl(cafe)}" target="_blank" style="display:flex;align-items:center;justify-content:center;height:120px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);color:#c8a96e;text-decoration:none;font-size:14px;font-weight:600;">📍 Open in Google Maps →</a>`}
+    </div>
 
     <hr class="divider" />
 
@@ -221,12 +220,12 @@ function renderHTML(cafe) {
     </div>
   </div>
 
-  ${cafe.lat && cafe.lng ? `<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>` : ""}
+  ${(cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 && Math.abs(cafe.lng) > 1) ? `<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>` : ""}
   <script>
     const cafe = ${JSON.stringify({ name: cafe.name, suburb: cafe.suburb, city: cafe.city, score: cafe.score, verdict: cafe.verdict, lat: cafe.lat, lng: cafe.lng, link: cafe.link })};
     let shareCardDataUrl = null;
 
-    ${cafe.lat && cafe.lng ? `
+    ${(cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 && Math.abs(cafe.lng) > 1) ? `
     window.addEventListener('load', function() {
       setTimeout(function() {
         const color = "${color}";
