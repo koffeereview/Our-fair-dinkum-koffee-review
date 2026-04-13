@@ -10,6 +10,12 @@
   <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
   <meta property="og:type" content="article" />
   <link rel="canonical" id="canonical" href="" />
+  <script type="application/ld+json" id="structured-data">{
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "author": { "@type": "Organization", "name": "Our Fair Dinkum Koffee Review" },
+    "publisher": { "@type": "Organization", "name": "Koffee Review", "url": "https://koffeereview.com.au" }
+  }</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -94,6 +100,13 @@
     <p>We couldn't find this café in our database.</p>
     <a href="https://koffeereview.com.au">← Browse all reviews</a>
   </div>
+
+  <!-- STATIC SEO CONTENT — visible to Google, hidden once JS loads -->
+  <div id="seo-static" style="max-width:720px;margin:0 auto;padding:40px 24px;">
+    <p style="color:rgba(255,255,255,0.4);font-size:13px;">Loading café review...</p>
+    <p style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;">Koffee Review — 600+ honest café reviews across Australia. One latte and one double shot espresso every time. Know before you go. <a href="https://koffeereview.com.au" style="color:#c8a96e;">Browse all reviews →</a></p>
+  </div>
+
   <div id="cafe-content" style="display:none;">
     <div class="hero">
       <div class="hero-tag" id="hero-tag">CAFE REVIEW</div>
@@ -239,6 +252,8 @@
       document.getElementById("og-title").setAttribute("content", title);
       document.getElementById("og-desc").setAttribute("content", desc);
       document.getElementById("canonical").setAttribute("href", canonicalUrl);
+      document.getElementById("seo-static").style.display = "none";
+      document.getElementById("loading").style.display = "none";
 
       document.getElementById("hero-tag").textContent = cafe.city.toUpperCase() + " · CAFÉ REVIEW";
       document.getElementById("hero-title").textContent = cafe.name + " — " + cafe.suburb;
@@ -295,7 +310,6 @@
       links.innerHTML += '<a class="internal-link" href="/leaderboard.html">Australia\'s Top 10 Cafés <span>→</span></a>';
       links.innerHTML += '<a class="internal-link" href="https://koffeereview.com.au">Browse All ' + cafe.city + ' Reviews <span>→</span></a>';
 
-      document.getElementById("loading").style.display = "none";
       document.getElementById("cafe-content").style.display = "block";
     }
 
