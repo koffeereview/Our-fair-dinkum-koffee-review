@@ -68,6 +68,14 @@ function getMapsUrl(cafe) {
   return "https://www.google.com/maps/search/" + encodeURIComponent(cafe.name + " " + cafe.suburb + " " + cafe.city);
 }
 
+function makeSlug(name, suburb) {
+  return (name + "-" + suburb).toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim();
+}
+
 function doShare(cafe) {
   const text = "Coffee: " + cafe.name + " - " + cafe.score + "/10. Location: " + cafe.suburb + ", " + cafe.city + ". koffeereview.com.au";
   if (navigator.share) {
@@ -737,6 +745,9 @@ export default function App() {
                         <a href={getMapsUrl(cafe)} target="_blank" rel="noreferrer"
                           onClick={function(e) { e.stopPropagation(); }}
                           style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Maps</a>
+                        <a href={"/review/" + makeSlug(cafe.name, cafe.suburb)}
+                          onClick={function(e) { e.stopPropagation(); }}
+                          style={{ flex: 1, padding: "10px", borderRadius: 10, background: "rgba(197,157,80,0.1)", border: "1px solid rgba(197,157,80,0.25)", color: "#c8a96e", textDecoration: "none", fontSize: 12, textAlign: "center", fontWeight: 500 }}>Full Review</a>
                         <button onClick={function(e) {
                           e.stopPropagation();
                           const color = getScoreColor(cafe.score);
