@@ -11,7 +11,7 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/review/:slug", "destination": "/review.html" },
+    { "source": "/review/:slug", "destination": "/api/review?slug=:slug" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
