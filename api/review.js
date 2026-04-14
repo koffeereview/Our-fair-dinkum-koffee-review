@@ -72,7 +72,13 @@ function renderHTML(cafe) {
   const canonicalUrl = "https://koffeereview.com.au/review/" + slug;
   const circumference = 276;
   const offset = circumference - (cafe.score / 10) * circumference;
+  const citySlugMap = { "brisbane": "brisbane", "gold coast": "gold-coast", "moreton bay": "moreton-bay", "sunshine coast": "sunshine-coast", "ipswich": "ipswich", "melbourne": "melbourne", "sydney": "sydney", "logan": "logan" };
+  const suburbSlugMap = { "cbd": "cbd-brisbane", "newstead": "newstead-brisbane", "chermside": "chermside-brisbane", "fortitude valley": "fortitude-valley-brisbane", "west end": "west-end-brisbane", "south brisbane": "south-brisbane-brisbane", "paddington": "paddington-brisbane", "hamilton": "hamilton-brisbane", "woolloongabba": "woolloongabba-brisbane" };
+  const citySlug = citySlugMap[(cafe.city || "").toLowerCase()];
+  const suburbSlug = suburbSlugMap[(cafe.suburb || "").toLowerCase()];
   const brisbaneLink = cafe.city.toLowerCase().includes("brisbane") ? '<a class="internal-link" href="/best-coffee-brisbane.html">Best Coffee in Brisbane <span>→</span></a>' : "";
+  const suburbLink = suburbSlug ? `<a class="internal-link" href="/suburb/${suburbSlug}">Best Coffee in ${cafe.suburb} <span>→</span></a>` : "";
+  const cityLink = citySlug ? `<a class="internal-link" href="/city/${citySlug}">All ${cafe.city} Cafés <span>→</span></a>` : "";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -204,9 +210,11 @@ function renderHTML(cafe) {
     <hr class="divider" />
 
     <div class="internal-links">
+      ${suburbLink}
       ${brisbaneLink}
+      ${cityLink}
       <a class="internal-link" href="/leaderboard.html">Australia's Top 10 Cafés <span>→</span></a>
-      <a class="internal-link" href="https://koffeereview.com.au">Browse All ${cafe.city} Reviews <span>→</span></a>
+      <a class="internal-link" href="https://koffeereview.com.au">Browse All Reviews <span>→</span></a>
     </div>
   </div>
 
