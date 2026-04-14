@@ -349,6 +349,40 @@ function AboutDrawer({ open, onClose }) {
             <span style={{ fontSize:12, color:"rgba(197,157,80,0.5)" }}>→</span>
           </a>
 
+          {/* EXPLORE BY CITY */}
+          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="explore" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
+            <button onClick={function() { toggle("explore"); }}
+              style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", background: expanded==="explore" ? "rgba(197,157,80,0.1)" : "rgba(255,255,255,0.03)", border:"none", color: expanded==="explore" ? "#c8a96e" : "rgba(255,255,255,0.7)", fontSize:14, fontWeight:600, cursor:"pointer", textAlign:"left" }}>
+              Explore
+              <span style={{ fontSize:12, transition:"transform 0.3s", transform: expanded==="explore" ? "rotate(180deg)" : "rotate(0deg)", color:"rgba(255,255,255,0.3)" }}>▼</span>
+            </button>
+            {expanded==="explore" && (
+              <div style={{ padding:"12px 18px 18px", background:"rgba(197,157,80,0.05)", display:"flex", flexDirection:"column", gap:8 }}>
+                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginBottom:4 }}>BRISBANE</div>
+                <a href="/city/brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>All Brisbane Cafés <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/cbd-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>CBD <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/newstead-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Newstead <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/chermside-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Chermside <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/west-end-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>West End <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/fortitude-valley-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Fortitude Valley <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/paddington-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Paddington <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/south-brisbane-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>South Brisbane <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/hamilton-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Hamilton <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/woolloongabba-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Woolloongabba <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+
+                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>GOLD COAST</div>
+                <a href="/city/gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>All Gold Coast Cafés <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+
+                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>MORE CITIES</div>
+                <a href="/city/moreton-bay" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Moreton Bay <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/city/sunshine-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Sunshine Coast <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/city/ipswich" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Ipswich <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/city/melbourne" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Melbourne <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/city/sydney" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Sydney <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+              </div>
+            )}
+          </div>
+
           {/* OUR METHOD */}
           <div style={{ borderRadius:14, border:"1px solid " + (expanded==="method" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
             <button onClick={function() { toggle("method"); }}
@@ -711,6 +745,16 @@ export default function App() {
                   style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>Clear</button>
               )}
             </div>
+            {city !== "All" && (function() {
+              const citySlugMap = { "Brisbane": "brisbane", "Gold Coast": "gold-coast", "Moreton Bay": "moreton-bay", "Sunshine Coast": "sunshine-coast", "Ipswich": "ipswich", "Melbourne": "melbourne", "Sydney": "sydney", "Logan": "logan" };
+              const slug = citySlugMap[city];
+              if (!slug) return null;
+              return (
+                <a href={"/city/" + slug} style={{ display:"inline-flex", alignItems:"center", gap:6, marginTop:10, fontSize:12, color:"#c8a96e", textDecoration:"none", fontWeight:600 }}>
+                  View full {city} guide →
+                </a>
+              );
+            })()}
           </div>
 
           <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
