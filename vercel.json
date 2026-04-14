@@ -12,6 +12,8 @@
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/review/:slug", "destination": "/api/review?slug=:slug" },
+    { "source": "/city/:city", "destination": "/api/city?city=:city" },
+    { "source": "/suburb/:suburb", "destination": "/api/suburb?suburb=:suburb" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
