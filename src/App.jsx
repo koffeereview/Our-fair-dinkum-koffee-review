@@ -349,6 +349,12 @@ function AboutDrawer({ open, onClose }) {
             <span style={{ fontSize:12, color:"rgba(197,157,80,0.5)" }}>→</span>
           </a>
 
+          {/* CAFES TO AVOID */}
+          <a href="/brisbane-cafes-to-avoid" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(248,113,113,0.2)", background:"rgba(248,113,113,0.05)", textDecoration:"none" }}>
+            <span style={{ fontSize:14, fontWeight:600, color:"#f87171" }}>Cafés to Avoid</span>
+            <span style={{ fontSize:12, color:"rgba(248,113,113,0.4)" }}>→</span>
+          </a>
+
           {/* EXPLORE BY CITY */}
           <div style={{ borderRadius:14, border:"1px solid " + (expanded==="explore" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
             <button onClick={function() { toggle("explore"); }}
