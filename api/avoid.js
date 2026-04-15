@@ -43,11 +43,11 @@ export default async function handler(req, res) {
     const allCafes = parseCSV(text);
 
     const avoidCafes = allCafes
-      .filter(function(c) { return c.score <= 4.9 && c.score > 0; })
+      .filter(function(c) { return c.score <= 4.9 && c.score > 0 && c.city.toLowerCase().trim() === "brisbane"; })
       .sort(function(a, b) { return a.score - b.score });
 
     const title = "Brisbane Cafés to Avoid | Koffee Review";
-    const desc = "Honest list of Brisbane cafés rated below 5 out of 10 by Koffee Review. Know before you go — save your money and find better coffee nearby.";
+    const desc = "Honest list of Brisbane cafés rated below 5 out of 10 by Koffee Review. Real scores, no hype. Know before you go and save your money for cafés that actually deliver.";
     const canonicalUrl = "https://koffeereview.com.au/brisbane-cafes-to-avoid";
 
     const cafeRows = avoidCafes.map(function(cafe) {
@@ -113,27 +113,47 @@ export default async function handler(req, res) {
   </nav>
 
   <div class="hero">
-    <div class="hero-tag">HONEST WARNING</div>
-    <h1>Cafés to Avoid</h1>
-    <p>Every café on this list scored below 5 out of 10 on Koffee Review. One latte, one double shot espresso, one honest score. These are the ones that didn't make the cut.</p>
+    <div class="hero-tag">HONEST WARNING · BRISBANE</div>
+    <h1>Cafés to Avoid in Brisbane</h1>
+    <p style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.9;max-width:640px;">Not every coffee in Brisbane is good and honestly, most are not.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.9;max-width:640px;margin-top:12px;">After reviewing hundreds of cafés across Brisbane, one pattern stands out. A lot of places look great on the outside but the coffee just does not hold up once you actually drink it.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.9;max-width:640px;margin-top:12px;">This page highlights the lowest rated cafés based on real Koffee Review scores. Not hype. Not branding. Just how the cup actually drinks. Every score comes from the same two orders every single time — one latte and one double shot espresso.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.9;max-width:640px;margin-top:12px;">Most coffees in Brisbane sit somewhere in the five to six range. Anything below that usually means something is clearly off. If you have ever had a coffee that looked like a seven but drank like a four, this list will make complete sense.</p>
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="stat-num">${avoidCafes.length}</div><div class="stat-label">Below 5.0</div></div>
+    <div class="stat"><div class="stat-num">${avoidCafes.length}</div><div class="stat-label">Below 5.0 in Brisbane</div></div>
     <div class="stat"><div class="stat-num">${avoidCafes.filter(function(c) { return c.score < 4.0; }).length}</div><div class="stat-label">Below 4.0</div></div>
-    <div class="stat"><div class="stat-num">${avoidCafes.length > 0 ? avoidCafes[avoidCafes.length - 1].score.toFixed(1) : "N/A"}</div><div class="stat-label">Lowest Score</div></div>
+    <div class="stat"><div class="stat-num">${avoidCafes.length > 0 ? avoidCafes[0].score.toFixed(1) : "N/A"}</div><div class="stat-label">Lowest Score</div></div>
   </div>
 
   <div class="content">
+
     <div class="honesty-box">
-      No café paid to be removed from this list. No score is negotiated. If the coffee didn't earn a 5.0 or above, it's here. That's the whole point.
+      <div style="font-size:13px;font-weight:700;color:#f87171;letter-spacing:2px;margin-bottom:12px;">WHY SOME CAFÉS DON'T HOLD UP</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.9;margin-bottom:12px;">From what we have seen across hundreds of Brisbane visits, low scores usually come down to the same recurring issues.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;"><span style="color:#f87171;font-weight:700;flex-shrink:0;">✕</span>Weak coffee that gets masked by milk so you barely taste the espresso underneath</div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;"><span style="color:#f87171;font-weight:700;flex-shrink:0;">✕</span>Burnt or bitter extraction that leaves a harsh aftertaste from start to finish</div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;"><span style="color:#f87171;font-weight:700;flex-shrink:0;">✕</span>No balance or clean finish — the cup just falls flat and does not linger</div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;"><span style="color:#f87171;font-weight:700;flex-shrink:0;">✕</span>Inconsistency between visits — good one day, completely different the next</div>
+      </div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.9;margin-top:12px;">A lot of places in Brisbane put heavy focus on aesthetics and branding. The fit out looks amazing. The cups are great. The vibe is strong. But the actual coffee in the cup does not match any of it.</p>
     </div>
-    <div class="section-title">RATED BELOW 5.0 — LOWEST FIRST</div>
-    ${cafeRows.length > 0 ? cafeRows : '<p style="color:rgba(255,255,255,0.3);text-align:center;padding:40px;">No cafés currently below 5.0</p>'}
+
+    <div class="section-title">LOWEST RATED CAFÉS IN BRISBANE</div>
+    ${cafeRows.length > 0 ? cafeRows : '<p style="color:rgba(255,255,255,0.3);text-align:center;padding:40px;">No Brisbane cafés currently below 5.0</p>'}
+
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;margin-top:32px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:rgba(197,157,80,0.8);margin-bottom:16px;">FINAL THOUGHTS</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.9;margin-bottom:12px;">Not every low score means a place is terrible overall. But it does mean the coffee did not deliver on the day we visited. And when we order the same thing every single time, that consistency is the whole point.</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:12px;">Brisbane has a genuinely strong coffee scene. There are some world class cups being pulled in this city. But consistency is still hit or miss across the board and the gap between the best and worst is wider than most people realise.</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.9;">If you are chasing a safe and reliable cup, it is always better to stick with places that consistently score above 7.0. The difference is noticeable every single time.</p>
+    </div>
   </div>
 
   <div class="footer">
-    <p>All scores based on one latte and one double shot espresso.<br/>
+    <p style="font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:16px;line-height:1.7;">All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
     <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a></p>
     <div class="links-row">
       <a href="/best-coffee-brisbane.html" class="link-btn link-btn-gold">Best Coffee Brisbane →</a>
