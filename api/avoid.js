@@ -122,9 +122,9 @@ export default async function handler(req, res) {
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="stat-num">${avoidCafes.length}</div><div class="stat-label">Below 5.0 in Brisbane</div></div>
-    <div class="stat"><div class="stat-num">${avoidCafes.filter(function(c) { return c.score < 4.0; }).length}</div><div class="stat-label">Below 4.0</div></div>
+    <div class="stat"><div class="stat-num">${avoidCafes.length}</div><div class="stat-label">Cafés to Avoid</div></div>
     <div class="stat"><div class="stat-num">${avoidCafes.length > 0 ? avoidCafes[0].score.toFixed(1) : "N/A"}</div><div class="stat-label">Lowest Score</div></div>
+    <div class="stat"><div class="stat-num">${avoidCafes.length > 0 ? avoidCafes[Math.floor(avoidCafes.length/2)].score.toFixed(1) : "N/A"}</div><div class="stat-label">Median Score</div></div>
   </div>
 
   <div class="content">
