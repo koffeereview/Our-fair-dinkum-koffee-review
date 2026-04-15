@@ -43,7 +43,7 @@ export default async function handler(req, res) {
     const allCafes = parseCSV(text);
 
     const avoidCafes = allCafes
-      .filter(function(c) { return c.score <= 4.9 && c.score > 0 && c.city.toLowerCase().trim() === "brisbane"; })
+      .filter(function(c) { return c.score < 4.0 && c.score > 0 && c.city.toLowerCase().trim() === "brisbane"; })
       .sort(function(a, b) { return a.score - b.score });
 
     const title = "Brisbane Cafés to Avoid | Koffee Review";
