@@ -521,7 +521,7 @@ export default function App() {
 
   const allCities = Array.from(new Set(cafes.map(function(c) { return c.city; }))).sort();
   const mustVisit = cafes.filter(function(c) { return c.score >= 7.5; }).length;
-  const avoid = cafes.filter(function(c) { return c.score < 5; }).length;
+  const avoid = cafes.filter(function(c) { return c.score < 4.0; }).length;
 
   function handleStatClick(type) {
     if (quickFilter === type) { setQuickFilter(null); } else { setQuickFilter(type); setScoreBucket(null); setSort("all"); }
@@ -541,7 +541,7 @@ export default function App() {
     })
     .filter(function(c) {
       if (quickFilter === "must") return c.score >= 7.5;
-      if (quickFilter === "avoid") return c.score < 5;
+      if (quickFilter === "avoid") return c.score < 4.0;
       if (scoreBucket) {
         const bucket = SCORE_BUCKETS.find(function(b) { return b.label === scoreBucket; });
         if (bucket) return c.score >= bucket.min && c.score <= bucket.max;
