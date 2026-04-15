@@ -93,15 +93,68 @@ function renderHTML(cafe) {
   <meta property="og:type" content="article" />
   <link rel="canonical" href="${canonicalUrl}" />
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    "name": "${cafe.name} Coffee Review",
-    "author": { "@type": "Organization", "name": "Our Fair Dinkum Koffee Review", "url": "https://koffeereview.com.au" },
-    "itemReviewed": { "@type": "CafeOrCoffeeShop", "name": "${cafe.name}", "address": { "@type": "PostalAddress", "addressLocality": "${cafe.suburb}", "addressRegion": "${cafe.city}", "addressCountry": "AU" } },
-    "reviewRating": { "@type": "Rating", "ratingValue": "${cafe.score}", "bestRating": "10", "worstRating": "0" },
-    "reviewBody": "${(cafe.notes || "").replace(/"/g, "'")}"
-  }
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "name": "${cafe.name} Coffee Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Our Fair Dinkum Koffee Review",
+        "url": "https://koffeereview.com.au",
+        "logo": "https://koffeereview.com.au/logo.jpg"
+      },
+      "itemReviewed": {
+        "@type": "CafeOrCoffeeShop",
+        "name": "${cafe.name}",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "${cafe.suburb}",
+          "addressLocality": "${cafe.suburb}",
+          "addressRegion": "${cafe.city}",
+          "addressCountry": "AU"
+        }${cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 ? `,
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "${cafe.lat}",
+          "longitude": "${cafe.lng}"
+        }` : ""}
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "${cafe.score}",
+        "bestRating": "10",
+        "worstRating": "0"
+      },
+      "reviewBody": "${(cafe.notes || "").replace(/"/g, "'")}",
+      "url": "${canonicalUrl}"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "${cafe.name}",
+      "@id": "${canonicalUrl}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "${cafe.suburb}",
+        "addressRegion": "${cafe.city}",
+        "addressCountry": "AU"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "${cafe.score}",
+        "bestRating": "10",
+        "worstRating": "0",
+        "reviewCount": "1"
+      },
+      "servesCuisine": "Coffee"${cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 ? `,
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "${cafe.lat}",
+        "longitude": "${cafe.lng}"
+      }` : ""}
+    }
+  ]
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
