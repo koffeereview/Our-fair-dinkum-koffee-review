@@ -41,6 +41,22 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/best-coffee-brisbane.html", priority: "0.9", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/leaderboard.html", priority: "0.8", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/how-we-score.html", priority: "0.7", changefreq: "monthly" },
+  { url: "https://koffeereview.com.au/city/brisbane", priority: "0.9", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/gold-coast", priority: "0.8", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/moreton-bay", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/sunshine-coast", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/ipswich", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/melbourne", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/sydney", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/cbd-brisbane", priority: "0.8", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/newstead-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/chermside-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/fortitude-valley-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/west-end-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/south-brisbane-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/paddington-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/hamilton-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/woolloongabba-brisbane", priority: "0.7", changefreq: "weekly" },
 ];
 
 export default async function handler(req, res) {
