@@ -528,12 +528,14 @@ export default function App() {
 
   function handleStatClick(type) {
     if (quickFilter === type) { setQuickFilter(null); } else { setQuickFilter(type); setScoreBucket(null); setSort("all"); }
+    setNearMe(false); setUserLocation(null);
   }
-  function handleSortClick(val) { setSort(val); setQuickFilter(null); setScoreBucket(null); }
-  function handleReviewedClick() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); setSearch(""); setView("list"); }
+  function handleSortClick(val) { setSort(val); setQuickFilter(null); setScoreBucket(null); setNearMe(false); setUserLocation(null); }
+  function handleReviewedClick() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); setSearch(""); setView("list"); setNearMe(false); setUserLocation(null); }
   function handleBucketSelect(bucket) {
     if (scoreBucket === bucket.label) { setScoreBucket(null); } else { setScoreBucket(bucket.label); setQuickFilter(null); }
     setScoreDropdown(false);
+    setNearMe(false); setUserLocation(null);
   }
 
   function getDistance(lat1, lng1, lat2, lng2) {
@@ -549,13 +551,14 @@ export default function App() {
   function handleNearMe() {
     if (nearMe) { setNearMe(false); setUserLocation(null); return; }
     setLocationLoading(true);
+    setSort("all");
+    setQuickFilter(null);
+    setScoreBucket(null);
     navigator.geolocation.getCurrentPosition(
       function(pos) {
         setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setNearMe(true);
         setLocationLoading(false);
-        setSort("all");
-        setQuickFilter(null);
         setView("list");
       },
       function() {
