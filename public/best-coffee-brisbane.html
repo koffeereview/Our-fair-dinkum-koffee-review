@@ -6,7 +6,7 @@
   <title>Best Coffee in Brisbane 2026 | Koffee Review</title>
   <meta name="description" content="The definitive guide to the best coffee in Brisbane. 100+ cafés reviewed and scored by Koffee Review. One latte, one double shot espresso, one honest score. Know before you go." />
   <meta property="og:title" content="Best Coffee in Brisbane 2026 | Koffee Review" />
-  <meta property="og:description" content="60+ Brisbane cafés reviewed and scored. Find the best coffee near you." />
+  <meta property="og:description" content="100+ Brisbane cafés reviewed and scored. Find the best coffee near you." />
   <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
   <meta property="og:url" content="https://koffeereview.com.au/best-coffee-brisbane.html" />
   <link rel="canonical" href="https://koffeereview.com.au/best-coffee-brisbane.html" />
@@ -237,17 +237,23 @@
       }
     }
 
+    function makeSlug(name, suburb) {
+      return (name + "-" + suburb).toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
+    }
+
     function cafeCardHTML(cafe) {
       const color = getScoreColor(cafe.score);
       const verdict = cafe.verdict || getVerdict(cafe.score);
-      return '<div class="cafe-card">' +
+      const slug = makeSlug(cafe.name, cafe.suburb);
+      return '<a class="cafe-card" href="/review/' + slug + '">' +
         '<div class="cafe-score" style="color:' + color + ';">' + cafe.score.toFixed(1) + '</div>' +
         '<div class="cafe-info">' +
           '<div class="cafe-name">' + cafe.name + '</div>' +
           '<div class="cafe-suburb">' + cafe.suburb + ' · ' + (cafe.price || "") + '</div>' +
         '</div>' +
         '<div class="cafe-verdict" style="background:' + color + '22;color:' + color + ';border:1px solid ' + color + '55;">' + verdict.toUpperCase() + '</div>' +
-        '</div>';
+        '</a>';
     }
 
     function sortList(sort, btn) {
