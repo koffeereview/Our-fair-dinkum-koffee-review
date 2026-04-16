@@ -211,7 +211,7 @@ function renderHTML(cafe) {
       <img src="/logo.jpg" alt="Koffee Review" />
       <span>KOFFEE REVIEW</span>
     </a>
-    <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
+    <a href="https://koffeereview.com.au" class="nav-back" id="nav-back">← Back</a>
   </nav>
 
   <div class="hero">
@@ -285,6 +285,25 @@ function renderHTML(cafe) {
   <script>
     const cafe = ${JSON.stringify({ name: cafe.name, suburb: cafe.suburb, city: cafe.city, score: cafe.score, verdict: cafe.verdict, lat: cafe.lat, lng: cafe.lng, link: cafe.link })};
     let shareCardDataUrl = null;
+
+    // Smart back button
+    const backBtn = document.getElementById("nav-back");
+    if (document.referrer && document.referrer.includes("koffeereview.com.au")) {
+      backBtn.href = document.referrer;
+      const ref = document.referrer;
+      if (ref.includes("/city/brisbane")) backBtn.textContent = "← Brisbane";
+      else if (ref.includes("/city/gold-coast")) backBtn.textContent = "← Gold Coast";
+      else if (ref.includes("/city/moreton-bay")) backBtn.textContent = "← Moreton Bay";
+      else if (ref.includes("/city/sunshine-coast")) backBtn.textContent = "← Sunshine Coast";
+      else if (ref.includes("/city/ipswich")) backBtn.textContent = "← Ipswich";
+      else if (ref.includes("/city/melbourne")) backBtn.textContent = "← Melbourne";
+      else if (ref.includes("/city/sydney")) backBtn.textContent = "← Sydney";
+      else if (ref.includes("/suburb/")) backBtn.textContent = "← " + "${cafe.suburb}";
+      else if (ref.includes("/best-coffee-brisbane")) backBtn.textContent = "← Brisbane Guide";
+      else if (ref.includes("/brisbane-cafes-to-avoid")) backBtn.textContent = "← Cafés to Avoid";
+      else if (ref.includes("/leaderboard")) backBtn.textContent = "← Leaderboard";
+      else backBtn.textContent = "← Back";
+    }
 
     ${(cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 && Math.abs(cafe.lng) > 1) ? `
     window.addEventListener('load', function() {
