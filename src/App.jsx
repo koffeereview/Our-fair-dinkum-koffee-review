@@ -549,9 +549,9 @@ export default function App() {
   }
 
   function handleNearMe() {
-    if (nearMe) { setNearMe(false); setUserLocation(null); return; }
+    if (nearMe) { setNearMe(false); setUserLocation(null); setSort("all"); return; }
     setLocationLoading(true);
-    setSort("all");
+    setSort("nearme");
     setQuickFilter(null);
     setScoreBucket(null);
     navigator.geolocation.getCurrentPosition(
@@ -563,6 +563,7 @@ export default function App() {
       },
       function() {
         setLocationLoading(false);
+        setSort("all");
         alert("Could not get your location. Please allow location access and try again.");
       }
     );
@@ -616,7 +617,6 @@ export default function App() {
       if (sort === "low") return a.score - b.score;
       return (a.name || "").localeCompare(b.name || "");
     });
-
   const btnBase = { padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", transition: "all 0.2s" };
 
   return (
@@ -754,8 +754,7 @@ export default function App() {
               style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
               <button onClick={function() { handleSortClick("all"); }}
-                style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>All</button>
-              <button onClick={function() { handleSortClick("high"); }}
+                style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter && !nearMe ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter && !nearMe ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter && !nearMe ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>All</button>
                 style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" && !quickFilter ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4ade80" : "rgba(255,255,255,0.5)" }}>High Score</button>
               <button onClick={function() { handleSortClick("low"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" && !quickFilter ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#f87171" : "rgba(255,255,255,0.5)" }}>Low Score</button>
