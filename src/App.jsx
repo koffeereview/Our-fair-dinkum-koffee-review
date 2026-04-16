@@ -565,6 +565,19 @@ export default function App() {
     );
   }
 
+  const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
+
+  // Calculate best cafe per suburb (Australian cafes only, 7.5+ score)
+  const bestInSuburb = {};
+  cafes.forEach(function(c) {
+    if (SPAIN_CITIES.includes((c.city || "").toLowerCase())) return;
+    if (c.score < 7.5) return;
+    const key = (c.suburb + "-" + c.city).toLowerCase();
+    if (!bestInSuburb[key] || c.score > bestInSuburb[key].score) {
+      bestInSuburb[key] = c;
+    }
+  });
+
   const filtered = cafes
     .filter(function(c) { return city === "All" || c.city === city; })
     .filter(function(c) {
@@ -838,6 +851,14 @@ export default function App() {
                         {cafe.suburb}, {cafe.city} · {cafe.price}
                         {nearMe && cafe._distance !== null && <span style={{ color: "#c8a96e", marginLeft: 6 }}>· {cafe._distance.toFixed(1)} km away</span>}
                       </div>
+                      {(function() {
+                        const key = (cafe.suburb + "-" + cafe.city).toLowerCase();
+                        const best = bestInSuburb[key];
+                        if (best && best.id === cafe.id && !SPAIN_CITIES.includes((cafe.city || "").toLowerCase())) {
+                          return <div style={{ fontSize: 11, color: "#c8a96e", marginTop: 4, fontWeight: 600, letterSpacing: 1 }}>⭐ Best in {cafe.suburb}</div>;
+                        }
+                        return null;
+                      })()}
                     </div>
                   </div>
                   {isSelected && (
