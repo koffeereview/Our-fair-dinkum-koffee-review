@@ -82,14 +82,19 @@ function renderCityPage(citySlug, cafes, allCafes) {
   const cafeRows = cityCafes.map(function(cafe, i) {
     const color = getScoreColor(cafe.score);
     const slug = makeSlug(cafe.name, cafe.suburb);
-    return `<a href="/review/${slug}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;">
+    return `<a href="/review/${slug}" class="cafe-row" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${color};min-width:48px;text-align:center;">${cafe.score.toFixed(1)}</div>
       <div style="flex:1;">
         <div style="font-weight:600;font-size:15px;color:#fff;">${cafe.name}</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">${cafe.suburb} · ${cafe.price || ""}</div>
+        <div class="cafe-suburb" style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">${cafe.suburb} · ${cafe.price || ""}</div>
       </div>
       <div style="padding:4px 12px;border-radius:20px;background:${color}22;color:${color};border:1px solid ${color}55;font-size:10px;font-weight:700;letter-spacing:2px;">${(cafe.verdict || "").toUpperCase()}</div>
     </a>`;
+  }).join("");
+
+  const suburbList = [...new Set(cityCafes.map(function(c) { return c.suburb; }))].sort();
+  const suburbOptions = suburbList.map(function(s) {
+    return `<option value="${s}">${s}</option>`;
   }).join("");
 
   return `<!DOCTYPE html>
@@ -123,11 +128,17 @@ function renderCityPage(citySlug, cafes, allCafes) {
     .stat-num { font-family:'Bebas Neue',sans-serif; font-size:26px; color:#c8a96e; line-height:1; }
     .stat-label { font-size:11px; color:rgba(255,255,255,0.4); margin-top:2px; }
     .content { max-width:800px; margin:0 auto; padding:0 24px 80px; }
-    .section-title { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; color:rgba(197,157,80,0.8); margin-bottom:16px; }
+    .filter-row { display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+    .section-title { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; color:rgba(197,157,80,0.8); }
+    select { background:#1a1a1a; border:1px solid rgba(255,255,255,0.12); color:#fff; padding:8px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-family:'DM Sans',sans-serif; outline:none; }
+    select option { background:#1a1a1a; }
+    .cafe-row { display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit; }
+    .cafe-row:hover { border-color:rgba(197,157,80,0.3); }
     .footer { border-top:1px solid rgba(255,255,255,0.06); padding:32px 24px; text-align:center; max-width:800px; margin:0 auto; }
     .footer p { font-size:13px; color:rgba(255,255,255,0.3); margin-bottom:16px; line-height:1.7; }
     .browse-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; }
     .browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }
+    .avoid-link { display:inline-flex; align-items:center; gap:6px; margin-top:16px; padding:10px 20px; border-radius:12px; border:1px solid rgba(248,113,113,0.3); background:rgba(248,113,113,0.06); color:#f87171; text-decoration:none; font-size:13px; font-weight:600; }
   </style>
 </head>
 <body>
@@ -153,17 +164,41 @@ function renderCityPage(citySlug, cafes, allCafes) {
   </div>
 
   <div class="content">
-    <div class="section-title">ALL ${config.name.toUpperCase()} CAFÉS</div>
-    ${cafeRows}
+    <div class="filter-row">
+      <div class="section-title">ALL ${config.name.toUpperCase()} CAFÉS</div>
+      <select id="suburb-filter" onchange="filterSuburb(this.value)">
+        <option value="all">All Suburbs</option>
+        ${suburbOptions}
+      </select>
+    </div>
+    <div id="cafe-list">
+      ${cafeRows}
+    </div>
   </div>
 
   <div class="footer">
     <p>All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
     No café pays for placement. <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a></p>
+    ${citySlug === "brisbane" ? '<a href="/brisbane-cafes-to-avoid" class="avoid-link">⚠ Cafés to Avoid in Brisbane →</a><br/><br/>' : ""}
     <a href="https://koffeereview.com.au" class="browse-btn">
       <img src="/logo.jpg" alt="Koffee Review" />Browse All Reviews
     </a>
   </div>
+
+  <script>
+    const allRows = document.querySelectorAll("#cafe-list a");
+    function filterSuburb(suburb) {
+      allRows.forEach(function(row) {
+        if (suburb === "all") { row.style.display = "flex"; return; }
+        const suburbText = row.querySelector(".cafe-suburb");
+        if (suburbText && suburbText.textContent.toLowerCase().includes(suburb.toLowerCase())) {
+          row.style.display = "flex";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+  </script>
 </body>
 </html>`;
 }
