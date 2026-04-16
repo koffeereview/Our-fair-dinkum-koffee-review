@@ -487,6 +487,9 @@ export default function App() {
   const [suggestCity, setSuggestCity] = useState("");
   const [suggestDone, setSuggestDone] = useState(false);
   const [shareCardUrl, setShareCardUrl] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
+  const [nearMe, setNearMe] = useState(false);
+  const [locationLoading, setLocationLoading] = useState(false);
   const scoreRef = useRef(null);
   const cityRef = useRef(null);
 
@@ -533,6 +536,35 @@ export default function App() {
     setScoreDropdown(false);
   }
 
+  function getDistance(lat1, lng1, lat2, lng2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLng/2) * Math.sin(dLng/2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  function handleNearMe() {
+    if (nearMe) { setNearMe(false); setUserLocation(null); return; }
+    setLocationLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      function(pos) {
+        setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setNearMe(true);
+        setLocationLoading(false);
+        setSort("all");
+        setQuickFilter(null);
+        setView("list");
+      },
+      function() {
+        setLocationLoading(false);
+        alert("Could not get your location. Please allow location access and try again.");
+      }
+    );
+  }
+
   const filtered = cafes
     .filter(function(c) { return city === "All" || c.city === city; })
     .filter(function(c) {
@@ -548,7 +580,22 @@ export default function App() {
       }
       return true;
     })
+    .map(function(c) {
+      if (nearMe && userLocation && c.lat && c.lng && Math.abs(c.lat) > 1) {
+        c._distance = getDistance(userLocation.lat, userLocation.lng, c.lat, c.lng);
+      } else {
+        c._distance = null;
+      }
+      return c;
+    })
+    .filter(function(c) {
+      if (nearMe && userLocation) {
+        return c._distance !== null && c._distance <= 4;
+      }
+      return true;
+    })
     .sort(function(a, b) {
+      if (nearMe && userLocation) return (a._distance || 999) - (b._distance || 999);
       if (sort === "high") return b.score - a.score;
       if (sort === "low") return a.score - b.score;
       return (a.name || "").localeCompare(b.name || "");
@@ -750,6 +797,10 @@ export default function App() {
                 <button onClick={function() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); }}
                   style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>Clear</button>
               )}
+              <button onClick={handleNearMe}
+                style={{ ...btnBase, border: "1px solid " + (nearMe ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: nearMe ? "rgba(197,157,80,0.15)" : "transparent", color: nearMe ? "#c8a96e" : "rgba(255,255,255,0.4)" }}>
+                {locationLoading ? "..." : "📍 Near Me"}
+              </button>
             </div>
             {city !== "All" && (function() {
               const citySlugMap = { "Brisbane": "brisbane", "Gold Coast": "gold-coast", "Moreton Bay": "moreton-bay", "Sunshine Coast": "sunshine-coast", "Ipswich": "ipswich", "Melbourne": "melbourne", "Sydney": "sydney", "Logan": "logan" };
@@ -764,8 +815,12 @@ export default function App() {
           </div>
 
           <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
+            {nearMe && <div style={{ background: "rgba(197,157,80,0.08)", border: "1px solid rgba(197,157,80,0.2)", borderRadius: 12, padding: "10px 16px", marginBottom: 12, fontSize: 13, color: "#c8a96e" }}>
+              📍 Showing cafés within 4km of your location — closest first
+            </div>}
+            {nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 40, color: "rgba(255,255,255,0.3)", fontSize: 14 }}>No reviewed cafés within 4km. Try browsing all cafés instead.</div>}
             {loading && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading cafes...</div>}
-            {!loading && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafes found</div>}
+            {!loading && !nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafes found</div>}
             {filtered.map(function(cafe) {
               const isSelected = selected && selected.id === cafe.id;
               return (
@@ -779,7 +834,10 @@ export default function App() {
                         <span style={{ fontWeight: 600, fontSize: 16 }}>{cafe.name}</span>
                         <VerdictBadge verdict={cafe.verdict} score={cafe.score} />
                       </div>
-                      <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>{cafe.suburb}, {cafe.city} - {cafe.price}</div>
+                      <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>
+                        {cafe.suburb}, {cafe.city} · {cafe.price}
+                        {nearMe && cafe._distance !== null && <span style={{ color: "#c8a96e", marginLeft: 6 }}>· {cafe._distance.toFixed(1)} km away</span>}
+                      </div>
                     </div>
                   </div>
                   {isSelected && (
