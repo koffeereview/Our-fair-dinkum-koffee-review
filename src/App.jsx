@@ -755,6 +755,7 @@ export default function App() {
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
               <button onClick={function() { handleSortClick("all"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter && !nearMe ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter && !nearMe ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter && !nearMe ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>All</button>
+              <button onClick={function() { handleSortClick("high"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" && !quickFilter ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4ade80" : "rgba(255,255,255,0.5)" }}>High Score</button>
               <button onClick={function() { handleSortClick("low"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" && !quickFilter ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#f87171" : "rgba(255,255,255,0.5)" }}>Low Score</button>
