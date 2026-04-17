@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee Near Me | Find the Best Cafés Near You | Koffee Review</title>
+  <meta name="description" content="Find the best coffee near you across Brisbane, Gold Coast, Moreton Bay, Sunshine Coast and more. 600+ cafés reviewed and scored by Koffee Review. Know before you go." />
+  <meta property="og:title" content="Coffee Near Me | Koffee Review" />
+  <meta property="og:description" content="Find the best coffee near you. 600+ Australian cafés reviewed with honest scores. No sponsorships. Just what is in the cup." />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <meta property="og:url" content="https://koffeereview.com.au/coffee-near-me" />
+  <link rel="canonical" href="https://koffeereview.com.au/coffee-near-me" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Coffee Near Me | Koffee Review","description":"Find the best coffee near you across Australia. 600+ cafés reviewed and scored by Koffee Review.","url":"https://koffeereview.com.au/coffee-near-me","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.jpg"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Coffee Near Me","item":"https://koffeereview.com.au/coffee-near-me"}]}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0a0a0a; color:#fff; font-family:'DM Sans',sans-serif; min-height:100vh; }
+
+    nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
+    .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; }
+    .nav-back:hover { color:#c8a96e; }
+
+    .hero { max-width:760px; margin:0 auto; padding:56px 24px 40px; }
+    .hero-tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; background:rgba(197,157,80,0.1); color:#c8a96e; border:1px solid rgba(197,157,80,0.3); margin-bottom:16px; }
+    .hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,6vw,52px); letter-spacing:2px; line-height:1.1; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:16px; }
+    .hero p { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.9; max-width:580px; margin-bottom:12px; }
+
+    .near-me-btn { display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:15px; text-decoration:none; margin-top:8px; letter-spacing:1px; }
+    .near-me-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }
+
+    .content { max-width:760px; margin:0 auto; padding:0 24px 80px; }
+
+    .section { margin-bottom:48px; }
+    .section h2 { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:2px; color:#f5e6c8; margin-bottom:16px; }
+    .section p { font-size:15px; color:rgba(255,255,255,0.6); line-height:1.9; margin-bottom:12px; }
+
+    .city-grid { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+    .city-link { display:flex; align-items:center; justify-content:space-between; padding:18px 20px; border-radius:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); text-decoration:none; color:inherit; transition:border 0.2s; }
+    .city-link:hover { border-color:rgba(197,157,80,0.3); }
+    .city-link-left { display:flex; flex-direction:column; gap:3px; }
+    .city-link-name { font-weight:600; font-size:15px; color:#fff; }
+    .city-link-sub { font-size:12px; color:rgba(255,255,255,0.35); }
+    .city-link-arrow { font-size:14px; color:rgba(197,157,80,0.5); }
+
+    .how-it-works { background:rgba(197,157,80,0.05); border:1px solid rgba(197,157,80,0.15); border-radius:16px; padding:28px; margin-bottom:48px; }
+    .how-it-works h2 { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:#f5e6c8; margin-bottom:16px; }
+    .step { display:flex; align-items:flex-start; gap:14px; margin-bottom:16px; }
+    .step:last-child { margin-bottom:0; }
+    .step-num { font-family:'Bebas Neue',sans-serif; font-size:20px; color:#c8a96e; min-width:28px; line-height:1; }
+    .step p { font-size:15px; color:rgba(255,255,255,0.6); line-height:1.8; margin:0; }
+
+    .divider { border:none; border-top:1px solid rgba(255,255,255,0.06); margin:48px 0; }
+
+    .footer { border-top:1px solid rgba(255,255,255,0.06); padding:24px; text-align:center; max-width:760px; margin:0 auto; }
+    .footer p { font-size:11px; color:rgba(255,255,255,0.25); margin-bottom:12px; }
+    .footer-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .footer-links a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }
+    .footer-links a:hover { color:#c8a96e; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://koffeereview.com.au" class="nav-logo">
+      <img src="/logo.jpg" alt="Koffee Review" />
+      <span>KOFFEE REVIEW</span>
+    </a>
+    <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">FIND COFFEE NEAR YOU</div>
+    <h1>Coffee Near Me</h1>
+    <p>Not all coffee is worth your time. We have reviewed 600+ cafés across Australia so you do not have to guess.</p>
+    <p>Every café on Koffee Review was visited anonymously, paid for out of our own pocket, and scored using the same two drinks — one latte and one double shot espresso. Every single time.</p>
+    <a href="https://koffeereview.com.au" class="near-me-btn">
+      <img src="/logo.jpg" alt="Koffee Review" />
+      Find Cafés Near Me →
+    </a>
+  </div>
+
+  <div class="content">
+
+    <div class="how-it-works">
+      <h2>How the Near Me Feature Works</h2>
+      <div class="step">
+        <div class="step-num">01</div>
+        <p>Open the Koffee Review app and tap the <strong style="color:#c8a96e;">📍 Near Me</strong> button in the filter bar.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <p>Allow location access when prompted. Your location is only used to sort the list — it is never stored or shared.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <p>The café list instantly re-sorts showing every reviewed café within 4km of your current location, closest first with the distance shown on each card.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <p>Tap any café to read the full review — score, tasting notes, map and Instagram review link.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Browse Coffee by City</h2>
+      <p>Not sure where to start? Browse all reviewed cafés in your city — sorted by score so the best ones are always at the top.</p>
+      <div class="city-grid">
+        <a href="/best-coffee-brisbane.html" class="city-link">
+          <div class="city-link-left">
+            <div class="city-link-name">Best Coffee in Brisbane</div>
+            <div class="city-link-sub">120+ cafés reviewed across Brisbane and surrounds</div>
+          </div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/best-coffee-gold-coast.html" class="city-link">
+          <div class="city-link-left">
+            <div class="city-link-name">Best Coffee on the Gold Coast</div>
+            <div class="city-link-sub">18+ cafés reviewed from Coolangatta to Helensvale</div>
+          </div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/city/moreton-bay" class="city-link">
+          <div class="city-link-left">
+            <div class="city-link-name">Best Coffee in Moreton Bay</div>
+            <div class="city-link-sub">10+ cafés reviewed across the Moreton Bay region</div>
+          </div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/city/sunshine-coast" class="city-link">
+          <div class="city-link-left">
+            <div class="city-link-name">Best Coffee on the Sunshine Coast</div>
+            <div class="city-link-sub">Noosa, Caloundra, Maroochydore and more</div>
+          </div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/city/ipswich" class="city-link">
+          <div class="city-link-left">
+            <div class="city-link-name">Best Coffee in Ipswich</div>
+            <div class="city-link-sub">7+ cafés reviewed across Ipswich</div>
+          </div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/city/melbourne" class="city-link">
+          <div class="city-link-left">
+            <div class="city-link-name">Best Coffee in Melbourne</div>
+            <div class="city-link-sub">South Yarra, CBD and surrounds</div>
+          </div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/city/sydney" class="city-link">
+          <div class="city-link-left">
+            <div class="city-link-name">Best Coffee in Sydney</div>
+            <div class="city-link-sub">CBD, North Sydney and surrounds</div>
+          </div>
+          <div class="city-link-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="section">
+      <h2>Browse Brisbane by Suburb</h2>
+      <p>Looking for coffee in a specific Brisbane suburb? We have dedicated pages for the suburbs we have reviewed the most.</p>
+      <div class="city-grid">
+        <a href="/suburb/cbd-brisbane" class="city-link">
+          <div class="city-link-left"><div class="city-link-name">Best Coffee in Brisbane CBD</div><div class="city-link-sub">16 cafés reviewed in the CBD</div></div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/suburb/newstead-brisbane" class="city-link">
+          <div class="city-link-left"><div class="city-link-name">Best Coffee in Newstead</div><div class="city-link-sub">5 cafés reviewed in Newstead</div></div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/suburb/chermside-brisbane" class="city-link">
+          <div class="city-link-left"><div class="city-link-name">Best Coffee in Chermside</div><div class="city-link-sub">5 cafés reviewed in Chermside</div></div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/suburb/fortitude-valley-brisbane" class="city-link">
+          <div class="city-link-left"><div class="city-link-name">Best Coffee in Fortitude Valley</div><div class="city-link-sub">Specialty cafés in the Valley</div></div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/suburb/west-end-brisbane" class="city-link">
+          <div class="city-link-left"><div class="city-link-name">Best Coffee in West End</div><div class="city-link-sub">West End café reviews</div></div>
+          <div class="city-link-arrow">→</div>
+        </a>
+        <a href="/suburb/paddington-brisbane" class="city-link">
+          <div class="city-link-left"><div class="city-link-name">Best Coffee in Paddington</div><div class="city-link-sub">Paddington café reviews</div></div>
+          <div class="city-link-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="section">
+      <h2>Not Sure What to Order?</h2>
+      <p>We order the same thing at every café — one latte and one double shot espresso. That is the only way to make every review directly comparable. If the café cannot make a good latte or a clean double shot, it does not score well. Simple as that.</p>
+      <p>A score of 7.5 or above earns the Koffee Review sticker. Anything below 3.9 goes on our avoid list. Everything in between is rated honestly with no agenda and no sponsorships.</p>
+      <p><a href="/how-we-score.html" style="color:#c8a96e;text-decoration:none;font-weight:600;">Read how we score every café →</a></p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/how-we-score.html">How We Score</a>
+      <a href="/disclosure">Disclosure</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/best-coffee-brisbane.html">Best Coffee Brisbane</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/brisbane-cafes-to-avoid">Cafés to Avoid</a>
+    </div>
+  </div>
+
+</body>
+</html>
