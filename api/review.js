@@ -1,4 +1,5 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
+const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
 
 function makeSlug(name, suburb) {
   return (name + "-" + suburb)
