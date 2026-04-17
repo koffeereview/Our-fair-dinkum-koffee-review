@@ -457,6 +457,11 @@ function AboutDrawer({ open, onClose }) {
                   <span style={{ fontSize:20 }}>🔗</span>
                   <div><div style={{ fontSize:13, fontWeight:600 }}>Linktree</div><div style={{ fontSize:11, color:"rgba(197,157,80,0.5)" }}>linktr.ee/koffeereview</div></div>
                 </a>
+                <a href="/disclosure"
+                  style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"rgba(255,255,255,0.5)" }}>
+                  <span style={{ fontSize:20 }}>📄</span>
+                  <div><div style={{ fontSize:13, fontWeight:600, color:"rgba(255,255,255,0.7)" }}>How We Operate</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.3)" }}>Transparency and disclosure</div></div>
+                </a>
               </div>
             )}
           </div>
