@@ -457,14 +457,16 @@ function AboutDrawer({ open, onClose }) {
                   <span style={{ fontSize:20 }}>🔗</span>
                   <div><div style={{ fontSize:13, fontWeight:600 }}>Linktree</div><div style={{ fontSize:11, color:"rgba(197,157,80,0.5)" }}>linktr.ee/koffeereview</div></div>
                 </a>
-                <a href="/disclosure"
-                  style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"rgba(255,255,255,0.5)" }}>
-                  <span style={{ fontSize:20 }}>📄</span>
-                  <div><div style={{ fontSize:13, fontWeight:600, color:"rgba(255,255,255,0.7)" }}>How We Operate</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.3)" }}>Transparency and disclosure</div></div>
-                </a>
               </div>
             )}
           </div>
+
+          {/* HOW WE OPERATE - standalone at bottom */}
+          <a href="/disclosure"
+            style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,255,255,0.06)", background:"rgba(255,255,255,0.02)", textDecoration:"none" }}>
+            <span style={{ fontSize:13, color:"rgba(255,255,255,0.4)" }}>How We Operate</span>
+            <span style={{ fontSize:12, color:"rgba(255,255,255,0.2)" }}>→</span>
+          </a>
 
         </div>
       </div>
@@ -495,6 +497,7 @@ export default function App() {
   const [userLocation, setUserLocation] = useState(null);
   const [nearMe, setNearMe] = useState(false);
   const [locationLoading, setLocationLoading] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const scoreRef = useRef(null);
   const cityRef = useRef(null);
 
@@ -835,15 +838,21 @@ export default function App() {
             })()}
           </div>
 
-          <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
+          <div style={{ padding: "0 24px", maxWidth: 800, margin: "0 auto" }}>
             {nearMe && <div style={{ background: "rgba(197,157,80,0.08)", border: "1px solid rgba(197,157,80,0.2)", borderRadius: 12, padding: "10px 16px", marginBottom: 12, fontSize: 13, color: "#c8a96e" }}>
               📍 Showing cafés within 4km of your location — closest first
             </div>}
             {nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 40, color: "rgba(255,255,255,0.3)", fontSize: 14 }}>No reviewed cafés within 4km. Try browsing all cafés instead.</div>}
             {loading && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading cafes...</div>}
             {!loading && !nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafes found</div>}
-            {filtered.map(function(cafe) {
-              const isSelected = selected && selected.id === cafe.id;
+            {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
+              <div style={{ fontSize: 11, letterSpacing: 2, color: "rgba(197,157,80,0.5)", marginBottom: 12 }}>LATEST REVIEWS</div>
+            )}
+            {(function() {
+              const isDefaultView = !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search;
+              const displayList = isDefaultView ? [...filtered].reverse().slice(0, 12) : filtered;
+              return displayList.map(function(cafe) {
+                const isSelected = selected && selected.id === cafe.id;
               return (
                 <div key={cafe.id}
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s" }}
@@ -946,8 +955,55 @@ export default function App() {
                   )}
                 </div>
               );
-            })}
+            });
+            })()}
           </div>
+
+          {/* SHOW ALL BUTTON */}
+          {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
+            <div style={{ padding: "0 24px 8px", maxWidth: 800, margin: "0 auto" }}>
+              <button onClick={function() { setShowAll(true); }}
+                style={{ width: "100%", padding: "14px", borderRadius: 12, background: "rgba(197,157,80,0.1)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", letterSpacing: 1 }}>
+                SHOW ALL {cafes.length} CAFÉS →
+              </button>
+            </div>
+          )}
+
+          {/* FOOTER */}
+          {(!loading && (showAll || nearMe || quickFilter || scoreBucket || sort !== "all" || city !== "All" || search)) && (
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "28px 24px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: 12 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="/how-we-score.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>How We Score</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/disclosure" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Disclosure</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/best-coffee-brisbane.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Best Coffee Brisbane</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/leaderboard.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Leaderboard</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/brisbane-cafes-to-avoid" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Cafés to Avoid</a>
+              </div>
+            </div>
+          )}
+
+          {/* FOOTER ON DEFAULT VIEW */}
+          {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
+            <div style={{ padding: "8px 24px 40px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: 10 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="/how-we-score.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>How We Score</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/disclosure" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Disclosure</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/best-coffee-brisbane.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Best Coffee Brisbane</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/leaderboard.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Leaderboard</a>
+                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
+                <a href="/brisbane-cafes-to-avoid" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Cafés to Avoid</a>
+              </div>
+            </div>
+          )}
         </>
       )}
       {shareCardUrl && (
