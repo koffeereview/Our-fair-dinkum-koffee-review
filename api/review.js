@@ -63,7 +63,7 @@ function getMapsUrl(cafe) {
   return "https://www.google.com/maps/search/" + encodeURIComponent(cafe.name + " " + cafe.suburb + " " + cafe.city);
 }
 
-function renderHTML(cafe) {
+function renderHTML(cafe, allCafes) {
   const color = getScoreColor(cafe.score);
   const verdict = cafe.verdict || getScoreLabel(cafe.score);
   const slug = makeSlug(cafe.name, cafe.suburb);
@@ -74,6 +74,14 @@ function renderHTML(cafe) {
   const offset = circumference - (cafe.score / 10) * circumference;
   const citySlugMap = { "brisbane": "brisbane", "gold coast": "gold-coast", "moreton bay": "moreton-bay", "sunshine coast": "sunshine-coast", "ipswich": "ipswich", "melbourne": "melbourne", "sydney": "sydney", "logan": "logan" };
   const suburbSlugMap = { "cbd": "cbd-brisbane", "newstead": "newstead-brisbane", "chermside": "chermside-brisbane", "fortitude valley": "fortitude-valley-brisbane", "west end": "west-end-brisbane", "south brisbane": "south-brisbane-brisbane", "paddington": "paddington-brisbane", "hamilton": "hamilton-brisbane", "woolloongabba": "woolloongabba-brisbane" };
+
+  // Calculate top 10 dynamically from sheet — Australian cafes only
+  const top10Slugs = allCafes
+    .filter(function(c) { return !SPAIN_CITIES.includes((c.city || "").toLowerCase()); })
+    .sort(function(a, b) { return b.score - a.score; })
+    .slice(0, 10)
+    .map(function(c) { return makeSlug(c.name, c.suburb); });
+  const isTop10 = top10Slugs.includes(slug);
   const citySlug = citySlugMap[(cafe.city || "").toLowerCase()];
   const suburbSlug = suburbSlugMap[(cafe.suburb || "").toLowerCase()];
   const brisbaneLink = cafe.city.toLowerCase().includes("brisbane") ? '<a class="internal-link" href="/best-coffee-brisbane.html">Best Coffee in Brisbane <span>→</span></a>' : "";
@@ -225,6 +233,7 @@ function renderHTML(cafe) {
 
   <div class="hero">
     <div class="hero-tag">${cafe.city.toUpperCase()} · CAFÉ REVIEW</div>
+    ${isTop10 ? `<div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:2px;color:#FFD700;margin-bottom:10px;">🏆 AUSTRALIA TOP 10</div>` : ""}
     <h1>${cafe.name} — ${cafe.suburb}</h1>
     <div class="hero-location">${cafe.suburb}, ${cafe.city}${cafe.price ? " · " + cafe.price : ""}</div>
   </div>
@@ -395,7 +404,7 @@ export default async function handler(req, res) {
 
     res.setHeader("Content-Type", "text/html");
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    res.status(200).send(renderHTML(cafe));
+    res.status(200).send(renderHTML(cafe, cafes));
   } catch (error) {
     res.status(500).send("Error loading café");
   }
