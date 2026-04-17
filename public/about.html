@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story | Our Fair Dinkum Koffee Review</title>
+  <meta name="description" content="The story behind Koffee Review. Independent coffee reviews across Australia. One latte, one double shot espresso, one honest score. No freebies. No fluff." />
+  <meta property="og:title" content="Our Story | Koffee Review" />
+  <meta property="og:description" content="One latte. One double shot espresso. Every single time. The story behind Australia's most honest café review platform." />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <link rel="canonical" href="https://koffeereview.com.au/about" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"Our Story | Koffee Review","description":"The story behind Koffee Review — independent coffee reviews across Australia.","url":"https://koffeereview.com.au/about","publisher":{"@type":"Organization","name":"Our Fair Dinkum Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.jpg"}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0a0a0a; color:#fff; font-family:'DM Sans',sans-serif; min-height:100vh; }
+
+    nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
+    .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; }
+    .nav-back:hover { color:#c8a96e; }
+
+    .hero { max-width:760px; margin:0 auto; padding:56px 24px 40px; text-align:center; }
+    .hero-tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:3px; background:rgba(197,157,80,0.1); color:#c8a96e; border:1px solid rgba(197,157,80,0.3); margin-bottom:20px; }
+    .hero-logo { width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid rgba(197,157,80,0.3); margin:0 auto 24px; display:block; }
+    .hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,7vw,60px); letter-spacing:2px; line-height:1.05; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:20px; }
+    .hero-sub { font-size:16px; color:rgba(255,255,255,0.5); line-height:1.9; max-width:520px; margin:0 auto; }
+
+    .content { max-width:720px; margin:0 auto; padding:0 24px 80px; }
+
+    .chapter { margin-bottom:56px; }
+    .chapter-num { font-family:'Bebas Neue',sans-serif; font-size:11px; letter-spacing:4px; color:rgba(197,157,80,0.4); margin-bottom:10px; }
+    .chapter h2 { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:2px; color:#f5e6c8; margin-bottom:20px; }
+    .chapter p { font-size:16px; color:rgba(255,255,255,0.6); line-height:2; margin-bottom:16px; }
+    .chapter p:last-child { margin-bottom:0; }
+    .chapter p strong { color:rgba(255,255,255,0.85); font-weight:600; }
+
+    .pull-quote { background:rgba(197,157,80,0.06); border-left:3px solid #c8a96e; border-radius:0 14px 14px 0; padding:24px 28px; margin:32px 0; }
+    .pull-quote p { font-size:18px; color:#f5e6c8; line-height:1.8; font-style:italic; font-weight:300; margin:0; }
+
+    .score-visual { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px; margin:24px 0; display:flex; flex-direction:column; gap:12px; }
+    .score-row { display:flex; align-items:center; gap:14px; }
+    .score-val { font-family:'Bebas Neue',sans-serif; font-size:20px; min-width:44px; text-align:right; }
+    .score-bar-wrap { flex:1; height:4px; border-radius:4px; background:rgba(255,255,255,0.06); overflow:hidden; }
+    .score-bar-fill { height:100%; border-radius:4px; }
+    .score-txt { font-size:12px; color:rgba(255,255,255,0.4); min-width:90px; }
+
+    .divider { border:none; border-top:1px solid rgba(255,255,255,0.06); margin:56px 0; }
+
+    .stat-row { display:flex; gap:16px; flex-wrap:wrap; margin:32px 0; }
+    .stat-box { flex:1; min-width:120px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:20px 16px; text-align:center; }
+    .stat-box-num { font-family:'Bebas Neue',sans-serif; font-size:36px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; }
+    .stat-box-label { font-size:11px; color:rgba(255,255,255,0.35); margin-top:6px; letter-spacing:1px; }
+
+    .closing { text-align:center; padding:48px 24px; border-top:1px solid rgba(255,255,255,0.06); }
+    .closing p { font-size:15px; color:rgba(255,255,255,0.5); line-height:1.9; margin-bottom:24px; max-width:480px; margin-left:auto; margin-right:auto; }
+    .closing-tagline { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:3px; color:#c8a96e; margin-bottom:32px; }
+    .social-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+    .social-btn { display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); text-decoration:none; color:rgba(255,255,255,0.6); font-size:13px; font-weight:500; }
+    .browse-btn { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; letter-spacing:1px; }
+    .browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }
+
+    .footer { border-top:1px solid rgba(255,255,255,0.06); padding:24px; text-align:center; max-width:760px; margin:0 auto; }
+    .footer p { font-size:11px; color:rgba(255,255,255,0.25); margin-bottom:12px; }
+    .footer-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .footer-links a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }
+    .footer-links a:hover { color:#c8a96e; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://koffeereview.com.au" class="nav-logo">
+      <img src="/logo.jpg" alt="Koffee Review" />
+      <span>KOFFEE REVIEW</span>
+    </a>
+    <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">AUSTRALIA · INDEPENDENT · HONEST</div>
+    <img src="/logo.jpg" alt="Koffee Review" class="hero-logo" />
+    <h1>Our Fair Dinkum Koffee Review</h1>
+    <p class="hero-sub">There is a lot of coffee in Australia. Most of it is average. We built something to help you tell the difference.</p>
+  </div>
+
+  <div class="content">
+
+    <div class="chapter">
+      <div class="chapter-num">THE PROBLEM</div>
+      <h2>Why We Started</h2>
+      <p>There is a lot of coffee in Australia. Most of it is average.</p>
+      <p>Not bad enough to complain about. Not good enough to go back for. Just coffee that sits in the cup and does nothing particularly memorable.</p>
+      <p>We got tired of not knowing what we were walking into. Reviews that said things like <strong>"great vibe"</strong> and <strong>"friendly staff"</strong> but told us nothing about what was actually in the cup. Influencer posts that made every café look like a nine out of ten. Word of mouth that turned out to be completely wrong.</p>
+      <div class="pull-quote">
+        <p>So we built something different. A system that was fair, consistent, and impossible to game.</p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="chapter">
+      <div class="chapter-num">THE METHOD</div>
+      <h2>One Rule. No Exceptions.</h2>
+      <p>One latte. One double shot espresso. Every single time.</p>
+      <p>That is it. We do not order off the menu. We do not try the batch brew or the single origin pour over. We order the same two drinks at every café we walk into — because that is the only way to make every review directly comparable to every other review.</p>
+      <p>If you have been to a hundred cafés and ordered something different at each one, you have not reviewed a hundred cafés. You have had a hundred different experiences that tell you nothing useful about each other.</p>
+      <div class="pull-quote">
+        <p>We fixed that. Same order. Every time. One score.</p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="chapter">
+      <div class="chapter-num">THE SCORE</div>
+      <h2>What the Numbers Mean</h2>
+      <p>Every café gets a number from zero to ten. We score on four things and four things only — taste, balance, strength and finish. Not the furniture. Not the playlist. Not whether the barista was having a good day. Just what is in the cup.</p>
+      <div class="score-visual">
+        <div class="score-row"><span class="score-val" style="color:#FFD700;">9.1+</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:100%;background:#FFD700;"></div></div><span class="score-txt">ELITE</span></div>
+        <div class="score-row"><span class="score-val" style="color:#4ade80;">8.1</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:85%;background:#4ade80;"></div></div><span class="score-txt">GREAT</span></div>
+        <div class="score-row"><span class="score-val" style="color:#2dd4bf;">7.5</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:75%;background:#2dd4bf;"></div></div><span class="score-txt">LOVED ⭐ Sticker</span></div>
+        <div class="score-row"><span class="score-val" style="color:#2dd4bf;">7.1</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:70%;background:#2dd4bf;"></div></div><span class="score-txt">SOLID</span></div>
+        <div class="score-row"><span class="score-val" style="color:#facc15;">6.5</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:63%;background:#facc15;"></div></div><span class="score-txt">DECENT</span></div>
+        <div class="score-row"><span class="score-val" style="color:#facc15;">6.1</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:58%;background:#facc15;"></div></div><span class="score-txt">TAKE OR LEAVE</span></div>
+        <div class="score-row"><span class="score-val" style="color:#fb923c;">5.5</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:52%;background:#fb923c;"></div></div><span class="score-txt">AVERAGE</span></div>
+        <div class="score-row"><span class="score-val" style="color:#fb923c;">5.1</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:48%;background:#fb923c;"></div></div><span class="score-txt">JUST OKAY</span></div>
+        <div class="score-row"><span class="score-val" style="color:#f87171;">4.1</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:40%;background:#f87171;"></div></div><span class="score-txt">NOT FOR US</span></div>
+        <div class="score-row"><span class="score-val" style="color:#f87171;">3.9</span><div class="score-bar-wrap"><div class="score-bar-fill" style="width:30%;background:#f87171;"></div></div><span class="score-txt">AVOID</span></div>
+      </div>
+      <p>A 7.5 or above earns the Koffee Review sticker. That is the only way to get it. A café cannot buy it, negotiate for it or request it. The score decides. Full stop.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="chapter">
+      <div class="chapter-num">HOW WE VISIT</div>
+      <h2>No Freebies. No Fluff.</h2>
+      <p>We walk in as regular customers. We never tell a café we are reviewing them. We never announce ourselves before, during or after the visit. We pay full price, drink the coffee and leave.</p>
+      <p>No comped meals. No gifted coffees. No "we will give you a good write-up if you give us something in return." That arrangement exists everywhere in food media and it is exactly why food media cannot be trusted.</p>
+      <div class="pull-quote">
+        <p>We pay. We score. We publish. That is the whole operation.</p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="chapter">
+      <div class="chapter-num">WHERE WE ARE NOW</div>
+      <h2>The Numbers So Far</h2>
+      <p>We started in Brisbane. We have reviewed cafés across Queensland, Victoria, New South Wales and beyond. Every week we add more.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-box-num">200+</div><div class="stat-box-label">CAFÉS REVIEWED</div></div>
+        <div class="stat-box"><div class="stat-box-num">7+</div><div class="stat-box-label">CITIES COVERED</div></div>
+        <div class="stat-box"><div class="stat-box-num">400+</div><div class="stat-box-label">CUPS CONSUMED</div></div>
+        <div class="stat-box"><div class="stat-box-num">7.5</div><div class="stat-box-label">STICKER THRESHOLD</div></div>
+      </div>
+      <p>The goal is simple — build the most honest, consistent, useful café review database in Australia. One that tells you whether the coffee is worth your time before you walk through the door.</p>
+    </div>
+
+  </div>
+
+  <div class="closing">
+    <div class="closing-tagline">WE ORDER THE SAME THING EVERY TIME</div>
+    <p>One latte and one double shot espresso. One score. That has never changed and it never will.</p>
+    <div class="social-row">
+      <a href="https://www.instagram.com/koffeereview" target="_blank" class="social-btn">Instagram</a>
+      <a href="https://www.tiktok.com/@koffeereview" target="_blank" class="social-btn">TikTok</a>
+      <a href="https://www.youtube.com/@koffeereview" target="_blank" class="social-btn">YouTube</a>
+    </div>
+    <a href="https://koffeereview.com.au" class="browse-btn">
+      <img src="/logo.jpg" alt="Koffee Review" />Browse All Reviews
+    </a>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+    <div class="footer-links">
+      <a href="/how-we-score.html">How We Score</a>
+      <a href="/disclosure">Disclosure</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/best-coffee-brisbane.html">Best Coffee Brisbane</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/brisbane-cafes-to-avoid">Cafés to Avoid</a>
+    </div>
+  </div>
+
+</body>
+</html>
