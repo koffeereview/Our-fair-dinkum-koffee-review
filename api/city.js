@@ -110,6 +110,14 @@ function renderCityPage(citySlug, cafes, allCafes) {
   <meta property="og:url" content="${canonicalUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.jpg"},"about":{"@type":"City","name":"${config.name}","addressCountry":"AU"}}</script>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Koffee Review", "item": "https://koffeereview.com.au" },
+      { "@type": "ListItem", "position": 2, "name": "Best Coffee in ${config.name}", "item": "${canonicalUrl}" }
+    ]
+  }</script>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
