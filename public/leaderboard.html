@@ -425,8 +425,12 @@
       }).filter(function(c) { return c.name && c.score > 0 && !isSpain(c.city); });
     }
 
-    function getVerdict(score) {
-      if (score >= 9.0) return "ELITE";
+    function makeSlug(name, suburb) {
+      return (name + "-" + suburb).toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
+    }
+
+    function getVerdict(score) {      if (score >= 9.0) return "ELITE";
       if (score >= 8.0) return "GREAT ♛";
       if (score >= 7.5) return "LOVED";
       if (score >= 7.0) return "SOLID";
@@ -453,16 +457,18 @@
         const rankClass = rank <= 3 ? " rank-" + rank : "";
         const isElite = cafe.score >= 9.0;
         const badge = isElite ? '<span class="elite-badge">ELITE</span>' : "";
+        const slug = makeSlug(cafe.name, cafe.suburb);
+        const trophy = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "🏆";
         return `
-          <div class="entry${rankClass}" data-city="${cafe.city}">
+          <a href="/review/${slug}" class="entry${rankClass}" data-city="${cafe.city}" style="text-decoration:none;color:inherit;display:flex;align-items:center;">
             <div class="rank">${rank}</div>
-            <div class="cafe-info">
-              <div class="cafe-name">${cafe.name}${badge}</div>
+            <div class="cafe-info" style="flex:1;">
+              <div class="cafe-name">${cafe.name}${badge} <span style="font-size:14px;">${trophy}</span></div>
               <div class="cafe-suburb">${cafe.suburb} · ${cafe.city}</div>
             </div>
             <div class="score">${cafe.score.toFixed(1)}</div>
             <div class="verdict">${getVerdict(cafe.score)}</div>
-          </div>`;
+          </a>`;
       }).join("");
     }
 
