@@ -428,6 +428,13 @@ function AboutDrawer({ open, onClose }) {
             )}
           </div>
 
+          {/* HOW WE OPERATE - above contact, matching style of Brisbane/Leaderboard links */}
+          <a href="/disclosure"
+            style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,255,255,0.08)", background:"rgba(255,255,255,0.03)", textDecoration:"none" }}>
+            <span style={{ fontSize:14, fontWeight:600, color:"rgba(255,255,255,0.7)" }}>How We Operate</span>
+            <span style={{ fontSize:12, color:"rgba(255,255,255,0.3)" }}>→</span>
+          </a>
+
           {/* CONTACT */}
           <div style={{ borderRadius:14, border:"1px solid " + (expanded==="contact" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
             <button onClick={function() { toggle("contact"); }}
@@ -460,13 +467,6 @@ function AboutDrawer({ open, onClose }) {
               </div>
             )}
           </div>
-
-          {/* HOW WE OPERATE - standalone at bottom */}
-          <a href="/disclosure"
-            style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,255,255,0.06)", background:"rgba(255,255,255,0.02)", textDecoration:"none" }}>
-            <span style={{ fontSize:13, color:"rgba(255,255,255,0.4)" }}>How We Operate</span>
-            <span style={{ fontSize:12, color:"rgba(255,255,255,0.2)" }}>→</span>
-          </a>
 
         </div>
       </div>
@@ -972,17 +972,17 @@ export default function App() {
           {/* FOOTER */}
           {(!loading && (showAll || nearMe || quickFilter || scoreBucket || sort !== "all" || city !== "All" || search)) && (
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "28px 24px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: 12 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="/how-we-score.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>How We Score</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/disclosure" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Disclosure</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/best-coffee-brisbane.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Best Coffee Brisbane</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/leaderboard.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Leaderboard</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/brisbane-cafes-to-avoid" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Cafés to Avoid</a>
+                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>How We Score</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Disclosure</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/best-coffee-brisbane.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Best Coffee Brisbane</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/leaderboard.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Leaderboard</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/brisbane-cafes-to-avoid" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Cafés to Avoid</a>
               </div>
             </div>
           )}
@@ -990,17 +990,17 @@ export default function App() {
           {/* FOOTER ON DEFAULT VIEW */}
           {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
             <div style={{ padding: "8px 24px 40px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: 10 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 10 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="/how-we-score.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>How We Score</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/disclosure" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Disclosure</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/best-coffee-brisbane.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Best Coffee Brisbane</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/leaderboard.html" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Leaderboard</a>
-                <span style={{ color: "rgba(255,255,255,0.1)" }}>·</span>
-                <a href="/brisbane-cafes-to-avoid" style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Cafés to Avoid</a>
+                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>How We Score</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Disclosure</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/best-coffee-brisbane.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Best Coffee Brisbane</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/leaderboard.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Leaderboard</a>
+                <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+                <a href="/brisbane-cafes-to-avoid" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Cafés to Avoid</a>
               </div>
             </div>
           )}
