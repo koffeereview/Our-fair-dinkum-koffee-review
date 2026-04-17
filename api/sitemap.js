@@ -39,6 +39,7 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/", priority: "1.0", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/cafes.html", priority: "0.9", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/best-coffee-brisbane.html", priority: "0.9", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/best-coffee-gold-coast.html", priority: "0.9", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/brisbane-cafes-to-avoid", priority: "0.8", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/leaderboard.html", priority: "0.8", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/how-we-score.html", priority: "0.7", changefreq: "monthly" },
