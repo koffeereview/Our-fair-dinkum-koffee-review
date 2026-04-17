@@ -45,6 +45,7 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/how-we-score.html", priority: "0.7", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/disclosure", priority: "0.6", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/about", priority: "0.7", changefreq: "monthly" },
+  { url: "https://koffeereview.com.au/coffee-near-me", priority: "0.8", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/privacy", priority: "0.5", changefreq: "yearly" },
   { url: "https://koffeereview.com.au/city/brisbane", priority: "0.9", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/city/gold-coast", priority: "0.8", changefreq: "weekly" },
