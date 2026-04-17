@@ -156,6 +156,15 @@ function renderHTML(cafe) {
     }
   ]
   </script>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Koffee Review", "item": "https://koffeereview.com.au" },
+      { "@type": "ListItem", "position": 2, "name": "Best Coffee ${cafe.city}", "item": "https://koffeereview.com.au/city/${citySlug || cafe.city.toLowerCase().replace(/\\s+/g, '-')}" },
+      { "@type": "ListItem", "position": 3, "name": "${cafe.name}", "item": "${canonicalUrl}" }
+    ]
+  }</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
