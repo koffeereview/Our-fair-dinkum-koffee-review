@@ -18,6 +18,7 @@
     { "source": "/disclosure", "destination": "/disclosure.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/coffee-near-me", "destination": "/coffee-near-me.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
