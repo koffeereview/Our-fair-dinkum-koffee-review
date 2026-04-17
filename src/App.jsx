@@ -378,6 +378,7 @@ function AboutDrawer({ open, onClose }) {
 
                 <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>GOLD COAST</div>
                 <a href="/city/gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>All Gold Coast Cafés <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/best-coffee-gold-coast.html" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Best Coffee Gold Coast <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
 
                 <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>MORE CITIES</div>
                 <a href="/city/moreton-bay" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Moreton Bay <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
