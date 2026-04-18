@@ -853,7 +853,7 @@ export default function App() {
             )}
             {(function() {
               const isDefaultView = !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search;
-              const displayList = isDefaultView ? [...filtered].reverse().slice(0, 12) : filtered;
+              const displayList = isDefaultView ? [...cafes].reverse().slice(0, 12) : filtered;
               return displayList.map(function(cafe) {
                 const isSelected = selected && selected.id === cafe.id;
               return (
