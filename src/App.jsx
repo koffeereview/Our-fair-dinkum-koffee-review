@@ -674,7 +674,7 @@ export default function App() {
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
           </div>
-          <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); }}
+          <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setView("list"); }}
             style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4, padding: 0 }}>
             <span style={{ fontSize: 11, color: "#c8a96e" }}>Suggest a Café</span>
             <span style={{ fontSize: 11, color: "#FFD700", fontWeight: 700 }}>→</span>
