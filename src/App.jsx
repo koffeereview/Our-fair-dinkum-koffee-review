@@ -597,7 +597,7 @@ export default function App() {
     .filter(function(c) { return city === "All" || c.city === city; })
     .filter(function(c) {
       const s = search.toLowerCase();
-      return (c.name && c.name.toLowerCase().includes(s)) || (c.suburb && c.suburb.toLowerCase().includes(s));
+      return (c.name && c.name.toLowerCase().includes(s)) || (c.suburb && c.suburb.toLowerCase().includes(s)) || (c.city && c.city.toLowerCase().includes(s));
     })
     .filter(function(c) {
       if (quickFilter === "must") return c.score >= 7.5;
@@ -760,7 +760,7 @@ export default function App() {
         <>
           <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
             {!loading && cafes.length > 0 && <PullQuote cafes={cafes} />}
-            <input placeholder="Search cafe or suburb..." value={search}
+            <input placeholder="Search café, suburb or city..." value={search}
               onChange={function(e) { setSearch(e.target.value); }}
               style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
@@ -851,9 +851,12 @@ export default function App() {
             {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
               <div style={{ fontSize: 11, letterSpacing: 2, color: "rgba(197,157,80,0.5)", marginBottom: 12 }}>LATEST REVIEWS</div>
             )}
+            {!loading && showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
+              <div style={{ fontSize: 11, letterSpacing: 2, color: "rgba(197,157,80,0.5)", marginBottom: 12 }}>ALL CAFÉS — A TO Z</div>
+            )}
             {(function() {
               const isDefaultView = !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search;
-              const displayList = isDefaultView ? [...cafes].reverse().slice(0, 12) : filtered;
+              const displayList = isDefaultView ? [...cafes].reverse().slice(0, 10) : filtered;
               return displayList.map(function(cafe) {
                 const isSelected = selected && selected.id === cafe.id;
               return (
@@ -965,7 +968,7 @@ export default function App() {
           {/* SHOW ALL BUTTON */}
           {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
             <div style={{ padding: "0 24px 8px", maxWidth: 800, margin: "0 auto" }}>
-              <button onClick={function() { setShowAll(true); }}
+              <button onClick={function() { setShowAll(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                 style={{ width: "100%", padding: "14px", borderRadius: 12, background: "rgba(197,157,80,0.1)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", letterSpacing: 1 }}>
                 SHOW ALL {cafes.length} CAFÉS →
               </button>
