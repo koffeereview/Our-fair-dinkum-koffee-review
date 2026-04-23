@@ -11,6 +11,7 @@ const CITY_CONFIG = {
   "melbourne": { name: "Melbourne", slug: "melbourne", stateShort: "VIC" },
   "sydney": { name: "Sydney", slug: "sydney", stateShort: "NSW" },
   "logan": { name: "Logan", slug: "logan", stateShort: "QLD" },
+  "redland": { name: "Redland", slug: "redland", stateShort: "QLD" },
 };
 
 function makeSlug(name, suburb) {
