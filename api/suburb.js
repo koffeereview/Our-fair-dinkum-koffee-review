@@ -7,11 +7,13 @@ const SUBURB_CONFIG = {
   "newstead-brisbane": { name: "Newstead", city: "Brisbane", citySlug: "brisbane" },
   "chermside-brisbane": { name: "Chermside", city: "Brisbane", citySlug: "brisbane" },
   "fortitude-valley-brisbane": { name: "Fortitude Valley", city: "Brisbane", citySlug: "brisbane" },
-  "west-end-brisbane": { name: "West End", city: "Brisbane", citySlug: "brisbane" },
+  "west-end-brisbane": { name: "West end", city: "Brisbane", citySlug: "brisbane" },
   "south-brisbane-brisbane": { name: "South Brisbane", city: "Brisbane", citySlug: "brisbane" },
   "paddington-brisbane": { name: "Paddington", city: "Brisbane", citySlug: "brisbane" },
   "hamilton-brisbane": { name: "Hamilton", city: "Brisbane", citySlug: "brisbane" },
   "woolloongabba-brisbane": { name: "Woolloongabba", city: "Brisbane", citySlug: "brisbane" },
+  "upper-mount-gravatt-brisbane": { name: "Upper Mount Gravatt", city: "Brisbane", citySlug: "brisbane" },
+  "burleigh-heads-gold-coast": { name: "Burleigh Heads", city: "Gold Coast", citySlug: "gold-coast" },
 };
 
 function makeSlug(name, suburb) {
