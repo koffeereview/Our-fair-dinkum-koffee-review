@@ -54,6 +54,8 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/city/ipswich", priority: "0.7", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/city/melbourne", priority: "0.7", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/city/sydney", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/logan", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/city/redland", priority: "0.6", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/suburb/cbd-brisbane", priority: "0.8", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/suburb/newstead-brisbane", priority: "0.7", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/suburb/chermside-brisbane", priority: "0.7", changefreq: "weekly" },
@@ -63,6 +65,8 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/suburb/paddington-brisbane", priority: "0.7", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/suburb/hamilton-brisbane", priority: "0.7", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/suburb/woolloongabba-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/upper-mount-gravatt-brisbane", priority: "0.7", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/suburb/burleigh-heads-gold-coast", priority: "0.7", changefreq: "weekly" },
 ];
 
 export default async function handler(req, res) {
