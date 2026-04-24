@@ -73,8 +73,8 @@ function renderHTML(cafe, allCafes) {
   const canonicalUrl = "https://koffeereview.com.au/review/" + slug;
   const circumference = 276;
   const offset = circumference - (cafe.score / 10) * circumference;
-  const citySlugMap = { "brisbane": "brisbane", "gold coast": "gold-coast", "moreton bay": "moreton-bay", "sunshine coast": "sunshine-coast", "ipswich": "ipswich", "melbourne": "melbourne", "sydney": "sydney", "logan": "logan" };
-  const suburbSlugMap = { "cbd": "cbd-brisbane", "newstead": "newstead-brisbane", "chermside": "chermside-brisbane", "fortitude valley": "fortitude-valley-brisbane", "west end": "west-end-brisbane", "south brisbane": "south-brisbane-brisbane", "paddington": "paddington-brisbane", "hamilton": "hamilton-brisbane", "woolloongabba": "woolloongabba-brisbane" };
+  const citySlugMap = { "brisbane": "brisbane", "gold coast": "gold-coast", "moreton bay": "moreton-bay", "sunshine coast": "sunshine-coast", "ipswich": "ipswich", "melbourne": "melbourne", "sydney": "sydney", "logan": "logan", "redland": "redland" };
+  const suburbSlugMap = { "cbd": "cbd-brisbane", "newstead": "newstead-brisbane", "chermside": "chermside-brisbane", "fortitude valley": "fortitude-valley-brisbane", "west end": "west-end-brisbane", "south brisbane": "south-brisbane-brisbane", "paddington": "paddington-brisbane", "hamilton": "hamilton-brisbane", "woolloongabba": "woolloongabba-brisbane", "upper mount gravatt": "upper-mount-gravatt-brisbane", "burleigh heads": "burleigh-heads-gold-coast" };
 
   // Calculate top 10 dynamically from sheet — Australian cafes only
   const top10Slugs = allCafes
@@ -88,6 +88,73 @@ function renderHTML(cafe, allCafes) {
   const brisbaneLink = cafe.city.toLowerCase().includes("brisbane") ? '<a class="internal-link" href="/best-coffee-brisbane.html">Best Coffee in Brisbane <span>→</span></a>' : "";
   const suburbLink = suburbSlug ? `<a class="internal-link" href="/suburb/${suburbSlug}">Best Coffee in ${cafe.suburb} <span>→</span></a>` : "";
   const cityLink = citySlug ? `<a class="internal-link" href="/city/${citySlug}">All ${cafe.city} Cafés <span>→</span></a>` : "";
+
+  // Better Picks Nearby — only for cafes scoring below 7.5
+  function getDistKm(lat1, lng1, lat2, lng2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLng/2) * Math.sin(dLng/2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  let betterPicksHTML = "";
+  if (cafe.score < 7.5 && cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1) {
+    const higherScored = allCafes
+      .filter(function(c) {
+        return c.name !== cafe.name &&
+               c.score > cafe.score &&
+               c.score >= 6.0 &&
+               !SPAIN_CITIES.includes((c.city || "").toLowerCase()) &&
+               c.lat && c.lng && Math.abs(c.lat) > 1;
+      })
+      .map(function(c) {
+        c._dist = getDistKm(cafe.lat, cafe.lng, c.lat, c.lng);
+        return c;
+      });
+
+    // Same suburb first, then nearest
+    const sameSuburb = higherScored
+      .filter(function(c) { return c.suburb.toLowerCase() === cafe.suburb.toLowerCase(); })
+      .sort(function(a, b) { return b.score - a.score; })
+      .slice(0, 3);
+
+    const needed = 3 - sameSuburb.length;
+    const sameSuburbNames = sameSuburb.map(function(c) { return c.name; });
+    const nearby = higherScored
+      .filter(function(c) { return !sameSuburbNames.includes(c.name); })
+      .sort(function(a, b) { return a._dist - b._dist; })
+      .slice(0, 3 - sameSuburb.length);
+
+    const picks = [...sameSuburb, ...nearby].slice(0, 3);
+
+    if (picks.length > 0) {
+      const pickCards = picks.map(function(c) {
+        const col = getScoreColor(c.score);
+        const s = makeSlug(c.name, c.suburb);
+        const distText = c._dist < 1 ? (c._dist * 1000).toFixed(0) + "m away" : c._dist.toFixed(1) + "km away";
+        return `<a href="/review/${s}" class="better-pick-card">
+          <div class="better-pick-score" style="color:${col};">${c.score.toFixed(1)}</div>
+          <div class="better-pick-info">
+            <div class="better-pick-name">${c.name}</div>
+            <div class="better-pick-sub">${c.suburb}</div>
+            <div class="better-pick-dist">📍 ${distText}</div>
+          </div>
+          <div class="better-pick-arrow">→</div>
+        </a>`;
+      }).join("");
+
+      betterPicksHTML = `
+      <div class="better-picks">
+        <div class="better-picks-title">BETTER PICKS NEARBY</div>
+        <div class="better-picks-sub">This café scored ${cafe.score.toFixed(1)}. These reviewed cafés scored higher and are close by.</div>
+        ${pickCards}
+      </div>
+      <hr class="divider" />`;
+    }
+  }
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -215,6 +282,17 @@ function renderHTML(cafe, allCafes) {
     .internal-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
     .internal-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.03); text-decoration: none; color: rgba(255,255,255,0.6); font-size: 13px; }
     .internal-link span { color: rgba(255,255,255,0.2); }
+    .better-picks { margin-bottom: 28px; }
+    .better-picks-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: rgba(197,157,80,0.8); margin-bottom: 6px; }
+    .better-picks-sub { font-size: 12px; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
+    .better-pick-card { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.03); text-decoration: none; color: inherit; margin-bottom: 8px; transition: border 0.2s; }
+    .better-pick-card:hover { border-color: rgba(197,157,80,0.3); }
+    .better-pick-score { font-family: 'Bebas Neue', sans-serif; font-size: 22px; min-width: 44px; text-align: center; line-height: 1; }
+    .better-pick-info { flex: 1; }
+    .better-pick-name { font-weight: 600; font-size: 14px; color: #fff; }
+    .better-pick-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .better-pick-dist { font-size: 11px; color: rgba(197,157,80,0.6); margin-top: 2px; }
+    .better-pick-arrow { font-size: 14px; color: rgba(255,255,255,0.2); }
     #share-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 400; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
     #share-overlay.visible { display: flex; }
     #share-overlay img { max-width: min(320px, 90vw); border-radius: 24px; }
@@ -280,6 +358,8 @@ function renderHTML(cafe, allCafes) {
     </div>
 
     <hr class="divider" />
+
+    ${betterPicksHTML}
 
     <div class="internal-links">
       ${suburbLink}
