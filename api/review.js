@@ -359,6 +359,12 @@ function renderHTML(cafe, allCafes) {
 
     <hr class="divider" />
 
+    <!-- Recently Viewed -->
+    <div id="recently-viewed" style="display:none;margin-bottom:28px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:rgba(197,157,80,0.8);margin-bottom:12px;">RECENTLY VIEWED</div>
+      <div id="recently-viewed-cards" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+    </div>
+
     ${betterPicksHTML}
 
     <div class="internal-links">
@@ -403,6 +409,38 @@ function renderHTML(cafe, allCafes) {
       else if (ref.includes("/leaderboard")) backBtn.textContent = "← Leaderboard";
       else backBtn.textContent = "← Back";
     }
+
+    // Recently Viewed — save current cafe to localStorage
+    try {
+      const current = {
+        name: "${cafe.name}",
+        suburb: "${cafe.suburb}",
+        score: ${cafe.score},
+        slug: "${slug}",
+        color: "${color}"
+      };
+      let viewed = JSON.parse(localStorage.getItem("kr_viewed") || "[]");
+      viewed = viewed.filter(function(c) { return c.slug !== current.slug; });
+      viewed.unshift(current);
+      viewed = viewed.slice(0, 6);
+      localStorage.setItem("kr_viewed", JSON.stringify(viewed));
+
+      // Show recently viewed (excluding current)
+      const others = viewed.filter(function(c) { return c.slug !== current.slug; }).slice(0, 3);
+      if (others.length > 0) {
+        const container = document.getElementById("recently-viewed");
+        if (container) {
+          container.style.display = "block";
+          document.getElementById("recently-viewed-cards").innerHTML = others.map(function(c) {
+            return '<a href="/review/' + c.slug + '" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);text-decoration:none;color:inherit;flex:1;min-width:140px;">' +
+              '<span style="font-family:Bebas Neue,sans-serif;font-size:20px;color:' + c.color + ';min-width:40px;">' + c.score.toFixed(1) + '</span>' +
+              '<div><div style="font-size:13px;font-weight:600;color:#fff;">' + c.name + '</div>' +
+              '<div style="font-size:11px;color:rgba(255,255,255,0.4);">' + c.suburb + '</div></div>' +
+              '</a>';
+          }).join("");
+        }
+      }
+    } catch(e) {}
 
     ${(cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 && Math.abs(cafe.lng) > 1) ? `
     window.addEventListener('load', function() {
