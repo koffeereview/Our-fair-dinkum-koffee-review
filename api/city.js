@@ -160,7 +160,10 @@ function renderCityPage(citySlug, cafes, allCafes) {
   </nav>
 
   <div class="hero">
-    <div class="hero-tag">${config.stateShort} · CITY GUIDE</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+      <div class="hero-tag">${config.stateShort} · CITY GUIDE</div>
+      <button onclick="if(navigator.share){navigator.share({title:'Best Coffee in ${config.name}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">↑ Share this guide</button>
+    </div>
     <h1>Best Coffee in ${config.name}</h1>
     <p>Every café reviewed with the same two drinks — one latte and one double shot espresso. No sponsorships, no agendas. Just honest scores from ${cityCafes.length}+ ${config.name} cafés.</p>
   </div>
