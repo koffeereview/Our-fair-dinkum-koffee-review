@@ -154,7 +154,10 @@ function renderSuburbPage(suburbSlug, cafes) {
   </div>
 
   <div class="hero">
-    <div class="hero-tag">${config.city.toUpperCase()} · SUBURB GUIDE</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+      <div class="hero-tag">${config.city.toUpperCase()} · SUBURB GUIDE</div>
+      <button onclick="if(navigator.share){navigator.share({title:'Best Coffee in ${config.name}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">↑ Share this guide</button>
+    </div>
     <h1>Best Coffee in ${config.name}</h1>
     <p>${suburbCafes.length} cafés reviewed in ${config.name}, ${config.city}. One latte and one double shot espresso every time. No sponsorships. Just honest scores.</p>
   </div>
