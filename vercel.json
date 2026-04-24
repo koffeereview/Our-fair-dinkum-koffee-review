@@ -15,6 +15,7 @@
     { "source": "/city/:city", "destination": "/api/city?city=:city" },
     { "source": "/suburb/:suburb", "destination": "/api/suburb?suburb=:suburb" },
     { "source": "/brisbane-cafes-to-avoid", "destination": "/api/avoid" },
+    { "source": "/leaderboard", "destination": "/api/leaderboard" },
     { "source": "/disclosure", "destination": "/disclosure.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
