@@ -500,6 +500,8 @@ export default function App() {
   const [suggestSuburb, setSuggestSuburb] = useState("");
   const [suggestCity, setSuggestCity] = useState("");
   const [suggestDone, setSuggestDone] = useState(false);
+  const [suggestNominee, setSuggestNominee] = useState("");
+  const [suggestWhy, setSuggestWhy] = useState("");
   const [shareCardUrl, setShareCardUrl] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [nearMe, setNearMe] = useState(false);
@@ -678,7 +680,7 @@ export default function App() {
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
           </div>
-          <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setView("list"); }}
+          <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
             style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4, padding: 0 }}>
             <span style={{ fontSize: 11, color: "#c8a96e" }}>Suggest a Café</span>
             <span style={{ fontSize: 11, color: "#FFD700", fontWeight: 700 }}>→</span>
@@ -703,11 +705,15 @@ export default function App() {
                       style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif" }} />
                     <input value={suggestCity} onChange={function(e) { setSuggestCity(e.target.value); }} placeholder="City"
                       style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif" }} />
+                    <input value={suggestNominee} onChange={function(e) { setSuggestNominee(e.target.value); }} placeholder="Your name or @handle (optional)"
+                      style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif" }} />
+                    <textarea value={suggestWhy} onChange={function(e) { setSuggestWhy(e.target.value); }} placeholder="Why should we visit? (optional)" rows={2}
+                      style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif", resize: "none" }} />
                     <button onClick={function() {
                       if (!suggestName.trim() || !suggestCity.trim()) return;
                       fetch("https://script.google.com/macros/s/AKfycbwTVM63tGIyn7WyCXq7VDsK8aW4g0fN6M5YeV7xRq4NblfL1ZnSN2apOiCQEUVbuDct/exec", {
                         method: "POST",
-                        body: JSON.stringify({ name: suggestName, suburb: suggestSuburb, city: suggestCity })
+                        body: JSON.stringify({ name: suggestName, suburb: suggestSuburb, city: suggestCity, nominee: suggestNominee, why: suggestWhy })
                       }).catch(function() {});
                       setSuggestDone(true);
                     }} style={{ padding: "13px", borderRadius: 12, background: "linear-gradient(135deg, #c8a96e, #f5e6c8)", border: "none", color: "#0a0a0a", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
@@ -717,10 +723,10 @@ export default function App() {
                   </div>
                 </>
               ) : (
-                <div style={{ textAlign: "center", padding: "20px 0" }}>
-                  <div style={{ fontSize: 40, marginBottom: 12 }}>☕</div>
-                  <div style={{ fontSize: 18, fontWeight: 700, color: "#c8a96e", marginBottom: 8 }}>Thanks!</div>
-                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 20 }}>We'll add {suggestName} to our visit list.</div>
+                <div style={{ textAlign: "center", padding: "28px 0" }}>
+                  <div style={{ fontSize: 32, marginBottom: 12, color: "#c8a96e" }}>✓</div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Café submitted.</div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 24, lineHeight: 1.7 }}>We'll add it to the visit list.</div>
                   <button onClick={function() { setSuggestOpen(false); }} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", padding: "10px 24px", borderRadius: 10, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Close</button>
                 </div>
               )}
