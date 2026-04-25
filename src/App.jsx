@@ -872,11 +872,13 @@ export default function App() {
               const displayList = isDefaultView ? [...cafes].reverse().slice(0, 10) : filtered;
               return displayList.map(function(cafe) {
                 const isSelected = selected && selected.id === cafe.id;
+                const cardColor = getScoreColor(cafe.score);
               return (
                 <div key={cafe.id}
-                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s" }}
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}
                   onClick={function() { setSelected(isSelected ? null : cafe); }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                  <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, background: cardColor, borderRadius: "16px 0 0 16px" }} />
+                  <div style={{ display: "flex", alignItems: "center", gap: 16, marginLeft: 8 }}>
                     <ScoreRing score={cafe.score} />
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
