@@ -83,11 +83,12 @@ function renderCityPage(citySlug, cafes, allCafes) {
   const cafeRows = cityCafes.map(function(cafe, i) {
     const color = getScoreColor(cafe.score);
     const slug = makeSlug(cafe.name, cafe.suburb);
-    return `<a href="/review/${slug}" class="cafe-row" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;">
+    return `<a href="/review/${slug}" class="cafe-row" data-lat="${cafe.lat || ""}" data-lng="${cafe.lng || ""}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${color};min-width:48px;text-align:center;">${cafe.score.toFixed(1)}</div>
       <div style="flex:1;">
         <div style="font-weight:600;font-size:15px;color:#fff;">${cafe.name}</div>
         <div class="cafe-suburb" style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">${cafe.suburb} · ${cafe.price || ""}</div>
+        <div class="cafe-distance" style="font-size:11px;color:rgba(197,157,80,0.6);margin-top:2px;"></div>
       </div>
       <div style="padding:4px 12px;border-radius:20px;background:${color}22;color:${color};border:1px solid ${color}55;font-size:10px;font-weight:700;letter-spacing:2px;">${(cafe.verdict || "").toUpperCase()}</div>
     </a>`;
@@ -178,10 +179,16 @@ function renderCityPage(citySlug, cafes, allCafes) {
   <div class="content">
     <div class="filter-row">
       <div class="section-title">ALL ${config.name.toUpperCase()} CAFÉS</div>
-      <select id="suburb-filter" onchange="filterSuburb(this.value)">
-        <option value="all">All Suburbs</option>
-        ${suburbOptions}
-      </select>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <select id="suburb-filter" onchange="filterSuburb(this.value)">
+          <option value="all">All Suburbs</option>
+          ${suburbOptions}
+        </select>
+        <button id="near-me-btn" onclick="handleNearMe()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:8px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;">📍 Near Me</button>
+      </div>
+    </div>
+    <div id="near-me-banner" style="display:none;background:rgba(197,157,80,0.08);border:1px solid rgba(197,157,80,0.2);border-radius:12px;padding:10px 16px;margin-bottom:16px;font-size:13px;color:#c8a96e;">
+      📍 Showing cafés closest to your location
     </div>
     <div id="cafe-list">
       ${cafeRows}
@@ -199,7 +206,11 @@ function renderCityPage(citySlug, cafes, allCafes) {
 
   <script>
     const allRows = document.querySelectorAll("#cafe-list a");
+
     function filterSuburb(suburb) {
+      document.getElementById("near-me-btn").style.background = "rgba(255,255,255,0.06)";
+      document.getElementById("near-me-btn").style.color = "rgba(255,255,255,0.6)";
+      document.getElementById("near-me-banner").style.display = "none";
       allRows.forEach(function(row) {
         if (suburb === "all") { row.style.display = "flex"; return; }
         const suburbText = row.querySelector(".cafe-suburb");
@@ -209,6 +220,68 @@ function renderCityPage(citySlug, cafes, allCafes) {
           row.style.display = "none";
         }
       });
+    }
+
+    function getDistKm(lat1, lng1, lat2, lng2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLng = (lng2 - lng1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLng/2) * Math.sin(dLng/2);
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function handleNearMe() {
+      const btn = document.getElementById("near-me-btn");
+      const banner = document.getElementById("near-me-banner");
+
+      if (!navigator.geolocation) {
+        alert("Location not supported on this device.");
+        return;
+      }
+
+      btn.textContent = "📍 Locating...";
+
+      navigator.geolocation.getCurrentPosition(
+        function(pos) {
+          const userLat = pos.coords.latitude;
+          const userLng = pos.coords.longitude;
+
+          // Get lat/lng from data attributes on each row and sort by distance
+          const rows = Array.from(allRows);
+          const withDist = rows.map(function(row) {
+            const lat = parseFloat(row.dataset.lat || "0");
+            const lng = parseFloat(row.dataset.lng || "0");
+            const dist = (lat && lng && Math.abs(lat) > 1) ? getDistKm(userLat, userLng, lat, lng) : 9999;
+            return { row: row, dist: dist };
+          });
+
+          withDist.sort(function(a, b) { return a.dist - b.dist; });
+
+          const list = document.getElementById("cafe-list");
+          withDist.forEach(function(item) {
+            item.row.style.display = "flex";
+            list.appendChild(item.row);
+            // Add distance label
+            const distEl = item.row.querySelector(".cafe-distance");
+            if (distEl) {
+              distEl.textContent = item.dist < 9999 ? (item.dist < 1 ? (item.dist * 1000).toFixed(0) + "m" : item.dist.toFixed(1) + "km") + " away" : "";
+            }
+          });
+
+          btn.textContent = "📍 Near Me ✓";
+          btn.style.background = "rgba(197,157,80,0.15)";
+          btn.style.color = "#c8a96e";
+          btn.style.borderColor = "rgba(197,157,80,0.4)";
+          banner.style.display = "block";
+          document.getElementById("suburb-filter").value = "all";
+        },
+        function() {
+          btn.textContent = "📍 Near Me";
+          alert("Could not get your location. Please allow location access and try again.");
+        }
+      );
     }
   </script>
 </body>
