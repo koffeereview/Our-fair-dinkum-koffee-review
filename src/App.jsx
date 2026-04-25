@@ -756,6 +756,15 @@ export default function App() {
         )}
       </div>
 
+      {/* HOW WE SCORE LINE */}
+      {!loading && cafes.length > 0 && (
+        <div style={{ padding: "0 24px", maxWidth: 800, margin: "0 auto", marginBottom: 8 }}>
+          <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(197,157,80,0.6)", textDecoration: "none", letterSpacing: 0.5 }}>
+            One latte. One double shot espresso. Every time. <span style={{ color: "#c8a96e" }}>How we score →</span>
+          </a>
+        </div>
+      )}
+
       {view === "map" ? (
         <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
           {leafletLoaded ? <MapView cafes={cafes} /> : <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading map...</div>}
