@@ -711,7 +711,7 @@ export default function App() {
                       style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 14px", color: "#fff", fontSize: 14, outline: "none", fontFamily: "'DM Sans', sans-serif", resize: "none" }} />
                     <button onClick={function() {
                       if (!suggestName.trim() || !suggestCity.trim()) return;
-                      fetch("https://script.google.com/macros/s/AKfycbwTVM63tGIyn7WyCXq7VDsK8aW4g0fN6M5YeV7xRq4NblfL1ZnSN2apOiCQEUVbuDct/exec", {
+                      fetch("https://script.google.com/macros/s/AKfycbwujHwDH5lzmhJw9Sx4dFMuy41-LYCoKlkoTOIIYmwWB_8xxpQVCbaaAUgqOG5gYUCL/exec", {
                         method: "POST",
                         body: JSON.stringify({ name: suggestName, suburb: suggestSuburb, city: suggestCity, nominee: suggestNominee, why: suggestWhy })
                       }).catch(function() {});
