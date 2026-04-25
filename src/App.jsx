@@ -919,9 +919,17 @@ export default function App() {
                           e.stopPropagation();
                           const color = getScoreColor(cafe.score);
 
+                          function toTitleCase(str) {
+                            return (str || "").replace(/\w\S*/g, function(txt) {
+                              return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                            });
+                          }
+
                           function generateCard() {
                             const card = document.createElement("div");
                             card.style.cssText = "position:fixed;top:-9999px;left:-9999px;background:#0a0a0a;border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;align-items:center;gap:16px;border:2px solid " + color + "55;width:320px;font-family:sans-serif;";
+                            const suburbDisplay = toTitleCase(cafe.suburb);
+                            const noteText = cafe.notes ? cafe.notes.substring(0, 80) + (cafe.notes.length > 80 ? "..." : "") : "";
                             card.innerHTML = `
                               <div style="display:flex;align-items:center;gap:10px;width:100%;">
                                 <img src="https://koffeereview.com.au/logo.jpg" crossorigin="anonymous" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" />
@@ -939,9 +947,10 @@ export default function App() {
                               </div>
                               <div style="text-align:center;">
                                 <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;">${cafe.name}</div>
-                                <div style="font-size:13px;color:rgba(255,255,255,0.4);">${cafe.suburb}, ${cafe.city}</div>
+                                <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:${noteText ? "10px" : "0"};">${suburbDisplay}, ${toTitleCase(cafe.city)}</div>
+                                ${noteText ? `<div style="font-size:12px;color:rgba(255,255,255,0.55);font-style:italic;line-height:1.6;padding:0 8px;">${noteText}</div>` : ""}
                               </div>
-                              <div style="padding:6px 20px;border-radius:20px;background:${color}22;border:1px solid ${color}55;font-size:12px;font-weight:700;letter-spacing:3px;color:${color};">${cafe.verdict ? cafe.verdict.toUpperCase() : "RATED"}</div>
+                              <div style="padding:8px 24px;border-radius:20px;background:${color};font-size:12px;font-weight:700;letter-spacing:3px;color:#000;">${cafe.verdict ? cafe.verdict.toUpperCase() : "RATED"}</div>
                               <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px;margin-top:4px;">ONE LATTE · ONE DOUBLE SHOT</div>
                             `;
                             document.body.appendChild(card);
