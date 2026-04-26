@@ -108,87 +108,73 @@ export default async function handler(req, res) {
       </a>`;
     }).join("");
 
-    const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${title}</title>
-  <meta name="description" content="${desc}" />
-  <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${desc}" />
-  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
-  <meta property="og:url" content="${canonicalUrl}" />
-  <link rel="canonical" href="${canonicalUrl}" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"${title}","description":"${desc}","url":"${canonicalUrl}","numberOfItems":10,"itemListElement":[${top10.map(function(c,i){return '{"@type":"ListItem","position":'+(i+1)+',"name":"'+c.name+'","url":"https://koffeereview.com.au/review/'+makeSlug(c.name,c.suburb)+'"}';}).join(",")}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Top 10 Cafés Australia","item":"${canonicalUrl}"}]}</script>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background:#0a0a0a; color:#fff; font-family:'DM Sans',sans-serif; min-height:100vh; }
-    nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); }
-    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-    .nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
-    .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; }
-    .hero { max-width:680px; margin:0 auto; padding:48px 24px 32px; text-align:center; }
-    .eyebrow { font-size:10px; letter-spacing:3px; color:rgba(197,157,80,0.5); margin-bottom:14px; }
-    h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,6vw,52px); letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px; }
-    .subtitle { font-size:14px; color:rgba(255,255,255,0.35); font-style:italic; }
-    .podium { display:flex; align-items:flex-end; justify-content:center; gap:10px; max-width:560px; margin:0 auto 32px; padding:0 24px; }
-    .ranked { max-width:680px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; gap:8px; margin-bottom:48px; }
-    .footer { border-top:1px solid rgba(255,255,255,0.1); padding:32px 24px; text-align:center; max-width:680px; margin:0 auto; }
-    .footer p { font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:20px; line-height:1.8; }
-    .footer-quote { font-size:13px; color:rgba(255,255,255,0.3); font-style:italic; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; margin-top:4px; }
-    .browse-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; margin-bottom:24px; }
-    .browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }
-    .footer-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
-    .footer-links a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }
-    .footer-links a:hover { color:#c8a96e; }
-  </style>
-</head>
-<body>
-  <nav>
-    <a href="https://koffeereview.com.au" class="nav-logo">
-      <img src="/logo.jpg" alt="Koffee Review" />
-      <span>KOFFEE REVIEW</span>
-    </a>
-    <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
-  </nav>
+    const schema1 = JSON.stringify({"@context":"https://schema.org","@type":"ItemList","name":title,"description":desc,"url":canonicalUrl,"numberOfItems":10,"itemListElement":top10.map(function(c,i){return {"@type":"ListItem","position":i+1,"name":c.name,"url":"https://koffeereview.com.au/review/"+makeSlug(c.name,c.suburb)};})});
+    const schema2 = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Top 10 Cafes Australia","item":canonicalUrl}]});
 
-  <div class="hero">
-    <div class="eyebrow">KOFFEE REVIEW · 600+ CAFÉS · ONE SYSTEM</div>
-    <h1>Australia's Top 10 Cafés</h1>
-    <p class="subtitle">One latte. One espresso. One honest score.</p>
-  </div>
-
-  <div class="podium">
-    ${podiumBlock(p2, 58, "rgba(255,255,255,0.08)", "rgba(255,255,255,0.18)", "rgba(255,255,255,0.8)", "🥈", "rgba(255,255,255,0.8)")}
-    ${podiumBlock(p1, 82, "rgba(197,157,80,0.25)", "rgba(197,157,80,0.5)", "#c8a96e", "🥇", "#f5e6c8")}
-    ${podiumBlock(p3, 44, "rgba(251,146,60,0.1)", "rgba(251,146,60,0.3)", "rgba(251,146,60,0.8)", "🥉", "rgba(255,255,255,0.7)")}
-  </div>
-
-  <div class="ranked">
-    ${rankedRows}
-  </div>
-
-  <div class="footer">
-    <a href="https://koffeereview.com.au" class="browse-btn">
-      <img src="/logo.jpg" alt="Koffee Review" />Browse All Reviews
-    </a>
-    <p>No café pays for placement. No score is negotiated.<br/>The coffee earns it or it doesn't.</p>
-    <div class="footer-quote">"600+ cups in. Still chasing that perfect 10."</div>
-    <div class="footer-links">
-      <a href="/about">About</a>
-      <a href="/how-we-score.html">How We Score</a>
-      <a href="/disclosure">Disclosure</a>
-      <a href="/best-coffee-brisbane">Best Coffee Brisbane</a>
-      <a href="/best-coffee-gold-coast">Best Coffee Gold Coast</a>
-      <a href="/brisbane-cafes-to-avoid">Cafés to Avoid</a>
-    </div>
-  </div>
-</body>
-</html>`;
+    const html = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n" +
+      "<meta charset=\"UTF-8\" />\n" +
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n" +
+      "<title>" + title + "</title>\n" +
+      "<meta name=\"description\" content=\"" + desc + "\" />\n" +
+      "<meta property=\"og:title\" content=\"" + title + "\" />\n" +
+      "<meta property=\"og:description\" content=\"" + desc + "\" />\n" +
+      "<meta property=\"og:image\" content=\"https://koffeereview.com.au/logo.jpg\" />\n" +
+      "<meta property=\"og:url\" content=\"" + canonicalUrl + "\" />\n" +
+      "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />\n" +
+      "<script type=\"application/ld+json\">" + schema1 + "<\/script>\n" +
+      "<script type=\"application/ld+json\">" + schema2 + "<\/script>\n" +
+      "<link href=\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap\" rel=\"stylesheet\" />\n" +
+      "<style>\n" +
+      "* { margin:0; padding:0; box-sizing:border-box; }\n" +
+      "body { background:#0a0a0a; color:#fff; font-family:'DM Sans',sans-serif; min-height:100vh; }\n" +
+      "nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); }\n" +
+      ".nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }\n" +
+      ".nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; }\n" +
+      ".nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }\n" +
+      ".nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; }\n" +
+      ".hero { max-width:680px; margin:0 auto; padding:48px 24px 32px; text-align:center; }\n" +
+      ".eyebrow { font-size:10px; letter-spacing:3px; color:rgba(197,157,80,0.5); margin-bottom:14px; }\n" +
+      "h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,6vw,52px); letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px; }\n" +
+      ".subtitle { font-size:14px; color:rgba(255,255,255,0.35); font-style:italic; }\n" +
+      ".podium { display:flex; align-items:flex-end; justify-content:center; gap:10px; max-width:560px; margin:0 auto 32px; padding:0 24px; }\n" +
+      ".ranked { max-width:680px; margin:0 auto; padding:0 24px; display:flex; flex-direction:column; gap:8px; margin-bottom:48px; }\n" +
+      ".footer { border-top:1px solid rgba(255,255,255,0.1); padding:32px 24px; text-align:center; max-width:680px; margin:0 auto; }\n" +
+      ".footer p { font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:20px; line-height:1.8; }\n" +
+      ".footer-quote { font-size:13px; color:rgba(255,255,255,0.3); font-style:italic; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; margin-top:4px; }\n" +
+      ".browse-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; margin-bottom:24px; }\n" +
+      ".browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }\n" +
+      ".footer-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px; }\n" +
+      ".footer-links a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }\n" +
+      ".footer-links a:hover { color:#c8a96e; }\n" +
+      "</style>\n</head>\n<body>\n" +
+      "<nav>\n" +
+      "  <a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.jpg\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a>\n" +
+      "  <a href=\"https://koffeereview.com.au\" class=\"nav-back\">\u2190 All Reviews</a>\n" +
+      "</nav>\n" +
+      "<div class=\"hero\">\n" +
+      "  <div class=\"eyebrow\">KOFFEE REVIEW \u00b7 600+ CAF\u00c9S \u00b7 ONE SYSTEM</div>\n" +
+      "  <h1>Australia's Top 10 Caf\u00e9s</h1>\n" +
+      "  <p class=\"subtitle\">One latte. One espresso. One honest score.</p>\n" +
+      "</div>\n" +
+      "<div class=\"podium\">\n" +
+      podiumBlock(p2, 58, "rgba(255,255,255,0.08)", "rgba(255,255,255,0.18)", "rgba(255,255,255,0.8)", "&#x1F948;", "rgba(255,255,255,0.8)") +
+      podiumBlock(p1, 82, "rgba(197,157,80,0.25)", "rgba(197,157,80,0.5)", "#c8a96e", "&#x1F947;", "#f5e6c8") +
+      podiumBlock(p3, 44, "rgba(251,146,60,0.1)", "rgba(251,146,60,0.3)", "rgba(251,146,60,0.8)", "&#x1F949;", "rgba(255,255,255,0.7)") +
+      "</div>\n" +
+      "<div class=\"ranked\">" + rankedRows + "</div>\n" +
+      "<div class=\"footer\">\n" +
+      "  <a href=\"https://koffeereview.com.au\" class=\"browse-btn\"><img src=\"/logo.jpg\" alt=\"Koffee Review\" />Browse All Reviews</a>\n" +
+      "  <p>No caf\u00e9 pays for placement. No score is negotiated.<br/>The coffee earns it or it doesn't.</p>\n" +
+      "  <div class=\"footer-quote\">\"600+ cups in. Still chasing that perfect 10.\"</div>\n" +
+      "  <div class=\"footer-links\">\n" +
+      "    <a href=\"/about\">About</a>\n" +
+      "    <a href=\"/how-we-score.html\">How We Score</a>\n" +
+      "    <a href=\"/disclosure\">Disclosure</a>\n" +
+      "    <a href=\"/best-coffee-brisbane\">Best Coffee Brisbane</a>\n" +
+      "    <a href=\"/best-coffee-gold-coast\">Best Coffee Gold Coast</a>\n" +
+      "    <a href=\"/brisbane-cafes-to-avoid\">Caf\u00e9s to Avoid</a>\n" +
+      "  </div>\n" +
+      "</div>\n</body>\n</html>";
 
     res.setHeader("Content-Type", "text/html");
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -269,7 +255,7 @@ export default async function handler(req, res) {
       const rank = i + 1;
       const color = getScoreColor(cafe.score);
       const slug = makeSlug(cafe.name, cafe.suburb);
-      const trophy = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "🏆";
+      const trophy = rank === 1 ? "&#x1F947;" : rank === 2 ? "&#x1F948;" : rank === 3 ? "&#x1F949;" : "&#x1F3C6;";
       const rankStyle = rank <= 3 ? `background:${color}11;border-color:${color}44;` : "";
       return `<a href="/review/${slug}" style="display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);${rankStyle}text-decoration:none;color:inherit;margin-bottom:10px;transition:border 0.2s;">
         <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:rgba(255,255,255,0.15);min-width:32px;text-align:center;">${rank}</div>
