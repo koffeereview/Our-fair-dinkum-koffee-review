@@ -80,17 +80,29 @@ function renderCityPage(citySlug, cafes, allCafes) {
   const desc = config.name + "'s best cafés reviewed and scored by Koffee Review. " + cityCafes.length + "+ cafés rated. One latte and one double shot espresso every time. Know before you go.";
   const canonicalUrl = "https://koffeereview.com.au/city/" + citySlug;
 
+  const mustVisitColor = mustVisit === 0 ? "#f87171" : "#c8a96e";
+  const avgColor = parseFloat(avg) < 7.0 ? "#f87171" : "#c8a96e";
+  const topCafe = cityCafes[0];
+  const contextLine = parseFloat(avg) < 7.0 || mustVisit === 0
+    ? `${config.name} has room to improve overall. Best cup found so far: ${topCafe.name} at ${topCafe.score.toFixed(1)}.`
+    : mustVisit >= 5
+    ? `${config.name} is a strong city for coffee. ${mustVisit} cafés worth going out of your way for.`
+    : `${config.name} has solid options. Top pick: ${topCafe.name} at ${topCafe.score.toFixed(1)}.`;
+
   const cafeRows = cityCafes.map(function(cafe, i) {
     const color = getScoreColor(cafe.score);
     const slug = makeSlug(cafe.name, cafe.suburb);
-    return `<a href="/review/${slug}" class="cafe-row" data-lat="${cafe.lat || ""}" data-lng="${cafe.lng || ""}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${color};min-width:48px;text-align:center;">${cafe.score.toFixed(1)}</div>
+    const noteText = cafe.notes ? cafe.notes.substring(0, 70) + (cafe.notes.length > 70 ? "..." : "") : "";
+    return `<a href="/review/${slug}" class="cafe-row" data-lat="${cafe.lat || ""}" data-lng="${cafe.lng || ""}" data-suburb="${cafe.suburb}" data-name="${cafe.name}" data-score="${cafe.score}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:${color};border-radius:14px 0 0 14px;"></div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${color};min-width:48px;text-align:center;margin-left:8px;">${cafe.score.toFixed(1)}</div>
       <div style="flex:1;">
         <div style="font-weight:600;font-size:15px;color:#fff;">${cafe.name}</div>
         <div class="cafe-suburb" style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">${cafe.suburb} · ${cafe.price || ""}</div>
         <div class="cafe-distance" style="font-size:11px;color:rgba(197,157,80,0.6);margin-top:2px;"></div>
+        ${noteText ? `<div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;font-style:italic;">${noteText}</div>` : ""}
       </div>
-      <div style="padding:4px 12px;border-radius:20px;background:${color}22;color:${color};border:1px solid ${color}55;font-size:10px;font-weight:700;letter-spacing:2px;">${(cafe.verdict || "").toUpperCase()}</div>
+      <div style="padding:4px 12px;border-radius:20px;background:${color};color:#000;font-size:10px;font-weight:700;letter-spacing:2px;flex-shrink:0;">${(cafe.verdict || "").toUpperCase()}</div>
     </a>`;
   }).join("");
 
@@ -161,20 +173,18 @@ function renderCityPage(citySlug, cafes, allCafes) {
   </nav>
 
   <div class="hero">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-      <div class="hero-tag">${config.stateShort} · CITY GUIDE</div>
-      <button onclick="if(navigator.share){navigator.share({title:'Best Coffee in ${config.name}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">↑ Share this guide</button>
-    </div>
+    <div class="hero-tag">${config.stateShort} · CITY GUIDE</div>
     <h1>Best Coffee in ${config.name}</h1>
     <p>Every café reviewed with the same two drinks — one latte and one double shot espresso. No sponsorships, no agendas. Just honest scores from ${cityCafes.length}+ ${config.name} cafés.</p>
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="stat-num">${cityCafes.length}</div><div class="stat-label">Cafés Reviewed</div></div>
-    <div class="stat"><div class="stat-num">${mustVisit}</div><div class="stat-label">Must Visit (7.5+)</div></div>
-    <div class="stat"><div class="stat-num">${avg}</div><div class="stat-label">Avg Score</div></div>
-    <div class="stat"><div class="stat-num">${suburbs}</div><div class="stat-label">Suburbs</div></div>
+    <div class="stat"><div class="stat-num" style="color:#c8a96e;">${cityCafes.length}</div><div class="stat-label">Cafés Reviewed</div></div>
+    <div class="stat"><div class="stat-num" style="color:${mustVisitColor};">${mustVisit}</div><div class="stat-label">Must Visit (7.5+)</div></div>
+    <div class="stat"><div class="stat-num" style="color:${avgColor};">${avg}</div><div class="stat-label">Avg Score</div></div>
+    <div class="stat"><div class="stat-num" style="color:#c8a96e;">${suburbs}</div><div class="stat-label">Suburbs</div></div>
   </div>
+  <div style="max-width:800px;margin:0 auto;padding:0 24px 20px;font-size:13px;color:rgba(255,255,255,0.4);font-style:italic;">${contextLine}</div>
 
   <div class="content">
     <div class="filter-row">
@@ -199,6 +209,7 @@ function renderCityPage(citySlug, cafes, allCafes) {
     <p>All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
     No café pays for placement. <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a></p>
     ${citySlug === "brisbane" ? '<a href="/brisbane-cafes-to-avoid" class="avoid-link">⚠ Cafés to Avoid in Brisbane →</a><br/><br/>' : ""}
+    <button onclick="if(navigator.share){navigator.share({title:'Best Coffee in ${config.name}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin:0 auto 20px;text-decoration:underline;">↑ Share this city guide</button>
     <a href="https://koffeereview.com.au" class="browse-btn">
       <img src="/logo.jpg" alt="Koffee Review" />Browse All Reviews
     </a>
