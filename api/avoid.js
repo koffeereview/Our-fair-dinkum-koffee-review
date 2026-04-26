@@ -158,7 +158,7 @@ export default async function handler(req, res) {
     <div class="links-row">
       <a href="/best-coffee-brisbane.html" class="link-btn link-btn-gold">Best Coffee Brisbane →</a>
       <a href="/city/brisbane" class="link-btn">All Brisbane Cafés</a>
-      <a href="/leaderboard.html" class="link-btn">Top 10 Australia</a>
+      <a href="/leaderboard" class="link-btn">Top 10 Australia</a>
       <a href="https://koffeereview.com.au" class="link-btn">Browse All Reviews</a>
     </div>
   </div>
