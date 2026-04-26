@@ -85,7 +85,7 @@ function renderHTML(cafe, allCafes) {
   const isTop10 = top10Slugs.includes(slug);
   const citySlug = citySlugMap[(cafe.city || "").toLowerCase()];
   const suburbSlug = suburbSlugMap[(cafe.suburb || "").toLowerCase()];
-  const brisbaneLink = cafe.city.toLowerCase().includes("brisbane") ? '<a class="internal-link" href="/best-coffee-brisbane.html">Best Coffee in Brisbane <span>→</span></a>' : "";
+  const brisbaneLink = cafe.city.toLowerCase().includes("brisbane") ? '<a class="internal-link" href="/best-coffee-brisbane">Best Coffee in Brisbane <span>→</span></a>' : "";
   const suburbLink = suburbSlug ? `<a class="internal-link" href="/suburb/${suburbSlug}">Best Coffee in ${cafe.suburb} <span>→</span></a>` : "";
   const cityLink = citySlug ? `<a class="internal-link" href="/city/${citySlug}">All ${cafe.city} Cafés <span>→</span></a>` : "";
 
