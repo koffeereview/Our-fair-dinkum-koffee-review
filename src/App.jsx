@@ -624,7 +624,9 @@ export default function App() {
     })
     .filter(function(c) {
       if (nearMe && userLocation) {
-        return c._distance !== null && c._distance <= 4;
+        const withinDistance = c._distance !== null && c._distance <= 4;
+        const inCity = city === "All" || c.city === city;
+        return withinDistance && inCity;
       }
       return true;
     })
