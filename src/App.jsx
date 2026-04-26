@@ -905,11 +905,6 @@ export default function App() {
                         }
                         return null;
                       })()}
-                      {cafe.notes && !isSelected && (
-                        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginTop: 4, fontStyle: "italic", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", maxWidth: "100%" }}>
-                          {cafe.notes.length > 60 ? cafe.notes.substring(0, 60) + "..." : cafe.notes}
-                        </div>
-                      )}
                     </div>
                   </div>
                   {isSelected && (
