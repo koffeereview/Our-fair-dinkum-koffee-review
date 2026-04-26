@@ -71,21 +71,21 @@ export default async function handler(req, res) {
     // Podium — #2 left, #1 centre, #3 right
     const p1 = top10[0]; const p2 = top10[1]; const p3 = top10[2];
 
-    function podiumBlock(cafe, rank, height, bgColor, borderColor, scoreColor, emoji, textColor) {
+    function podiumBlock(cafe, height, bgColor, borderColor, scoreColor, emoji, textColor) {
       const slug = makeSlug(cafe.name, cafe.suburb);
       const verdict = cafe.verdict || getVerdict(cafe.score);
-      return `
-        <a href="/review/${slug}" style="flex:1;text-align:center;text-decoration:none;color:inherit;">
-          <div style="font-size:24px;margin-bottom:8px;">${emoji}</div>
-          <div style="height:${height}px;background:${bgColor};border:1px solid ${borderColor};border-radius:8px 8px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${scoreColor};line-height:1;">${cafe.score.toFixed(1)}</div>
-            <div style="font-size:8px;letter-spacing:2px;color:${scoreColor};opacity:0.7;">${verdict.toUpperCase()}</div>
-          </div>
-          <div style="padding:12px 8px;background:${bgColor.replace('0.25','0.08').replace('0.1','0.04')};border:1px solid ${borderColor};border-top:none;border-radius:0 0 8px 8px;">
-            <div style="font-size:13px;font-weight:600;color:${textColor};margin-bottom:2px;">${cafe.name}</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.35);">${cafe.suburb} · ${cafe.city}</div>
-          </div>
-        </a>`;
+      const bgLight = bgColor.replace("0.25","0.08").replace("0.15","0.06").replace("0.1","0.04");
+      return '<a href="/review/' + slug + '" style="flex:1;text-align:center;text-decoration:none;color:inherit;">' +
+        '<div style="font-size:24px;margin-bottom:8px;">' + emoji + '</div>' +
+        '<div style="height:' + height + 'px;background:' + bgColor + ';border:1px solid ' + borderColor + ';border-radius:8px 8px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;">' +
+          '<div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:' + scoreColor + ';line-height:1;">' + cafe.score.toFixed(1) + '</div>' +
+          '<div style="font-size:8px;letter-spacing:2px;color:' + scoreColor + ';opacity:0.7;">' + verdict.toUpperCase() + '</div>' +
+        '</div>' +
+        '<div style="padding:12px 8px;background:' + bgLight + ';border:1px solid ' + borderColor + ';border-top:none;border-radius:0 0 8px 8px;">' +
+          '<div style="font-size:13px;font-weight:600;color:' + textColor + ';margin-bottom:2px;">' + cafe.name + '</div>' +
+          '<div style="font-size:10px;color:rgba(255,255,255,0.35);">' + cafe.suburb + ' · ' + cafe.city + '</div>' +
+        '</div>' +
+        '</a>';
     }
 
     // Ranked rows #4-10
@@ -163,9 +163,9 @@ export default async function handler(req, res) {
   </div>
 
   <div class="podium">
-    ${podiumBlock(p2, 2, 58, "rgba(255,255,255,0.08)", "rgba(255,255,255,0.18)", "rgba(255,255,255,0.8)", "🥈", "rgba(255,255,255,0.8)")}
-    ${podiumBlock(p1, 1, 82, "rgba(197,157,80,0.25)", "rgba(197,157,80,0.5)", "#c8a96e", "🥇", "#f5e6c8")}
-    ${podiumBlock(p3, 3, 44, "rgba(251,146,60,0.1)", "rgba(251,146,60,0.3)", "rgba(251,146,60,0.8)", "🥉", "rgba(255,255,255,0.7)")}
+    ${podiumBlock(p2, 58, "rgba(255,255,255,0.08)", "rgba(255,255,255,0.18)", "rgba(255,255,255,0.8)", "🥈", "rgba(255,255,255,0.8)")}
+    ${podiumBlock(p1, 82, "rgba(197,157,80,0.25)", "rgba(197,157,80,0.5)", "#c8a96e", "🥇", "#f5e6c8")}
+    ${podiumBlock(p3, 44, "rgba(251,146,60,0.1)", "rgba(251,146,60,0.3)", "rgba(251,146,60,0.8)", "🥉", "rgba(255,255,255,0.7)")}
   </div>
 
   <div class="ranked">
