@@ -74,16 +74,28 @@ function renderSuburbPage(suburbSlug, cafes) {
   const desc = "Honest coffee reviews for cafés in " + config.name + ", " + config.city + ". " + suburbCafes.length + " cafés rated by Koffee Review. One latte and one double shot espresso every time.";
   const canonicalUrl = "https://koffeereview.com.au/suburb/" + suburbSlug;
 
+  const mustVisitColor = mustVisit === 0 ? "#f87171" : "#c8a96e";
+  const avgColor = parseFloat(avg) < 7.0 ? "#f87171" : "#c8a96e";
+  const topCafe = suburbCafes[0];
+  const contextLine = parseFloat(avg) < 7.0 || mustVisit === 0
+    ? `${config.name} has room to improve. Best bet: ${topCafe.name} at ${topCafe.score.toFixed(1)}.`
+    : mustVisit >= 3
+    ? `${config.name} is a strong suburb. ${mustVisit} cafés worth going out of your way for.`
+    : `${config.name} has some solid options. Top pick: ${topCafe.name} at ${topCafe.score.toFixed(1)}.`;
+
   const cafeRows = suburbCafes.map(function(cafe) {
     const color = getScoreColor(cafe.score);
     const slug = makeSlug(cafe.name, cafe.suburb);
-    return `<a href="/review/${slug}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${color};min-width:48px;text-align:center;">${cafe.score.toFixed(1)}</div>
+    const noteText = cafe.notes ? cafe.notes.substring(0, 70) + (cafe.notes.length > 70 ? "..." : "") : "";
+    return `<a href="/review/${slug}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:${color};border-radius:14px 0 0 14px;"></div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${color};min-width:48px;text-align:center;margin-left:8px;">${cafe.score.toFixed(1)}</div>
       <div style="flex:1;">
         <div style="font-weight:600;font-size:15px;color:#fff;">${cafe.name}</div>
         <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">${cafe.suburb} · ${cafe.price || ""}</div>
+        ${noteText ? `<div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;font-style:italic;">${noteText}</div>` : ""}
       </div>
-      <div style="padding:4px 12px;border-radius:20px;background:${color}22;color:${color};border:1px solid ${color}55;font-size:10px;font-weight:700;letter-spacing:2px;">${(cafe.verdict || "").toUpperCase()}</div>
+      <div style="padding:4px 12px;border-radius:20px;background:${color};color:#000;font-size:10px;font-weight:700;letter-spacing:2px;flex-shrink:0;">${(cafe.verdict || "").toUpperCase()}</div>
     </a>`;
   }).join("");
 
@@ -122,11 +134,12 @@ function renderSuburbPage(suburbSlug, cafes) {
     .hero-tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; background:rgba(197,157,80,0.1); color:#c8a96e; border:1px solid rgba(197,157,80,0.3); margin-bottom:16px; }
     h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,5vw,48px); letter-spacing:2px; line-height:1.1; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px; }
     .hero p { font-size:15px; color:rgba(255,255,255,0.6); line-height:1.8; }
-    .stats { display:flex; gap:12px; padding:0 24px 24px; max-width:800px; margin:0 auto; flex-wrap:wrap; }
+    .stats { display:flex; gap:12px; padding:0 24px 8px; max-width:800px; margin:0 auto; flex-wrap:wrap; }
     .stat { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px 16px; flex:1; min-width:100px; }
-    .stat-num { font-family:'Bebas Neue',sans-serif; font-size:26px; color:#c8a96e; line-height:1; }
+    .stat-num { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1; }
     .stat-label { font-size:11px; color:rgba(255,255,255,0.4); margin-top:2px; }
-    .content { max-width:800px; margin:0 auto; padding:0 24px 80px; }
+    .context-line { max-width:800px; margin:0 auto; padding:0 24px 20px; font-size:13px; color:rgba(255,255,255,0.4); font-style:italic; }
+    .content { max-width:800px; margin:0 auto; padding:0 24px 40px; }
     .section-title { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; color:rgba(197,157,80,0.8); margin-bottom:16px; }
     .breadcrumb { display:flex; gap:8px; align-items:center; padding:0 24px 20px; max-width:800px; margin:0 auto; font-size:12px; color:rgba(255,255,255,0.3); flex-wrap:wrap; }
     .breadcrumb a { color:rgba(197,157,80,0.6); text-decoration:none; }
@@ -134,6 +147,8 @@ function renderSuburbPage(suburbSlug, cafes) {
     .footer p { font-size:13px; color:rgba(255,255,255,0.3); margin-bottom:16px; line-height:1.7; }
     .browse-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; }
     .browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }
+    .share-link { display:block; font-size:13px; color:rgba(255,255,255,0.4); cursor:pointer; background:none; border:none; font-family:'DM Sans',sans-serif; margin-bottom:20px; text-decoration:underline; }
+    .share-link:hover { color:#c8a96e; }
   </style>
 </head>
 <body>
@@ -154,19 +169,18 @@ function renderSuburbPage(suburbSlug, cafes) {
   </div>
 
   <div class="hero">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-      <div class="hero-tag">${config.city.toUpperCase()} · SUBURB GUIDE</div>
-      <button onclick="if(navigator.share){navigator.share({title:'Best Coffee in ${config.name}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">↑ Share this guide</button>
-    </div>
+    <div class="hero-tag">${config.city.toUpperCase()} · SUBURB GUIDE</div>
     <h1>Best Coffee in ${config.name}</h1>
     <p>${suburbCafes.length} cafés reviewed in ${config.name}, ${config.city}. One latte and one double shot espresso every time. No sponsorships. Just honest scores.</p>
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="stat-num">${suburbCafes.length}</div><div class="stat-label">Cafés Reviewed</div></div>
-    <div class="stat"><div class="stat-num">${mustVisit}</div><div class="stat-label">Must Visit (7.5+)</div></div>
-    <div class="stat"><div class="stat-num">${avg}</div><div class="stat-label">Avg Score</div></div>
+    <div class="stat"><div class="stat-num" style="color:#c8a96e;">${suburbCafes.length}</div><div class="stat-label">Cafés Reviewed</div></div>
+    <div class="stat"><div class="stat-num" style="color:${mustVisitColor};">${mustVisit}</div><div class="stat-label">Must Visit (7.5+)</div></div>
+    <div class="stat"><div class="stat-num" style="color:${avgColor};">${avg}</div><div class="stat-label">Avg Score</div></div>
   </div>
+
+  <div class="context-line">${contextLine}</div>
 
   <div class="content">
     <div class="section-title">ALL ${config.name.toUpperCase()} CAFÉS</div>
@@ -177,6 +191,7 @@ function renderSuburbPage(suburbSlug, cafes) {
     <p>All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
     <a href="/city/${config.citySlug}" style="color:#c8a96e;">See all ${config.city} cafés →</a> &nbsp;·&nbsp;
     <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a></p>
+    <button class="share-link" onclick="if(navigator.share){navigator.share({title:'Best Coffee in ${config.name}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}">↑ Share this suburb guide</button>
     <a href="https://koffeereview.com.au" class="browse-btn">
       <img src="/logo.jpg" alt="Koffee Review" />Browse All Reviews
     </a>
