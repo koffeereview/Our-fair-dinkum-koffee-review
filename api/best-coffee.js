@@ -76,14 +76,17 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
   const cafeRows = cityCafes.map(function(cafe) {
     const color = getScoreColor(cafe.score);
     const slug = makeSlug(cafe.name, cafe.suburb);
-    return `<a href="/review/${slug}" class="cafe-card" data-lat="${cafe.lat || ""}" data-lng="${cafe.lng || ""}" data-suburb="${cafe.suburb}" data-name="${cafe.name}" data-score="${cafe.score}">
-      <div class="cafe-score" style="color:${color};">${cafe.score.toFixed(1)}</div>
+    const noteText = cafe.notes ? cafe.notes.substring(0, 70) + (cafe.notes.length > 70 ? "..." : "") : "";
+    return `<a href="/review/${slug}" class="cafe-card" data-lat="${cafe.lat || ""}" data-lng="${cafe.lng || ""}" data-suburb="${cafe.suburb}" data-name="${cafe.name}" data-score="${cafe.score}" style="position:relative;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:${color};border-radius:14px 0 0 14px;"></div>
+      <div class="cafe-score" style="color:${color};margin-left:8px;">${cafe.score.toFixed(1)}</div>
       <div class="cafe-info">
         <div class="cafe-name">${cafe.name}</div>
         <div class="cafe-suburb">${cafe.suburb} · ${cafe.price || ""}</div>
         <div class="cafe-distance"></div>
+        ${noteText ? `<div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;font-style:italic;">${noteText}</div>` : ""}
       </div>
-      <div class="cafe-verdict" style="background:${color}22;color:${color};border:1px solid ${color}55;">${(cafe.verdict || getVerdict(cafe.score)).toUpperCase()}</div>
+      <div class="cafe-verdict" style="background:${color};color:#000;border:none;">${(cafe.verdict || getVerdict(cafe.score)).toUpperCase()}</div>
     </a>`;
   }).join("");
 
