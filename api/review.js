@@ -371,7 +371,7 @@ function renderHTML(cafe, allCafes) {
       ${suburbLink}
       ${brisbaneLink}
       ${cityLink}
-      <a class="internal-link" href="/leaderboard.html">Australia's Top 10 Cafés <span>→</span></a>
+      <a class="internal-link" href="/leaderboard">Australia's Top 10 Cafés <span>→</span></a>
       <a class="internal-link" href="https://koffeereview.com.au">Browse All Reviews <span>→</span></a>
     </div>
   </div>
