@@ -212,7 +212,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
       <a href="/disclosure">Disclosure</a>
       <a href="/leaderboard">Top 10 Australia</a>
       <a href="/best-coffee-brisbane">Best Coffee Brisbane</a>
-      <a href="/best-coffee-gold-coast.html">Best Coffee Gold Coast</a>
+      <a href="/best-coffee-gold-coast">Best Coffee Gold Coast</a>
     </div>
   </div>
 
