@@ -51,15 +51,14 @@ export default async function handler(req, res) {
     const canonicalUrl = "https://koffeereview.com.au/brisbane-cafes-to-avoid";
 
     const cafeRows = avoidCafes.map(function(cafe) {
-      const color = getScoreColor(cafe.score);
       const slug = makeSlug(cafe.name, cafe.suburb);
-      return `<a href="/review/${slug}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${color};min-width:48px;text-align:center;">${cafe.score.toFixed(1)}</div>
+      return `<a href="/review/${slug}" style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(248,113,113,0.15);border-radius:14px;padding:16px 20px;margin-bottom:8px;text-decoration:none;color:inherit;position:relative;overflow:hidden;">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#f87171;border-radius:14px 0 0 14px;"></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:#f87171;min-width:48px;text-align:center;margin-left:8px;">${cafe.score.toFixed(1)}</div>
         <div style="flex:1;">
           <div style="font-weight:600;font-size:15px;color:#fff;">${cafe.name}</div>
           <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">${cafe.suburb}, ${cafe.city} · ${cafe.price || ""}</div>
         </div>
-        <div style="padding:4px 12px;border-radius:20px;background:${color}22;color:${color};border:1px solid ${color}55;font-size:10px;font-weight:700;letter-spacing:2px;">${(cafe.verdict || "NOT FOR US").toUpperCase()}</div>
       </a>`;
     }).join("");
 
