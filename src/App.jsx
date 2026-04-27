@@ -344,7 +344,7 @@ function AboutDrawer({ open, onClose }) {
           </a>
 
           {/* BEST BRISBANE LINK */}
-          <a href="/best-coffee-brisbane.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(197,157,80,0.25)", background:"rgba(197,157,80,0.06)", textDecoration:"none" }}>
+          <a href="/best-coffee-brisbane" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(197,157,80,0.25)", background:"rgba(197,157,80,0.06)", textDecoration:"none" }}>
             <span style={{ fontSize:14, fontWeight:600, color:"#c8a96e" }}>Best Coffee in Brisbane</span>
             <span style={{ fontSize:12, color:"rgba(197,157,80,0.5)" }}>→</span>
           </a>
@@ -379,7 +379,7 @@ function AboutDrawer({ open, onClose }) {
 
                 <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>GOLD COAST</div>
                 <a href="/city/gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>All Gold Coast Cafés <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/best-coffee-gold-coast.html" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Best Coffee Gold Coast <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/best-coffee-gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Best Coffee Gold Coast <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
                 <a href="/suburb/burleigh-heads-gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Burleigh Heads <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
 
                 <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>MORE CITIES</div>
