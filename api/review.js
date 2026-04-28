@@ -39,7 +39,7 @@ function parseCSV(text) {
 }
 
 function getScoreColor(score) {
-  if (score >= 9.0) return "#FFD700";
+  if (score >= 9.0) return "#ffffff";
   if (score >= 8.0) return "#4ade80";
   if (score >= 7.0) return "#2dd4bf";
   if (score >= 6.0) return "#facc15";
