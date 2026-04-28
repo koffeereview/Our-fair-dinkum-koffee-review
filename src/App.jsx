@@ -517,6 +517,43 @@ export default function App() {
       .catch(function() { setLoading(false); });
   }, []);
 
+  // SMOOTH PAGE TRANSITIONS — fade in on load
+  useEffect(function() {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 0.3s ease";
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        document.body.style.opacity = "1";
+      });
+    });
+  }, []);
+
+  // PULL TO REFRESH
+  useEffect(function() {
+    let startY = 0;
+    let isPulling = false;
+    function onTouchStart(e) { startY = e.touches[0].clientY; }
+    function onTouchMove(e) { if (window.scrollY === 0 && e.touches[0].clientY - startY > 80) { isPulling = true; } }
+    function onTouchEnd() {
+      if (isPulling) {
+        isPulling = false;
+        setLoading(true);
+        fetch(SHEET_URL)
+          .then(function(r) { return r.text(); })
+          .then(function(text) { setCafes(parseCSV(text)); setLoading(false); })
+          .catch(function() { setLoading(false); });
+      }
+    }
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
+    return function() {
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
+
   useEffect(function() {
     if (view === "map" && !leafletLoaded) {
       const link = document.createElement("link");
@@ -867,7 +904,23 @@ export default function App() {
               📍 Showing cafés within 4km of your location — closest first
             </div>}
             {nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 40, color: "rgba(255,255,255,0.3)", fontSize: 14 }}>No reviewed cafés within 4km. Try browsing all cafés instead.</div>}
-            {loading && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading cafes...</div>}
+            {loading && (
+              <div>
+                {[1,2,3,4,5].map(function(i) {
+                  return (
+                    <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: 20, marginBottom: 10, display: "flex", alignItems: "center", gap: 16, position: "relative", overflow: "hidden" }}>
+                      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, background: "rgba(255,255,255,0.06)", borderRadius: "16px 0 0 16px" }} />
+                      <div style={{ width: 48, height: 32, background: "rgba(255,255,255,0.06)", borderRadius: 6, marginLeft: 8, flexShrink: 0 }} />
+                      <div style={{ flex: 1 }}>
+                        <div style={{ height: 14, background: "rgba(255,255,255,0.06)", borderRadius: 6, marginBottom: 8, width: "60%" }} />
+                        <div style={{ height: 11, background: "rgba(255,255,255,0.04)", borderRadius: 6, width: "40%" }} />
+                      </div>
+                      <div style={{ width: 60, height: 22, background: "rgba(255,255,255,0.06)", borderRadius: 20 }} />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
             {!loading && !nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafes found</div>}
             {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
               <div style={{ fontSize: 11, letterSpacing: 2, color: "rgba(197,157,80,0.5)", marginBottom: 12 }}>LATEST REVIEWS</div>
@@ -884,7 +937,15 @@ export default function App() {
               return (
                 <div key={cafe.id}
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}
-                  onClick={function() { setSelected(isSelected ? null : cafe); }}>
+                  onClick={function() {
+                    setSelected(isSelected ? null : cafe);
+                    if (navigator.vibrate) {
+                      if (cafe.score >= 8.0) navigator.vibrate([40, 20, 40]);
+                      else if (cafe.score >= 7.5) navigator.vibrate(40);
+                      else if (cafe.score < 4.0) navigator.vibrate([30, 10, 30, 10, 30]);
+                      else navigator.vibrate(20);
+                    }
+                  }}>
                   <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, background: cardColor, borderRadius: "16px 0 0 16px" }} />
                   <div style={{ display: "flex", alignItems: "center", gap: 16, marginLeft: 8 }}>
                     <ScoreRing score={cafe.score} />
