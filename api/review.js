@@ -454,36 +454,41 @@ function renderHTML(cafe, allCafes) {
         }, 200);
       }
 
-      // HAPTIC FEEDBACK on card taps
+      // HAPTIC FEEDBACK
       const score = ${cafe.score};
-      function haptic() {
-        if (!navigator.vibrate) return;
+      if (navigator.vibrate) {
         if (score >= 8.0) navigator.vibrate([40, 20, 40]);
         else if (score >= 7.5) navigator.vibrate(40);
         else if (score < 4.0) navigator.vibrate([30, 10, 30, 10, 30]);
         else navigator.vibrate(20);
       }
-      haptic();
-
-      // SMOOTH PAGE TRANSITION — fade in
-      document.body.style.opacity = "0";
-      document.body.style.transition = "opacity 0.3s ease";
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-          document.body.style.opacity = "1";
-        });
-      });
     });
+
+    // SMOOTH PAGE TRANSITION — fade in on load
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 0.3s ease";
+    window.addEventListener("load", function() {
+      document.body.style.opacity = "1";
+    });
+    setTimeout(function() { document.body.style.opacity = "1"; }, 500);
 
     // SMOOTH TRANSITION on links — fade out before navigating
     document.addEventListener("click", function(e) {
       const link = e.target.closest("a");
-      if (link && link.href && !link.target && !link.href.startsWith("mailto") && !link.href.startsWith("tel")) {
-        e.preventDefault();
-        document.body.style.opacity = "0";
-        setTimeout(function() { window.location = link.href; }, 250);
-      }
+      if (!link) return;
+      if (!link.href) return;
+      if (link.target) return;
+      if (link.href.startsWith("mailto")) return;
+      if (link.href.startsWith("tel")) return;
+      if (link.href.includes("#")) return;
+      if (link.onclick) return;
+      if (link.getAttribute("onclick")) return;
+      e.preventDefault();
+      document.body.style.opacity = "0";
+      setTimeout(function() { window.location = link.href; }, 250);
     });
+
+    window.addEventListener('load', function() {
       setTimeout(function() {
         const color = "${color}";
         const map = L.map("map").setView([${cafe.lat}, ${cafe.lng}], 15);
