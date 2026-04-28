@@ -25,9 +25,6 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/coffee-near-me", "destination": "/coffee-near-me.html" },
-    { "source": "/:file.jpg", "destination": "/:file.jpg" },
-    { "source": "/:file.png", "destination": "/:file.png" },
-    { "source": "/:file.svg", "destination": "/:file.svg" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
