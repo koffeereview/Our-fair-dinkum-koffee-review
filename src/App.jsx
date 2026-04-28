@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
 function parseCSV(text) {
-  const lines = text.trim().split("\n");
+  const lines = text.trim().split("\n"); 
   
   function splitCSVLine(line) {
     const result = [];
