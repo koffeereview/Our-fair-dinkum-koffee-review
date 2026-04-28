@@ -720,9 +720,8 @@ export default function App() {
           </a>
           </div>
           <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
-            style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4, padding: 0 }}>
-            <span style={{ fontSize: 11, color: "#c8a96e" }}>Suggest a Café</span>
-            <span style={{ fontSize: 11, color: "#FFD700", fontWeight: 700 }}>→</span>
+            style={{ background: "linear-gradient(135deg, #c8a96e, #f5e6c8)", border: "none", cursor: "pointer", padding: "7px 16px", borderRadius: 20, display: "flex", alignItems: "center", gap: 4 }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "#000", letterSpacing: 0.5 }}>+ Suggest a Café</span>
           </button>
         </div>
 
@@ -775,7 +774,16 @@ export default function App() {
 
         {!loading && <ScoreChart cafes={cafes} />}
 
-        {!loading && (
+        {/* HOW WE SCORE BLOCK */}
+        {!loading && cafes.length > 0 && (
+          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", margin:"12px 24px", padding:"14px 16px", borderRadius:12, background:"#1a1a1a", borderLeft:"3px solid #C9A84C", textDecoration:"none" }}>
+            <div>
+              <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#C9A84C", textTransform:"uppercase", marginBottom:4 }}>How We Score</div>
+              <div style={{ fontSize:13, color:"rgba(255,255,255,0.45)", lineHeight:1.5 }}>One latte. One espresso. Every time. No exceptions.</div>
+            </div>
+            <div style={{ fontSize:22, color:"#C9A84C", marginLeft:12, flexShrink:0 }}>›</div>
+          </a>
+        )}
           <div style={{ display: "flex", gap: 16, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
               style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
@@ -801,14 +809,7 @@ export default function App() {
         )}
       </div>
 
-      {/* HOW WE SCORE LINE */}
-      {!loading && cafes.length > 0 && (
-        <div style={{ padding: "0 24px", maxWidth: 800, margin: "0 auto", marginBottom: 8 }}>
-          <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(197,157,80,0.6)", textDecoration: "none", letterSpacing: 0.5 }}>
-            One latte. One double shot espresso. Every time. <span style={{ color: "#c8a96e" }}>How we score →</span>
-          </a>
-        </div>
-      )}
+      {/* HOW WE SCORE LINE MOVED TO ABOVE STATS */}
 
       {view === "map" ? (
         <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
