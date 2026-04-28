@@ -38,7 +38,7 @@ function parseCSV(text) {
 }
 
 function getScoreColor(score) {
-  if (score >= 9.0) return "#FFD700";
+  if (score >= 9.0) return "#ffffff";
   if (score >= 8.0) return "#4ade80";
   if (score >= 7.0) return "#2dd4bf";
   if (score >= 6.0) return "#facc15";
@@ -47,7 +47,7 @@ function getScoreColor(score) {
 }
 
 function getScoreBg(score) {
-  if (score >= 9.0) return "rgba(255,215,0,0.15)";
+  if (score >= 9.0) return "rgba(255,255,255,0.15)";
   if (score >= 8.0) return "rgba(74,222,128,0.15)";
   if (score >= 7.0) return "rgba(45,212,191,0.15)";
   if (score >= 6.0) return "rgba(250,204,21,0.15)";
@@ -56,7 +56,7 @@ function getScoreBg(score) {
 }
 
 function getScoreBorder(score) {
-  if (score >= 9.0) return "rgba(255,215,0,0.3)";
+  if (score >= 9.0) return "rgba(255,255,255,0.3)";
   if (score >= 8.0) return "rgba(74,222,128,0.3)";
   if (score >= 7.0) return "rgba(45,212,191,0.3)";
   if (score >= 6.0) return "rgba(250,204,21,0.3)";
