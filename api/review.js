@@ -322,7 +322,7 @@ function renderHTML(cafe, allCafes) {
       <div class="score-ring-wrap">
         <svg width="110" height="110">
           <circle cx="55" cy="55" r="44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="7"/>
-          <circle cx="55" cy="55" r="44" fill="none" stroke="${color}" stroke-width="7" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
+          <circle id="score-ring" cx="55" cy="55" r="44" fill="none" stroke="${color}" stroke-width="7" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}" stroke-linecap="round"/>
         </svg>
         <div class="score-ring-inner">
           <span class="score-number">${cafe.score}</span>
@@ -443,7 +443,47 @@ function renderHTML(cafe, allCafes) {
     } catch(e) {}
 
     ${(cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 && Math.abs(cafe.lng) > 1) ? `
-    window.addEventListener('load', function() {
+    // SCORE RING ANIMATION
+    document.addEventListener("DOMContentLoaded", function() {
+      const ring = document.getElementById("score-ring");
+      if (ring) {
+        ring.style.strokeDashoffset = "276";
+        ring.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1)";
+        setTimeout(function() {
+          ring.style.strokeDashoffset = "${offset}";
+        }, 200);
+      }
+
+      // HAPTIC FEEDBACK on card taps
+      const score = ${cafe.score};
+      function haptic() {
+        if (!navigator.vibrate) return;
+        if (score >= 8.0) navigator.vibrate([40, 20, 40]);
+        else if (score >= 7.5) navigator.vibrate(40);
+        else if (score < 4.0) navigator.vibrate([30, 10, 30, 10, 30]);
+        else navigator.vibrate(20);
+      }
+      haptic();
+
+      // SMOOTH PAGE TRANSITION — fade in
+      document.body.style.opacity = "0";
+      document.body.style.transition = "opacity 0.3s ease";
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          document.body.style.opacity = "1";
+        });
+      });
+    });
+
+    // SMOOTH TRANSITION on links — fade out before navigating
+    document.addEventListener("click", function(e) {
+      const link = e.target.closest("a");
+      if (link && link.href && !link.target && !link.href.startsWith("mailto") && !link.href.startsWith("tel")) {
+        e.preventDefault();
+        document.body.style.opacity = "0";
+        setTimeout(function() { window.location = link.href; }, 250);
+      }
+    });
       setTimeout(function() {
         const color = "${color}";
         const map = L.map("map").setView([${cafe.lat}, ${cafe.lng}], 15);
