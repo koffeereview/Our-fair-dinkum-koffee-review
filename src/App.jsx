@@ -88,14 +88,13 @@ function doShare(cafe) {
 function ScoreRing(props) {
   const score = props.score;
   const color = getScoreColor(score);
-  const pct = (score / 10) * 100;
   const r = 28;
   const circ = 2 * Math.PI * r;
-  const [displayScore, setDisplayScore] = React.useState(0);
-  const [animated, setAnimated] = React.useState(false);
-  const ref = React.useRef(null);
+  const [displayScore, setDisplayScore] = useState(0);
+  const [animated, setAnimated] = useState(false);
+  const ref = useRef(null);
 
-  React.useEffect(function() {
+  useEffect(function() {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(function(entries) {
