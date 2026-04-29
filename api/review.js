@@ -464,14 +464,6 @@ function renderHTML(cafe, allCafes) {
       }
     });
 
-    // SMOOTH PAGE TRANSITION — fade in on load
-    document.body.style.opacity = "0";
-    document.body.style.transition = "opacity 0.3s ease";
-    window.addEventListener("load", function() {
-      document.body.style.opacity = "1";
-    });
-    setTimeout(function() { document.body.style.opacity = "1"; }, 500);
-
     // SMOOTH TRANSITION on links — fade out before navigating
     document.addEventListener("click", function(e) {
       const link = e.target.closest("a");
@@ -483,9 +475,6 @@ function renderHTML(cafe, allCafes) {
       if (link.href.includes("#")) return;
       if (link.onclick) return;
       if (link.getAttribute("onclick")) return;
-      e.preventDefault();
-      document.body.style.opacity = "0";
-      setTimeout(function() { window.location = link.href; }, 250);
     });
 
     window.addEventListener('load', function() {
