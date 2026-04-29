@@ -548,16 +548,6 @@ export default function App() {
       .catch(function() { setLoading(false); });
   }, []);
 
-  // SMOOTH PAGE TRANSITIONS — fade in on load
-  useEffect(function() {
-    document.body.style.opacity = "0";
-    document.body.style.transition = "opacity 0.3s ease";
-    const timer = setTimeout(function() {
-      document.body.style.opacity = "1";
-    }, 100);
-    return function() { clearTimeout(timer); };
-  }, []);
-
   // PULL TO REFRESH
   useEffect(function() {
     let startY = 0;
