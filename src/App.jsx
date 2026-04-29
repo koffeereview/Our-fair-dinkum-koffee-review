@@ -776,12 +776,12 @@ export default function App() {
 
         {/* HOW WE SCORE BLOCK */}
         {!loading && cafes.length > 0 && (
-          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", margin:"8px 24px", padding:"8px 16px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
-            <div>
-              <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#C9A84C", textTransform:"uppercase", marginBottom:2 }}>How We Score</div>
-              <div style={{ fontSize:12, color:"rgba(255,255,255,0.4)", lineHeight:1.4 }}>One latte. One espresso. Every time. No exceptions.</div>
+          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"6px 14px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:8 }}>
+              <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#C9A84C", textTransform:"uppercase" }}>How We Score</div>
+              <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)" }}>· One latte. One espresso. Every time.</div>
             </div>
-            <div style={{ fontSize:20, color:"#C9A84C", marginLeft:12, flexShrink:0 }}>›</div>
+            <div style={{ fontSize:18, color:"#C9A84C", marginLeft:8, flexShrink:0 }}>›</div>
           </a>
         )}
 
