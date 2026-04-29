@@ -552,11 +552,10 @@ export default function App() {
   useEffect(function() {
     document.body.style.opacity = "0";
     document.body.style.transition = "opacity 0.3s ease";
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        document.body.style.opacity = "1";
-      });
-    });
+    const timer = setTimeout(function() {
+      document.body.style.opacity = "1";
+    }, 100);
+    return function() { clearTimeout(timer); };
   }, []);
 
   // PULL TO REFRESH
