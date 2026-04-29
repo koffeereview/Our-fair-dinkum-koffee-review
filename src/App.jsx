@@ -195,6 +195,12 @@ function ScoreChart({ cafes }) {
       </div>
       {open && (
         <div style={{ padding:"0 20px 16px" }}>
+          <style>{`
+            @keyframes growBar {
+              from { width: 0%; }
+              to { width: var(--bar-width); }
+            }
+          `}</style>
           {buckets.map(function(b, i) {
             const count = counts[i];
             const pct = (count / max) * 100;
@@ -203,7 +209,15 @@ function ScoreChart({ cafes }) {
               <div key={b.label} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:6 }}>
                 <div style={{ width:24, fontSize:11, color, fontFamily:"'Bebas Neue',sans-serif", letterSpacing:1 }}>{b.label}</div>
                 <div style={{ flex:1, height:8, background:"rgba(255,255,255,0.06)", borderRadius:4, overflow:"hidden" }}>
-                  <div style={{ height:"100%", width:pct+"%", background:color, borderRadius:4, opacity:0.8 }}/>
+                  <div style={{
+                    height:"100%",
+                    width: pct + "%",
+                    background: color,
+                    borderRadius:4,
+                    opacity:0.8,
+                    animation: "growBar 0.6s cubic-bezier(0.4,0,0.2,1) " + (i * 0.05) + "s both",
+                    "--bar-width": pct + "%"
+                  }}/>
                 </div>
                 <div style={{ width:20, fontSize:11, color:"rgba(255,255,255,0.4)", textAlign:"right" }}>{count}</div>
               </div>
@@ -225,7 +239,7 @@ function PullQuote(props) {
       <div style={{ color: "rgba(197,157,80,0.5)", fontSize: 28, lineHeight: 1, marginTop: -4 }}>"</div>
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5 }}>{random.notes}</div>
-        <div style={{ fontSize: 11, color: "rgba(197,157,80,0.6)", marginTop: 6 }}>— {random.name} {random.score}/10</div>
+        <div style={{ fontSize: 11, color: "rgba(197,157,80,0.6)", marginTop: 6 }}>— {random.name}, {random.city}</div>
       </div>
     </div>
   );
