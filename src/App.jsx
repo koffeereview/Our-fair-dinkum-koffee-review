@@ -91,16 +91,47 @@ function ScoreRing(props) {
   const pct = (score / 10) * 100;
   const r = 28;
   const circ = 2 * Math.PI * r;
+  const [displayScore, setDisplayScore] = React.useState(0);
+  const [animated, setAnimated] = React.useState(false);
+  const ref = React.useRef(null);
+
+  React.useEffect(function() {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !animated) {
+          setAnimated(true);
+          observer.disconnect();
+          const duration = 400;
+          const start = performance.now();
+          function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setDisplayScore(Math.round(eased * score * 10) / 10);
+            if (progress < 1) requestAnimationFrame(step);
+            else setDisplayScore(score);
+          }
+          requestAnimationFrame(step);
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(el);
+    return function() { observer.disconnect(); };
+  }, [score, animated]);
+
+  const displayPct = animated ? (displayScore / 10) * 100 : 0;
+
   return (
-    <div style={{ position: "relative", width: 72, height: 72, flexShrink: 0 }}>
+    <div ref={ref} style={{ position: "relative", width: 72, height: 72, flexShrink: 0 }}>
       <svg width="72" height="72" style={{ transform: "rotate(-90deg)" }}>
         <circle cx="36" cy="36" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="5" />
         <circle cx="36" cy="36" r={r} fill="none" stroke={color} strokeWidth="5"
-          strokeDasharray={circ} strokeDashoffset={circ - (pct / 100) * circ}
-          strokeLinecap="round" style={{ transition: "stroke-dashoffset 1s ease" }} />
+          strokeDasharray={circ} strokeDashoffset={circ - (displayPct / 100) * circ}
+          strokeLinecap="round" style={{ transition: "stroke-dashoffset 0.05s linear" }} />
       </svg>
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 20, color: color, lineHeight: 1 }}>{score}</span>
+        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 20, color: color, lineHeight: 1 }}>{displayScore || score}</span>
         <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>/10</span>
       </div>
     </div>
@@ -907,16 +938,29 @@ export default function App() {
             {nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 40, color: "rgba(255,255,255,0.3)", fontSize: 14 }}>No reviewed cafés within 4km. Try browsing all cafés instead.</div>}
             {loading && (
               <div>
-                {[1,2,3,4,5].map(function(i) {
+                <style>{`
+                  @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.4; }
+                    100% { opacity: 1; }
+                  }
+                  .skeleton-pulse { animation: pulse 1.5s ease-in-out infinite; }
+                  @keyframes scoreReveal {
+                    from { opacity: 0; transform: scale(0.7); }
+                    to { opacity: 1; transform: scale(1); }
+                  }
+                  .score-reveal { animation: scoreReveal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+                `}</style>
+                {[1,2,3,4,5,6,7,8].map(function(i) {
                   return (
-                    <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: 20, marginBottom: 10, display: "flex", alignItems: "center", gap: 16, position: "relative", overflow: "hidden" }}>
+                    <div key={i} className="skeleton-pulse" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: 20, marginBottom: 10, display: "flex", alignItems: "center", gap: 16, position: "relative", overflow: "hidden", animationDelay: (i * 0.1) + "s" }}>
                       <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, background: "rgba(255,255,255,0.06)", borderRadius: "16px 0 0 16px" }} />
-                      <div style={{ width: 48, height: 32, background: "rgba(255,255,255,0.06)", borderRadius: 6, marginLeft: 8, flexShrink: 0 }} />
+                      <div style={{ width: 44, height: 44, background: "rgba(255,255,255,0.06)", borderRadius: "50%", marginLeft: 8, flexShrink: 0 }} />
                       <div style={{ flex: 1 }}>
-                        <div style={{ height: 14, background: "rgba(255,255,255,0.06)", borderRadius: 6, marginBottom: 8, width: "60%" }} />
-                        <div style={{ height: 11, background: "rgba(255,255,255,0.04)", borderRadius: 6, width: "40%" }} />
+                        <div style={{ height: 14, background: "rgba(255,255,255,0.07)", borderRadius: 6, marginBottom: 8, width: Math.random() > 0.5 ? "55%" : "70%" }} />
+                        <div style={{ height: 11, background: "rgba(255,255,255,0.04)", borderRadius: 6, width: "35%" }} />
                       </div>
-                      <div style={{ width: 60, height: 22, background: "rgba(255,255,255,0.06)", borderRadius: 20 }} />
+                      <div style={{ width: 58, height: 22, background: "rgba(255,255,255,0.06)", borderRadius: 20 }} />
                     </div>
                   );
                 })}
