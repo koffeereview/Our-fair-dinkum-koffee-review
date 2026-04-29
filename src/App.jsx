@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react"; 
+import { useState, useEffect, useRef } from "react";
 
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
 function parseCSV(text) {
-  const lines = text.trim().split("\n"); 
+  const lines = text.trim().split("\n");
   
   function splitCSVLine(line) {
     const result = [];
@@ -776,7 +776,7 @@ export default function App() {
 
         {/* HOW WE SCORE BLOCK */}
         {!loading && cafes.length > 0 && (
-          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", margin:"8px 24px", padding:"10px 14px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
+          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", margin:"8px 24px", padding:"8px 16px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
             <div>
               <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#C9A84C", textTransform:"uppercase", marginBottom:2 }}>How We Score</div>
               <div style={{ fontSize:12, color:"rgba(255,255,255,0.4)", lineHeight:1.4 }}>One latte. One espresso. Every time. No exceptions.</div>
@@ -784,6 +784,8 @@ export default function App() {
             <div style={{ fontSize:20, color:"#C9A84C", marginLeft:12, flexShrink:0 }}>›</div>
           </a>
         )}
+
+        {!loading && (
           <div style={{ display: "flex", gap: 16, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
               style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
