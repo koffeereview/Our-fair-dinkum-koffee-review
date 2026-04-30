@@ -10,7 +10,7 @@ function splitCSVLine(line) {
     else { current += char; }
   }
   result.push(current.trim());
-  return result;
+  return result; 
 }
 
 function parseCSV(text) {
