@@ -235,10 +235,10 @@ function PullQuote(props) {
   if (withNotes.length === 0) return null;
   const random = withNotes[Math.floor(Math.random() * withNotes.length)];
   return (
-    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "10px 16px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start", minHeight: 64 }}>
+    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "10px 16px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start" }}>
       <div style={{ color: "rgba(197,157,80,0.5)", fontSize: 22, lineHeight: 1, marginTop: -2, flexShrink: 0 }}>"</div>
-      <div style={{ flex: 1, overflow: "hidden" }}>
-        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{random.notes}</div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5 }}>{random.notes.length > 100 ? random.notes.substring(0, 100) + "..." : random.notes}</div>
         <div style={{ fontSize: 11, color: "rgba(197,157,80,0.6)", marginTop: 4 }}>— {random.name}, {random.city}</div>
       </div>
     </div>
