@@ -118,7 +118,7 @@ export default async function handler(req, res) {
       "<meta name=\"description\" content=\"" + desc + "\" />\n" +
       "<meta property=\"og:title\" content=\"" + title + "\" />\n" +
       "<meta property=\"og:description\" content=\"" + desc + "\" />\n" +
-      "<meta property=\"og:image\" content=\"https://koffeereview.com.au/logo.jpg\" />\n" +
+      "<meta property=\"og:image\" content=\"https://koffeereview.com.au/logo.webp\" />\n" +
       "<meta property=\"og:url\" content=\"" + canonicalUrl + "\" />\n" +
       "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />\n" +
       "<script type=\"application/ld+json\">" + schema1 + "<\/script>\n" +
@@ -148,7 +148,7 @@ export default async function handler(req, res) {
       ".footer-links a:hover { color:#c8a96e; }\n" +
       "</style>\n</head>\n<body>\n" +
       "<nav>\n" +
-      "  <a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.jpg\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a>\n" +
+      "  <a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.webp\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a>\n" +
       "  <a href=\"https://koffeereview.com.au\" class=\"nav-back\">\u2190 All Reviews</a>\n" +
       "</nav>\n" +
       "<div class=\"hero\">\n" +
@@ -163,7 +163,7 @@ export default async function handler(req, res) {
       "</div>\n" +
       "<div class=\"ranked\">" + rankedRows + "</div>\n" +
       "<div class=\"footer\">\n" +
-      "  <a href=\"https://koffeereview.com.au\" class=\"browse-btn\"><img src=\"/logo.jpg\" alt=\"Koffee Review\" />Browse All Reviews</a>\n" +
+      "  <a href=\"https://koffeereview.com.au\" class=\"browse-btn\"><img src=\"/logo.webp\" alt=\"Koffee Review\" />Browse All Reviews</a>\n" +
       "  <p>No caf\u00e9 pays for placement. No score is negotiated.<br/>The coffee earns it or it doesn't.</p>\n" +
       "  <div class=\"footer-quote\">\"600+ cups in. Still chasing that perfect 10.\"</div>\n" +
       "  <div class=\"footer-links\">\n" +
