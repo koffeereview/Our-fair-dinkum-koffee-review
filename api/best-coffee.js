@@ -99,10 +99,10 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
   <meta name="description" content="${desc}" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${desc}" />
-  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
   <meta property="og:url" content="${canonicalUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.jpg"},"about":{"@type":"City","name":"${cityName}","addressCountry":"AU"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"},"about":{"@type":"City","name":"${cityName}","addressCountry":"AU"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Best Coffee ${cityName}","item":"${canonicalUrl}"}]}</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -155,7 +155,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
 <body>
   <nav>
     <a href="https://koffeereview.com.au" class="nav-logo">
-      <img src="/logo.jpg" alt="Koffee Review" />
+      <img src="/logo.webp" alt="Koffee Review" />
       <span>KOFFEE REVIEW</span>
     </a>
     <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
@@ -204,7 +204,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
     No café pays for placement. <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a><br/><br/>
     <a href="/brisbane-cafes-to-avoid" style="color:#f87171;font-size:13px;">${cityName === "Brisbane" ? "See cafés to avoid in Brisbane →" : ""}</a></p>
     <a href="https://koffeereview.com.au" class="browse-btn">
-      <img src="/logo.jpg" alt="Koffee Review" />Browse All Reviews
+      <img src="/logo.webp" alt="Koffee Review" />Browse All Reviews
     </a>
     <div class="footer-links">
       <a href="/about">About</a>
@@ -238,7 +238,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
           const colors = {"9":"#FFD700","8":"#4ade80","7":"#2dd4bf","6":"#facc15","5":"#fb923c"};
           const color = score >= 9 ? colors["9"] : score >= 8 ? colors["8"] : score >= 7 ? colors["7"] : score >= 6 ? colors["6"] : score >= 5 ? colors["5"] : "#f87171";
           const icon = L.divIcon({
-            html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="/logo.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;"/></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:9px;font-weight:700;text-align:center;margin-top:2px;padding:1px 4px;">' + score.toFixed(1) + '</div>',
+            html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="/logo.webp" style="width:32px;height:32px;border-radius:50%;object-fit:cover;"/></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:9px;font-weight:700;text-align:center;margin-top:2px;padding:1px 4px;">' + score.toFixed(1) + '</div>',
             className:"", iconSize:[36,50], iconAnchor:[18,50]
           });
           L.marker([lat, lng], {icon:icon}).addTo(map).bindPopup("<strong>" + name + "</strong><br/>" + score.toFixed(1) + "/10");
