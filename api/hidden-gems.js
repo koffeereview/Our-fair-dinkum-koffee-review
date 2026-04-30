@@ -12,7 +12,7 @@ function splitCSVLine(line) {
   }
   result.push(current.trim());
   return result;
-}
+} 
 
 function parseCSV(text) {
   const lines = text.trim().split("\n");
