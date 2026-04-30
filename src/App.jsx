@@ -1144,6 +1144,13 @@ export default function App() {
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
                 <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>How We Score</a>
               </div>
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 10 }}>
+                <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Best Latte Brisbane</a>
+                <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
+                <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Hidden Gems Brisbane</a>
+                <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
+                <a href="/worst-cafes-by-suburb" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Worst Cafés by Suburb</a>
+              </div>
             </div>
           )}
         </>
