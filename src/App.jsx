@@ -235,11 +235,11 @@ function PullQuote(props) {
   if (withNotes.length === 0) return null;
   const random = withNotes[Math.floor(Math.random() * withNotes.length)];
   return (
-    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "14px 20px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start", minHeight: 80 }}>
-      <div style={{ color: "rgba(197,157,80,0.5)", fontSize: 28, lineHeight: 1, marginTop: -4 }}>"</div>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5 }}>{random.notes}</div>
-        <div style={{ fontSize: 11, color: "rgba(197,157,80,0.6)", marginTop: 6 }}>— {random.name}, {random.city}</div>
+    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "10px 16px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start", minHeight: 64 }}>
+      <div style={{ color: "rgba(197,157,80,0.5)", fontSize: 22, lineHeight: 1, marginTop: -2, flexShrink: 0 }}>"</div>
+      <div style={{ flex: 1, overflow: "hidden" }}>
+        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{random.notes}</div>
+        <div style={{ fontSize: 11, color: "rgba(197,157,80,0.6)", marginTop: 4 }}>— {random.name}, {random.city}</div>
       </div>
     </div>
   );
@@ -280,7 +280,7 @@ function MapView(props) {
     validCafes.forEach(function(cafe) {
       const color = getScoreColor(cafe.score);
       const markerHtml = '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.5);overflow:hidden;">' +
-        '<img src="/logo.jpg" alt="Koffee Review" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div>' +
+        '<img src="/logo.webp" alt="Koffee Review" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div>' +
         '<div style="background:' + color + ';color:#000;border-radius:10px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 5px;">' + cafe.score + '</div>';
       const icon = L.divIcon({ html: markerHtml, className: "", iconSize: [40, 55], iconAnchor: [20, 55] });
       const marker = L.marker([cafe.lat, cafe.lng], { icon: icon }).addTo(map);
@@ -352,7 +352,7 @@ function AboutDrawer({ open, onClose }) {
         {/* HEADER */}
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"20px 24px 16px" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-            <img src="/logo.jpg" alt="Koffee Review" style={{ width:36, height:36, borderRadius:"50%", objectFit:"cover" }}/>
+            <img src="/logo.webp" alt="Koffee Review" style={{ width:36, height:36, borderRadius:"50%", objectFit:"cover" }}/>
             <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:16, letterSpacing:2, background:"linear-gradient(135deg,#f5e6c8,#c8a96e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>OUR FAIR DINKUM KOFFEE REVIEW</div>
           </div>
           <button onClick={onClose}
@@ -721,7 +721,7 @@ export default function App() {
             style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "rgba(255,255,255,0.6)", padding: "8px 10px", cursor: "pointer", fontSize: 16, flexShrink: 0 }}>
             ☰
           </button>
-          <img src="/logo.jpg" alt="Koffee Review" style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+          <img src="/logo.webp" alt="Koffee Review" style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
           <div>
             <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(46px, 7vw)", whiteSpace: "nowrap", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               OUR FAIR DINKUM
@@ -788,7 +788,7 @@ export default function App() {
                       }).catch(function() {});
                       setSuggestDone(true);
                     }} style={{ padding: "13px", borderRadius: 12, background: "linear-gradient(135deg, #c8a96e, #f5e6c8)", border: "none", color: "#0a0a0a", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                      <img src="/logo.jpg" alt="Koffee Review" style={{ width: 20, height: 20, borderRadius: "50%", objectFit: "cover" }} />
+                      <img src="/logo.webp" alt="Koffee Review" style={{ width: 20, height: 20, borderRadius: "50%", objectFit: "cover" }} />
                       Submit Suggestion
                     </button>
                   </div>
@@ -1048,7 +1048,7 @@ export default function App() {
                             const noteText = cafe.notes ? cafe.notes.substring(0, 80) + (cafe.notes.length > 80 ? "..." : "") : "";
                             card.innerHTML = `
                               <div style="display:flex;align-items:center;gap:10px;width:100%;">
-                                <img src="https://koffeereview.com.au/logo.jpg" crossorigin="anonymous" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" />
+                                <img src="https://koffeereview.com.au/logo.webp" crossorigin="anonymous" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" />
                                 <div>
                                   <div style="font-size:11px;letter-spacing:3px;color:#c8a96e;font-weight:700;">KOFFEE REVIEW</div>
                                   <div style="font-size:10px;color:rgba(255,255,255,0.6);">koffeereview.com.au</div>
