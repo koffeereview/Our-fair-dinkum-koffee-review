@@ -120,10 +120,10 @@ function renderCityPage(citySlug, cafes, allCafes) {
   <meta name="description" content="${desc}" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${desc}" />
-  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
   <meta property="og:url" content="${canonicalUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.jpg"},"about":{"@type":"City","name":"${config.name}","addressCountry":"AU"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"},"about":{"@type":"City","name":"${config.name}","addressCountry":"AU"}}</script>
   <script type="application/ld+json">{
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -166,7 +166,7 @@ function renderCityPage(citySlug, cafes, allCafes) {
 <body>
   <nav>
     <a href="https://koffeereview.com.au" class="nav-logo">
-      <img src="/logo.jpg" alt="Koffee Review" />
+      <img src="/logo.webp" alt="Koffee Review" />
       <span>KOFFEE REVIEW</span>
     </a>
     <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
@@ -211,7 +211,7 @@ function renderCityPage(citySlug, cafes, allCafes) {
     ${citySlug === "brisbane" ? '<a href="/brisbane-cafes-to-avoid" class="avoid-link">⚠ Cafés to Avoid in Brisbane →</a><br/><br/>' : ""}
     <button onclick="if(navigator.share){navigator.share({title:'Best Coffee in ${config.name}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin:0 auto 20px;text-decoration:underline;">↑ Share this city guide</button>
     <a href="https://koffeereview.com.au" class="browse-btn">
-      <img src="/logo.jpg" alt="Koffee Review" />Browse All Reviews
+      <img src="/logo.webp" alt="Koffee Review" />Browse All Reviews
     </a>
   </div>
 
