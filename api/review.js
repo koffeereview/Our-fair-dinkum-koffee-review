@@ -13,7 +13,7 @@ function makeSlug(name, suburb) {
 function splitCSVLine(line) {
   const result = [];
   let current = "";
-  let inQuotes = false;
+  let inQuotes = false; 
   for (let i = 0; i < line.length; i++) {
     const char = line[i];
     if (char === '"') { inQuotes = !inQuotes; }
