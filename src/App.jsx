@@ -235,7 +235,7 @@ function PullQuote(props) {
   if (withNotes.length === 0) return null;
   const random = withNotes[Math.floor(Math.random() * withNotes.length)];
   return (
-    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "14px 20px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start" }}>
+    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "14px 20px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start", minHeight: 80 }}>
       <div style={{ color: "rgba(197,157,80,0.5)", fontSize: 28, lineHeight: 1, marginTop: -4 }}>"</div>
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5 }}>{random.notes}</div>
