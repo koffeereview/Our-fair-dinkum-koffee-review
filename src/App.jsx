@@ -280,7 +280,7 @@ function MapView(props) {
     validCafes.forEach(function(cafe) {
       const color = getScoreColor(cafe.score);
       const markerHtml = '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.5);overflow:hidden;">' +
-        '<img src="/logo.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div>' +
+        '<img src="/logo.jpg" alt="Koffee Review" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div>' +
         '<div style="background:' + color + ';color:#000;border-radius:10px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 5px;">' + cafe.score + '</div>';
       const icon = L.divIcon({ html: markerHtml, className: "", iconSize: [40, 55], iconAnchor: [20, 55] });
       const marker = L.marker([cafe.lat, cafe.lng], { icon: icon }).addTo(map);
@@ -352,7 +352,7 @@ function AboutDrawer({ open, onClose }) {
         {/* HEADER */}
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"20px 24px 16px" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-            <img src="/logo.jpg" style={{ width:36, height:36, borderRadius:"50%", objectFit:"cover" }}/>
+            <img src="/logo.jpg" alt="Koffee Review" style={{ width:36, height:36, borderRadius:"50%", objectFit:"cover" }}/>
             <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:16, letterSpacing:2, background:"linear-gradient(135deg,#f5e6c8,#c8a96e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>OUR FAIR DINKUM KOFFEE REVIEW</div>
           </div>
           <button onClick={onClose}
@@ -788,7 +788,7 @@ export default function App() {
                       }).catch(function() {});
                       setSuggestDone(true);
                     }} style={{ padding: "13px", borderRadius: 12, background: "linear-gradient(135deg, #c8a96e, #f5e6c8)", border: "none", color: "#0a0a0a", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                      <img src="/logo.jpg" style={{ width: 20, height: 20, borderRadius: "50%", objectFit: "cover" }} />
+                      <img src="/logo.jpg" alt="Koffee Review" style={{ width: 20, height: 20, borderRadius: "50%", objectFit: "cover" }} />
                       Submit Suggestion
                     </button>
                   </div>
