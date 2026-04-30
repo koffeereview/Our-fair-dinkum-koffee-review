@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0a0a; }
-</style>
+
+    <!-- PRECONNECT HINTS — load critical resources faster -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://doc-0g-9g-sheets.googleusercontent.com">
+    <link rel="dns-prefetch" href="https://docs.google.com">
+
     <!-- PRIMARY SEO -->
     <title>Our Fair Dinkum Koffee Review | 600+ Café Reviews Across Australia</title>
     <meta name="description" content="Honest Australian café reviews. 600+ coffees reviewed across Brisbane, Melbourne, Gold Coast and more. We order the same thing every time — One Latte & One Double Shot Espresso. Know before you go." />
@@ -72,13 +75,13 @@
     }
     </script>
 
-    <!-- GOOGLE ANALYTICS -->
+    <!-- GOOGLE ANALYTICS — direct GA4 snippet (no GTM overhead) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W8X0WSGZW0"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-W8X0WSGZW0');
+      gtag('config', 'G-W8X0WSGZW0', { send_page_view: true });
     </script>
 
     <!-- SERVICE WORKER -->
