@@ -3,7 +3,7 @@ const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I
 const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
 
 const SUBURB_CONFIG = {
-  "cbd-brisbane": { name: "CBD", city: "Brisbane", citySlug: "brisbane" },
+  "cbd-brisbane": { name: "CBD", city: "Brisbane", citySlug: "brisbane" }, 
   "newstead-brisbane": { name: "Newstead", city: "Brisbane", citySlug: "brisbane" },
   "chermside-brisbane": { name: "Chermside", city: "Brisbane", citySlug: "brisbane" },
   "fortitude-valley-brisbane": { name: "Fortitude Valley", city: "Brisbane", citySlug: "brisbane" },
