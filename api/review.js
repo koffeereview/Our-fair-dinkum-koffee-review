@@ -165,7 +165,7 @@ function renderHTML(cafe, allCafes) {
   <meta name="description" content="${desc}" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${desc}" />
-  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
   <meta property="og:type" content="article" />
   <link rel="canonical" href="${canonicalUrl}" />
   <script type="application/ld+json">
@@ -178,7 +178,7 @@ function renderHTML(cafe, allCafes) {
         "@type": "Organization",
         "name": "Our Fair Dinkum Koffee Review",
         "url": "https://koffeereview.com.au",
-        "logo": "https://koffeereview.com.au/logo.jpg"
+        "logo": "https://koffeereview.com.au/logo.webp"
       },
       "itemReviewed": {
         "@type": "CafeOrCoffeeShop",
@@ -304,7 +304,7 @@ function renderHTML(cafe, allCafes) {
 
   <nav>
     <a href="https://koffeereview.com.au" class="nav-logo">
-      <img src="/logo.jpg" alt="Koffee Review" />
+      <img src="/logo.webp" alt="Koffee Review" />
       <span>KOFFEE REVIEW</span>
     </a>
     <a href="https://koffeereview.com.au" class="nav-back" id="nav-back">← Back</a>
@@ -483,7 +483,7 @@ function renderHTML(cafe, allCafes) {
         const map = L.map("map").setView([${cafe.lat}, ${cafe.lng}], 15);
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "" }).addTo(map);
         const icon = L.divIcon({
-          html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="/logo.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 5px;">${cafe.score}</div>',
+          html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="/logo.webp" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" /></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 5px;">${cafe.score}</div>',
           className: "", iconSize: [40, 55], iconAnchor: [20, 55]
         });
         L.marker([${cafe.lat}, ${cafe.lng}], { icon: icon }).addTo(map);
@@ -502,7 +502,7 @@ function renderHTML(cafe, allCafes) {
         }
         const suburbDisplay = toTitleCase("${cafe.suburb}");
         const noteText = "${cafe.notes ? cafe.notes.substring(0, 80).replace(/"/g, '&quot;') : ""}";
-        card.innerHTML = '<div style="display:flex;align-items:center;gap:10px;width:100%;"><img src="/logo.jpg" crossorigin="anonymous" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" /><div><div style="font-size:11px;letter-spacing:3px;color:#c8a96e;font-weight:700;">KOFFEE REVIEW</div><div style="font-size:10px;color:rgba(255,255,255,0.6);">koffeereview.com.au</div></div></div><div style="position:relative;width:110px;height:110px;"><svg width="110" height="110" style="transform:rotate(-90deg);"><circle cx="55" cy="55" r="44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="7"/><circle cx="55" cy="55" r="44" fill="none" stroke="${color}" stroke-width="7" stroke-dasharray="276" stroke-dashoffset="${offset}" stroke-linecap="round"/></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:30px;font-weight:700;color:${color};line-height:1;">${cafe.score}</span><span style="font-size:11px;color:rgba(255,255,255,0.3);">/10</span></div></div><div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;">${cafe.name}</div><div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:' + (noteText ? '8px' : '0') + ';">' + suburbDisplay + ', ${cafe.city}</div>' + (noteText ? '<div style="font-size:12px;color:rgba(255,255,255,0.55);font-style:italic;line-height:1.6;padding:0 8px;">' + noteText + '</div>' : '') + '</div><div style="padding:8px 24px;border-radius:20px;background:${color};font-size:12px;font-weight:700;letter-spacing:3px;color:#000;">${verdict.toUpperCase()}</div><div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px;margin-top:4px;">ONE LATTE · ONE DOUBLE SHOT</div>';
+        card.innerHTML = '<div style="display:flex;align-items:center;gap:10px;width:100%;"><img src="/logo.webp" crossorigin="anonymous" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" /><div><div style="font-size:11px;letter-spacing:3px;color:#c8a96e;font-weight:700;">KOFFEE REVIEW</div><div style="font-size:10px;color:rgba(255,255,255,0.6);">koffeereview.com.au</div></div></div><div style="position:relative;width:110px;height:110px;"><svg width="110" height="110" style="transform:rotate(-90deg);"><circle cx="55" cy="55" r="44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="7"/><circle cx="55" cy="55" r="44" fill="none" stroke="${color}" stroke-width="7" stroke-dasharray="276" stroke-dashoffset="${offset}" stroke-linecap="round"/></svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:30px;font-weight:700;color:${color};line-height:1;">${cafe.score}</span><span style="font-size:11px;color:rgba(255,255,255,0.3);">/10</span></div></div><div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;">${cafe.name}</div><div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:' + (noteText ? '8px' : '0') + ';">' + suburbDisplay + ', ${cafe.city}</div>' + (noteText ? '<div style="font-size:12px;color:rgba(255,255,255,0.55);font-style:italic;line-height:1.6;padding:0 8px;">' + noteText + '</div>' : '') + '</div><div style="padding:8px 24px;border-radius:20px;background:${color};font-size:12px;font-weight:700;letter-spacing:3px;color:#000;">${verdict.toUpperCase()}</div><div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px;margin-top:4px;">ONE LATTE · ONE DOUBLE SHOT</div>';
         document.body.appendChild(card);
         window.html2canvas(card, { backgroundColor: "#0a0a0a", scale: 3, useCORS: true }).then(function(canvas) {
           document.body.removeChild(card);
