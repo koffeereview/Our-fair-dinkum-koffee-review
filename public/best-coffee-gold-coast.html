@@ -7,10 +7,10 @@
   <meta name="description" content="The definitive guide to the best coffee on the Gold Coast. 25+ cafés reviewed and scored by Koffee Review. One latte, one double shot espresso, one honest score. Know before you go." />
   <meta property="og:title" content="Best Coffee on the Gold Coast 2026 | Koffee Review" />
   <meta property="og:description" content="25+ Gold Coast cafés reviewed and scored. Find the best coffee near you." />
-  <meta property="og:image" content="https://koffeereview.com.au/logo.jpg" />
+  <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
   <meta property="og:url" content="https://koffeereview.com.au/best-coffee-gold-coast.html" />
   <link rel="canonical" href="https://koffeereview.com.au/best-coffee-gold-coast.html" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Best Coffee on the Gold Coast 2026 | Koffee Review","description":"Gold Coast cafés reviewed and scored by Koffee Review.","url":"https://koffeereview.com.au/best-coffee-gold-coast.html","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.jpg"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Best Coffee on the Gold Coast 2026 | Koffee Review","description":"Gold Coast cafés reviewed and scored by Koffee Review.","url":"https://koffeereview.com.au/best-coffee-gold-coast.html","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Best Coffee Gold Coast","item":"https://koffeereview.com.au/best-coffee-gold-coast.html"}]}</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -63,7 +63,7 @@
 
   <nav>
     <a href="https://koffeereview.com.au" class="nav-logo">
-      <img src="/logo.jpg" alt="Koffee Review" />
+      <img src="/logo.webp" alt="Koffee Review" />
       <span>KOFFEE REVIEW</span>
     </a>
     <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
@@ -101,7 +101,7 @@
     <p>All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
     No café pays for placement. <a href="/how-we-score.html">Read how we score →</a></p>
     <a href="https://koffeereview.com.au" class="browse-btn">
-      <img src="/logo.jpg" alt="Koffee Review" />Browse All Café Reviews
+      <img src="/logo.webp" alt="Koffee Review" />Browse All Café Reviews
     </a>
     <div class="footer-links">
       <a href="/about">About</a>
@@ -194,7 +194,7 @@
       validCafes.forEach(function(cafe) {
         const color = getScoreColor(cafe.score);
         const icon = L.divIcon({
-          html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.5);"><img src="/logo.jpg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;" /></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 4px;">' + cafe.score + '</div>',
+          html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.5);"><img src="/logo.webp" style="width:34px;height:34px;border-radius:50%;object-fit:cover;" /></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:10px;font-weight:700;text-align:center;margin-top:2px;padding:1px 4px;">' + cafe.score + '</div>',
           className: "", iconSize: [38, 52], iconAnchor: [19, 52]
         });
         L.marker([cafe.lat, cafe.lng], { icon: icon }).addTo(map)
