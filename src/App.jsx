@@ -829,13 +829,13 @@ export default function App() {
             <div onClick={function() { setView(view === "map" ? "list" : "map"); }}
               style={{ flex: 1, background: view === "map" ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (view === "map" ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <svg width="20" height="25" viewBox="0 0 26 32" fill="none">
+              <svg width="26" height="32" viewBox="0 0 26 32" fill="none">
                 <path d="M13 0C7.48 0 3 4.48 3 10c0 7.5 10 18 10 18S23 17.5 23 10c0-5.52-4.48-10-10-10z" fill="#E6C073" opacity="0.9"/>
                 <circle cx="13" cy="10" r="6" fill="#000"/>
                 <image href="/logo.webp" x="7" y="4" width="12" height="12" style={{ borderRadius: "50%", clipPath: "circle(6px at 6px 6px)" }}/>
               </svg>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
-              <div style={{ fontSize: 11, color: "#E6C073", letterSpacing: 0.5, fontWeight: 600 }}>Map</div>
+              <div style={{ fontSize: 11, color: view === "map" ? "#E6C073" : "#AFAFAF", letterSpacing: 0.5 }}>Map</div>
             </div>
           </div>
         )}
