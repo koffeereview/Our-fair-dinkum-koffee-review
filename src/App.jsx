@@ -88,49 +88,19 @@ function doShare(cafe) {
 function ScoreRing(props) {
   const score = props.score;
   const color = getScoreColor(score);
+  const pct = (score / 10) * 100;
   const r = 28;
   const circ = 2 * Math.PI * r;
-  const [displayScore, setDisplayScore] = useState(0);
-  const [animated, setAnimated] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(function() {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting && !animated) {
-          setAnimated(true);
-          observer.disconnect();
-          const duration = 400;
-          const start = performance.now();
-          function step(now) {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setDisplayScore(Math.round(eased * score * 10) / 10);
-            if (progress < 1) requestAnimationFrame(step);
-            else setDisplayScore(score);
-          }
-          requestAnimationFrame(step);
-        }
-      });
-    }, { threshold: 0.1 });
-    observer.observe(el);
-    return function() { observer.disconnect(); };
-  }, [score, animated]);
-
-  const displayPct = animated ? (displayScore / 10) * 100 : 0;
-
   return (
-    <div ref={ref} style={{ position: "relative", width: 72, height: 72, flexShrink: 0 }}>
+    <div style={{ position: "relative", width: 72, height: 72, flexShrink: 0 }}>
       <svg width="72" height="72" style={{ transform: "rotate(-90deg)" }}>
         <circle cx="36" cy="36" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="5" />
         <circle cx="36" cy="36" r={r} fill="none" stroke={color} strokeWidth="5"
-          strokeDasharray={circ} strokeDashoffset={circ - (displayPct / 100) * circ}
-          strokeLinecap="round" style={{ transition: "stroke-dashoffset 0.05s linear" }} />
+          strokeDasharray={circ} strokeDashoffset={circ - (pct / 100) * circ}
+          strokeLinecap="round" />
       </svg>
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 20, color: color, lineHeight: 1 }}>{displayScore || score}</span>
+        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 20, color: color, lineHeight: 1 }}>{score}</span>
         <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>/10</span>
       </div>
     </div>
