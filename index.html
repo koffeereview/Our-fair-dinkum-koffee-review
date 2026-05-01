@@ -9,6 +9,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://docs.google.com">
 
+    <!-- PRELOAD BEBAS NEUE — breaks the font chain -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap">
+
+    <!-- FONT FALLBACK — prevents CLS when Bebas Neue swaps in -->
+    <style>
+      @font-face {
+        font-family: 'Bebas Neue Fallback';
+        src: local('Arial');
+        size-adjust: 98%;
+        ascent-override: 92%;
+        descent-override: 24%;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #0a0a0a; margin: 0; padding: 0; }
+      #root { background: #0a0a0a; min-height: 100vh; }
+    </style>
+
     <!-- PRIMARY SEO -->
     <title>Our Fair Dinkum Koffee Review | 600+ Café Reviews Across Australia</title>
     <meta name="description" content="Honest Australian café reviews. 600+ coffees reviewed across Brisbane, Melbourne, Gold Coast and more. We order the same thing every time — One Latte & One Double Shot Espresso. Know before you go." />
