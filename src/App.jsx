@@ -205,11 +205,11 @@ function PullQuote(props) {
   if (withNotes.length === 0) return null;
   const random = withNotes[Math.floor(Math.random() * withNotes.length)];
   return (
-    <div style={{ background: "rgba(197,157,80,0.06)", border: "1px solid rgba(197,157,80,0.15)", borderRadius: 16, padding: "10px 16px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start" }}>
-      <div style={{ color: "rgba(197,157,80,0.5)", fontSize: 22, lineHeight: 1, marginTop: -2, flexShrink: 0 }}>"</div>
+    <div style={{ background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.16)", borderLeft: "3px solid #E6C073", borderRadius: 16, padding: "12px 16px", marginBottom: 16, display: "flex", gap: 12, alignItems: "flex-start" }}>
+      <div style={{ color: "#E6C073", fontSize: 22, lineHeight: 1, marginTop: -2, flexShrink: 0 }}>"</div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontStyle: "italic", lineHeight: 1.5 }}>{random.notes.length > 100 ? random.notes.substring(0, 100) + "..." : random.notes}</div>
-        <div style={{ fontSize: 11, color: "rgba(197,157,80,0.6)", marginTop: 4 }}>— {random.name}, {random.city}</div>
+        <div style={{ fontSize: 13, color: "#D9D9D9", fontStyle: "italic", lineHeight: 1.6 }}>{random.notes.length > 100 ? random.notes.substring(0, 100) + "..." : random.notes}</div>
+        <div style={{ fontSize: 11, color: "#E6C073", marginTop: 6, fontWeight: 600 }}>— {random.name}, {random.city}</div>
       </div>
     </div>
   );
@@ -683,48 +683,57 @@ export default function App() {
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
       <AboutDrawer open={aboutOpen} onClose={function() { setAboutOpen(false); }} />
 
-      <div style={{ padding: "40px 24px 24px", maxWidth: 800, margin: "0 auto" }}>
+      <div style={{ padding: "32px 28px 24px", maxWidth: 800, margin: "0 auto" }}>
 
         {/* HEADER ROW */}
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
           <button onClick={function() { setAboutOpen(true); }}
-            style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "rgba(255,255,255,0.6)", padding: "8px 10px", cursor: "pointer", fontSize: 16, flexShrink: 0 }}>
+            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 12, color: "#fff", padding: "10px 12px", cursor: "pointer", fontSize: 18, flexShrink: 0, transition: "all 0.2s" }}>
             ☰
           </button>
-          <img src="/logo.webp" alt="Koffee Review" style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+          <img src="/logo.webp" alt="Koffee Review" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(230,192,115,0.3)" }} />
           <div>
-            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(46px, 7vw)", whiteSpace: "nowrap", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(50px, 7.5vw)", whiteSpace: "nowrap", letterSpacing: 4, lineHeight: 1, background: "linear-gradient(135deg, #F6DDAA, #E6C073)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               OUR FAIR DINKUM
             </div>
-            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(20px, 3.5vw)", whiteSpace: "nowrap", letterSpacing: 6, color: "rgba(255,255,255,0.75)" }}>
+            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(22px, 3.8vw)", whiteSpace: "nowrap", letterSpacing: 7, color: "#D9D9D9" }}>
               KOFFEE REVIEW
             </div>
           </div>
         </div>
 
-        {/* TAGLINES */}
-        <p style={{ color: "#f5e6c8", fontSize: 13, margin: "0 0 4px" }}>600+ cafes reviewed across Australia - Know before you go</p>
-        <p style={{ color: "rgba(197,157,80,0.7)", fontSize: 12, margin: "0 0 14px" }}>We order the same thing every time, One Latte & One Double Shot Espresso.</p>
+        {/* HERO TEXT */}
+        <div style={{ marginBottom: 16 }}>
+          <p style={{ color: "#ffffff", fontSize: 15, fontWeight: 600, margin: "0 0 3px", letterSpacing: 0.3 }}>600+ cafés reviewed across Australia</p>
+          <p style={{ color: "#E6C073", fontSize: 13, margin: 0 }}>Know before you go.</p>
+        </div>
+
+        {/* BRAND RULE */}
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ height: 1, background: "linear-gradient(90deg, #E6C073, transparent)", marginBottom: 10, width: "60%" }} />
+          <p style={{ color: "#E6C073", fontSize: 12, fontWeight: 700, margin: "0 0 2px", letterSpacing: 0.5 }}>We order the same thing every time.</p>
+          <p style={{ color: "#AFAFAF", fontSize: 12, margin: 0 }}>Latte + Double Espresso.</p>
+        </div>
 
         {/* SOCIAL ICONS + SUGGEST */}
-        <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+        <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
-            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 33, height: 33, borderRadius: 10, background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)", color: "#fff", flexShrink: 0 }}>
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
-            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 33, height: 33, borderRadius: 10, background: "#000", border: "1px solid #333", color: "#fff", flexShrink: 0 }}>
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
-            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 33, height: 33, borderRadius: 10, background: "#ff0000", color: "#fff", flexShrink: 0 }}>
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-          </a>
+            <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
+              style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)", color: "#fff", flexShrink: 0, transition: "transform 0.2s" }}>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
+              style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: "#000", border: "1px solid rgba(255,255,255,0.22)", color: "#fff", flexShrink: 0, transition: "transform 0.2s" }}>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
+              style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: "#ff0000", color: "#fff", flexShrink: 0, transition: "transform 0.2s" }}>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
           </div>
           <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
-            style={{ background: "linear-gradient(135deg, #c8a96e, #f5e6c8)", border: "none", cursor: "pointer", padding: "7px 16px", borderRadius: 20, display: "flex", alignItems: "center", gap: 4 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, color: "#000", letterSpacing: 0.5 }}>+ Suggest a Café</span>
+            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "9px 18px", borderRadius: 20, display: "flex", alignItems: "center", gap: 4, boxShadow: "0 0 12px rgba(230,192,115,0.25)", transition: "transform 0.2s" }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#000", letterSpacing: 0.5 }}>+ Suggest a Café</span>
           </button>
         </div>
 
@@ -789,53 +798,64 @@ export default function App() {
         )}
 
         {!loading && (
-          <div style={{ display: "flex", gap: 16, marginTop: 16 }}>
+          <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
-              style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 28, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Reviewed</div>
+              style={{ flex: 1, background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
+              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
+              <div style={{ fontSize: 11, color: "#AFAFAF", letterSpacing: 0.5 }}>Reviewed</div>
             </div>
             <div onClick={function() { handleStatClick("must"); setView("list"); }}
-              style={{ flex: 1, background: quickFilter === "must" ? "rgba(74,222,128,0.2)" : "rgba(255,255,255,0.04)", border: "1px solid " + (quickFilter === "must" ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.08)"), borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 28, color: "#4ade80", lineHeight: 1 }}>{mustVisit}</div>
-              <div style={{ fontSize: 11, color: quickFilter === "must" ? "#4ade80" : "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Must Visit</div>
+              style={{ flex: 1, background: quickFilter === "must" ? "rgba(78,220,119,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "must" ? "rgba(78,220,119,0.5)" : "rgba(255,255,255,0.16)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#4EDC77", lineHeight: 1 }}>{mustVisit}</div>
+              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
+              <div style={{ fontSize: 11, color: quickFilter === "must" ? "#4EDC77" : "#AFAFAF", letterSpacing: 0.5 }}>Must Visit</div>
             </div>
             <div onClick={function() { handleStatClick("avoid"); setView("list"); }}
-              style={{ flex: 1, background: quickFilter === "avoid" ? "rgba(248,113,113,0.2)" : "rgba(255,255,255,0.04)", border: "1px solid " + (quickFilter === "avoid" ? "rgba(248,113,113,0.5)" : "rgba(255,255,255,0.08)"), borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 28, color: "#f87171", lineHeight: 1 }}>{avoid}</div>
-              <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#f87171" : "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Avoid</div>
+              style={{ flex: 1, background: quickFilter === "avoid" ? "rgba(255,94,102,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "avoid" ? "rgba(255,94,102,0.5)" : "rgba(255,255,255,0.16)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#FF5E66", lineHeight: 1 }}>{avoid}</div>
+              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
+              <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#AFAFAF", letterSpacing: 0.5 }}>Avoid</div>
             </div>
             <div onClick={function() { setView(view === "map" ? "list" : "map"); }}
-              style={{ flex: 1, background: view === "map" ? "rgba(197,157,80,0.2)" : "rgba(255,255,255,0.04)", border: "1px solid " + (view === "map" ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.08)"), borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontSize: 24, lineHeight: 1 }}>&#128205;</div>
-              <div style={{ fontSize: 11, color: view === "map" ? "#c8a96e" : "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Map</div>
+              style={{ flex: 1, background: view === "map" ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (view === "map" ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}>
+              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
+              <div style={{ position: "relative", width: 26, height: 32 }}>
+                <svg width="26" height="32" viewBox="0 0 26 32" fill="none">
+                  <path d="M13 0C7.48 0 3 4.48 3 10c0 7.5 10 18 10 18S23 17.5 23 10c0-5.52-4.48-10-10-10z" fill="#E6C073" opacity="0.9"/>
+                  <circle cx="13" cy="10" r="6" fill="#000"/>
+                  <image href="/logo.webp" x="7" y="4" width="12" height="12" style={{ borderRadius: "50%", clipPath: "circle(6px at 6px 6px)" }}/>
+                </svg>
+              </div>
+              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
+              <div style={{ fontSize: 11, color: "#E6C073", letterSpacing: 0.5, fontWeight: 600 }}>Map</div>
             </div>
           </div>
         )}
       </div>
 
       {view === "map" ? (
-        <div style={{ padding: "0 24px 60px", maxWidth: 800, margin: "0 auto" }}>
+        <div style={{ padding: "0 28px 60px", maxWidth: 800, margin: "0 auto" }}>
           {leafletLoaded ? <MapView cafes={cafes} /> : <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading map...</div>}
         </div>
       ) : (
         <>
-          <div style={{ padding: "0 24px 20px", maxWidth: 800, margin: "0 auto" }}>
+          <div style={{ padding: "0 28px 20px", maxWidth: 800, margin: "0 auto" }}>
             {!loading && cafes.length > 0 && <PullQuote cafes={cafes} />}
             <input placeholder="Search café, suburb or city..." value={search}
               onChange={function(e) { setSearch(e.target.value); }}
-              style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "12px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
+              style={{ width: "100%", background: "#111111", border: "1px solid rgba(230,192,115,0.35)", borderRadius: 12, padding: "13px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
               <button onClick={function() { handleSortClick("all"); }}
-                style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter && !nearMe ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: sort === "all" && !quickFilter && !nearMe ? "rgba(197,157,80,0.15)" : "transparent", color: sort === "all" && !quickFilter && !nearMe ? "#c8a96e" : "rgba(255,255,255,0.5)" }}>All</button>
+                style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "rgba(255,255,255,0.16)"), background: sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "transparent", color: sort === "all" && !quickFilter && !nearMe ? "#000" : "#D9D9D9" }}>All</button>
               <button onClick={function() { handleSortClick("high"); }}
-                style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(74,222,128,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "high" && !quickFilter ? "rgba(74,222,128,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4ade80" : "rgba(255,255,255,0.5)" }}>High Score</button>
+                style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(78,220,119,0.5)" : "rgba(255,255,255,0.16)"), background: sort === "high" && !quickFilter ? "rgba(78,220,119,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4EDC77" : "#D9D9D9" }}>High Score</button>
               <button onClick={function() { handleSortClick("low"); }}
-                style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(248,113,113,0.4)" : "rgba(255,255,255,0.15)"), background: sort === "low" && !quickFilter ? "rgba(248,113,113,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#f87171" : "rgba(255,255,255,0.5)" }}>Low Score</button>
+                style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(255,94,102,0.5)" : "rgba(255,255,255,0.16)"), background: sort === "low" && !quickFilter ? "rgba(255,94,102,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#FF5E66" : "#D9D9D9" }}>Low Score</button>
               <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
               <div ref={scoreRef} style={{ position: "relative" }}>
                 <button onClick={function() { setScoreDropdown(!scoreDropdown); setCityDropdown(false); }}
-                  style={{ ...btnBase, border: "1px solid " + (scoreBucket ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: scoreBucket ? "rgba(197,157,80,0.15)" : "transparent", color: scoreBucket ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
+                  style={{ ...btnBase, border: "1px solid " + (scoreBucket ? "#E6C073" : "rgba(255,255,255,0.16)"), background: scoreBucket ? "#E6C073" : "transparent", color: scoreBucket ? "#000" : "#D9D9D9", display: "flex", alignItems: "center", gap: 6 }}>
                   {scoreBucket ? scoreBucket : "Score"} {scoreDropdown ? "▲" : "▼"}
                 </button>
                 {scoreDropdown && (
@@ -860,7 +880,7 @@ export default function App() {
               </div>
               <div ref={cityRef} style={{ position: "relative" }}>
                 <button onClick={function() { setCityDropdown(!cityDropdown); setScoreDropdown(false); }}
-                  style={{ ...btnBase, border: "1px solid " + (city !== "All" ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: city !== "All" ? "rgba(197,157,80,0.15)" : "transparent", color: city !== "All" ? "#c8a96e" : "rgba(255,255,255,0.5)", display: "flex", alignItems: "center", gap: 6 }}>
+                  style={{ ...btnBase, border: "1px solid " + (city !== "All" ? "#E6C073" : "rgba(255,255,255,0.16)"), background: city !== "All" ? "#E6C073" : "transparent", color: city !== "All" ? "#000" : "#D9D9D9", display: "flex", alignItems: "center", gap: 6 }}>
                   {city !== "All" ? city : "City"} {cityDropdown ? "▲" : "▼"}
                 </button>
                 {cityDropdown && (
@@ -887,7 +907,7 @@ export default function App() {
                   style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>Clear</button>
               )}
               <button onClick={handleNearMe}
-                style={{ ...btnBase, border: "1px solid " + (nearMe ? "rgba(197,157,80,0.5)" : "rgba(255,255,255,0.15)"), background: nearMe ? "rgba(197,157,80,0.15)" : "transparent", color: nearMe ? "#c8a96e" : "rgba(255,255,255,0.4)" }}>
+                style={{ ...btnBase, border: "1px solid " + (nearMe ? "#E6C073" : "rgba(255,255,255,0.16)"), background: nearMe ? "#E6C073" : "transparent", color: nearMe ? "#000" : "#D9D9D9" }}>
                 {locationLoading ? "..." : "📍 Near Me"}
               </button>
             </div>
@@ -940,7 +960,10 @@ export default function App() {
             )}
             {!loading && !nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafes found</div>}
             {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
-              <div style={{ fontSize: 11, letterSpacing: 2, color: "rgba(197,157,80,0.5)", marginBottom: 12 }}>LATEST REVIEWS</div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <div style={{ fontSize: 11, letterSpacing: 3, color: "#E6C073", fontWeight: 700 }}>LATEST REVIEWS</div>
+                <button onClick={function() { setShowAll(true); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ fontSize: 12, color: "#E6C073", background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>View all →</button>
+              </div>
             )}
             {!loading && showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
               <div style={{ fontSize: 11, letterSpacing: 2, color: "rgba(197,157,80,0.5)", marginBottom: 12 }}>ALL CAFÉS — A TO Z</div>
