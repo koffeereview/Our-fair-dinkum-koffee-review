@@ -798,12 +798,7 @@ export default function App() {
         {/* HOW WE SCORE BLOCK */}
         {!loading && cafes.length > 0 && (
           <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"12px 14px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-              <div style={{ display:"flex", alignItems:"flex-end", gap:3, height:14 }}>
-                <div style={{ width:3, height:8, background:"#E6C073", borderRadius:2, opacity:0.6 }}></div>
-                <div style={{ width:3, height:14, background:"#E6C073", borderRadius:2 }}></div>
-                <div style={{ width:3, height:10, background:"#E6C073", borderRadius:2, opacity:0.7 }}></div>
-              </div>
+            <div style={{ display:"flex", alignItems:"center", gap:8 }}>
               <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#E6C073", textTransform:"uppercase" }}>How We Score</div>
               <div style={{ fontSize:11, color:"#ffffff", letterSpacing:0.5 }}>· One latte. One espresso. Every time.</div>
             </div>
