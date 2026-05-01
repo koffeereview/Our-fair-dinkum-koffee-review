@@ -157,11 +157,18 @@ function ScoreChart({ cafes }) {
   });
   const max = Math.max.apply(null, counts) || 1;
   return (
-    <div style={{ background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:16, marginTop:16, overflow:"hidden" }}>
+    <div style={{ background:"#0D0D0D", border:"1px solid rgba(255,255,255,0.16)", borderRadius:16, marginTop:16, overflow:"hidden" }}>
       <div onClick={function() { setOpen(!open); }}
-        style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 20px", cursor:"pointer" }}>
-        <div style={{ fontSize:11, color:"rgba(255,255,255,0.3)", letterSpacing:1 }}>SCORE DISTRIBUTION</div>
-        <div style={{ color:"rgba(255,255,255,0.3)", fontSize:14, transition:"transform 0.3s", transform:open?"rotate(180deg)":"rotate(0deg)" }}>▼</div>
+        style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"16px 20px", cursor:"pointer" }}>
+        <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+          <div style={{ display:"flex", alignItems:"flex-end", gap:3, height:18 }}>
+            <div style={{ width:4, height:10, background:"#E6C073", borderRadius:2, opacity:0.6 }}></div>
+            <div style={{ width:4, height:18, background:"#E6C073", borderRadius:2 }}></div>
+            <div style={{ width:4, height:13, background:"#E6C073", borderRadius:2, opacity:0.7 }}></div>
+          </div>
+          <div style={{ fontSize:12, color:"#ffffff", letterSpacing:1, fontWeight:500 }}>SCORE DISTRIBUTION</div>
+        </div>
+        <div style={{ color:"#D9D9D9", fontSize:14, transition:"transform 0.3s", transform:open?"rotate(180deg)":"rotate(0deg)" }}>▼</div>
       </div>
       {open && (
         <div style={{ padding:"0 20px 16px" }}>
@@ -685,21 +692,23 @@ export default function App() {
 
       <div style={{ padding: "32px 28px 24px", maxWidth: 800, margin: "0 auto" }}>
 
-        {/* HEADER ROW */}
-        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
+        {/* HEADER ROW — Logo+Title LEFT, Drawer RIGHT */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <img src="/logo.webp" alt="Koffee Review" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(230,192,115,0.3)" }} />
+            <div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(50px, 7.5vw)", whiteSpace: "nowrap", letterSpacing: 4, lineHeight: 1, background: "linear-gradient(135deg, #F6DDAA, #E6C073)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                OUR FAIR DINKUM
+              </div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(22px, 3.8vw)", whiteSpace: "nowrap", letterSpacing: 7, color: "#D9D9D9" }}>
+                KOFFEE REVIEW
+              </div>
+            </div>
+          </div>
           <button onClick={function() { setAboutOpen(true); }}
             style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 12, color: "#fff", padding: "10px 12px", cursor: "pointer", fontSize: 18, flexShrink: 0, transition: "all 0.2s" }}>
             ☰
           </button>
-          <img src="/logo.webp" alt="Koffee Review" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(230,192,115,0.3)" }} />
-          <div>
-            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(50px, 7.5vw)", whiteSpace: "nowrap", letterSpacing: 4, lineHeight: 1, background: "linear-gradient(135deg, #F6DDAA, #E6C073)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              OUR FAIR DINKUM
-            </div>
-            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(22px, 3.8vw)", whiteSpace: "nowrap", letterSpacing: 7, color: "#D9D9D9" }}>
-              KOFFEE REVIEW
-            </div>
-          </div>
         </div>
 
         {/* HERO TEXT */}
@@ -712,7 +721,7 @@ export default function App() {
         <div style={{ marginBottom: 16 }}>
           <div style={{ height: 1, background: "linear-gradient(90deg, #E6C073, transparent)", marginBottom: 10, width: "60%" }} />
           <p style={{ color: "#E6C073", fontSize: 12, fontWeight: 700, margin: "0 0 2px", letterSpacing: 0.5 }}>We order the same thing every time.</p>
-          <p style={{ color: "#AFAFAF", fontSize: 12, margin: 0 }}>Latte + Double Espresso.</p>
+          <p style={{ color: "#D9D9D9", fontSize: 12, margin: 0 }}>Latte + Double Espresso.</p>
         </div>
 
         {/* SOCIAL ICONS + SUGGEST */}
@@ -788,10 +797,15 @@ export default function App() {
 
         {/* HOW WE SCORE BLOCK */}
         {!loading && cafes.length > 0 && (
-          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"6px 14px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-              <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#C9A84C", textTransform:"uppercase" }}>How We Score</div>
-              <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)" }}>· One latte. One espresso. Every time.</div>
+          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"12px 14px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+              <div style={{ display:"flex", alignItems:"flex-end", gap:3, height:14 }}>
+                <div style={{ width:3, height:8, background:"#E6C073", borderRadius:2, opacity:0.6 }}></div>
+                <div style={{ width:3, height:14, background:"#E6C073", borderRadius:2 }}></div>
+                <div style={{ width:3, height:10, background:"#E6C073", borderRadius:2, opacity:0.7 }}></div>
+              </div>
+              <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#E6C073", textTransform:"uppercase" }}>How We Score</div>
+              <div style={{ fontSize:11, color:"#ffffff", letterSpacing:0.5 }}>· One latte. One espresso. Every time.</div>
             </div>
             <div style={{ fontSize:18, color:"#C9A84C", marginLeft:8, flexShrink:0 }}>›</div>
           </a>
@@ -818,16 +832,14 @@ export default function App() {
               <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#AFAFAF", letterSpacing: 0.5 }}>Avoid</div>
             </div>
             <div onClick={function() { setView(view === "map" ? "list" : "map"); }}
-              style={{ flex: 1, background: view === "map" ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (view === "map" ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}>
+              style={{ flex: 1, background: view === "map" ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (view === "map" ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <div style={{ position: "relative", width: 26, height: 32 }}>
-                <svg width="26" height="32" viewBox="0 0 26 32" fill="none">
-                  <path d="M13 0C7.48 0 3 4.48 3 10c0 7.5 10 18 10 18S23 17.5 23 10c0-5.52-4.48-10-10-10z" fill="#E6C073" opacity="0.9"/>
-                  <circle cx="13" cy="10" r="6" fill="#000"/>
-                  <image href="/logo.webp" x="7" y="4" width="12" height="12" style={{ borderRadius: "50%", clipPath: "circle(6px at 6px 6px)" }}/>
-                </svg>
-              </div>
-              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
+              <svg width="20" height="25" viewBox="0 0 26 32" fill="none">
+                <path d="M13 0C7.48 0 3 4.48 3 10c0 7.5 10 18 10 18S23 17.5 23 10c0-5.52-4.48-10-10-10z" fill="#E6C073" opacity="0.9"/>
+                <circle cx="13" cy="10" r="6" fill="#000"/>
+                <image href="/logo.webp" x="7" y="4" width="12" height="12" style={{ borderRadius: "50%", clipPath: "circle(6px at 6px 6px)" }}/>
+              </svg>
+              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
               <div style={{ fontSize: 11, color: "#E6C073", letterSpacing: 0.5, fontWeight: 600 }}>Map</div>
             </div>
           </div>
@@ -962,7 +974,6 @@ export default function App() {
             {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 <div style={{ fontSize: 11, letterSpacing: 3, color: "#E6C073", fontWeight: 700 }}>LATEST REVIEWS</div>
-                <button onClick={function() { setShowAll(true); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ fontSize: 12, color: "#E6C073", background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>View all →</button>
               </div>
             )}
             {!loading && showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
