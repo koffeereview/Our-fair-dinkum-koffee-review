@@ -100,7 +100,7 @@ function ScoreRing(props) {
           strokeLinecap="round" />
       </svg>
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 20, color: color, lineHeight: 1 }}>{score}</span>
+        <span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 20, color: color, lineHeight: 1 }}>{score}</span>
         <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>/10</span>
       </div>
     </div>
@@ -177,7 +177,7 @@ function ScoreChart({ cafes }) {
             const color = getScoreColor(b.ref);
             return (
               <div key={b.label} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:6 }}>
-                <div style={{ width:24, fontSize:11, color, fontFamily:"'Bebas Neue',sans-serif", letterSpacing:1 }}>{b.label}</div>
+                <div style={{ width:24, fontSize:11, color, fontFamily:"'Bebas Neue', 'Bebas Neue Fallback', sans-serif", letterSpacing:1 }}>{b.label}</div>
                 <div style={{ flex:1, height:8, background:"rgba(255,255,255,0.06)", borderRadius:4, overflow:"hidden" }}>
                   <div style={{
                     height:"100%",
@@ -323,7 +323,7 @@ function AboutDrawer({ open, onClose }) {
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"20px 24px 16px" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
             <img src="/logo.webp" alt="Koffee Review" style={{ width:36, height:36, borderRadius:"50%", objectFit:"cover" }}/>
-            <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:16, letterSpacing:2, background:"linear-gradient(135deg,#f5e6c8,#c8a96e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>OUR FAIR DINKUM KOFFEE REVIEW</div>
+            <div style={{ fontFamily:"'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize:16, letterSpacing:2, background:"linear-gradient(135deg,#f5e6c8,#c8a96e)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>OUR FAIR DINKUM KOFFEE REVIEW</div>
           </div>
           <button onClick={onClose}
             style={{ background:"rgba(255,255,255,0.08)", border:"none", color:"#fff", borderRadius:"50%", width:32, height:32, cursor:"pointer", fontSize:18, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
@@ -693,10 +693,10 @@ export default function App() {
           </button>
           <img src="/logo.webp" alt="Koffee Review" style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
           <div>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(46px, 7vw)", whiteSpace: "nowrap", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(46px, 7vw)", whiteSpace: "nowrap", letterSpacing: 3, lineHeight: 1, background: "linear-gradient(135deg, #f5e6c8, #c8a96e)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               OUR FAIR DINKUM
             </div>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "min(20px, 3.5vw)", whiteSpace: "nowrap", letterSpacing: 6, color: "rgba(255,255,255,0.75)" }}>
+            <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(20px, 3.5vw)", whiteSpace: "nowrap", letterSpacing: 6, color: "rgba(255,255,255,0.75)" }}>
               KOFFEE REVIEW
             </div>
           </div>
@@ -792,17 +792,17 @@ export default function App() {
           <div style={{ display: "flex", gap: 16, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
               style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 28, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
               <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Reviewed</div>
             </div>
             <div onClick={function() { handleStatClick("must"); setView("list"); }}
               style={{ flex: 1, background: quickFilter === "must" ? "rgba(74,222,128,0.2)" : "rgba(255,255,255,0.04)", border: "1px solid " + (quickFilter === "must" ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.08)"), borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#4ade80", lineHeight: 1 }}>{mustVisit}</div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 28, color: "#4ade80", lineHeight: 1 }}>{mustVisit}</div>
               <div style={{ fontSize: 11, color: quickFilter === "must" ? "#4ade80" : "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Must Visit</div>
             </div>
             <div onClick={function() { handleStatClick("avoid"); setView("list"); }}
               style={{ flex: 1, background: quickFilter === "avoid" ? "rgba(248,113,113,0.2)" : "rgba(255,255,255,0.04)", border: "1px solid " + (quickFilter === "avoid" ? "rgba(248,113,113,0.5)" : "rgba(255,255,255,0.08)"), borderRadius: 12, padding: "12px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 28, color: "#f87171", lineHeight: 1 }}>{avoid}</div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 28, color: "#f87171", lineHeight: 1 }}>{avoid}</div>
               <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#f87171" : "rgba(255,255,255,0.4)", marginTop: 2, letterSpacing: 0.5 }}>Avoid</div>
             </div>
             <div onClick={function() { setView(view === "map" ? "list" : "map"); }}
@@ -992,7 +992,7 @@ export default function App() {
                         <div style={{ flex: 1, height: 4, borderRadius: 4, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
                           <div style={{ height: "100%", width: (cafe.score * 10) + "%", background: "linear-gradient(90deg, " + getScoreColor(cafe.score) + ", " + getScoreColor(cafe.score) + "99)", borderRadius: 4 }} />
                         </div>
-                        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, color: getScoreColor(cafe.score) }}>{cafe.score}/10</span>
+                        <span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 18, color: getScoreColor(cafe.score) }}>{cafe.score}/10</span>
                       </div>
                       <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
                         <a href={getMapsUrl(cafe)} target="_blank" rel="noreferrer"
