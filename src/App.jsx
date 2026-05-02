@@ -741,19 +741,21 @@ export default function App() {
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
 
-          {/* Suggest a Cafe — flex:1 same as Koffee Map */}
+          {/* Suggest a Cafe — outlined secondary */}
           <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
-            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1 }}>
-            <span style={{ fontSize: 10, fontWeight: 700, color: "#000", letterSpacing: 0.2, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
+            style={{ background: "transparent", border: "1px solid rgba(230,192,115,0.4)", cursor: "pointer", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1 }}>
+            <span style={{ fontSize: 10, fontWeight: 600, color: "#E6C073", letterSpacing: 0.2, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
           </button>
 
-          {/* KOFFEE MAP — maplatte.png at 2x inside, gold glow, same width as Suggest */}
-          <button
-            onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
-            style={{ height: 36, borderRadius: 20, background: view === "map" ? "rgba(212,175,55,0.18)" : "rgba(255,255,255,0.05)", border: "1px solid " + (view === "map" ? "#D4AF37" : "rgba(212,175,55,0.5)"), cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 6, whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", flex: 1, boxShadow: view === "map" ? "0 0 14px rgba(212,175,55,0.4), 0 0 28px rgba(212,175,55,0.15)" : "0 0 10px rgba(212,175,55,0.2), 0 0 20px rgba(212,175,55,0.08)" }}>
-            <img src="/maplatte.png" alt="Koffee Map" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
-            <span style={{ fontSize: 11, fontWeight: 700, color: view === "map" ? "#F3D28A" : "#E6C073", letterSpacing: 0.3 }}>Koffee Map</span>
-          </button>
+          {/* KOFFEE MAP — premium gold, maplatte floating above */}
+          <div style={{ position: "relative", flex: 1, display: "flex" }}>
+            <img src="/maplatte.png" alt="Koffee Map" style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%)", width: 36, height: 36, objectFit: "cover", borderRadius: "50%", border: "2px solid #C9A84C", pointerEvents: "none", zIndex: 2, boxShadow: "0 0 10px rgba(201,168,76,0.5)" }} />
+            <button
+              onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
+              style={{ height: 36, borderRadius: 20, background: "linear-gradient(135deg, #C9A84C, #E6C073)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", flex: 1, boxShadow: "0 0 14px rgba(201,168,76,0.35), 0 0 28px rgba(201,168,76,0.15)" }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: "#000", letterSpacing: 0.3 }}>Koffee Map</span>
+            </button>
+          </div>
         </div>
 
         {/* SUGGEST MODAL */}
