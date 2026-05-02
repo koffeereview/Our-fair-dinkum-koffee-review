@@ -809,24 +809,24 @@ export default function App() {
         {!loading && (
           <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
-              style={{ flex: 1, background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#fff", lineHeight: 1 }}>{cafes.length}</div>
+              style={{ flex: 1, background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#fff", lineHeight: 1, textAlign: "center" }}>{cafes.length}</div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
-              <div style={{ fontSize: 11, color: "#AFAFAF", letterSpacing: 0.5 }}>Reviewed</div>
+              <div style={{ fontSize: 11, color: "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Reviewed</div>
             </div>
             <div onClick={function() { handleStatClick("must"); setView("list"); }}
-              style={{ flex: 1, background: quickFilter === "must" ? "rgba(78,220,119,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "must" ? "rgba(78,220,119,0.5)" : "rgba(255,255,255,0.16)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#4EDC77", lineHeight: 1 }}>{mustVisit}</div>
+              style={{ flex: 1, background: quickFilter === "must" ? "rgba(78,220,119,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "must" ? "rgba(78,220,119,0.5)" : "rgba(78,220,119,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#4EDC77", lineHeight: 1, textAlign: "center" }}>{mustVisit}</div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
-              <div style={{ fontSize: 11, color: quickFilter === "must" ? "#4EDC77" : "#AFAFAF", letterSpacing: 0.5 }}>Must Visit</div>
+              <div style={{ fontSize: 10, color: quickFilter === "must" ? "#4EDC77" : "#D9D9D9", letterSpacing: 0.3, whiteSpace: "nowrap", textAlign: "center" }}>Must Visit</div>
             </div>
             <div onClick={function() { handleStatClick("avoid"); setView("list"); }}
-              style={{ flex: 1, background: quickFilter === "avoid" ? "rgba(255,94,102,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "avoid" ? "rgba(255,94,102,0.5)" : "rgba(255,255,255,0.16)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#FF5E66", lineHeight: 1 }}>{avoid}</div>
+              style={{ flex: 1, background: quickFilter === "avoid" ? "rgba(255,94,102,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "avoid" ? "rgba(255,94,102,0.5)" : "rgba(255,94,102,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#FF5E66", lineHeight: 1, textAlign: "center" }}>{avoid}</div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
-              <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#AFAFAF", letterSpacing: 0.5 }}>Avoid</div>
+              <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Avoid</div>
             </div>
-            <div onClick={function() { setView(view === "map" ? "list" : "map"); }}
+            <div onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
               style={{ flex: 1, background: view === "map" ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (view === "map" ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
               <svg width="26" height="32" viewBox="0 0 26 32" fill="none">
@@ -835,7 +835,7 @@ export default function App() {
                 <image href="/logo.webp" x="7" y="4" width="12" height="12" style={{ borderRadius: "50%", clipPath: "circle(6px at 6px 6px)" }}/>
               </svg>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
-              <div style={{ fontSize: 11, color: view === "map" ? "#E6C073" : "#AFAFAF", letterSpacing: 0.5 }}>Map</div>
+              <div style={{ fontSize: 11, color: view === "map" ? "#E6C073" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Map</div>
             </div>
           </div>
         )}
