@@ -741,22 +741,48 @@ export default function App() {
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
 
-          {/* Suggest a Cafe — outlined secondary, thin gold border */}
-          <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
-            style={{ background: "transparent", border: "0.5px solid rgba(230,192,115,0.45)", cursor: "pointer", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1 }}>
+          {/* Suggest a Cafe — outlined secondary, thin gold border, glow on tap */}
+          <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); }}
+            style={{ background: "transparent", border: "1px solid rgba(230,192,115,0.35)", cursor: "pointer", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1, transition: "all 0.15s" }}
+            onMouseDown={function(e) { e.currentTarget.style.boxShadow = "0 0 12px rgba(230,192,115,0.45)"; e.currentTarget.style.borderColor = "rgba(230,192,115,0.7)"; }}
+            onMouseUp={function(e) { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "rgba(230,192,115,0.35)"; }}
+            onTouchStart={function(e) { e.currentTarget.style.boxShadow = "0 0 12px rgba(230,192,115,0.45)"; e.currentTarget.style.borderColor = "rgba(230,192,115,0.7)"; }}
+            onTouchEnd={function(e) { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "rgba(230,192,115,0.35)"; }}>
             <span style={{ fontSize: 10, fontWeight: 600, color: "#E6C073", letterSpacing: 0.2, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
           </button>
 
-          {/* KOFFEE MAP — premium gold, maplatte floating above touching top border */}
+          {/* KOFFEE MAP — premium gold, glow when active, maplatte floating above */}
           <div style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
             <img src="/maplatte.png" alt="" style={{ position: "absolute", bottom: "100%", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", pointerEvents: "none", zIndex: 2 }} />
             <button
               onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
-              style={{ height: 36, borderRadius: 20, background: "linear-gradient(135deg, #C9A84C, #E6C073)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", flex: 1, boxShadow: "0 0 14px rgba(201,168,76,0.35), 0 0 28px rgba(201,168,76,0.15)" }}>
+              style={{ height: 36, borderRadius: 20, background: "linear-gradient(135deg, #C9A84C, #E6C073)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", flex: 1, boxShadow: view === "map" ? "0 0 20px rgba(201,168,76,0.7), 0 0 40px rgba(201,168,76,0.3)" : "0 0 14px rgba(201,168,76,0.35), 0 0 28px rgba(201,168,76,0.15)", transform: view === "map" ? "scale(0.97)" : "scale(1)" }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: "#000", letterSpacing: 0.3 }}>Koffee Map</span>
             </button>
           </div>
         </div>
+
+        {/* INLINE MAP DRAWER — slides open below social row, above score distribution */}
+        {view === "map" && (
+          <div style={{ marginBottom: 16, borderRadius: 16, overflow: "hidden", border: "1px solid rgba(201,168,76,0.3)", position: "relative" }}>
+            {/* Close button */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "rgba(201,168,76,0.08)", borderBottom: "1px solid rgba(201,168,76,0.15)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <img src="/maplatte.png" alt="" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
+                <span style={{ fontSize: 12, fontWeight: 700, color: "#E6C073", letterSpacing: 1 }}>KOFFEE MAP</span>
+              </div>
+              <button
+                onClick={function() { setView("list"); }}
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "50%", width: 28, height: 28, cursor: "pointer", color: "#fff", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'DM Sans', sans-serif" }}>
+                ×
+              </button>
+            </div>
+            {/* Map container — fixed height, Leaflet renders here */}
+            <div style={{ height: 320, width: "100%", background: "#0a0a0a" }}>
+              {leafletLoaded ? <MapView cafes={cafes} /> : <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "rgba(255,255,255,0.4)", fontSize: 13 }}>Loading map...</div>}
+            </div>
+          </div>
+        )}
 
         {/* SUGGEST MODAL */}
         {suggestOpen && (
@@ -855,18 +881,12 @@ export default function App() {
         )}
       </div>
 
-      {view === "map" ? (
-        <div style={{ padding: "0 28px 60px", maxWidth: 800, margin: "0 auto" }}>
-          {leafletLoaded ? <MapView cafes={cafes} /> : <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.4)" }}>Loading map...</div>}
-        </div>
-      ) : (
-        <>
-          <div style={{ padding: "0 28px 20px", maxWidth: 800, margin: "0 auto" }}>
-            {!loading && cafes.length > 0 && <PullQuote cafes={cafes} />}
-            <input placeholder="Search café, suburb or city..." value={search}
-              onChange={function(e) { setSearch(e.target.value); }}
-              style={{ width: "100%", background: "#111111", border: "1px solid rgba(230,192,115,0.35)", borderRadius: 12, padding: "13px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+      <div style={{ padding: "0 28px 20px", maxWidth: 800, margin: "0 auto" }}>
+        {!loading && cafes.length > 0 && <PullQuote cafes={cafes} />}
+        <input placeholder="Search café, suburb or city..." value={search}
+          onChange={function(e) { setSearch(e.target.value); }}
+          style={{ width: "100%", background: "#111111", border: "1px solid rgba(230,192,115,0.35)", borderRadius: 12, padding: "13px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
               <button onClick={function() { handleSortClick("all"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "rgba(255,255,255,0.16)"), background: sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "transparent", color: sort === "all" && !quickFilter && !nearMe ? "#000" : "#D9D9D9" }}>All</button>
               <button onClick={function() { handleSortClick("high"); }}
@@ -1162,8 +1182,6 @@ export default function App() {
               </div>
             </div>
           )}
-        </>
-      )}
       {shareCardUrl && (
         <div onClick={function(e) { if (e.target === e.currentTarget) setShareCardUrl(null); }}
           style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24 }}>
