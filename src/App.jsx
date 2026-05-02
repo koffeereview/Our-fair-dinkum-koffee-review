@@ -692,8 +692,8 @@ export default function App() {
 
       <div style={{ padding: "32px 28px 24px", maxWidth: 800, margin: "0 auto" }}>
 
-        {/* HEADER ROW — Logo+Title LEFT, Drawer RIGHT */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+        {/* HEADER ROW — Logo+Title LEFT, Drawer RIGHT flush top */}
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 20 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <img src="/logo.webp" alt="Koffee Review" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(230,192,115,0.3)" }} />
             <div>
@@ -706,7 +706,7 @@ export default function App() {
             </div>
           </div>
           <button onClick={function() { setAboutOpen(true); }}
-            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 12, color: "#fff", padding: "10px 12px", cursor: "pointer", fontSize: 18, flexShrink: 0, transition: "all 0.2s" }}>
+            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 10, color: "#fff", width: 40, height: 40, cursor: "pointer", fontSize: 17, flexShrink: 0, transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", marginTop: 9 }}>
             ☰
           </button>
         </div>
@@ -724,26 +724,66 @@ export default function App() {
           <p style={{ color: "#D9D9D9", fontSize: 12, margin: 0 }}>Latte + Double Espresso.</p>
         </div>
 
-        {/* SOCIAL ICONS + SUGGEST */}
-        <div style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
-              style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)", color: "#fff", flexShrink: 0, transition: "transform 0.2s" }}>
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
-              style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: "#000", border: "1px solid rgba(255,255,255,0.22)", color: "#fff", flexShrink: 0, transition: "transform 0.2s" }}>
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
-            </a>
-            <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
-              style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 38, borderRadius: 12, background: "#ff0000", color: "#fff", flexShrink: 0, transition: "transform 0.2s" }}>
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-            </a>
-          </div>
+        {/* SOCIAL ICONS + SUGGEST + KOFFEE MAP — all one row */}
+        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 16 }}>
+
+          {/* Social icons */}
+          <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)", color: "#fff", flexShrink: 0 }}>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "#000", border: "1px solid rgba(255,255,255,0.22)", color: "#fff", flexShrink: 0 }}>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "#ff0000", color: "#fff", flexShrink: 0 }}>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+
+          {/* Suggest a Cafe */}
           <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
-            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "9px 18px", borderRadius: 20, display: "flex", alignItems: "center", gap: 4, boxShadow: "0 0 12px rgba(230,192,115,0.25)", transition: "transform 0.2s" }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "#000", letterSpacing: 0.5 }}>+ Suggest a Café</span>
+            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "0 10px", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1 }}>
+            <span style={{ fontSize: 10, fontWeight: 700, color: "#000", letterSpacing: 0.3, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
           </button>
+
+          {/* KOFFEE MAP — latte pin above + pulsing button */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
+            <style>{`
+              @keyframes pinGlow {
+                0%, 100% { filter: drop-shadow(0 0 5px rgba(212,175,55,0.35)); }
+                50% { filter: drop-shadow(0 0 12px rgba(212,175,55,0.7)); }
+              }
+              @keyframes mapBtnPulse {
+                0%, 100% { box-shadow: 0 0 8px rgba(212,175,55,0.25), 0 0 20px rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.5); }
+                50% { box-shadow: 0 0 16px rgba(212,175,55,0.6), 0 0 36px rgba(212,175,55,0.25); border-color: rgba(212,175,55,0.95); }
+              }
+            `}</style>
+            <div style={{ position: "relative", width: 30, height: 38 }}>
+              <div style={{ position: "absolute", top: -4, left: "50%", transform: "translateX(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(212,175,55,0.12)", filter: "blur(10px)", pointerEvents: "none" }} />
+              <svg width="30" height="38" viewBox="0 0 30 38" fill="none" style={{ animation: "pinGlow 2s ease-in-out infinite", position: "relative", zIndex: 1 }}>
+                <defs>
+                  <linearGradient id="kpinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#F5E6B3"/>
+                    <stop offset="100%" stopColor="#D4AF37"/>
+                  </linearGradient>
+                  <clipPath id="kpinClip">
+                    <circle cx="15" cy="11" r="7"/>
+                  </clipPath>
+                </defs>
+                <path d="M15 0C9.48 0 5 4.48 5 11c0 7.5 10 17 10 17S25 18.5 25 11C25 4.48 20.52 0 15 0z" fill="url(#kpinGrad)"/>
+                <circle cx="15" cy="11" r="7" fill="rgba(0,0,0,0.45)"/>
+                <image href="/maplatte.png" x="8" y="4" width="14" height="14" clipPath="url(#kpinClip)" preserveAspectRatio="xMidYMid slice"/>
+              </svg>
+            </div>
+            <div style={{ width: 2, height: 13, background: "linear-gradient(180deg, rgba(212,175,55,0.6), rgba(212,175,55,0))", filter: "blur(0.5px)", marginTop: -1 }} />
+            <button
+              onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
+              style={{ height: 36, padding: "0 11px", borderRadius: 999, background: "rgba(12,12,12,0.92)", border: "1px solid rgba(212,175,55,0.5)", color: "#F3D28A", fontSize: 11, fontWeight: 600, letterSpacing: 0.4, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", marginTop: -1, animation: "mapBtnPulse 2s ease-in-out infinite" }}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#D4AF37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Koffee Map
+            </button>
+          </div>
         </div>
 
         {/* SUGGEST MODAL */}
@@ -826,16 +866,18 @@ export default function App() {
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Avoid</div>
             </div>
-            <div onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
-              style={{ flex: 1, background: view === "map" ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (view === "map" ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div onClick={function() { handleNearMe(); setQuickFilter(null); }}
+              style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <svg width="26" height="32" viewBox="0 0 26 32" fill="none">
-                <path d="M13 0C7.48 0 3 4.48 3 10c0 7.5 10 18 10 18S23 17.5 23 10c0-5.52-4.48-10-10-10z" fill="#E6C073" opacity="0.9"/>
-                <circle cx="13" cy="10" r="6" fill="#000"/>
-                <image href="/logo.webp" x="7" y="4" width="12" height="12" style={{ borderRadius: "50%", clipPath: "circle(6px at 6px 6px)" }}/>
+              <svg width="28" height="34" viewBox="0 0 26 32" fill="none" style={{ filter: nearMe ? "drop-shadow(0 0 6px rgba(212,175,55,0.6))" : "drop-shadow(0 0 3px rgba(212,175,55,0.2))" }}>
+                <path d="M13 0C7.48 0 3 4.48 3 10c0 7.5 10 18 10 18S23 17.5 23 10c0-5.52-4.48-10-10-10z" fill="#D4AF37" opacity="0.9"/>
+                <circle cx="13" cy="10" r="5.5" fill="#000"/>
+                <circle cx="13" cy="10" r="2.5" fill="#D4AF37"/>
               </svg>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
-              <div style={{ fontSize: 11, color: view === "map" ? "#E6C073" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Map</div>
+              <div style={{ fontSize: 9, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.2, textAlign: "center", whiteSpace: "nowrap" }}>
+                {locationLoading ? "..." : "Find Near Me"}
+              </div>
             </div>
           </div>
         )}
@@ -913,10 +955,6 @@ export default function App() {
                 <button onClick={function() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); }}
                   style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>Clear</button>
               )}
-              <button onClick={handleNearMe}
-                style={{ ...btnBase, border: "1px solid " + (nearMe ? "#E6C073" : "rgba(255,255,255,0.16)"), background: nearMe ? "#E6C073" : "transparent", color: nearMe ? "#000" : "#D9D9D9" }}>
-                {locationLoading ? "..." : "📍 Near Me"}
-              </button>
             </div>
             {city !== "All" && (function() {
               const citySlugMap = { "Brisbane": "brisbane", "Gold Coast": "gold-coast", "Moreton Bay": "moreton-bay", "Sunshine Coast": "sunshine-coast", "Ipswich": "ipswich", "Melbourne": "melbourne", "Sydney": "sydney", "Logan": "logan", "Redland": "redland" };
