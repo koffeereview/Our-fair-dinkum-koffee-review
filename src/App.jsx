@@ -725,7 +725,7 @@ export default function App() {
         </div>
 
         {/* SOCIAL ICONS + SUGGEST + KOFFEE MAP — all one row */}
-        <div style={{ display: "flex", gap: 8, alignItems: "flex-end", marginBottom: 16 }}>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 16, position: "relative" }}>
 
           {/* Social icons */}
           <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
@@ -741,13 +741,13 @@ export default function App() {
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
 
-          {/* Suggest a Cafe — narrower, same height as Koffee Map button */}
+          {/* Suggest a Cafe */}
           <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
             style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "0 8px", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1, minWidth: 0 }}>
             <span style={{ fontSize: 9, fontWeight: 700, color: "#000", letterSpacing: 0.2, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
           </button>
 
-          {/* KOFFEE MAP — big pin above + pulsing button */}
+          {/* KOFFEE MAP — pin floats above button using negative margin */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
             <style>{`
               @keyframes pinGlow {
@@ -760,8 +760,8 @@ export default function App() {
               }
             `}</style>
 
-            {/* DOUBLED pin — 60x76px */}
-            <div style={{ position: "relative", width: 60, height: 76 }}>
+            {/* Pin — floats above with negative margin so it doesn't push row height */}
+            <div style={{ position: "relative", width: 60, height: 76, marginBottom: -40 }}>
               <div style={{ position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)", width: 80, height: 80, borderRadius: "50%", background: "rgba(212,175,55,0.15)", filter: "blur(14px)", pointerEvents: "none" }} />
               <svg width="60" height="76" viewBox="0 0 30 38" fill="none" style={{ animation: "pinGlow 2s ease-in-out infinite", position: "relative", zIndex: 1 }}>
                 <defs>
@@ -772,20 +772,27 @@ export default function App() {
                   <clipPath id="kpinClip">
                     <circle cx="15" cy="11" r="7"/>
                   </clipPath>
+                  {/* Full teardrop clip — image covers entire top of pin */}
+                  <clipPath id="kpinTopClip">
+                    <path d="M15 0C9.48 0 5 4.48 5 11c0 7.5 10 17 10 17S25 18.5 25 11C25 4.48 20.52 0 15 0z"/>
+                  </clipPath>
                 </defs>
+                {/* Teardrop base */}
                 <path d="M15 0C9.48 0 5 4.48 5 11c0 7.5 10 17 10 17S25 18.5 25 11C25 4.48 20.52 0 15 0z" fill="url(#kpinGrad)"/>
-                <circle cx="15" cy="11" r="7" fill="rgba(0,0,0,0.45)"/>
-                <image href="/maplatte.png" x="8" y="4" width="14" height="14" clipPath="url(#kpinClip)" preserveAspectRatio="xMidYMid slice"/>
+                {/* Latte image covers the entire top portion of the teardrop */}
+                <image href="/maplatte.png" x="3" y="0" width="24" height="20" clipPath="url(#kpinTopClip)" preserveAspectRatio="xMidYMin slice" opacity="0.92"/>
+                {/* Subtle gold gradient overlay at bottom to blend into pin tip */}
+                <path d="M15 16C15 16 7 22 8 26C10 30 15 28 15 28S20 30 22 26C23 22 15 16 15 16Z" fill="url(#kpinGrad)" opacity="0.8"/>
               </svg>
             </div>
 
             {/* Glow connector */}
-            <div style={{ width: 2, height: 13, background: "linear-gradient(180deg, rgba(212,175,55,0.6), rgba(212,175,55,0))", filter: "blur(0.5px)", marginTop: -1 }} />
+            <div style={{ width: 2, height: 13, background: "linear-gradient(180deg, rgba(212,175,55,0.6), rgba(212,175,55,0))", filter: "blur(0.5px)" }} />
 
             {/* Pulsing Koffee Map button */}
             <button
               onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
-              style={{ height: 36, padding: "0 11px", borderRadius: 999, background: "rgba(12,12,12,0.92)", border: "1px solid rgba(212,175,55,0.5)", color: "#F3D28A", fontSize: 11, fontWeight: 600, letterSpacing: 0.4, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", marginTop: -1, animation: "mapBtnPulse 2s ease-in-out infinite" }}>
+              style={{ height: 36, padding: "0 11px", borderRadius: 999, background: "rgba(12,12,12,0.92)", border: "1px solid rgba(212,175,55,0.5)", color: "#F3D28A", fontSize: 11, fontWeight: 600, letterSpacing: 0.4, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", animation: "mapBtnPulse 2s ease-in-out infinite" }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="#D4AF37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
               Koffee Map
             </button>
