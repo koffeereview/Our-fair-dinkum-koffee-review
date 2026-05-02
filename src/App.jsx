@@ -706,7 +706,7 @@ export default function App() {
             </div>
           </div>
           <button onClick={function() { setAboutOpen(true); }}
-            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 10, color: "#fff", width: 40, height: 40, cursor: "pointer", fontSize: 17, flexShrink: 0, transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", marginTop: 9 }}>
+            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 10, color: "#fff", width: 40, height: 40, cursor: "pointer", fontSize: 17, flexShrink: 0, transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", marginTop: 13 }}>
             ☰
           </button>
         </div>
@@ -725,7 +725,7 @@ export default function App() {
         </div>
 
         {/* SOCIAL ICONS + SUGGEST + KOFFEE MAP — all one row */}
-        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 16 }}>
+        <div style={{ display: "flex", gap: 8, alignItems: "flex-end", marginBottom: 16 }}>
 
           {/* Social icons */}
           <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
@@ -741,27 +741,29 @@ export default function App() {
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
 
-          {/* Suggest a Cafe */}
+          {/* Suggest a Cafe — narrower, same height as Koffee Map button */}
           <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
-            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "0 10px", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1 }}>
-            <span style={{ fontSize: 10, fontWeight: 700, color: "#000", letterSpacing: 0.3, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
+            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "0 8px", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1, minWidth: 0 }}>
+            <span style={{ fontSize: 9, fontWeight: 700, color: "#000", letterSpacing: 0.2, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
           </button>
 
-          {/* KOFFEE MAP — latte pin above + pulsing button */}
+          {/* KOFFEE MAP — big pin above + pulsing button */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
             <style>{`
               @keyframes pinGlow {
-                0%, 100% { filter: drop-shadow(0 0 5px rgba(212,175,55,0.35)); }
-                50% { filter: drop-shadow(0 0 12px rgba(212,175,55,0.7)); }
+                0%, 100% { filter: drop-shadow(0 0 6px rgba(212,175,55,0.4)); }
+                50% { filter: drop-shadow(0 0 16px rgba(212,175,55,0.8)); }
               }
               @keyframes mapBtnPulse {
                 0%, 100% { box-shadow: 0 0 8px rgba(212,175,55,0.25), 0 0 20px rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.5); }
                 50% { box-shadow: 0 0 16px rgba(212,175,55,0.6), 0 0 36px rgba(212,175,55,0.25); border-color: rgba(212,175,55,0.95); }
               }
             `}</style>
-            <div style={{ position: "relative", width: 30, height: 38 }}>
-              <div style={{ position: "absolute", top: -4, left: "50%", transform: "translateX(-50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(212,175,55,0.12)", filter: "blur(10px)", pointerEvents: "none" }} />
-              <svg width="30" height="38" viewBox="0 0 30 38" fill="none" style={{ animation: "pinGlow 2s ease-in-out infinite", position: "relative", zIndex: 1 }}>
+
+            {/* DOUBLED pin — 60x76px */}
+            <div style={{ position: "relative", width: 60, height: 76 }}>
+              <div style={{ position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)", width: 80, height: 80, borderRadius: "50%", background: "rgba(212,175,55,0.15)", filter: "blur(14px)", pointerEvents: "none" }} />
+              <svg width="60" height="76" viewBox="0 0 30 38" fill="none" style={{ animation: "pinGlow 2s ease-in-out infinite", position: "relative", zIndex: 1 }}>
                 <defs>
                   <linearGradient id="kpinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#F5E6B3"/>
@@ -776,7 +778,11 @@ export default function App() {
                 <image href="/maplatte.png" x="8" y="4" width="14" height="14" clipPath="url(#kpinClip)" preserveAspectRatio="xMidYMid slice"/>
               </svg>
             </div>
+
+            {/* Glow connector */}
             <div style={{ width: 2, height: 13, background: "linear-gradient(180deg, rgba(212,175,55,0.6), rgba(212,175,55,0))", filter: "blur(0.5px)", marginTop: -1 }} />
+
+            {/* Pulsing Koffee Map button */}
             <button
               onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
               style={{ height: 36, padding: "0 11px", borderRadius: 999, background: "rgba(12,12,12,0.92)", border: "1px solid rgba(212,175,55,0.5)", color: "#F3D28A", fontSize: 11, fontWeight: 600, letterSpacing: 0.4, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", marginTop: -1, animation: "mapBtnPulse 2s ease-in-out infinite" }}>
