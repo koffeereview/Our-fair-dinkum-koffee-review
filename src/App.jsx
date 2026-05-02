@@ -718,14 +718,14 @@ export default function App() {
         </div>
 
         {/* BRAND RULE */}
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ height: 1, background: "linear-gradient(90deg, #E6C073, transparent)", marginBottom: 10, width: "60%" }} />
+        <div style={{ marginBottom: 10 }}>
+          <div style={{ height: 1, background: "linear-gradient(90deg, #E6C073, transparent)", marginBottom: 8, width: "60%" }} />
           <p style={{ color: "#E6C073", fontSize: 12, fontWeight: 700, margin: "0 0 2px", letterSpacing: 0.5 }}>We order the same thing every time.</p>
           <p style={{ color: "#D9D9D9", fontSize: 12, margin: 0 }}>Latte + Double Espresso.</p>
         </div>
 
-        {/* SOCIAL ICONS + SUGGEST + KOFFEE MAP — all one row */}
-        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 16, position: "relative" }}>
+        {/* SOCIAL ICONS + SUGGEST + KOFFEE MAP — all one row, perfectly level */}
+        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 16 }}>
 
           {/* Social icons */}
           <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
@@ -741,59 +741,46 @@ export default function App() {
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
           </a>
 
-          {/* Suggest a Cafe */}
+          {/* Suggest a Cafe — narrower */}
           <button onClick={function() { setSuggestOpen(true); setSuggestDone(false); setSuggestName(""); setSuggestSuburb(""); setSuggestCity(""); setSuggestNominee(""); setSuggestWhy(""); setView("list"); }}
-            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "0 8px", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: 1, minWidth: 0 }}>
+            style={{ background: "linear-gradient(135deg, #E6C073, #F6DDAA)", border: "none", cursor: "pointer", padding: "0 6px", height: 36, borderRadius: 20, display: "flex", alignItems: "center", justifyContent: "center", flex: "0 1 90px", minWidth: 0 }}>
             <span style={{ fontSize: 9, fontWeight: 700, color: "#000", letterSpacing: 0.2, whiteSpace: "nowrap" }}>+ Suggest a Café</span>
           </button>
 
-          {/* KOFFEE MAP — pin floats above button using negative margin */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
+          {/* KOFFEE MAP — clean button with maplatte pin image on top */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, position: "relative" }}>
             <style>{`
-              @keyframes pinGlow {
-                0%, 100% { filter: drop-shadow(0 0 6px rgba(212,175,55,0.4)); }
-                50% { filter: drop-shadow(0 0 16px rgba(212,175,55,0.8)); }
-              }
-              @keyframes mapBtnPulse {
-                0%, 100% { box-shadow: 0 0 8px rgba(212,175,55,0.25), 0 0 20px rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.5); }
-                50% { box-shadow: 0 0 16px rgba(212,175,55,0.6), 0 0 36px rgba(212,175,55,0.25); border-color: rgba(212,175,55,0.95); }
+              @keyframes kpinBob {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-2px); }
               }
             `}</style>
 
-            {/* Pin — floats above with negative margin so it doesn't push row height */}
-            <div style={{ position: "relative", width: 60, height: 76, marginBottom: -40 }}>
-              <div style={{ position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)", width: 80, height: 80, borderRadius: "50%", background: "rgba(212,175,55,0.15)", filter: "blur(14px)", pointerEvents: "none" }} />
-              <svg width="60" height="76" viewBox="0 0 30 38" fill="none" style={{ animation: "pinGlow 2s ease-in-out infinite", position: "relative", zIndex: 1 }}>
+            {/* maplatte pin image — sits above the button, pin-shaped */}
+            <div style={{ position: "relative", marginBottom: -6, zIndex: 2, animation: "kpinBob 2.5s ease-in-out infinite" }}>
+              <svg width="36" height="45" viewBox="0 0 30 38" fill="none">
                 <defs>
-                  <linearGradient id="kpinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <linearGradient id="kpinGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#F5E6B3"/>
                     <stop offset="100%" stopColor="#D4AF37"/>
                   </linearGradient>
-                  <clipPath id="kpinClip">
-                    <circle cx="15" cy="11" r="7"/>
-                  </clipPath>
-                  {/* Full teardrop clip — image covers entire top of pin */}
-                  <clipPath id="kpinTopClip">
+                  <clipPath id="kpinTopClip2">
                     <path d="M15 0C9.48 0 5 4.48 5 11c0 7.5 10 17 10 17S25 18.5 25 11C25 4.48 20.52 0 15 0z"/>
                   </clipPath>
                 </defs>
-                {/* Teardrop base */}
-                <path d="M15 0C9.48 0 5 4.48 5 11c0 7.5 10 17 10 17S25 18.5 25 11C25 4.48 20.52 0 15 0z" fill="url(#kpinGrad)"/>
-                {/* Latte image covers the entire top portion of the teardrop */}
-                <image href="/maplatte.png" x="3" y="0" width="24" height="20" clipPath="url(#kpinTopClip)" preserveAspectRatio="xMidYMin slice" opacity="0.92"/>
-                {/* Subtle gold gradient overlay at bottom to blend into pin tip */}
-                <path d="M15 16C15 16 7 22 8 26C10 30 15 28 15 28S20 30 22 26C23 22 15 16 15 16Z" fill="url(#kpinGrad)" opacity="0.8"/>
+                {/* Gold teardrop outline */}
+                <path d="M15 0C9.48 0 5 4.48 5 11c0 7.5 10 17 10 17S25 18.5 25 11C25 4.48 20.52 0 15 0z" fill="url(#kpinGrad2)" opacity="0.3"/>
+                {/* maplatte.png filling the full pin shape */}
+                <image href="/maplatte.png" x="5" y="0" width="20" height="20" clipPath="url(#kpinTopClip2)" preserveAspectRatio="xMidYMin slice"/>
+                {/* Thin gold border around pin */}
+                <path d="M15 0C9.48 0 5 4.48 5 11c0 7.5 10 17 10 17S25 18.5 25 11C25 4.48 20.52 0 15 0z" fill="none" stroke="#D4AF37" strokeWidth="0.8" opacity="0.7"/>
               </svg>
             </div>
 
-            {/* Glow connector */}
-            <div style={{ width: 2, height: 13, background: "linear-gradient(180deg, rgba(212,175,55,0.6), rgba(212,175,55,0))", filter: "blur(0.5px)" }} />
-
-            {/* Pulsing Koffee Map button */}
+            {/* Clean Koffee Map button — no glow, no pulse */}
             <button
               onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
-              style={{ height: 36, padding: "0 11px", borderRadius: 999, background: "rgba(12,12,12,0.92)", border: "1px solid rgba(212,175,55,0.5)", color: "#F3D28A", fontSize: 11, fontWeight: 600, letterSpacing: 0.4, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", animation: "mapBtnPulse 2s ease-in-out infinite" }}>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="#D4AF37"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              style={{ height: 36, padding: "0 12px", borderRadius: 10, background: view === "map" ? "rgba(212,175,55,0.15)" : "rgba(255,255,255,0.06)", border: "1px solid " + (view === "map" ? "rgba(212,175,55,0.5)" : "rgba(255,255,255,0.16)"), color: view === "map" ? "#F3D28A" : "#D9D9D9", fontSize: 11, fontWeight: 600, letterSpacing: 0.3, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", zIndex: 1 }}>
               Koffee Map
             </button>
           </div>
