@@ -1155,13 +1155,13 @@ export default function App() {
                 <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
               <div style={{ marginTop: 8 }}>
-                <div style={{ fontSize: 10, letterSpacing: 3, color: "#c8a96e", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
-                <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-                  <a href="/best-latte-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Best Latte Brisbane</a>
+                <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,255,255,0.55)", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
+                <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
+                  <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
-                  <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Hidden Gems Brisbane</a>
+                  <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Hidden Gems</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
-                  <a href="/worst-cafes-by-suburb" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Worst Cafés by Suburb</a>
+                  <a href="/worst-cafes-by-suburb" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Worst Cafés</a>
                 </div>
               </div>
             </div>
@@ -1181,13 +1181,13 @@ export default function App() {
                 <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
               <div style={{ marginTop: 8 }}>
-                <div style={{ fontSize: 10, letterSpacing: 3, color: "#c8a96e", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
-                <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-                  <a href="/best-latte-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Best Latte Brisbane</a>
+                <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,255,255,0.55)", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
+                <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
+                  <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
-                  <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Hidden Gems Brisbane</a>
+                  <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Hidden Gems</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
-                  <a href="/worst-cafes-by-suburb" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Worst Cafés by Suburb</a>
+                  <a href="/worst-cafes-by-suburb" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Worst Cafés</a>
                 </div>
               </div>
             </div>
