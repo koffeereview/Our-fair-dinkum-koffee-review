@@ -112,7 +112,8 @@ function VerdictBadge(props) {
   const score = props.score;
   return (
     <div style={{
-      padding: "4px 14px", borderRadius: 20, fontSize: 11, fontWeight: 700, letterSpacing: 2,
+      display: "inline-block",
+      padding: "3px 8px", borderRadius: 6, fontSize: 10, fontWeight: 700, letterSpacing: 1.5,
       background: getScoreBg(score), color: getScoreColor(score), border: "1px solid " + getScoreBorder(score),
     }}>
       {verdict ? verdict.toUpperCase() : "UNRATED"}
@@ -752,12 +753,15 @@ export default function App() {
           </button>
 
           {/* KOFFEE MAP — premium gold, glow when active, maplatte floating above */}
-          <div
-            onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
-            style={{ position: "relative", flex: 1, display: "flex", overflow: "visible", cursor: "pointer" }}>
-            <img src="/maplatte.png" alt="" style={{ position: "absolute", bottom: "calc(100% - 8px)", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", pointerEvents: "none", zIndex: 2 }} />
+          <div style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
+            <img
+              src="/maplatte.png"
+              alt="Koffee Map"
+              onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
+              style={{ position: "absolute", bottom: "calc(100% - 8px)", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", zIndex: 2, cursor: "pointer" }}
+            />
             <button
-              onClick={function(e) { e.stopPropagation(); setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
+              onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
               style={{ height: 36, borderRadius: 20, background: "linear-gradient(135deg, #C9A84C, #E6C073)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", flex: 1, boxShadow: view === "map" ? "0 0 20px rgba(201,168,76,0.7), 0 0 40px rgba(201,168,76,0.3)" : "0 0 14px rgba(201,168,76,0.35), 0 0 28px rgba(201,168,76,0.15)", transform: view === "map" ? "scale(0.97)" : "scale(1)" }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: "#000", letterSpacing: 0.3 }}>Koffee Map</span>
             </button>
@@ -1029,12 +1033,12 @@ export default function App() {
                     <ScoreRing score={cafe.score} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontWeight: 600, fontSize: 16, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{cafe.name}</div>
-                      <div style={{ marginTop: 2, marginBottom: 2 }}>
-                        <VerdictBadge verdict={cafe.verdict} score={cafe.score} />
-                      </div>
                       <div style={{ color: getScoreColor(cafe.score), opacity: 0.7, fontSize: 12, marginTop: 2 }}>
-                        {cafe.suburb}, {cafe.city} · {cafe.price}
+                        {cafe.suburb}, {cafe.city}{cafe.price ? " · " + cafe.price : ""}
                         {nearMe && cafe._distance !== null && <span style={{ marginLeft: 6 }}>· {cafe._distance.toFixed(1)} km away</span>}
+                      </div>
+                      <div style={{ marginTop: 4 }}>
+                        <VerdictBadge verdict={cafe.verdict} score={cafe.score} />
                       </div>
                       {(function() {
                         const key = (cafe.suburb + "-" + cafe.city).toLowerCase();
