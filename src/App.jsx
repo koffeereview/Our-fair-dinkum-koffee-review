@@ -755,7 +755,7 @@ export default function App() {
           {/* KOFFEE MAP — premium gold, glow when active, maplatte floating above */}
           <div style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
             <img
-              src="/maplatte.png"
+              src="/maplatte.webp"
               alt="Koffee Map"
               onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
               style={{ position: "absolute", bottom: "calc(100% - 8px)", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", zIndex: 2, cursor: "pointer" }}
@@ -774,7 +774,7 @@ export default function App() {
             {/* Close button */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "rgba(201,168,76,0.08)", borderBottom: "1px solid rgba(201,168,76,0.15)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <img src="/maplatte.png" alt="" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
+                <img src="/maplatte.webp" alt="" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
                 <span style={{ fontSize: 12, fontWeight: 700, color: "#E6C073", letterSpacing: 1 }}>KOFFEE MAP</span>
               </div>
               <button
@@ -1145,7 +1145,7 @@ export default function App() {
           {(!loading && (nearMe || quickFilter || scoreBucket || sort !== "all" || city !== "All" || search)) && (
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "28px 24px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
               <p style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 12 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
-              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 8 }}>
                 <a href="/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>About Us</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
                 <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Disclosure</a>
@@ -1154,7 +1154,7 @@ export default function App() {
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
                 <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
-              <div style={{ marginTop: 8 }}>
+              <div style={{ margin: "8px 0" }}>
                 <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,255,255,0.55)", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
                 <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
                   <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
@@ -1171,7 +1171,7 @@ export default function App() {
           {!loading && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
             <div style={{ padding: "8px 28px 40px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
               <p style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
-              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 8 }}>
                 <a href="/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>About Us</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
                 <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Disclosure</a>
@@ -1180,7 +1180,7 @@ export default function App() {
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
                 <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
-              <div style={{ marginTop: 8 }}>
+              <div style={{ margin: "8px 0" }}>
                 <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,255,255,0.55)", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
                 <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
                   <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
