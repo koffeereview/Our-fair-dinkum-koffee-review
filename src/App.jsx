@@ -528,7 +528,7 @@ export default function App() {
   const [userLocation, setUserLocation] = useState(null);
   const [nearMe, setNearMe] = useState(false);
   const [locationLoading, setLocationLoading] = useState(false);
-  const [showAll, setShowAll] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(10);
   const scoreRef = useRef(null);
   const cityRef = useRef(null);
 
@@ -1002,23 +1002,23 @@ export default function App() {
               </div>
             )}
             {!loading && !nearMe && filtered.length === 0 && <div style={{ textAlign: "center", padding: 60, color: "rgba(255,255,255,0.3)" }}>No cafes found</div>}
-            {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
+            {!loading && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 <div style={{ fontSize: 11, letterSpacing: 3, color: "#E6C073", fontWeight: 700 }}>LATEST REVIEWS</div>
               </div>
             )}
-            {!loading && showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
+            {!loading && false && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
               <div style={{ fontSize: 11, letterSpacing: 2, color: "rgba(197,157,80,0.5)", marginBottom: 12 }}>ALL CAFÉS — A TO Z</div>
             )}
             {(function() {
-              const isDefaultView = !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search;
-              const displayList = isDefaultView ? [...cafes].reverse().slice(0, 10) : filtered;
+              const isDefaultView = !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search;
+              const displayList = isDefaultView ? [...cafes].reverse().slice(0, visibleCount) : filtered;
               return displayList.map(function(cafe) {
                 const isSelected = selected && selected.id === cafe.id;
                 const cardColor = getScoreColor(cafe.score);
               return (
                 <div key={cafe.id}
-                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.07)"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? getScoreColor(cafe.score) + "66" : getScoreColor(cafe.score) + "22"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}
                   onClick={function() {
                     setSelected(isSelected ? null : cafe);
                     if (navigator.vibrate) {
@@ -1110,7 +1110,7 @@ export default function App() {
                         <a href={"/review/" + makeSlug(cafe.name, cafe.suburb)}
                           onClick={function(e) { e.stopPropagation(); }}
                           style={{ flex: 1, padding: "9px 6px", borderRadius: 10, background: "rgba(197,157,80,0.1)", border: "1px solid rgba(197,157,80,0.25)", color: "#c8a96e", textDecoration: "none", fontSize: 11, textAlign: "center", fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
-                          <span>☕</span><span>Full Review</span>
+                          <span>📝</span><span>Full Review</span>
                         </a>
                       </div>
 
@@ -1131,51 +1131,64 @@ export default function App() {
             })()}
           </div>
 
-          {/* SHOW ALL BUTTON */}
-          {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
-            <div style={{ padding: "0 24px 8px", maxWidth: 800, margin: "0 auto" }}>
-              <button onClick={function() { setShowAll(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                style={{ width: "100%", padding: "14px", borderRadius: 12, background: "rgba(197,157,80,0.1)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", letterSpacing: 1 }}>
-                SHOW ALL {cafes.length} CAFÉS →
+          {/* LOAD MORE BUTTON — pagination */}
+          {!loading && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && visibleCount < cafes.length && (
+            <div style={{ padding: "0 28px 8px", maxWidth: 800, margin: "0 auto" }}>
+              <button onClick={function() { setVisibleCount(function(c) { return c + 10; }); }}
+                style={{ width: "100%", padding: "14px", borderRadius: 12, background: "rgba(197,157,80,0.1)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", letterSpacing: 1 }}>
+                LOAD MORE · {Math.min(visibleCount + 10, cafes.length) - visibleCount} more cafés →
               </button>
             </div>
           )}
 
           {/* FOOTER */}
-          {(!loading && (showAll || nearMe || quickFilter || scoreBucket || sort !== "all" || city !== "All" || search)) && (
+          {(!loading && (nearMe || quickFilter || scoreBucket || sort !== "all" || city !== "All" || search)) && (
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "28px 24px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
-              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>About Us</a>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 12 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+                <a href="/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>About Us</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Disclosure</a>
+                <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Disclosure</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Privacy</a>
+                <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Privacy</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>How We Score</a>
+                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
+              </div>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ fontSize: 10, letterSpacing: 3, color: "#c8a96e", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
+                <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+                  <a href="/best-latte-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Best Latte Brisbane</a>
+                  <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
+                  <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Hidden Gems Brisbane</a>
+                  <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
+                  <a href="/worst-cafes-by-suburb" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Worst Cafés by Suburb</a>
+                </div>
               </div>
             </div>
           )}
 
           {/* FOOTER ON DEFAULT VIEW */}
-          {!loading && !showAll && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
-            <div style={{ padding: "8px 24px 40px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 10 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
-              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>About Us</a>
+          {!loading && !nearMe && !quickFilter && !scoreBucket && sort === "all" && city === "All" && !search && (
+            <div style={{ padding: "8px 28px 40px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
+              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+                <a href="/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>About Us</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Disclosure</a>
+                <a href="/disclosure" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Disclosure</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Privacy</a>
+                <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Privacy</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>How We Score</a>
+                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
-              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 10 }}>
-                <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Best Latte Brisbane</a>
-                <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
-                <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Hidden Gems Brisbane</a>
-                <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
-                <a href="/worst-cafes-by-suburb" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Worst Cafés by Suburb</a>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ fontSize: 10, letterSpacing: 3, color: "#c8a96e", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
+                <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+                  <a href="/best-latte-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Best Latte Brisbane</a>
+                  <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
+                  <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Hidden Gems Brisbane</a>
+                  <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
+                  <a href="/worst-cafes-by-suburb" style={{ fontSize: 12, color: "#c8a96e", textDecoration: "none", fontWeight: 500 }}>Worst Cafés by Suburb</a>
+                </div>
               </div>
             </div>
           )}
