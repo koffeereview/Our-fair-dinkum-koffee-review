@@ -752,10 +752,12 @@ export default function App() {
           </button>
 
           {/* KOFFEE MAP — premium gold, glow when active, maplatte floating above */}
-          <div style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
-            <img src="/maplatte.png" alt="" style={{ position: "absolute", bottom: "100%", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", pointerEvents: "none", zIndex: 2 }} />
+          <div
+            onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
+            style={{ position: "relative", flex: 1, display: "flex", overflow: "visible", cursor: "pointer" }}>
+            <img src="/maplatte.png" alt="" style={{ position: "absolute", bottom: "calc(100% - 8px)", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", pointerEvents: "none", zIndex: 2 }} />
             <button
-              onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
+              onClick={function(e) { e.stopPropagation(); setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
               style={{ height: 36, borderRadius: 20, background: "linear-gradient(135deg, #C9A84C, #E6C073)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", fontFamily: "'DM Sans', sans-serif", transition: "all 0.2s", flex: 1, boxShadow: view === "map" ? "0 0 20px rgba(201,168,76,0.7), 0 0 40px rgba(201,168,76,0.3)" : "0 0 14px rgba(201,168,76,0.35), 0 0 28px rgba(201,168,76,0.15)", transform: view === "map" ? "scale(0.97)" : "scale(1)" }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: "#000", letterSpacing: 0.3 }}>Koffee Map</span>
             </button>
@@ -1025,14 +1027,14 @@ export default function App() {
                   <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, background: cardColor, borderRadius: "16px 0 0 16px" }} />
                   <div style={{ display: "flex", alignItems: "center", gap: 16, marginLeft: 8 }}>
                     <ScoreRing score={cafe.score} />
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                        <span style={{ fontWeight: 600, fontSize: 16 }}>{cafe.name}</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontWeight: 600, fontSize: 16, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{cafe.name}</div>
+                      <div style={{ marginTop: 2, marginBottom: 2 }}>
                         <VerdictBadge verdict={cafe.verdict} score={cafe.score} />
                       </div>
-                      <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginTop: 3 }}>
+                      <div style={{ color: getScoreColor(cafe.score), opacity: 0.7, fontSize: 12, marginTop: 2 }}>
                         {cafe.suburb}, {cafe.city} · {cafe.price}
-                        {nearMe && cafe._distance !== null && <span style={{ color: "#c8a96e", marginLeft: 6 }}>· {cafe._distance.toFixed(1)} km away</span>}
+                        {nearMe && cafe._distance !== null && <span style={{ marginLeft: 6 }}>· {cafe._distance.toFixed(1)} km away</span>}
                       </div>
                       {(function() {
                         const key = (cafe.suburb + "-" + cafe.city).toLowerCase();
