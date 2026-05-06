@@ -890,23 +890,25 @@ export default function App() {
             <div onClick={function() { handleNearMe(); setQuickFilter(null); if (view === "map") setView("list"); }}
               style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <svg width="36" height="36" viewBox="4 0 56 50" fill="none">
-                <defs>
-                  <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
-                    <stop stopColor="#F5D27A" />
-                    <stop offset="1" stopColor="#D4AF37" />
-                  </linearGradient>
-                  <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.9 0 1 0 0 0.65 0 0 1 0 0.18 0 0 0 0.35 0" />
-                    <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
-                  </filter>
-                </defs>
-                <path d="M32 58C32 58 12 35.5 12 23.5C12 12.7 20.9 4 32 4C43.1 4 52 12.7 52 23.5C52 35.5 32 58 32 58Z" fill="url(#goldPin)" filter="url(#goldGlow)" />
-                <circle cx="32" cy="24" r="13.5" fill="#111111" opacity="0.92" />
-                <ellipse cx="32" cy="24" rx="7" ry="10" fill="url(#goldPin)" />
-                <path d="M36.5 15.5C31.5 20.5 33.5 27.5 27.5 32.5" stroke="#111111" strokeWidth="2.4" strokeLinecap="round" />
-              </svg>
+              <div style={{ height: 32, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="32" height="44" viewBox="0 0 64 64" fill="none" style={{ overflow: "visible" }}>
+                  <defs>
+                    <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
+                      <stop stopColor="#F5D27A" />
+                      <stop offset="1" stopColor="#D4AF37" />
+                    </linearGradient>
+                    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.9 0 1 0 0 0.65 0 0 1 0 0.18 0 0 0 0.35 0" />
+                      <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+                    </filter>
+                  </defs>
+                  <path d="M32 58C32 58 12 35.5 12 23.5C12 12.7 20.9 4 32 4C43.1 4 52 12.7 52 23.5C52 35.5 32 58 32 58Z" fill="url(#goldPin)" filter="url(#goldGlow)" />
+                  <circle cx="32" cy="24" r="13.5" fill="#111111" opacity="0.92" />
+                  <ellipse cx="32" cy="24" rx="7" ry="10" fill="url(#goldPin)" />
+                  <path d="M36.5 15.5C31.5 20.5 33.5 27.5 27.5 32.5" stroke="#111111" strokeWidth="2.4" strokeLinecap="round" />
+                </svg>
+              </div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
               <div style={{ fontSize: 9, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.2, textAlign: "center", whiteSpace: "nowrap" }}>
                 {locationLoading ? "..." : "Find Near Me"}
