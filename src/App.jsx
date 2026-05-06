@@ -539,7 +539,24 @@ export default function App() {
       .catch(function() { setLoading(false); });
   }, []);
 
-  // PULL TO REFRESH
+  // AUTO-CLOSE MAP on outside interaction
+  useEffect(function() {
+    if (view !== "map") return;
+    function handleClick(e) {
+      // Close if clicking outside the inline map drawer
+      const mapDrawer = document.getElementById("koffee-map-drawer");
+      const mapBtn = document.getElementById("koffee-map-btn");
+      if (mapDrawer && !mapDrawer.contains(e.target) && mapBtn && !mapBtn.contains(e.target)) {
+        setView("list");
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    document.addEventListener("touchstart", handleClick, { passive: true });
+    return function() {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("touchstart", handleClick);
+    };
+  }, [view]);
   useEffect(function() {
     let startY = 0;
     let isPulling = false;
@@ -753,7 +770,7 @@ export default function App() {
           </button>
 
           {/* KOFFEE MAP — premium gold, glow when active, maplatte floating above */}
-          <div style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
+          <div id="koffee-map-btn" style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
             <img
               src="/maplatte.webp"
               alt="Koffee Map"
@@ -770,7 +787,7 @@ export default function App() {
 
         {/* INLINE MAP DRAWER — slides open below social row, above score distribution */}
         {view === "map" && (
-          <div style={{ marginBottom: 16, borderRadius: 16, overflow: "hidden", border: "1px solid rgba(201,168,76,0.3)", position: "relative" }}>
+          <div id="koffee-map-drawer" style={{ marginBottom: 16, borderRadius: 16, overflow: "hidden", border: "1px solid rgba(201,168,76,0.3)", position: "relative" }}>
             {/* Close button */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "rgba(201,168,76,0.08)", borderBottom: "1px solid rgba(201,168,76,0.15)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -870,10 +887,10 @@ export default function App() {
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Avoid</div>
             </div>
-            <div onClick={function() { handleNearMe(); setQuickFilter(null); }}
+            <div onClick={function() { handleNearMe(); setQuickFilter(null); if (view === "map") setView("list"); }}
               style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
+              <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
                 <defs>
                   <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
                     <stop stopColor="#F5D27A" />
@@ -889,7 +906,6 @@ export default function App() {
                 <circle cx="32" cy="24" r="13.5" fill="#111111" opacity="0.92" />
                 <ellipse cx="32" cy="24" rx="7" ry="10" fill="url(#goldPin)" />
                 <path d="M36.5 15.5C31.5 20.5 33.5 27.5 27.5 32.5" stroke="#111111" strokeWidth="2.4" strokeLinecap="round" />
-                <path d="M18 55H46" stroke="#F5D27A" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
               </svg>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
               <div style={{ fontSize: 9, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.2, textAlign: "center", whiteSpace: "nowrap" }}>
@@ -1034,6 +1050,7 @@ export default function App() {
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid " + (isSelected ? getScoreColor(cafe.score) + "66" : getScoreColor(cafe.score) + "22"), borderRadius: 16, padding: 20, marginBottom: 10, cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden" }}
                   onClick={function() {
                     setSelected(isSelected ? null : cafe);
+                    if (view === "map") setView("list");
                     if (navigator.vibrate) {
                       if (cafe.score >= 8.0) navigator.vibrate([40, 20, 40]);
                       else if (cafe.score >= 7.5) navigator.vibrate(40);
