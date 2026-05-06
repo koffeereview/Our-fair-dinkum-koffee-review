@@ -890,7 +890,7 @@ export default function App() {
             <div onClick={function() { handleNearMe(); setQuickFilter(null); if (view === "map") setView("list"); }}
               style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+              <svg width="36" height="36" viewBox="4 0 56 50" fill="none">
                 <defs>
                   <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
                     <stop stopColor="#F5D27A" />
@@ -921,7 +921,7 @@ export default function App() {
         <input placeholder="Search café, suburb or city..." value={search}
           onChange={function(e) { setSearch(e.target.value); if (view === "map") setView("list"); }}
           style={{ width: "100%", background: "#111111", border: "1px solid rgba(230,192,115,0.35)", borderRadius: 12, padding: "13px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
-        <div style={{ display: "flex", gap: 6, flexWrap: "nowrap", alignItems: "center", overflowX: "auto" }}>
+        <div style={{ display: "flex", gap: 6, flexWrap: "nowrap", alignItems: "center", overflowX: "visible" }}>
               <button onClick={function() { handleSortClick("all"); if (view === "map") setView("list"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "rgba(255,255,255,0.16)"), background: sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "transparent", color: sort === "all" && !quickFilter && !nearMe ? "#000" : "#D9D9D9" }}>All</button>
               <button onClick={function() { handleSortClick("high"); if (view === "map") setView("list"); }}
