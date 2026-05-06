@@ -684,7 +684,7 @@ export default function App() {
       if (sort === "low") return a.score - b.score;
       return (a.name || "").localeCompare(b.name || "");
     });
-  const btnBase = { padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500, cursor: "pointer", transition: "all 0.2s" };
+  const btnBase = { padding: "6px 10px", borderRadius: 20, fontSize: 11, fontWeight: 500, cursor: "pointer", transition: "all 0.2s", whiteSpace: "nowrap" };
 
   return (
     <div style={{ minHeight: "100vh", background: "#0a0a0a", fontFamily: "'DM Sans', sans-serif", color: "#fff" }}>
@@ -873,10 +873,23 @@ export default function App() {
             <div onClick={function() { handleNearMe(); setQuickFilter(null); }}
               style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <svg width="28" height="34" viewBox="0 0 26 32" fill="none" style={{ filter: nearMe ? "drop-shadow(0 0 6px rgba(212,175,55,0.6))" : "drop-shadow(0 0 3px rgba(212,175,55,0.2))" }}>
-                <path d="M13 0C7.48 0 3 4.48 3 10c0 7.5 10 18 10 18S23 17.5 23 10c0-5.52-4.48-10-10-10z" fill="#D4AF37" opacity="0.9"/>
-                <circle cx="13" cy="10" r="5.5" fill="#000"/>
-                <circle cx="13" cy="10" r="2.5" fill="#D4AF37"/>
+              <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
+                <defs>
+                  <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
+                    <stop stopColor="#F5D27A" />
+                    <stop offset="1" stopColor="#D4AF37" />
+                  </linearGradient>
+                  <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.9 0 1 0 0 0.65 0 0 1 0 0.18 0 0 0 0.35 0" />
+                    <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+                  </filter>
+                </defs>
+                <path d="M32 58C32 58 12 35.5 12 23.5C12 12.7 20.9 4 32 4C43.1 4 52 12.7 52 23.5C52 35.5 32 58 32 58Z" fill="url(#goldPin)" filter="url(#goldGlow)" />
+                <circle cx="32" cy="24" r="13.5" fill="#111111" opacity="0.92" />
+                <ellipse cx="32" cy="24" rx="7" ry="10" fill="url(#goldPin)" />
+                <path d="M36.5 15.5C31.5 20.5 33.5 27.5 27.5 32.5" stroke="#111111" strokeWidth="2.4" strokeLinecap="round" />
+                <path d="M18 55H46" stroke="#F5D27A" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
               </svg>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
               <div style={{ fontSize: 9, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.2, textAlign: "center", whiteSpace: "nowrap" }}>
@@ -890,23 +903,23 @@ export default function App() {
       <div style={{ padding: "0 28px 20px", maxWidth: 800, margin: "0 auto" }}>
         {!loading && cafes.length > 0 && <PullQuote cafes={cafes} />}
         <input placeholder="Search café, suburb or city..." value={search}
-          onChange={function(e) { setSearch(e.target.value); }}
+          onChange={function(e) { setSearch(e.target.value); if (view === "map") setView("list"); }}
           style={{ width: "100%", background: "#111111", border: "1px solid rgba(230,192,115,0.35)", borderRadius: 12, padding: "13px 16px", color: "#fff", fontSize: 14, marginBottom: 12, outline: "none", boxSizing: "border-box" }} />
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-              <button onClick={function() { handleSortClick("all"); }}
+        <div style={{ display: "flex", gap: 6, flexWrap: "nowrap", alignItems: "center", overflowX: "auto" }}>
+              <button onClick={function() { handleSortClick("all"); if (view === "map") setView("list"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "rgba(255,255,255,0.16)"), background: sort === "all" && !quickFilter && !nearMe ? "#E6C073" : "transparent", color: sort === "all" && !quickFilter && !nearMe ? "#000" : "#D9D9D9" }}>All</button>
-              <button onClick={function() { handleSortClick("high"); }}
+              <button onClick={function() { handleSortClick("high"); if (view === "map") setView("list"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "high" && !quickFilter ? "rgba(78,220,119,0.5)" : "rgba(255,255,255,0.16)"), background: sort === "high" && !quickFilter ? "rgba(78,220,119,0.15)" : "transparent", color: sort === "high" && !quickFilter ? "#4EDC77" : "#D9D9D9" }}>High Score</button>
-              <button onClick={function() { handleSortClick("low"); }}
+              <button onClick={function() { handleSortClick("low"); if (view === "map") setView("list"); }}
                 style={{ ...btnBase, border: "1px solid " + (sort === "low" && !quickFilter ? "rgba(255,94,102,0.5)" : "rgba(255,255,255,0.16)"), background: sort === "low" && !quickFilter ? "rgba(255,94,102,0.15)" : "transparent", color: sort === "low" && !quickFilter ? "#FF5E66" : "#D9D9D9" }}>Low Score</button>
-              <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 4px", height: 20 }} />
-              <div ref={scoreRef} style={{ position: "relative" }}>
+              <div style={{ width: 1, background: "rgba(255,255,255,0.1)", margin: "0 2px", height: 20, flexShrink: 0 }} />
+              <div ref={scoreRef} style={{ position: "relative", flexShrink: 0 }}>
                 <button onClick={function() { setScoreDropdown(!scoreDropdown); setCityDropdown(false); }}
-                  style={{ ...btnBase, border: "1px solid " + (scoreBucket ? "#E6C073" : "rgba(255,255,255,0.16)"), background: scoreBucket ? "#E6C073" : "transparent", color: scoreBucket ? "#000" : "#D9D9D9", display: "flex", alignItems: "center", gap: 6 }}>
+                  style={{ ...btnBase, border: "1px solid " + (scoreBucket ? "#E6C073" : "rgba(255,255,255,0.16)"), background: scoreBucket ? "#E6C073" : "transparent", color: scoreBucket ? "#000" : "#D9D9D9", display: "flex", alignItems: "center", gap: 4 }}>
                   {scoreBucket ? scoreBucket : "Score"} {scoreDropdown ? "▲" : "▼"}
                 </button>
                 {scoreDropdown && (
-                  <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 190, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
+                  <div style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 190, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
                     {scoreBucket && (
                       <div onClick={function() { setScoreBucket(null); setScoreDropdown(false); }}
                         style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>Clear filter</div>
@@ -915,7 +928,7 @@ export default function App() {
                       const isActive = scoreBucket === bucket.label;
                       const col = getScoreColor(bucket.ref);
                       return (
-                        <div key={bucket.label} onClick={function() { handleBucketSelect(bucket); }}
+                        <div key={bucket.label} onClick={function() { handleBucketSelect(bucket); if (view === "map") setView("list"); }}
                           style={{ padding: "13px 20px", fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", background: isActive ? "rgba(255,255,255,0.06)" : "transparent", color: isActive ? col : "#fff", transition: "background 0.15s" }}>
                           <span style={{ fontWeight: isActive ? 600 : 400 }}>{bucket.label}</span>
                           {isActive && <span style={{ color: col, fontSize: 16 }}>&#10003;</span>}
@@ -925,13 +938,13 @@ export default function App() {
                   </div>
                 )}
               </div>
-              <div ref={cityRef} style={{ position: "relative" }}>
+              <div ref={cityRef} style={{ position: "relative", flexShrink: 0 }}>
                 <button onClick={function() { setCityDropdown(!cityDropdown); setScoreDropdown(false); }}
-                  style={{ ...btnBase, border: "1px solid " + (city !== "All" ? "#E6C073" : "rgba(255,255,255,0.16)"), background: city !== "All" ? "#E6C073" : "transparent", color: city !== "All" ? "#000" : "#D9D9D9", display: "flex", alignItems: "center", gap: 6 }}>
+                  style={{ ...btnBase, border: "1px solid " + (city !== "All" ? "#E6C073" : "rgba(255,255,255,0.16)"), background: city !== "All" ? "#E6C073" : "transparent", color: city !== "All" ? "#000" : "#D9D9D9", display: "flex", alignItems: "center", gap: 4 }}>
                   {city !== "All" ? city : "City"} {cityDropdown ? "▲" : "▼"}
                 </button>
                 {cityDropdown && (
-                  <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 170, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
+                  <div style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 16, overflow: "hidden", zIndex: 100, minWidth: 170, boxShadow: "0 20px 40px rgba(0,0,0,0.6)" }}>
                     {city !== "All" && (
                       <div onClick={function() { setCity("All"); setCityDropdown(false); }}
                         style={{ padding: "12px 20px", fontSize: 13, color: "rgba(255,255,255,0.4)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>Clear filter</div>
@@ -939,7 +952,7 @@ export default function App() {
                     {allCities.map(function(c) {
                       const isActive = city === c;
                       return (
-                        <div key={c} onClick={function() { setCity(c); setCityDropdown(false); }}
+                        <div key={c} onClick={function() { setCity(c); setCityDropdown(false); if (view === "map") setView("list"); }}
                           style={{ padding: "13px 20px", fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", background: isActive ? "rgba(255,255,255,0.06)" : "transparent", color: isActive ? "#c8a96e" : "#fff", transition: "background 0.15s" }}>
                           <span style={{ fontWeight: isActive ? 600 : 400 }}>{c}</span>
                           {isActive && <span style={{ color: "#c8a96e", fontSize: 16 }}>&#10003;</span>}
@@ -951,7 +964,7 @@ export default function App() {
               </div>
               {(scoreBucket || quickFilter || city !== "All") && (
                 <button onClick={function() { clearAll(setSort, setQuickFilter, setScoreBucket, setCity); }}
-                  style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)" }}>Clear</button>
+                  style={{ ...btnBase, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.4)", flexShrink: 0 }}>Clear</button>
               )}
             </div>
             {city !== "All" && (function() {
