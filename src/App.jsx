@@ -890,8 +890,8 @@ export default function App() {
             <div onClick={function() { handleNearMe(); setQuickFilter(null); if (view === "map") setView("list"); }}
               style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <div style={{ height: 32, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="32" height="44" viewBox="0 0 64 64" fill="none" style={{ overflow: "visible" }}>
+              <div style={{ height: 32, display: "flex", alignItems: "center", justifyContent: "center", overflow: "visible" }}>
+                <svg width="38" height="44" viewBox="4 2 56 56" fill="none" style={{ overflow: "visible", filter: "drop-shadow(0 0 5px rgba(245,210,122,0.5))" }}>
                   <defs>
                     <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
                       <stop stopColor="#F5D27A" />
@@ -910,8 +910,8 @@ export default function App() {
                 </svg>
               </div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
-              <div style={{ fontSize: 9, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.2, textAlign: "center", whiteSpace: "nowrap" }}>
-                {locationLoading ? "..." : "Find Near Me"}
+              <div style={{ fontSize: 10, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.3, textAlign: "center", whiteSpace: "nowrap" }}>
+                {locationLoading ? "..." : "Near Me"}
               </div>
             </div>
           </div>
