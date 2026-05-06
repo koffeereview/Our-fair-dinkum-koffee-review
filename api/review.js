@@ -13,7 +13,7 @@ function makeSlug(name, suburb) {
 function splitCSVLine(line) {
   const result = [];
   let current = "";
-  let inQuotes = false; 
+  let inQuotes = false;
   for (let i = 0; i < line.length; i++) {
     const char = line[i];
     if (char === '"') { inQuotes = !inQuotes; }
@@ -98,6 +98,76 @@ function renderHTML(cafe, allCafes) {
       Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
       Math.sin(dLng/2) * Math.sin(dLng/2);
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  // MORE IN SUBURB — show 3-5 other cafés in same suburb (any score), excluding current
+  let moreInSuburbHTML = "";
+  const moreInSuburb = allCafes
+    .filter(function(c) {
+      return c.name !== cafe.name &&
+             c.suburb.toLowerCase() === cafe.suburb.toLowerCase() &&
+             !SPAIN_CITIES.includes((c.city || "").toLowerCase());
+    })
+    .sort(function(a, b) { return b.score - a.score; })
+    .slice(0, 5);
+
+  if (moreInSuburb.length > 0) {
+    const suburbCards = moreInSuburb.map(function(c) {
+      const col = getScoreColor(c.score);
+      const s = makeSlug(c.name, c.suburb);
+      return `<a href="/review/${s}" class="related-cafe-card">
+        <div class="related-cafe-score" style="color:${col};border-color:${col};">${c.score.toFixed(1)}</div>
+        <div class="related-cafe-info">
+          <div class="related-cafe-name">${c.name}</div>
+          <div class="related-cafe-meta" style="color:${col};opacity:0.7;">${c.suburb}, ${c.city || "Brisbane"}</div>
+        </div>
+        <div class="related-cafe-arrow">→</div>
+      </a>`;
+    }).join("");
+
+    moreInSuburbHTML = `
+    <div class="related-section">
+      <div class="related-title">MORE IN ${cafe.suburb.toUpperCase()}</div>
+      <div class="related-sub">${moreInSuburb.length} other ${moreInSuburb.length === 1 ? 'café' : 'cafés'} reviewed in ${cafe.suburb}</div>
+      ${suburbCards}
+    </div>
+    <hr class="divider" />`;
+  }
+
+  // SIMILAR SCORE — show 3-5 cafés within ±0.5 score, same city, excluding current
+  let similarScoreHTML = "";
+  const similarScore = allCafes
+    .filter(function(c) {
+      return c.name !== cafe.name &&
+             c.suburb.toLowerCase() !== cafe.suburb.toLowerCase() &&
+             Math.abs(c.score - cafe.score) <= 0.5 &&
+             (c.city || "").toLowerCase() === (cafe.city || "").toLowerCase() &&
+             !SPAIN_CITIES.includes((c.city || "").toLowerCase());
+    })
+    .sort(function(a, b) { return Math.abs(a.score - cafe.score) - Math.abs(b.score - cafe.score); })
+    .slice(0, 4);
+
+  if (similarScore.length > 0) {
+    const similarCards = similarScore.map(function(c) {
+      const col = getScoreColor(c.score);
+      const s = makeSlug(c.name, c.suburb);
+      return `<a href="/review/${s}" class="related-cafe-card">
+        <div class="related-cafe-score" style="color:${col};border-color:${col};">${c.score.toFixed(1)}</div>
+        <div class="related-cafe-info">
+          <div class="related-cafe-name">${c.name}</div>
+          <div class="related-cafe-meta" style="color:${col};opacity:0.7;">${c.suburb}, ${c.city || "Brisbane"}</div>
+        </div>
+        <div class="related-cafe-arrow">→</div>
+      </a>`;
+    }).join("");
+
+    similarScoreHTML = `
+    <div class="related-section">
+      <div class="related-title">SIMILAR SCORE IN ${(cafe.city || "BRISBANE").toUpperCase()}</div>
+      <div class="related-sub">Other cafés rated around ${cafe.score.toFixed(1)}/10</div>
+      ${similarCards}
+    </div>
+    <hr class="divider" />`;
   }
 
   let betterPicksHTML = "";
@@ -293,6 +363,16 @@ function renderHTML(cafe, allCafes) {
     .better-pick-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
     .better-pick-dist { font-size: 11px; color: rgba(197,157,80,0.6); margin-top: 2px; }
     .better-pick-arrow { font-size: 14px; color: rgba(255,255,255,0.2); }
+    .related-section { margin-bottom: 28px; }
+    .related-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: rgba(197,157,80,0.8); margin-bottom: 6px; }
+    .related-sub { font-size: 12px; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
+    .related-cafe-card { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.03); text-decoration: none; color: inherit; margin-bottom: 8px; transition: border 0.2s; }
+    .related-cafe-card:hover { border-color: rgba(197,157,80,0.3); }
+    .related-cafe-score { font-family: 'Bebas Neue', sans-serif; font-size: 22px; min-width: 44px; text-align: center; line-height: 1; border: 2px solid; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .related-cafe-info { flex: 1; min-width: 0; }
+    .related-cafe-name { font-weight: 600; font-size: 14px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .related-cafe-meta { font-size: 12px; margin-top: 2px; }
+    .related-cafe-arrow { font-size: 14px; color: rgba(255,255,255,0.2); flex-shrink: 0; }
     #share-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 400; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
     #share-overlay.visible { display: flex; }
     #share-overlay img { max-width: min(320px, 90vw); border-radius: 24px; }
@@ -365,6 +445,8 @@ function renderHTML(cafe, allCafes) {
       <div id="recently-viewed-cards" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
     </div>
 
+    ${moreInSuburbHTML}
+    ${similarScoreHTML}
     ${betterPicksHTML}
 
     <div class="internal-links">
