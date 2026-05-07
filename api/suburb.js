@@ -8,6 +8,14 @@ function makeSlug(name, suburb) {
     .replace(/[^a-z0-9\-]/g, "");
 }
 
+function suburbToSlug(suburb) {
+  return String(suburb || "")
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "");
+}
+
 function toTitleCase(str) {
   return (str || "").split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(" ");
 }
@@ -34,33 +42,44 @@ function getVerdict(score) {
   return "AVOID";
 }
 
+// PROPER CSV PARSER — handles quoted commas
+function splitCSVLine(line) {
+  const result = [];
+  let current = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') { inQuotes = !inQuotes; }
+    else if (char === "," && !inQuotes) { result.push(current.trim()); current = ""; }
+    else { current += char; }
+  }
+  result.push(current.trim());
+  return result;
+}
+
 function parseCSV(text) {
   const lines = text.split("\n").filter(line => line.trim());
   if (lines.length < 2) return [];
   
-  const headers = lines[0].split(",").map(h => h.trim().toLowerCase());
+  const headers = splitCSVLine(lines[0]).map(h => h.trim().toLowerCase());
   const nameIdx = headers.indexOf("name");
   const suburbIdx = headers.indexOf("suburb");
   const cityIdx = headers.indexOf("city");
   const scoreIdx = headers.indexOf("score");
   const priceIdx = headers.indexOf("price");
   const notesIdx = headers.indexOf("notes");
-  const latIdx = headers.indexOf("lat");
-  const lngIdx = headers.indexOf("lng");
   
   if (nameIdx === -1 || suburbIdx === -1) return [];
   
   return lines.slice(1).map(line => {
-    const parts = line.split(",").map(p => p.trim());
+    const parts = splitCSVLine(line);
     return {
       name: parts[nameIdx] || "",
       suburb: parts[suburbIdx] || "",
       city: parts[cityIdx] || "",
       score: parseFloat(parts[scoreIdx]) || 0,
       price: parts[priceIdx] || "$$$",
-      notes: parts[notesIdx] || "",
-      lat: parseFloat(parts[latIdx]) || null,
-      lng: parseFloat(parts[lngIdx]) || null
+      notes: parts[notesIdx] || ""
     };
   }).filter(cafe => cafe.name && cafe.suburb);
 }
@@ -73,7 +92,6 @@ export default async function handler(req, res) {
       return res.status(400).send("Suburb parameter required");
     }
     
-    // FETCH with timeout
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
     const response = await fetch(SHEET_URL, { signal: controller.signal });
@@ -84,27 +102,59 @@ export default async function handler(req, res) {
     const text = await response.text();
     const cafes = parseCSV(text);
     
-    // FILTER by suburb
-    const suburbQuery = suburb.toLowerCase().replace(/-/g, " ");
-    const filtered = cafes.filter(c => c.suburb.toLowerCase() === suburbQuery);
+    // SMART SUBURB MATCHING — try multiple patterns
+    // URL format: /suburb/paddington-brisbane could mean:
+    //   1. Suburb "Paddington Brisbane" (exact match)
+    //   2. Suburb "Paddington" in city "Brisbane" (combo)
+    //   3. Just suburb "Paddington" (ignore city suffix)
+    //   4. Slug match against suburbToSlug(cafe.suburb)
+    const slugQuery = suburb.toLowerCase().trim();
+    const queryWithSpaces = slugQuery.replace(/-/g, " ");
+    
+    let filtered = cafes.filter(c => {
+      const cafeSuburbLower = c.suburb.toLowerCase().trim();
+      const cafeSuburbSlug = suburbToSlug(c.suburb);
+      const cafeCityLower = (c.city || "").toLowerCase().trim();
+      
+      // Pattern 1: exact slug match
+      if (cafeSuburbSlug === slugQuery) return true;
+      
+      // Pattern 2: suburb name with spaces matches query
+      if (cafeSuburbLower === queryWithSpaces) return true;
+      
+      // Pattern 3: "suburb-city" pattern (e.g. paddington-brisbane → suburb=Paddington, city=Brisbane)
+      const combined = cafeSuburbSlug + "-" + suburbToSlug(c.city);
+      if (combined === slugQuery) return true;
+      
+      // Pattern 4: query starts with suburb slug, rest is city
+      if (slugQuery.startsWith(cafeSuburbSlug + "-")) {
+        const remainingCity = slugQuery.substring(cafeSuburbSlug.length + 1);
+        if (suburbToSlug(c.city) === remainingCity) return true;
+      }
+      
+      return false;
+    });
     
     if (filtered.length === 0) {
-      // 404 page
+      // Show 404 with helpful suggestions
+      const allSuburbs = [...new Set(cafes.map(c => c.suburb))].sort();
+      const suggestionList = allSuburbs.slice(0, 12).map(s => 
+        `<a href="/suburb/${suburbToSlug(s)}" style="color:#E6C073;text-decoration:none;display:inline-block;padding:6px 12px;border:1px solid rgba(230,192,115,0.3);border-radius:20px;margin:4px">${s}</a>`
+      ).join("");
+      
       res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.status(404).send(`<!DOCTYPE html><html><head><title>Suburb Not Found - Koffee Review</title><meta name="robots" content="noindex"></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px"><h1>Suburb not found</h1><p><a href="/" style="color:#E6C073">← Back to Koffee Review</a></p></body></html>`);
+      return res.status(404).send(`<!DOCTYPE html><html><head><title>Suburb Not Found - Koffee Review</title><meta name="robots" content="noindex"></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px 24px;max-width:800px;margin:0 auto"><h1 style="color:#E6C073">Suburb not found</h1><p style="color:rgba(255,255,255,0.6);margin:16px 0">We don't have any cafés reviewed for "${escapeHtml(suburb)}" yet.</p><p style="margin-top:32px;color:rgba(255,255,255,0.5);font-size:14px">Try one of these:</p><div style="margin-top:16px">${suggestionList}</div><p style="margin-top:32px"><a href="/" style="color:#E6C073">← Back to Koffee Review</a></p></body></html>`);
     }
     
-    // SORT by score descending
     filtered.sort((a, b) => b.score - a.score);
     
     const suburbName = toTitleCase(filtered[0].suburb);
     const cityName = toTitleCase(filtered[0].city || "Brisbane");
     const cityLower = cityName.toLowerCase().replace(/\s+/g, "-");
-    const suburbSlug = makeSlug(filtered[0].suburb, "");
+    const suburbSlug = suburbToSlug(filtered[0].suburb);
     const topCafe = filtered[0];
     const avgScore = (filtered.reduce((sum, c) => sum + c.score, 0) / filtered.length).toFixed(1);
     
-    // BUILD STRUCTURED DATA
     const breadcrumbSchema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -150,7 +200,6 @@ export default async function handler(req, res) {
     const description = `Honest reviews of ${filtered.length} cafés in ${suburbName}, ${cityName}. Top pick: ${topCafe.name} (${topCafe.score}/10). Same order every time — one latte, one double espresso.`;
     const canonical = `https://koffeereview.com.au/suburb/${suburbSlug}`;
     
-    // BUILD HTML
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,7 +210,6 @@ export default async function handler(req, res) {
   <link rel="canonical" href="${canonical}">
   <meta name="robots" content="index, follow">
   
-  <!-- Open Graph -->
   <meta property="og:title" content="${escapeHtml(title)}">
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:url" content="${canonical}">
@@ -169,7 +217,6 @@ export default async function handler(req, res) {
   <meta property="og:image" content="https://koffeereview.com.au/logo.webp">
   <meta property="og:site_name" content="Our Fair Dinkum Koffee Review">
   
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
@@ -177,7 +224,6 @@ export default async function handler(req, res) {
   
   <link rel="icon" href="/logo.webp" type="image/webp">
   
-  <!-- Schema -->
   <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
   <script type="application/ld+json">${JSON.stringify(itemListSchema)}</script>
   
@@ -185,13 +231,9 @@ export default async function handler(req, res) {
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;background:#000;color:#fff;line-height:1.6;padding:0 0 60px}
     .container{max-width:800px;margin:0 auto;padding:0 24px}
-    
-    /* Breadcrumbs */
     .breadcrumbs{padding:16px 0;font-size:12px;color:rgba(255,255,255,0.5)}
     .breadcrumbs a{color:#E6C073;text-decoration:none}
     .breadcrumbs a:hover{text-decoration:underline}
-    
-    /* Header */
     .hero{padding:24px 0 32px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.06)}
     .logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px}
     .logo img{width:40px;height:40px;border-radius:50%}
@@ -202,16 +244,12 @@ export default async function handler(req, res) {
     .stat{text-align:center}
     .stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E6C073}
     .stat-label{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-top:2px}
-    
-    /* Top pick */
     .top-pick{background:linear-gradient(135deg,rgba(230,192,115,0.1),rgba(230,192,115,0.03));border:1px solid rgba(230,192,115,0.3);border-radius:16px;padding:20px;margin-top:24px;text-align:left}
     .top-label{font-size:10px;letter-spacing:3px;color:#E6C073;font-weight:700;margin-bottom:8px}
     .top-pick h2{font-size:20px;margin-bottom:4px}
     .top-pick a{color:#fff;text-decoration:none}
     .top-pick a:hover{color:#E6C073}
     .top-meta{font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px}
-    
-    /* Cafe list */
     .cafes{margin-top:32px}
     .section-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,0.6);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08)}
     .cafe-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:all 0.2s;text-decoration:none;color:inherit}
@@ -221,14 +259,10 @@ export default async function handler(req, res) {
     .cafe-name{font-weight:600;font-size:15px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .cafe-loc{font-size:11px;margin-top:2px;opacity:0.7}
     .verdict-pill{display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:1.5px;margin-top:4px;border:1px solid currentColor}
-    
-    /* Internal links */
     .related{margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08)}
     .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
     .related-link{padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;color:#E6C073;text-decoration:none;font-size:13px;transition:all 0.2s}
     .related-link:hover{background:rgba(230,192,115,0.08);border-color:rgba(230,192,115,0.3)}
-    
-    /* Footer */
     footer{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:11px;color:rgba(255,255,255,0.5)}
     footer a{color:rgba(255,255,255,0.55);text-decoration:none;margin:0 8px}
     footer a:hover{color:#E6C073}
@@ -238,13 +272,10 @@ export default async function handler(req, res) {
 </head>
 <body>
   <div class="container">
-    
-    <!-- Breadcrumbs -->
     <nav class="breadcrumbs">
       <a href="/">Home</a> · <a href="/city/${cityLower}">${cityName}</a> · <span>${suburbName}</span>
     </nav>
     
-    <!-- Hero -->
     <header class="hero">
       <a href="/" class="logo" style="text-decoration:none">
         <img src="/logo.webp" alt="Koffee Review">
@@ -281,7 +312,6 @@ export default async function handler(req, res) {
       ` : ''}
     </header>
     
-    <!-- Cafés -->
     <section class="cafes">
       <h2 class="section-title">ALL ${filtered.length} CAFÉS · RANKED</h2>
       ${filtered.map(cafe => {
@@ -298,7 +328,6 @@ export default async function handler(req, res) {
       }).join('')}
     </section>
     
-    <!-- Internal linking -->
     <section class="related">
       <h2 class="section-title">EXPLORE MORE</h2>
       <div class="related-grid">
@@ -311,7 +340,6 @@ export default async function handler(req, res) {
       </div>
     </section>
     
-    <!-- Footer -->
     <footer>
       <p>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
       <div style="margin-top:10px">
@@ -322,7 +350,6 @@ export default async function handler(req, res) {
         <a href="/best-latte-brisbane">Best Latte Brisbane</a> · <a href="/hidden-gem-cafes-brisbane">Hidden Gems</a> · <a href="/worst-cafes-by-suburb">Worst Cafés</a>
       </div>
     </footer>
-    
   </div>
 </body>
 </html>`;
@@ -334,6 +361,6 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error("Suburb page error:", error.message);
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.status(500).send(`<!DOCTYPE html><html><head><title>Error - Koffee Review</title></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px"><h1>Something went wrong</h1><p><a href="/" style="color:#E6C073">← Back to Koffee Review</a></p></body></html>`);
+    res.status(500).send(`<!DOCTYPE html><html><head><title>Error - Koffee Review</title></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px"><h1>Something went wrong</h1><p style="color:rgba(255,255,255,0.5);font-size:13px">${escapeHtml(error.message || '')}</p><p><a href="/" style="color:#E6C073">← Back to Koffee Review</a></p></body></html>`);
   }
 }
