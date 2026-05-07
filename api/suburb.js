@@ -4,16 +4,18 @@ function makeSlug(name, suburb) {
   return (name + "-" + suburb)
     .toLowerCase()
     .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9\-]/g, "");
+    .replace(/-+/g, "-");
 }
 
 function suburbToSlug(suburb) {
   return String(suburb || "")
     .toLowerCase()
     .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9\-]/g, "");
+    .replace(/-+/g, "-");
 }
 
 function toTitleCase(str) {
@@ -200,6 +202,45 @@ export default async function handler(req, res) {
     const description = `Honest reviews of ${filtered.length} cafés in ${suburbName}, ${cityName}. Top pick: ${topCafe.name} (${topCafe.score}/10). Same order every time — one latte, one double espresso.`;
     const canonical = `https://koffeereview.com.au/suburb/${suburbSlug}`;
     
+    // FAQ SCHEMA + DATA
+    const mustVisit = filtered.filter(c => c.score >= 7.5).length;
+    const avoidCount = filtered.filter(c => c.score < 5).length;
+    const priceRange = filtered.map(c => c.price).filter(Boolean);
+    const mostCommonPrice = priceRange.length > 0 ? priceRange.sort((a,b) => priceRange.filter(v => v===a).length - priceRange.filter(v => v===b).length).pop() : "$$$";
+    
+    const faqs = [
+      {
+        q: `What is the best café in ${suburbName}, ${cityName}?`,
+        a: `Based on our reviews, ${topCafe.name} is the top-rated café in ${suburbName} with a score of ${topCafe.score}/10.${topCafe.notes ? ' Our take: "' + topCafe.notes.substring(0, 100) + (topCafe.notes.length > 100 ? '...' : '') + '"' : ''}`
+      },
+      {
+        q: `How many cafés have been reviewed in ${suburbName}?`,
+        a: `We have reviewed ${filtered.length} cafés in ${suburbName}, ${cityName}. The average score is ${avgScore}/10.${mustVisit > 0 ? ` ${mustVisit} of these are rated Must Visit (7.5+).` : ''}`
+      },
+      {
+        q: `What is the average coffee score in ${suburbName}?`,
+        a: `The average score across ${filtered.length} cafés in ${suburbName} is ${avgScore}/10. Scores range from ${filtered[filtered.length-1].score}/10 to ${topCafe.score}/10.`
+      },
+      {
+        q: `Are there any cafés to avoid in ${suburbName}?`,
+        a: avoidCount > 0 ? `Yes, ${avoidCount} café${avoidCount > 1 ? 's' : ''} in ${suburbName} scored below 5.0/10 in our reviews. Check the full list above for details.` : `No — all ${filtered.length} cafés in ${suburbName} scored 5.0 or above in our reviews.`
+      },
+      {
+        q: `How does Koffee Review rate cafés in ${suburbName}?`,
+        a: `We order the same thing at every café — one latte and one double espresso. We score on taste, consistency, and value. No freebies, no sponsorships, no exceptions.`
+      }
+    ];
+    
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    };
+    
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -226,6 +267,7 @@ export default async function handler(req, res) {
   
   <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
   <script type="application/ld+json">${JSON.stringify(itemListSchema)}</script>
+  <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
   
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -268,6 +310,14 @@ export default async function handler(req, res) {
     footer a:hover{color:#E6C073}
     .explore{margin-top:14px}
     .explore-label{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.55);font-weight:700;margin-bottom:8px}
+    .faq-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08)}
+    .faq-item{margin-bottom:8px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden}
+    .faq-item[open]{border-color:rgba(230,192,115,0.25)}
+    .faq-q{padding:14px 16px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
+    .faq-q::-webkit-details-marker{display:none}
+    .faq-q::after{content:'＋';color:#E6C073;font-size:16px;flex-shrink:0;margin-left:12px}
+    .faq-item[open] .faq-q::after{content:'－'}
+    .faq-a{padding:0 16px 14px;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6}
   </style>
 </head>
 <body>
@@ -338,6 +388,15 @@ export default async function handler(req, res) {
         <a href="/brisbane-cafes-to-avoid" class="related-link">→ Cafés to Avoid</a>
         <a href="/" class="related-link">→ All ${cafes.length} Reviews</a>
       </div>
+    </section>
+    
+    <section class="faq-section">
+      <h2 class="section-title">FREQUENTLY ASKED</h2>
+      ${faqs.map(f => `
+      <details class="faq-item">
+        <summary class="faq-q">${escapeHtml(f.q)}</summary>
+        <p class="faq-a">${escapeHtml(f.a)}</p>
+      </details>`).join('')}
     </section>
     
     <footer>
