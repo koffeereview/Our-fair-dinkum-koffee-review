@@ -624,7 +624,7 @@ function renderHTML(cafe, allCafes) {
 
 export default async function handler(req, res) {
   try {
-    const slug = req.query.slug;
+    const slug = (req.query.slug || "").replace(/-+/g, "-");
 
     if (!slug) {
       res.status(404).send("Not found");
