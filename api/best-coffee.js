@@ -1,7 +1,7 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
 
-function splitCSVLine(line) { 
+function splitCSVLine(line) {
   const result = []; let current = ""; let inQuotes = false;
   for (let i = 0; i < line.length; i++) {
     const char = line[i];
@@ -113,7 +113,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
     .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
     .nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
     .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; }
+    
     .hero { padding:48px 24px 32px; max-width:800px; margin:0 auto; }
     .hero-tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; background:rgba(197,157,80,0.1); color:#c8a96e; border:1px solid rgba(197,157,80,0.3); margin-bottom:16px; }
     h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,6vw,56px); letter-spacing:2px; line-height:1.1; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px; }
@@ -158,7 +158,12 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
       <img src="/logo.webp" alt="Koffee Review" />
       <span>KOFFEE REVIEW</span>
     </a>
-    <a href="https://koffeereview.com.au" class="nav-back">← All Reviews</a>
+    <a href="https://koffeereview.com.au" class="nav-back" style="display:none"></a>
+    <div style="display:flex;gap:14px;align-items:center;">
+      <a href="/city/brisbane" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Brisbane</a>
+      <a href="/city/gold-coast" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Gold Coast</a>
+      <a href="/leaderboard" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Leaderboard</a>
+    </div>
   </nav>
 
   <div class="hero">
@@ -350,7 +355,7 @@ export default async function handler(req, res) {
     const html = renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl);
 
     res.setHeader("Content-Type", "text/html");
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(html);
   } catch (error) {
     res.status(500).send("Error loading page: " + error.message);
