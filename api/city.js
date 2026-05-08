@@ -1,7 +1,7 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
 const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
- 
+
 const CITY_CONFIG = {
   "brisbane": { name: "Brisbane", slug: "brisbane", stateShort: "QLD" },
   "gold-coast": { name: "Gold Coast", slug: "gold-coast", stateShort: "QLD" },
@@ -205,6 +205,50 @@ function renderCityPage(citySlug, cafes, allCafes) {
     </div>
   </div>
 
+  <!-- BROWSE BY SUBURB MODULE -->
+  ${(function() {
+    const suburbMap = {};
+    cityCafes.forEach(function(c) {
+      const sub = c.suburb;
+      if (!sub) return;
+      if (!suburbMap[sub]) suburbMap[sub] = { cafes: [], totalScore: 0 };
+      suburbMap[sub].cafes.push(c);
+      suburbMap[sub].totalScore += c.score;
+    });
+    
+    const qualifiedSuburbs = Object.keys(suburbMap)
+      .filter(function(sub) { return suburbMap[sub].cafes.length >= 3; })
+      .map(function(sub) {
+        const data = suburbMap[sub];
+        const sorted = data.cafes.sort(function(a, b) { return b.score - a.score; });
+        const top = sorted[0];
+        const avg = (data.totalScore / data.cafes.length).toFixed(1);
+        const subSlug = sub.toLowerCase().replace(/[^a-z0-9\\s-]/g, "").replace(/\\s+/g, "-").replace(/-+/g, "-");
+        return { name: sub, count: data.cafes.length, avg: parseFloat(avg), topCafe: top.name, topScore: top.score, slug: subSlug };
+      })
+      .sort(function(a, b) { return b.avg - a.avg || b.count - a.count; });
+    
+    if (qualifiedSuburbs.length === 0) return "";
+    
+    const tiles = qualifiedSuburbs.map(function(s) {
+      const topColor = s.topScore >= 9 ? "#ffffff" : s.topScore >= 8 ? "#4ade80" : s.topScore >= 7 ? "#2dd4bf" : s.topScore >= 6 ? "#facc15" : s.topScore >= 5 ? "#fb923c" : "#f87171";
+      return '<a href="/suburb/' + s.slug + '-' + citySlug + '" style="display:block;padding:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;text-decoration:none;color:inherit;transition:all 0.2s;" onmouseover="this.style.borderColor=\'rgba(230,192,115,0.3)\';this.style.background=\'rgba(255,255,255,0.05)\'" onmouseout="this.style.borderColor=\'rgba(255,255,255,0.08)\';this.style.background=\'rgba(255,255,255,0.03)\'">' +
+        '<div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:4px;">' + s.name + '</div>' +
+        '<div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:8px;">' + s.count + ' cafés · avg ' + s.avg + '/10</div>' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+          '<div style="font-size:11px;color:rgba(255,255,255,0.4);">Top: ' + s.topCafe + '</div>' +
+          '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:16px;color:' + topColor + ';">' + s.topScore.toFixed(1) + '</div>' +
+        '</div>' +
+      '</a>';
+    }).join("");
+    
+    return '<div style="max-width:800px;margin:0 auto;padding:32px 24px 0;">' +
+      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,0.6);margin-bottom:6px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.08);">BROWSE ' + config.name.toUpperCase() + ' BY SUBURB</div>' +
+      '<p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:16px;">Suburbs with 3+ reviewed cafés</p>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">' + tiles + '</div>' +
+    '</div>';
+  })()}
+
   <div class="footer">
     <p>All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
     No café pays for placement. <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a></p>
@@ -213,6 +257,16 @@ function renderCityPage(citySlug, cafes, allCafes) {
     <a href="https://koffeereview.com.au" class="browse-btn">
       <img src="/logo.webp" alt="Koffee Review" />Browse All Reviews
     </a>
+    <div style="margin-top:20px;text-align:center;">
+      <div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.55);font-weight:700;margin-bottom:8px;">EXPLORE</div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;">
+        <a href="/best-latte-brisbane" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Best Latte Brisbane</a>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <a href="/hidden-gem-cafes-brisbane" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Hidden Gems</a>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <a href="/worst-cafes-by-suburb" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Worst Cafés</a>
+      </div>
+    </div>
   </div>
 
   <script>
