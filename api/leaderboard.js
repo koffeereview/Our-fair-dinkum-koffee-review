@@ -10,7 +10,7 @@ function splitCSVLine(line) {
     else { current += char; }
   }
   result.push(current.trim());
-  return result; 
+  return result;
 }
 
 function parseCSV(text) {
@@ -131,7 +131,7 @@ export default async function handler(req, res) {
       ".nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }\n" +
       ".nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; }\n" +
       ".nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }\n" +
-      ".nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; }\n" +
+      "\n" +
       ".hero { max-width:680px; margin:0 auto; padding:48px 24px 32px; text-align:center; }\n" +
       ".eyebrow { font-size:10px; letter-spacing:3px; color:rgba(197,157,80,0.5); margin-bottom:14px; }\n" +
       "h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,6vw,52px); letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px; }\n" +
@@ -149,7 +149,7 @@ export default async function handler(req, res) {
       "</style>\n</head>\n<body>\n" +
       "<nav>\n" +
       "  <a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.webp\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a>\n" +
-      "  <a href=\"https://koffeereview.com.au\" class=\"nav-back\">\u2190 All Reviews</a>\n" +
+      "  <div style=\"display:flex;gap:14px;align-items:center;\"><a href=\"/city/brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Brisbane</a><a href=\"/city/gold-coast\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Gold Coast</a><a href=\"/leaderboard\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Leaderboard</a></div>\n" +
       "</nav>\n" +
       "<div class=\"hero\">\n" +
       "  <div class=\"eyebrow\">KOFFEE REVIEW \u00b7 600+ CAF\u00c9S \u00b7 ONE SYSTEM</div>\n" +
@@ -177,7 +177,7 @@ export default async function handler(req, res) {
       "</div>\n</body>\n</html>";
 
     res.setHeader("Content-Type", "text/html");
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(html);
   } catch (error) {
     res.status(500).send("Error loading leaderboard: " + error.message);
