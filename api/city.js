@@ -2,7 +2,7 @@ const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I
 
 const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
 
-const CITY_CONFIG = {
+const CITY_CONFIG = { 
   "brisbane": { name: "Brisbane", slug: "brisbane", stateShort: "QLD" },
   "gold-coast": { name: "Gold Coast", slug: "gold-coast", stateShort: "QLD" },
   "moreton-bay": { name: "Moreton Bay", slug: "moreton-bay", stateShort: "QLD" },
