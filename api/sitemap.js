@@ -17,7 +17,7 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/how-we-score", priority: "0.70", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/about", priority: "0.70", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/disclosure", priority: "0.60", changefreq: "monthly" }
-];
+];  
 
 function escapeXML(str) {
   return String(str || "")
