@@ -10,7 +10,7 @@ function splitCSVLine(line) {
     else { current += char; }
   }
   result.push(current.trim());
-  return result; 
+  return result;
 }
 
 function parseCSV(text) {
@@ -82,7 +82,8 @@ export default async function handler(req, res) {
       const desc = cafe.name + " in " + cafe.suburb + " scored " + cafe.score + "/10 — the lowest rated caf\u00e9 in the area. Reviewed by Koffee Review. Know before you go.";
       const canonicalUrl = "https://koffeereview.com.au/worst-cafe-" + suburbKey;
 
-      const schema = JSON.stringify({"@context":"https://schema.org","@type":"Review","name":title,"description":desc,"url":canonicalUrl,"itemReviewed":{"@type":"FoodEstablishment","name":cafe.name,"address":{"@type":"PostalAddress","addressLocality":cafe.suburb,"addressRegion":cafe.city,"addressCountry":"AU"}},"reviewRating":{"@type":"Rating","ratingValue":cafe.score,"bestRating":"10","worstRating":"0"},"author":{"@type":"Organization","name":"Koffee Review"}});
+      const breadcrumbSchema = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Brisbane","item":"https://koffeereview.com.au/city/brisbane"},{"@type":"ListItem","position":3,"name":"Worst Cafes by Suburb","item":"https://koffeereview.com.au/worst-cafes-by-suburb"}]});
+    const schema = JSON.stringify({"@context":"https://schema.org","@type":"Review","name":title,"description":desc,"url":canonicalUrl,"itemReviewed":{"@type":"FoodEstablishment","name":cafe.name,"address":{"@type":"PostalAddress","addressLocality":cafe.suburb,"addressRegion":cafe.city,"addressCountry":"AU"}},"reviewRating":{"@type":"Rating","ratingValue":cafe.score,"bestRating":"10","worstRating":"0"},"author":{"@type":"Organization","name":"Koffee Review"}});
 
       const html = "<!DOCTYPE html><html lang=\"en\"><head>" +
         "<meta charset=\"UTF-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" +
@@ -92,7 +93,8 @@ export default async function handler(req, res) {
         "<meta property=\"og:description\" content=\"" + desc + "\" />" +
         "<meta property=\"og:image\" content=\"https://koffeereview.com.au/logo.webp\" />" +
         "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />" +
-        "<script type=\"application/ld+json\">" + schema + "<\/script>" +
+        "<script type=\"application/ld+json\">" + breadcrumbSchema + "<\/script>" +
+      "<script type=\"application/ld+json\">" + schema + "<\/script>" +
         "<link href=\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap\" rel=\"stylesheet\" />" +
         "<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#0a0a0a; color:#fff; font-family:'DM Sans',sans-serif; min-height:100vh; } nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); } .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; } .nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; } .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; } .nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; } .hero { max-width:800px; margin:0 auto; padding:48px 24px 32px; } .score-big { font-family:'Bebas Neue',sans-serif; font-size:80px; color:#f87171; line-height:1; margin-bottom:8px; } h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,5vw,44px); letter-spacing:2px; line-height:1.1; color:#f87171; margin-bottom:12px; } .hero p { font-size:15px; color:rgba(255,255,255,0.6); line-height:1.8; max-width:600px; margin-bottom:12px; } .notes-box { background:rgba(248,113,113,0.06); border:1px solid rgba(248,113,113,0.2); border-radius:14px; padding:20px 24px; margin:24px 0; } .notes-box p { font-size:15px; color:rgba(255,255,255,0.7); font-style:italic; line-height:1.8; } .content { max-width:800px; margin:0 auto; padding:0 24px 80px; } .footer { border-top:1px solid rgba(255,255,255,0.06); padding:32px 24px; text-align:center; max-width:800px; margin:0 auto; } .footer p { font-size:13px; color:rgba(255,255,255,0.3); margin-bottom:16px; } .browse-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; } .browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }</style>" +
         "</head><body>" +
@@ -114,7 +116,7 @@ export default async function handler(req, res) {
         "</div></body></html>";
 
       res.setHeader("Content-Type", "text/html");
-      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+      res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
       res.status(200).send(html);
       return;
     }
@@ -158,7 +160,7 @@ export default async function handler(req, res) {
       "</div></body></html>";
 
     res.setHeader("Content-Type", "text/html");
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(html);
   } catch (error) {
     res.status(500).send("Error: " + error.message);
