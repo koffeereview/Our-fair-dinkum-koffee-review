@@ -5,7 +5,7 @@ const LATTE_KEYWORDS = ["latte", "milk", "smooth", "balance", "creamy", "silky",
 function splitCSVLine(line) {
   const result = []; let current = ""; let inQuotes = false;
   for (let i = 0; i < line.length; i++) {
-    const char = line[i]; 
+    const char = line[i];
     if (char === '"') { inQuotes = !inQuotes; }
     else if (char === "," && !inQuotes) { result.push(current.trim()); current = ""; }
     else { current += char; }
@@ -81,6 +81,13 @@ export default async function handler(req, res) {
 
     const schema1 = JSON.stringify({"@context":"https://schema.org","@type":"CollectionPage","name":title,"description":desc,"url":canonicalUrl,"publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"}});
     const schema2 = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Best Coffee Brisbane","item":"https://koffeereview.com.au/best-coffee-brisbane"},{"@type":"ListItem","position":3,"name":"Best Latte Brisbane","item":canonicalUrl}]});
+    const faqData = [
+      { q: "What is the best latte in Brisbane?", a: latteCafes.length > 0 ? "Based on our reviews, " + latteCafes[0].name + " in " + latteCafes[0].suburb + " serves the best latte in Brisbane with a score of " + latteCafes[0].score.toFixed(1) + "/10." : "Check our full list for the latest rankings." },
+      { q: "How many Brisbane cafes have great lattes?", a: "We have identified " + latteCafes.length + " Brisbane cafes with standout lattes, all scoring 7.1 or above out of 10." },
+      { q: "How does Koffee Review test lattes?", a: "We order one latte at every cafe we visit. Same order, same size, every time. We score on milk texture, balance, body, and overall taste. No freebies, no sponsorships." },
+      { q: "What makes a great latte?", a: "A great latte has silky milk texture, balanced sweetness, clean espresso integration, and a smooth finish. The best Brisbane lattes score 8.0 or above in our system." }
+    ];
+    const schema3 = JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqData.map(function(f){return{"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}})});
 
     const rows = latteCafes.map(function(cafe) {
       const color = getScoreColor(cafe.score);
@@ -111,10 +118,11 @@ export default async function handler(req, res) {
       "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />" +
       "<script type=\"application/ld+json\">" + schema1 + "<\/script>" +
       "<script type=\"application/ld+json\">" + schema2 + "<\/script>" +
+      "<script type=\"application/ld+json\">" + schema3 + "<\/script>" +
       "<link href=\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap\" rel=\"stylesheet\" />" +
       "<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#0a0a0a; color:#fff; font-family:'DM Sans',sans-serif; min-height:100vh; } nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); } .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; } .nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; } .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; } .nav-back { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; } .hero { max-width:800px; margin:0 auto; padding:48px 24px 32px; } .hero-tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; background:rgba(197,157,80,0.1); color:#c8a96e; border:1px solid rgba(197,157,80,0.3); margin-bottom:16px; } h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,6vw,52px); letter-spacing:2px; line-height:1.1; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px; } .hero p { font-size:15px; color:rgba(255,255,255,0.6); line-height:1.8; max-width:600px; } .content { max-width:800px; margin:0 auto; padding:0 24px 80px; } .section-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:#f5e6c8; margin-bottom:16px; margin-top:32px; } .footer { border-top:1px solid rgba(255,255,255,0.06); padding:32px 24px; text-align:center; max-width:800px; margin:0 auto; } .footer p { font-size:13px; color:rgba(255,255,255,0.3); margin-bottom:16px; line-height:1.7; } .browse-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; } .browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }</style>" +
       "</head><body>" +
-      "<nav><a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.webp\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a><a href=\"https://koffeereview.com.au\" class=\"nav-back\">\u2190 All Reviews</a></nav>" +
+      "<nav><a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.webp\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a><div style=\"display:flex;gap:14px;align-items:center;\"><a href=\"/city/brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Brisbane</a><a href=\"/city/gold-coast\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Gold Coast</a><a href=\"/leaderboard\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Leaderboard</a></div></nav>" +
       "<div class=\"hero\"><div class=\"hero-tag\">BRISBANE \u00b7 LATTE GUIDE</div><h1>Best Latte in Brisbane</h1>" +
       "<p>We order one latte at every caf\u00e9 we visit. Same order, every time. These are the Brisbane caf\u00e9s where the latte stood out \u2014 smooth body, balanced milk, clean finish. " + latteCafes.length + " caf\u00e9s that earned it.</p></div>" +
       "<div class=\"content\">" +
@@ -124,10 +132,14 @@ export default async function handler(req, res) {
       "<div class=\"footer\"><p>Every latte reviewed the same way. One order, one score, no exceptions.<br/><a href=\"/how-we-score.html\" style=\"color:#c8a96e;\">Read how we score \u2192</a></p>" +
       "<a href=\"/best-coffee-brisbane\" class=\"browse-btn\"><img src=\"/logo.webp\" alt=\"Koffee Review\" />See All Brisbane Caf\u00e9s</a>" +
       "<div style=\"display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:16px;\"><a href=\"/best-coffee-brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Best Coffee Brisbane</a><a href=\"/hidden-gem-cafes-brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Hidden Gems</a><a href=\"/leaderboard\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Top 10 Australia</a><a href=\"/brisbane-cafes-to-avoid\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Caf\u00e9s to Avoid</a></div>" +
+      "<div style=\"margin-top:24px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;\"><div style=\"font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,0.6);margin-bottom:12px;\">FREQUENTLY ASKED</div>" +
+      faqData.map(function(f) { return "<details style=\"margin-bottom:8px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;\"><summary style=\"padding:14px 16px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;list-style:none;\">" + f.q + "</summary><p style=\"padding:0 16px 14px;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;\">" + f.a + "</p></details>"; }).join("") +
+      "</div>" +
+      "<div style=\"margin-top:20px;text-align:center;\"><div style=\"font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.55);font-weight:700;margin-bottom:8px;\">EXPLORE</div><div style=\"display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;\"><a href=\"/best-latte-brisbane\" style=\"font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;\">Best Latte Brisbane</a><span style=\"color:rgba(255,255,255,0.2);\">·</span><a href=\"/hidden-gem-cafes-brisbane\" style=\"font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;\">Hidden Gems</a><span style=\"color:rgba(255,255,255,0.2);\">·</span><a href=\"/worst-cafes-by-suburb\" style=\"font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;\">Worst Caf\u00e9s</a></div></div>" +
       "</div></body></html>";
 
     res.setHeader("Content-Type", "text/html");
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(html);
   } catch (error) {
     res.status(500).send("Error: " + error.message);
