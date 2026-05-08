@@ -4,7 +4,7 @@ function makeSlug(name, suburb) {
   return (name + "-" + suburb)
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "") 
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 }
