@@ -1,7 +1,7 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
 const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
- 
+
 function makeSlug(name, suburb) {
   return (name + "-" + suburb).toLowerCase()
     .replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
@@ -75,6 +75,8 @@ export default async function handler(req, res) {
   <meta property="og:url" content="${canonicalUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Brisbane","item":"https://koffeereview.com.au/city/brisbane"},{"@type":"ListItem","position":3,"name":"Cafes to Avoid","item":"${canonicalUrl}"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which Brisbane cafes should I avoid?","acceptedAnswer":{"@type":"Answer","text":"Based on our reviews, ${avoidCafes.length} Brisbane cafes scored below 5.0 out of 10. We recommend checking our full list before visiting."}},{"@type":"Question","name":"How does Koffee Review identify cafes to avoid?","acceptedAnswer":{"@type":"Answer","text":"We order one latte and one double espresso at every cafe. Cafes scoring below 5.0 out of 10 are listed on our avoid page. No exceptions, no sponsorships."}},{"@type":"Question","name":"Are there good cafes near the ones to avoid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Most suburbs with low-scoring cafes also have great options nearby. Check our suburb pages for better alternatives."}}]}</script>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -160,12 +162,22 @@ export default async function handler(req, res) {
       <a href="/leaderboard" class="link-btn">Top 10 Australia</a>
       <a href="https://koffeereview.com.au" class="link-btn">Browse All Reviews</a>
     </div>
+    <div style="margin-top:20px;text-align:center;">
+      <div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.55);font-weight:700;margin-bottom:8px;">EXPLORE</div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;">
+        <a href="/best-latte-brisbane" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Best Latte</a>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <a href="/hidden-gem-cafes-brisbane" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Hidden Gems</a>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <a href="/worst-cafes-by-suburb" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Worst Cafés</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>`;
 
     res.setHeader("Content-Type", "text/html");
-    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(html);
   } catch (error) {
     res.status(500).send("Error loading page");
