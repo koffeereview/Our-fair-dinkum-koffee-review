@@ -149,15 +149,22 @@ export default async function handler(req, res) {
     }
 
     try {
-      const suburbSet = {};
+      var suburbCount = {};
+      var suburbCity = {};
       for (let i = 0; i < cafes.length; i++) {
-        const sub = cafes[i].suburb;
-        if (sub) suburbSet[sub.toLowerCase()] = sub;
+        var sub = cafes[i].suburb;
+        var cit = cafes[i].city;
+        if (!sub) continue;
+        var key = sub.toLowerCase();
+        suburbCount[key] = (suburbCount[key] || 0) + 1;
+        if (!suburbCity[key]) suburbCity[key] = { suburb: sub, city: cit };
       }
-      const suburbs = Object.keys(suburbSet);
-      for (let i = 0; i < suburbs.length; i++) {
+      var suburbKeys = Object.keys(suburbCount);
+      for (let i = 0; i < suburbKeys.length; i++) {
         try {
-          const slug = safeSlug(suburbSet[suburbs[i]]);
+          if (suburbCount[suburbKeys[i]] < 3) continue;
+          var info = suburbCity[suburbKeys[i]];
+          var slug = safeSlug(info.suburb + "-" + info.city);
           if (!slug) continue;
           xml += '  <url>\n';
           xml += '    <loc>' + escapeXML('https://koffeereview.com.au/suburb/' + slug) + '</loc>\n';
