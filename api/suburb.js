@@ -4,7 +4,7 @@ function makeSlug(name, suburb) {
   return (name + "-" + suburb)
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9\s-]/g, "") 
+    .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 }
@@ -104,48 +104,27 @@ export default async function handler(req, res) {
     const text = await response.text();
     const cafes = parseCSV(text);
     
-    // SMART SUBURB MATCHING — try multiple patterns
-    // URL format: /suburb/paddington-brisbane could mean:
-    //   1. Suburb "Paddington Brisbane" (exact match)
-    //   2. Suburb "Paddington" in city "Brisbane" (combo)
-    //   3. Just suburb "Paddington" (ignore city suffix)
-    //   4. Slug match against suburbToSlug(cafe.suburb)
-    const slugQuery = suburb.toLowerCase().trim();
-    const queryWithSpaces = slugQuery.replace(/-/g, " ");
+    // BRUTE-FORCE MATCHING — strip everything except letters/numbers and compare
+    const slugNorm = suburb.toLowerCase().replace(/[^a-z0-9]/g, "");
     
-    let filtered = cafes.filter(c => {
-      const cafeSuburbLower = c.suburb.toLowerCase().trim();
-      const cafeSuburbSlug = suburbToSlug(c.suburb);
-      const cafeCityLower = (c.city || "").toLowerCase().trim();
-      
-      // Pattern 1: exact slug match
-      if (cafeSuburbSlug === slugQuery) return true;
-      
-      // Pattern 2: suburb name with spaces matches query
-      if (cafeSuburbLower === queryWithSpaces) return true;
-      
-      // Pattern 3: "suburb-city" pattern (e.g. paddington-brisbane → suburb=Paddington, city=Brisbane)
-      const combined = cafeSuburbSlug + "-" + suburbToSlug(c.city);
-      if (combined === slugQuery) return true;
-      
-      // Pattern 4: query starts with suburb slug, rest is city
-      if (slugQuery.startsWith(cafeSuburbSlug + "-")) {
-        const remainingCity = slugQuery.substring(cafeSuburbSlug.length + 1);
-        if (suburbToSlug(c.city) === remainingCity) return true;
-      }
-      
+    let filtered = cafes.filter(function(c) {
+      var subOnly = (c.suburb || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+      if (subOnly === slugNorm) return true;
+      var subCity = subOnly + ((c.city || "").toLowerCase().replace(/[^a-z0-9]/g, ""));
+      if (subCity === slugNorm) return true;
       return false;
     });
     
     if (filtered.length === 0) {
-      // Show 404 with helpful suggestions
-      const allSuburbs = [...new Set(cafes.map(c => c.suburb))].sort();
-      const suggestionList = allSuburbs.slice(0, 12).map(s => 
-        `<a href="/suburb/${suburbToSlug(s)}" style="color:#E6C073;text-decoration:none;display:inline-block;padding:6px 12px;border:1px solid rgba(230,192,115,0.3);border-radius:20px;margin:4px">${s}</a>`
-      ).join("");
+      var allSuburbs = [...new Set(cafes.map(function(c) { return c.suburb; }))].sort();
+      var suggestionList = allSuburbs.slice(0, 20).map(function(s) {
+        var cafeInSub = cafes.find(function(c) { return c.suburb === s; });
+        var cityPart = cafeInSub && cafeInSub.city ? "-" + suburbToSlug(cafeInSub.city) : "";
+        return '<a href="/suburb/' + suburbToSlug(s) + cityPart + '" style="color:#E6C073;text-decoration:none;display:inline-block;padding:6px 12px;border:1px solid rgba(230,192,115,0.3);border-radius:20px;margin:4px">' + escapeHtml(s) + '</a>';
+      }).join("");
       
       res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.status(404).send(`<!DOCTYPE html><html><head><title>Suburb Not Found - Koffee Review</title><meta name="robots" content="noindex"></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px 24px;max-width:800px;margin:0 auto"><h1 style="color:#E6C073">Suburb not found</h1><p style="color:rgba(255,255,255,0.6);margin:16px 0">We don't have any cafés reviewed for "${escapeHtml(suburb)}" yet.</p><p style="margin-top:32px;color:rgba(255,255,255,0.5);font-size:14px">Try one of these:</p><div style="margin-top:16px">${suggestionList}</div><p style="margin-top:32px"><a href="/" style="color:#E6C073">← Back to Koffee Review</a></p></body></html>`);
+      return res.status(404).send('<!DOCTYPE html><html><head><title>Suburb Not Found - Koffee Review</title><meta name="robots" content="noindex"></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px 24px;max-width:800px;margin:0 auto"><h1 style="color:#E6C073">Suburb not found</h1><p style="color:rgba(255,255,255,0.6);margin:16px 0">Searched: ' + escapeHtml(suburb) + ' (norm: ' + slugNorm + ')</p><p style="margin-top:32px;color:rgba(255,255,255,0.5);font-size:14px">Try one of these:</p><div style="margin-top:16px">' + suggestionList + '</div><p style="margin-top:32px"><a href="/" style="color:#E6C073">&larr; Back to Koffee Review</a></p></body></html>');
     }
     
     filtered.sort((a, b) => b.score - a.score);
@@ -422,4 +401,4 @@ export default async function handler(req, res) {
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.status(500).send(`<!DOCTYPE html><html><head><title>Error - Koffee Review</title></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px"><h1>Something went wrong</h1><p style="color:rgba(255,255,255,0.5);font-size:13px">${escapeHtml(error.message || '')}</p><p><a href="/" style="color:#E6C073">← Back to Koffee Review</a></p></body></html>`);
   }
-}
+} 
