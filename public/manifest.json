@@ -1,22 +1,69 @@
 {
   "name": "Our Fair Dinkum Koffee Review",
   "short_name": "Koffee Review",
-  "description": "600+ cafes reviewed across Australia",
+  "description": "Australia's most honest café reviews. One latte, one double espresso, every time.",
   "start_url": "/",
+  "id": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#c8a96e",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "orientation": "portrait",
+  "scope": "/",
+  "lang": "en-AU",
+  "categories": ["food", "lifestyle"],
   "icons": [
+    {
+      "src": "/logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "maskable"
+    },
     {
       "src": "/logo.jpg",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any"
     },
     {
       "src": "/logo.jpg",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Koffee Review Home"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Leaderboard",
+      "short_name": "Top 10",
+      "url": "/leaderboard",
+      "icons": [{ "src": "/logo.webp", "sizes": "192x192" }]
+    },
+    {
+      "name": "Best Latte Brisbane",
+      "short_name": "Best Latte",
+      "url": "/best-latte-brisbane",
+      "icons": [{ "src": "/logo.webp", "sizes": "192x192" }]
     }
   ]
 }
