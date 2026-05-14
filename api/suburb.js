@@ -177,7 +177,7 @@ export default async function handler(req, res) {
       }))
     };
     
-    const title = `Best Cafés in ${suburbName}, ${cityName} (${filtered.length} Reviewed) | Koffee Review`;
+    const title = `Best Cafés in ${suburbName}, ${cityName} 2026 (${filtered.length} Reviewed) | Koffee Review`;
     const description = `Honest reviews of ${filtered.length} cafés in ${suburbName}, ${cityName}. Top pick: ${topCafe.name} (${topCafe.score}/10). Same order every time — one latte, one double espresso.`;
     const canonical = `https://koffeereview.com.au/suburb/${suburbSlug}`;
     
@@ -379,6 +379,7 @@ export default async function handler(req, res) {
     </section>
     
     <footer>
+      <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:12px;letter-spacing:1px;">Last updated May 2026</p>
       <p>© 2026 Our Fair Dinkum Koffee Review · koffeereview.com.au</p>
       <div style="margin-top:10px">
         <a href="/about">About</a> · <a href="/disclosure">Disclosure</a> · <a href="/how-we-score">How We Score</a> · <a href="/privacy">Privacy</a>
@@ -401,4 +402,4 @@ export default async function handler(req, res) {
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.status(500).send(`<!DOCTYPE html><html><head><title>Error - Koffee Review</title></head><body style="font-family:sans-serif;background:#000;color:#fff;text-align:center;padding:60px"><h1>Something went wrong</h1><p style="color:rgba(255,255,255,0.5);font-size:13px">${escapeHtml(error.message || '')}</p><p><a href="/" style="color:#E6C073">← Back to Koffee Review</a></p></body></html>`);
   }
-} 
+}
