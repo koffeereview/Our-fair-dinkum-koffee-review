@@ -68,9 +68,26 @@ function renderHTML(cafe, allCafes) {
   const color = getScoreColor(cafe.score);
   const verdict = cafe.verdict || getScoreLabel(cafe.score);
   const slug = makeSlug(cafe.name, cafe.suburb);
-  const title = cafe.name + " Coffee Review (" + cafe.score + "/10) — " + cafe.suburb + " | Koffee Review";
+  const title = cafe.name + " Coffee Review (" + cafe.score + "/10) — " + cafe.suburb + " 2026 | Koffee Review";
   const desc = "Honest coffee review of " + cafe.name + " in " + cafe.suburb + ", " + cafe.city + ". Rated " + cafe.score + "/10 by Koffee Review. " + (cafe.notes ? cafe.notes.substring(0, 120) + "..." : "");
   const canonicalUrl = "https://koffeereview.com.au/review/" + slug;
+  
+  // FAQ DATA — auto-generated per cafe
+  const safeNotes = (cafe.notes || "").replace(/"/g, "'").replace(/\\/g, "").substring(0, 200);
+  const nearbyInSuburb = allCafes.filter(function(c) { return c.suburb.toLowerCase() === cafe.suburb.toLowerCase() && c.name !== cafe.name; });
+  const bestNearby = nearbyInSuburb.length > 0 ? nearbyInSuburb.sort(function(a, b) { return b.score - a.score; })[0] : null;
+  
+  const reviewFaqs = [
+    { q: "Is " + cafe.name + " worth visiting?", a: cafe.score >= 7.5 ? cafe.name + " scored " + cafe.score + "/10 in our review — a must-visit. " + (safeNotes ? "Our take: " + safeNotes : "") : cafe.score >= 6 ? cafe.name + " scored " + cafe.score + "/10 — decent but not one of our top picks in " + cafe.suburb + "." : cafe.name + " scored " + cafe.score + "/10 — we would not recommend this one. " + (bestNearby ? "Try " + bestNearby.name + " (" + bestNearby.score + "/10) nearby instead." : "") },
+    { q: "What did " + cafe.name + " score?", a: cafe.name + " in " + cafe.suburb + ", " + cafe.city + " scored " + cafe.score + " out of 10 in our review. We rate this as " + verdict + "." },
+    { q: "Where is " + cafe.name + "?", a: cafe.name + " is located in " + cafe.suburb + ", " + cafe.city + ", Australia." + (cafe.price ? " Price range: " + cafe.price + "." : "") },
+    { q: "How does Koffee Review rate cafes?", a: "We order one latte and one double espresso at every cafe. Same order, same size, every time. We score on taste, consistency, and value. No freebies, no sponsorships, no exceptions." }
+  ];
+  if (bestNearby) {
+    reviewFaqs.push({ q: "What is the best cafe near " + cafe.name + "?", a: "The highest-rated cafe near " + cafe.name + " in " + cafe.suburb + " is " + bestNearby.name + " with a score of " + bestNearby.score + "/10." });
+  }
+  
+  const faqSchemaJSON = JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":reviewFaqs.map(function(f){return{"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}})});
   const circumference = 276;
   const offset = circumference - (cafe.score / 10) * circumference;
   const citySlugMap = { "brisbane": "brisbane", "gold coast": "gold-coast", "moreton bay": "moreton-bay", "sunshine coast": "sunshine-coast", "ipswich": "ipswich", "melbourne": "melbourne", "sydney": "sydney", "logan": "logan", "redland": "redland" };
@@ -311,6 +328,7 @@ function renderHTML(cafe, allCafes) {
       { "@type": "ListItem", "position": 3, "name": "${cafe.name}", "item": "${canonicalUrl}" }
     ]
   }</script>
+  <script type="application/ld+json">${faqSchemaJSON}</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -373,6 +391,14 @@ function renderHTML(cafe, allCafes) {
     .related-cafe-name { font-weight: 600; font-size: 14px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .related-cafe-meta { font-size: 12px; margin-top: 2px; }
     .related-cafe-arrow { font-size: 14px; color: rgba(255,255,255,0.2); flex-shrink: 0; }
+    .faq-section { margin-bottom: 28px; }
+    .faq-item { margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
+    .faq-item[open] { border-color: rgba(230,192,115,0.25); }
+    .faq-q { padding: 14px 16px; font-size: 14px; font-weight: 600; color: #fff; cursor: pointer; list-style: none; }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::after { content: '＋'; color: #E6C073; font-size: 16px; float: right; }
+    .faq-item[open] .faq-q::after { content: '－'; }
+    .faq-a { padding: 0 16px 14px; font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
     #share-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 400; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
     #share-overlay.visible { display: flex; }
     #share-overlay img { max-width: min(320px, 90vw); border-radius: 24px; }
@@ -449,12 +475,24 @@ function renderHTML(cafe, allCafes) {
     ${similarScoreHTML}
     ${betterPicksHTML}
 
+    <!-- FAQ SECTION -->
+    <div class="faq-section">
+      <div class="related-title">FREQUENTLY ASKED</div>
+      ${reviewFaqs.map(function(f) { return '<details class="faq-item"><summary class="faq-q">' + f.q + '</summary><p class="faq-a">' + f.a + '</p></details>'; }).join('')}
+    </div>
+    <hr class="divider" />
+
     <div class="internal-links">
       ${suburbLink}
       ${brisbaneLink}
       ${cityLink}
       <a class="internal-link" href="/leaderboard">Australia's Top 10 Cafés <span>→</span></a>
       <a class="internal-link" href="https://koffeereview.com.au">Browse All Reviews <span>→</span></a>
+    </div>
+
+    <!-- LAST UPDATED STAMP -->
+    <div style="text-align:center;padding:12px 0 20px;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px;">
+      Last updated May 2026 · One latte, one double shot, every time.
     </div>
   </div>
 
