@@ -64,7 +64,7 @@ export default async function handler(req, res) {
       .sort(function(a, b) { return b.score - a.score; })
       .slice(0, 10);
 
-    const title = "Top 10 Cafés in Australia | Koffee Review";
+    const title = "Top 10 Cafés in Australia 2026 | Koffee Review";
     const desc = "Australia's highest rated cafés reviewed by Koffee Review. One latte and one double shot espresso every time. No sponsorships. Just honest scores.";
     const canonicalUrl = "https://koffeereview.com.au/leaderboard";
 
