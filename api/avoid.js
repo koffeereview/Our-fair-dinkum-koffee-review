@@ -46,7 +46,7 @@ export default async function handler(req, res) {
       .filter(function(c) { return c.score < 4.0 && c.score > 0 && c.city.toLowerCase().trim() === "brisbane"; })
       .sort(function(a, b) { return a.score - b.score });
 
-    const title = "Brisbane Cafés to Avoid | Koffee Review";
+    const title = "Brisbane Cafés to Avoid 2026 | Koffee Review";
     const desc = "Honest list of Brisbane cafés rated below 5 out of 10 by Koffee Review. Real scores, no hype. Know before you go and save your money for cafés that actually deliver.";
     const canonicalUrl = "https://koffeereview.com.au/brisbane-cafes-to-avoid";
 
