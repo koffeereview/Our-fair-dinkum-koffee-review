@@ -1,10 +1,6 @@
-// DYNAMIC OG IMAGE GENERATOR — Edge Function
+// DYNAMIC OG IMAGE — SVG-based, zero dependencies
 // /api/og?name=Hope+%26+Anchor&score=6.9&suburb=Paddington&city=Brisbane
-// Generates 1200x630 branded score card for social sharing
-
-import { ImageResponse } from '@vercel/og';
-
-export const config = { runtime: 'edge' };
+// Returns an SVG image that social platforms render as the preview card
 
 function getColor(s) {
   if (s >= 9) return '#ffffff';
@@ -24,58 +20,84 @@ function getVerdict(s) {
   return 'AVOID';
 }
 
-export default function handler(req) {
-  var u = new URL(req.url);
-  var name = u.searchParams.get('name') || 'Cafe';
-  var score = parseFloat(u.searchParams.get('score')) || 0;
-  var suburb = u.searchParams.get('suburb') || '';
-  var city = u.searchParams.get('city') || 'Brisbane';
-  var notes = u.searchParams.get('notes') || '';
+function esc(str) {
+  return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+export default function handler(req, res) {
+  var name = req.query.name || 'Cafe';
+  var score = parseFloat(req.query.score) || 0;
+  var suburb = req.query.suburb || '';
+  var city = req.query.city || 'Brisbane';
+  var notes = req.query.notes || '';
   var color = getColor(score);
   var verdict = getVerdict(score);
-  var displayName = name.length > 26 ? name.substring(0, 26) + '...' : name;
-  var displayNotes = notes.length > 90 ? notes.substring(0, 90) + '...' : notes;
+  var displayName = name.length > 28 ? name.substring(0, 28) + '...' : name;
+  var displayNotes = notes.length > 80 ? notes.substring(0, 80) + '...' : notes;
 
-  return new ImageResponse(
-    {
-      type: 'div',
-      props: {
-        style: { display: 'flex', flexDirection: 'column', width: '1200px', height: '630px', background: '#0a0a0a', fontFamily: 'sans-serif', padding: '48px 56px' },
-        children: [
-          // Header
-          { type: 'div', props: { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }, children: [
-            { type: 'div', props: { style: { display: 'flex', alignItems: 'center', gap: '12px' }, children: [
-              { type: 'div', props: { style: { width: '44px', height: '44px', borderRadius: '50%', background: '#E6C073', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', fontWeight: '700', color: '#000' }, children: 'K' } },
-              { type: 'div', props: { style: { fontSize: '16px', letterSpacing: '4px', color: '#E6C073', fontWeight: '700' }, children: 'KOFFEE REVIEW' } }
-            ] } },
-            { type: 'div', props: { style: { fontSize: '14px', color: 'rgba(255,255,255,0.35)', letterSpacing: '2px' }, children: 'koffeereview.com.au' } }
-          ] } },
-          // Gold line
-          { type: 'div', props: { style: { width: '100%', height: '2px', background: 'linear-gradient(90deg, #E6C073, rgba(230,192,115,0.2))', marginBottom: '36px' } } },
-          // Main content
-          { type: 'div', props: { style: { display: 'flex', alignItems: 'center', gap: '48px', flex: '1' }, children: [
-            // Score circle + verdict
-            { type: 'div', props: { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: '0' }, children: [
-              { type: 'div', props: { style: { width: '190px', height: '190px', borderRadius: '50%', border: '6px solid ' + color, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)' }, children: [
-                { type: 'div', props: { style: { fontSize: '76px', fontWeight: '700', color: color, lineHeight: '1' }, children: score.toFixed(1) } },
-                { type: 'div', props: { style: { fontSize: '18px', color: 'rgba(255,255,255,0.3)', marginTop: '2px' }, children: '/10' } }
-              ] } },
-              { type: 'div', props: { style: { marginTop: '16px', padding: '8px 28px', borderRadius: '20px', background: color, color: '#000', fontSize: '14px', fontWeight: '700', letterSpacing: '4px' }, children: verdict } }
-            ] } },
-            // Cafe info
-            { type: 'div', props: { style: { display: 'flex', flexDirection: 'column', flex: '1' }, children: [
-              { type: 'div', props: { style: { fontSize: '52px', fontWeight: '700', color: '#fff', lineHeight: '1.1', marginBottom: '12px' }, children: displayName } },
-              { type: 'div', props: { style: { fontSize: '24px', color: 'rgba(255,255,255,0.5)', marginBottom: displayNotes ? '20px' : '0' }, children: suburb + (city ? ', ' + city : '') } },
-              displayNotes ? { type: 'div', props: { style: { fontSize: '19px', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', lineHeight: '1.5', borderLeft: '3px solid ' + color, paddingLeft: '16px' }, children: '"' + displayNotes + '"' } } : null
-            ].filter(Boolean) } }
-          ] } },
-          // Footer
-          { type: 'div', props: { style: { display: 'flex', justifyContent: 'center', marginTop: '24px' }, children: [
-            { type: 'div', props: { style: { fontSize: '13px', color: 'rgba(255,255,255,0.2)', letterSpacing: '4px' }, children: 'ONE LATTE \u00b7 ONE DOUBLE SHOT \u00b7 EVERY TIME' } }
-          ] } }
-        ]
-      }
-    },
-    { width: 1200, height: 630 }
-  );
+  // Score ring arc
+  var radius = 65;
+  var circumference = 2 * Math.PI * radius;
+  var offset = circumference - (score / 10) * circumference;
+
+  var svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="50%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E6C073"/>
+      <stop offset="100%" stop-color="rgba(230,192,115,0.2)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Header — K logo + KOFFEE REVIEW -->
+  <circle cx="76" cy="52" r="20" fill="#E6C073"/>
+  <text x="76" y="59" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#000" text-anchor="middle">K</text>
+  <text x="108" y="58" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#E6C073" letter-spacing="4">KOFFEE REVIEW</text>
+  <text x="1144" y="58" font-family="Arial,sans-serif" font-size="13" fill="rgba(255,255,255,0.35)" text-anchor="end" letter-spacing="2">koffeereview.com.au</text>
+
+  <!-- Gold divider -->
+  <rect x="56" y="82" width="1088" height="2" fill="url(#gold)"/>
+
+  <!-- Score ring -->
+  <circle cx="200" cy="310" r="${radius}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="7"/>
+  <circle cx="200" cy="310" r="${radius}" fill="none" stroke="${color}" stroke-width="7"
+    stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round"
+    transform="rotate(-90 200 310)"/>
+  <text x="200" y="300" font-family="Arial,sans-serif" font-size="68" font-weight="700" fill="${color}" text-anchor="middle" dominant-baseline="middle">${score.toFixed(1)}</text>
+  <text x="200" y="340" font-family="Arial,sans-serif" font-size="18" fill="rgba(255,255,255,0.3)" text-anchor="middle">/10</text>
+
+  <!-- Verdict badge -->
+  <rect x="${200 - verdict.length * 7}" y="390" width="${verdict.length * 14 + 36}" height="32" rx="16" fill="${color}"/>
+  <text x="200" y="411" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#000" text-anchor="middle" letter-spacing="4">${verdict}</text>
+
+  <!-- Cafe name -->
+  <text x="340" y="240" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#ffffff">${esc(displayName)}</text>
+
+  <!-- Location -->
+  <text x="340" y="280" font-family="Arial,sans-serif" font-size="22" fill="rgba(255,255,255,0.5)">${esc(suburb)}${city ? ', ' + esc(city) : ''}</text>
+
+  <!-- Notes quote -->
+  ${displayNotes ? `
+  <rect x="340" y="310" width="3" height="${Math.min(displayNotes.length * 0.6, 60)}" fill="${color}" rx="1.5"/>
+  <text x="356" y="330" font-family="Arial,sans-serif" font-size="17" fill="rgba(255,255,255,0.4)" font-style="italic">
+    <tspan x="356" dy="0">"${esc(displayNotes)}"</tspan>
+  </text>` : ''}
+
+  <!-- Bottom tagline -->
+  <text x="600" y="590" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="4">ONE LATTE · ONE DOUBLE SHOT · EVERY TIME</text>
+
+  <!-- Subtle border -->
+  <rect x="1" y="1" width="1198" height="628" rx="0" fill="none" stroke="rgba(230,192,115,0.15)" stroke-width="2"/>
+</svg>`;
+
+  res.setHeader('Content-Type', 'image/svg+xml');
+  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+  res.status(200).send(svg);
 }
