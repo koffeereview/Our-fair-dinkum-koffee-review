@@ -5,7 +5,7 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
 const LANDMARKS = {
-  "south-bank": { name: "South Bank", lat: -27.4805, lng: 153.0234, city: "Brisbane" },
+  "south-bank": { name: "South Bank", lat: -27.4805, lng: 153.0234, city: "Brisbane" }, 
   "queen-street-mall": { name: "Queen Street Mall", lat: -27.4698, lng: 153.0251, city: "Brisbane" },
   "brisbane-airport": { name: "Brisbane Airport", lat: -27.3842, lng: 153.1175, city: "Brisbane" },
   "suncorp-stadium": { name: "Suncorp Stadium", lat: -27.4648, lng: 153.0095, city: "Brisbane" },
