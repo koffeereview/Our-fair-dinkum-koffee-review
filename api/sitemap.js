@@ -21,7 +21,19 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/leaderboard", priority: "0.85", changefreq: "daily" },
   { url: "https://koffeereview.com.au/how-we-score", priority: "0.70", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/about", priority: "0.70", changefreq: "monthly" },
-  { url: "https://koffeereview.com.au/disclosure", priority: "0.60", changefreq: "monthly" }
+  { url: "https://koffeereview.com.au/disclosure", priority: "0.60", changefreq: "monthly" },
+  { url: "https://koffeereview.com.au/coffee-near/south-bank", priority: "0.80", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/queen-street-mall", priority: "0.80", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/brisbane-cbd", priority: "0.80", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/fortitude-valley", priority: "0.75", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/james-street", priority: "0.75", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/howard-smith-wharves", priority: "0.75", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/new-farm-park", priority: "0.75", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/suncorp-stadium", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/the-gabba", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/uq-st-lucia", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/surfers-paradise", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/burleigh-beach", priority: "0.70", changefreq: "weekly" }
 ];
 
 function escapeXML(str) {
