@@ -28,7 +28,8 @@
     { "source": "/disclosure", "destination": "/disclosure.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/coffee-near-me", "destination": "/coffee-near-me.html" },
+    { "source": "/coffee-near-me", "destination": "/api/near" },
+    { "source": "/coffee-near/:landmark", "destination": "/api/near?landmark=:landmark" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
