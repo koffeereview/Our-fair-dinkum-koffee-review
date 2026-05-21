@@ -88,6 +88,7 @@ function renderHTML(cafe, allCafes) {
   }
   
   const faqSchemaJSON = JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":reviewFaqs.map(function(f){return{"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}})});
+  const ogImageUrl = "https://koffeereview.com.au/api/og?name=" + encodeURIComponent(cafe.name) + "&suburb=" + encodeURIComponent(cafe.suburb) + "&city=" + encodeURIComponent(cafe.city) + "&score=" + cafe.score + "&verdict=" + encodeURIComponent(verdict) + "&notes=" + encodeURIComponent((cafe.notes || "").substring(0, 90));
   const circumference = 276;
   const offset = circumference - (cafe.score / 10) * circumference;
   const citySlugMap = { "brisbane": "brisbane", "gold coast": "gold-coast", "moreton bay": "moreton-bay", "sunshine coast": "sunshine-coast", "ipswich": "ipswich", "melbourne": "melbourne", "sydney": "sydney", "logan": "logan", "redland": "redland" };
@@ -252,9 +253,14 @@ function renderHTML(cafe, allCafes) {
   <meta name="description" content="${desc}" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${desc}" />
-  <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
+  <meta property="og:image" content="${ogImageUrl}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${ogImageUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
+  <link rel="alternate" hreflang="en-AU" href="${canonicalUrl}" />
   <script type="application/ld+json">
   [
     {
@@ -290,6 +296,8 @@ function renderHTML(cafe, allCafes) {
         "worstRating": "0"
       },
       "reviewBody": "${(cafe.notes || "").replace(/"/g, "'")}",
+      "datePublished": "${cafe.date || "2026-01-01"}",
+      "dateModified": "${new Date().toISOString().split("T")[0]}",
       "url": "${canonicalUrl}"
     },
     {
