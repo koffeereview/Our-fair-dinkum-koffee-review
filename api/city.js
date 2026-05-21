@@ -2,7 +2,7 @@ const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I
 
 const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
 
-const CITY_CONFIG = { 
+const CITY_CONFIG = {
   "brisbane": { name: "Brisbane", slug: "brisbane", stateShort: "QLD" },
   "gold-coast": { name: "Gold Coast", slug: "gold-coast", stateShort: "QLD" },
   "moreton-bay": { name: "Moreton Bay", slug: "moreton-bay", stateShort: "QLD" },
@@ -123,6 +123,7 @@ function renderCityPage(citySlug, cafes, allCafes) {
   <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
   <meta property="og:url" content="${canonicalUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
+  <link rel="alternate" hreflang="en-AU" href="${canonicalUrl}" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"},"about":{"@type":"City","name":"${config.name}","addressCountry":"AU"}}</script>
   <script type="application/ld+json">{
     "@context": "https://schema.org",
