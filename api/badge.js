@@ -71,10 +71,10 @@ function buildDarkBadge(name, score, suburb, slug) {
   <!-- Top gold accent line -->
   <rect x="30" y="0" width="220" height="2" fill="url(#goldLine)" rx="1"/>
 
-  <!-- Header — KOFFEE REVIEW -->
-  <circle cx="36" cy="32" r="12" fill="#E6C073"/>
-  <text x="36" y="37" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#0a0a0a" text-anchor="middle">K</text>
-  <text x="56" y="36" font-family="Georgia,serif" font-size="10" fill="#E6C073" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
+  <!-- Header — KOFFEE REVIEW with logo -->
+  <image href="https://koffeereview.com.au/logo.webp" x="22" y="18" width="28" height="28" clip-path="circle(14px at 14px 14px)"/>
+  <circle cx="36" cy="32" r="14" fill="none" stroke="#E6C073" stroke-width="1" opacity="0.5"/>
+  <text x="58" y="36" font-family="Georgia,serif" font-size="10" fill="#E6C073" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
 
   <!-- Divider -->
   <rect x="24" y="52" width="232" height="1" fill="url(#goldLine)" opacity="0.3"/>
@@ -85,7 +85,7 @@ function buildDarkBadge(name, score, suburb, slug) {
     stroke-dasharray="${circ}" stroke-dashoffset="${off}" stroke-linecap="round"
     transform="rotate(-90 140 120)" filter="url(#scoreGlow)"/>
   <text x="140" y="114" font-family="Georgia,serif" font-size="42" font-weight="700" fill="${c.main}" text-anchor="middle" dominant-baseline="middle" filter="url(#scoreGlow)">${score.toFixed(1)}</text>
-  <text x="140" y="142" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.25)" text-anchor="middle">/10</text>
+  <text x="140" y="142" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.35)" text-anchor="middle">/10</text>
 
   <!-- Verdict badge -->
   <rect x="${140 - verdict.length * 5.5 - 14}" y="168" width="${verdict.length * 11 + 28}" height="24" rx="12" fill="${c.main}"/>
@@ -94,14 +94,14 @@ function buildDarkBadge(name, score, suburb, slug) {
   <!-- Café name -->
   <text x="140" y="218" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">${esc(displayName)}</text>
 
-  <!-- Location -->
-  <text x="140" y="238" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="middle">${esc(suburb)}</text>
+  <!-- Location — BRIGHTER -->
+  <text x="140" y="238" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">${esc(suburb)}</text>
 
   <!-- Bottom gold divider -->
   <rect x="40" y="258" width="200" height="1" fill="url(#goldLine)" opacity="0.25"/>
 
-  <!-- Tagline -->
-  <text x="140" y="280" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="2.5">ONE LATTE · ONE DOUBLE SHOT</text>
+  <!-- Tagline — BRIGHTER -->
+  <text x="140" y="280" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="rgba(255,255,255,0.45)" text-anchor="middle" letter-spacing="2.5">ONE LATTE · ONE DOUBLE SHOT</text>
 
   <!-- CTA -->
   <rect x="60" y="296" width="160" height="28" rx="14" fill="none" stroke="rgba(230,192,115,0.3)" stroke-width="1"/>
@@ -136,9 +136,9 @@ function buildLightBadge(name, score, suburb, slug) {
   <rect x="1" y="1" width="278" height="338" rx="19" fill="none" stroke="#C49A3C" stroke-width="1.5" opacity="0.3"/>
   <rect x="30" y="0" width="220" height="2" fill="url(#goldLineL)" rx="1"/>
 
-  <circle cx="36" cy="32" r="12" fill="#1a1a1a"/>
-  <text x="36" y="37" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#E6C073" text-anchor="middle">K</text>
-  <text x="56" y="36" font-family="Georgia,serif" font-size="10" fill="#1a1a1a" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
+  <image href="https://koffeereview.com.au/logo.webp" x="22" y="18" width="28" height="28" clip-path="circle(14px at 14px 14px)"/>
+  <circle cx="36" cy="32" r="14" fill="none" stroke="#C49A3C" stroke-width="1" opacity="0.5"/>
+  <text x="58" y="36" font-family="Georgia,serif" font-size="10" fill="#1a1a1a" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
 
   <rect x="24" y="52" width="232" height="1" fill="url(#goldLineL)" opacity="0.3"/>
 
@@ -147,16 +147,16 @@ function buildLightBadge(name, score, suburb, slug) {
     stroke-dasharray="${circ}" stroke-dashoffset="${off}" stroke-linecap="round"
     transform="rotate(-90 140 120)"/>
   <text x="140" y="114" font-family="Georgia,serif" font-size="42" font-weight="700" fill="${darkColor}" text-anchor="middle" dominant-baseline="middle">${score.toFixed(1)}</text>
-  <text x="140" y="142" font-family="Georgia,serif" font-size="11" fill="rgba(0,0,0,0.25)" text-anchor="middle">/10</text>
+  <text x="140" y="142" font-family="Georgia,serif" font-size="11" fill="rgba(0,0,0,0.35)" text-anchor="middle">/10</text>
 
   <rect x="${140 - verdict.length * 5.5 - 14}" y="168" width="${verdict.length * 11 + 28}" height="24" rx="12" fill="${darkColor}"/>
   <text x="140" y="184" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="2.5">${verdict}</text>
 
   <text x="140" y="218" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#1a1a1a" text-anchor="middle">${esc(displayName)}</text>
-  <text x="140" y="238" font-family="Georgia,serif" font-size="11" fill="rgba(0,0,0,0.45)" text-anchor="middle">${esc(suburb)}</text>
+  <text x="140" y="238" font-family="Georgia,serif" font-size="11" fill="rgba(0,0,0,0.7)" text-anchor="middle">${esc(suburb)}</text>
 
   <rect x="40" y="258" width="200" height="1" fill="url(#goldLineL)" opacity="0.25"/>
-  <text x="140" y="280" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="rgba(0,0,0,0.2)" text-anchor="middle" letter-spacing="2.5">ONE LATTE · ONE DOUBLE SHOT</text>
+  <text x="140" y="280" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="rgba(0,0,0,0.45)" text-anchor="middle" letter-spacing="2.5">ONE LATTE · ONE DOUBLE SHOT</text>
 
   <rect x="60" y="296" width="160" height="28" rx="14" fill="none" stroke="rgba(26,26,26,0.2)" stroke-width="1"/>
   <text x="140" y="314" font-family="Georgia,serif" font-size="9" fill="#1a1a1a" text-anchor="middle" letter-spacing="1">Read Full Review →</text>
@@ -175,7 +175,7 @@ function buildMinimalBadge(name, score, suburb) {
   <circle cx="28" cy="24" r="16" fill="none" stroke="${c.main}" stroke-width="2"/>
   <text x="28" y="28" font-family="Georgia,serif" font-size="13" font-weight="700" fill="${c.main}" text-anchor="middle">${score.toFixed(1)}</text>
   <text x="54" y="20" font-family="Georgia,serif" font-size="10" fill="#E6C073" letter-spacing="1.5" font-weight="600">KOFFEE REVIEW</text>
-  <text x="54" y="34" font-family="Georgia,serif" font-size="8" fill="rgba(255,255,255,0.4)">${verdict}</text>
+  <text x="54" y="34" font-family="Georgia,serif" font-size="8" fill="rgba(255,255,255,0.6)">${verdict}</text>
 </svg>`;
 }
 
