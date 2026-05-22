@@ -490,6 +490,19 @@ function renderHTML(cafe, allCafes) {
     </div>
     <hr class="divider" />
 
+    ${cafe.score >= 7.5 ? `
+    <!-- BADGE FOR CAFE OWNERS -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <div class="related-title">CAFE OWNER?</div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:16px;">Display your verified Koffee Review badge on your website.</p>
+      <div style="display:inline-flex;align-items:center;gap:12px;padding:14px 24px;border:1px solid rgba(230,192,115,0.25);border-radius:14px;background:rgba(230,192,115,0.04);">
+        <img src="/api/badge?name=${encodeURIComponent(cafe.name)}&score=${cafe.score}&suburb=${encodeURIComponent(cafe.suburb)}&slug=${slug}&style=minimal" alt="Badge" width="120" style="flex-shrink:0;" />
+        <a href="/embed/${slug}" style="color:#E6C073;font-size:13px;text-decoration:none;font-weight:600;letter-spacing:1px;">Get Your Badge →</a>
+      </div>
+    </div>
+    <hr class="divider" />
+    ` : ''}
+
     <div class="internal-links">
       ${suburbLink}
       ${brisbaneLink}
