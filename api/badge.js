@@ -53,7 +53,10 @@ function buildDarkBadge(name, score, suburb, slug) {
       <stop offset="100%" stop-color="#C49A3C"/>
     </linearGradient>
     <clipPath id="logoClip"><circle cx="36" cy="32" r="13"/></clipPath>
-    <clipPath id="logoClipL"><circle cx="36" cy="32" r="13"/></clipPath>
+    <radialGradient id="logoGrad" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#F6DDAA"/>
+      <stop offset="100%" stop-color="#C49A3C"/>
+    </radialGradient>
     <filter id="scoreGlow">
       <feGaussianBlur stdDeviation="4" result="blur"/>
       <feColorMatrix in="blur" type="matrix" values="0 0 0 0 ${parseInt(c.main.slice(1,3),16)/255} 0 0 0 0 ${parseInt(c.main.slice(3,5),16)/255} 0 0 0 0 ${parseInt(c.main.slice(5,7),16)/255} 0 0 0 0.4 0"/>
@@ -73,9 +76,10 @@ function buildDarkBadge(name, score, suburb, slug) {
   <!-- Top gold accent line -->
   <rect x="30" y="0" width="220" height="2" fill="url(#goldLine)" rx="1"/>
 
-  <!-- Header — KOFFEE REVIEW with logo -->
-  <image href="https://koffeereview.com.au/logo.webp" x="23" y="19" width="26" height="26" clip-path="url(#logoClip)"/>
-  <circle cx="36" cy="32" r="13" fill="none" stroke="#E6C073" stroke-width="1" opacity="0.6"/>
+  <!-- Header — KOFFEE REVIEW with brand logo -->
+  <circle cx="36" cy="32" r="14" fill="url(#logoGrad)"/>
+  <circle cx="36" cy="32" r="14" fill="none" stroke="#F6DDAA" stroke-width="0.5" opacity="0.6"/>
+  <text x="36" y="37" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#0a0a0a" text-anchor="middle">K</text>
   <text x="58" y="36" font-family="Georgia,serif" font-size="10" fill="#E6C073" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
 
   <!-- Divider -->
@@ -133,14 +137,19 @@ function buildLightBadge(name, score, suburb, slug) {
       <stop offset="100%" stop-color="transparent"/>
     </linearGradient>
     <clipPath id="logoClipLight"><circle cx="36" cy="32" r="13"/></clipPath>
+    <radialGradient id="logoGradL" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#333333"/>
+    </radialGradient>
   </defs>
 
   <rect width="280" height="340" rx="20" fill="#faf9f6"/>
   <rect x="1" y="1" width="278" height="338" rx="19" fill="none" stroke="#C49A3C" stroke-width="1.5" opacity="0.3"/>
   <rect x="30" y="0" width="220" height="2" fill="url(#goldLineL)" rx="1"/>
 
-  <image href="https://koffeereview.com.au/logo.webp" x="23" y="19" width="26" height="26" clip-path="url(#logoClipLight)"/>
-  <circle cx="36" cy="32" r="13" fill="none" stroke="#C49A3C" stroke-width="1" opacity="0.6"/>
+  <circle cx="36" cy="32" r="14" fill="url(#logoGradL)"/>
+  <circle cx="36" cy="32" r="14" fill="none" stroke="#C49A3C" stroke-width="0.5" opacity="0.5"/>
+  <text x="36" y="37" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#E6C073" text-anchor="middle">K</text>
   <text x="58" y="36" font-family="Georgia,serif" font-size="10" fill="#1a1a1a" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
 
   <rect x="24" y="52" width="232" height="1" fill="url(#goldLineL)" opacity="0.3"/>
