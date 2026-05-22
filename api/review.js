@@ -494,10 +494,10 @@ function renderHTML(cafe, allCafes) {
     <!-- BADGE FOR CAFE OWNERS -->
     <div style="text-align:center;margin-bottom:28px;">
       <div class="related-title">CAFE OWNER?</div>
-      <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:16px;">Display your verified Koffee Review badge on your website.</p>
-      <div style="display:inline-flex;align-items:center;gap:12px;padding:14px 24px;border:1px solid rgba(230,192,115,0.25);border-radius:14px;background:rgba(230,192,115,0.04);">
-        <img src="/api/badge?name=${encodeURIComponent(cafe.name)}&score=${cafe.score}&suburb=${encodeURIComponent(cafe.suburb)}&slug=${slug}&style=minimal" alt="Badge" width="120" style="flex-shrink:0;" />
-        <a href="/embed/${slug}" style="color:#E6C073;font-size:13px;text-decoration:none;font-weight:600;letter-spacing:1px;">Get Your Badge →</a>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:20px;">Display your verified Koffee Review badge on your website</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px;border:1px solid rgba(230,192,115,0.2);border-radius:16px;background:rgba(230,192,115,0.03);">
+        <img src="/api/badge?name=${encodeURIComponent(cafe.name)}&score=${cafe.score.toFixed(1)}&suburb=${encodeURIComponent(cafe.suburb)}&slug=${slug}&style=dark" alt="Koffee Review Badge" width="200" />
+        <a href="/embed/${slug}" style="display:inline-block;padding:10px 28px;border-radius:24px;background:#E6C073;color:#000;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:1px;">Get Your Free Badge →</a>
       </div>
     </div>
     <hr class="divider" />
