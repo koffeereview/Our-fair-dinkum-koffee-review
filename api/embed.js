@@ -1,201 +1,222 @@
-// KOFFEE REVIEW BADGE — Premium SVG badge for cafes to embed
-// /api/badge?name=Hope+%26+Anchor&score=6.9&suburb=Paddington&slug=hope-anchor-paddington
-// /api/badge?name=...&style=dark (dark variant)
-// /api/badge?name=...&style=light (light variant for dark cafe websites)
-// /api/badge?name=...&style=minimal (small inline badge)
+// BADGE EMBED PAGE — Cafe owners visit this to grab their badge + embed code
+// /api/embed?slug=hope-anchor-paddington
+// Shows badge previews (dark, light, minimal) + copy-paste HTML embed code
 
-function getColor(s) {
-  if (s >= 9) return { main: '#ffffff', glow: 'rgba(255,255,255,0.3)', bg: 'rgba(255,255,255,0.08)' };
-  if (s >= 8) return { main: '#4ade80', glow: 'rgba(74,222,128,0.3)', bg: 'rgba(74,222,128,0.08)' };
-  if (s >= 7) return { main: '#2dd4bf', glow: 'rgba(45,212,191,0.3)', bg: 'rgba(45,212,191,0.08)' };
-  if (s >= 6) return { main: '#facc15', glow: 'rgba(250,204,21,0.3)', bg: 'rgba(250,204,21,0.08)' };
-  if (s >= 5) return { main: '#fb923c', glow: 'rgba(251,146,60,0.3)', bg: 'rgba(251,146,60,0.08)' };
-  return { main: '#f87171', glow: 'rgba(248,113,113,0.3)', bg: 'rgba(248,113,113,0.08)' };
-}
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
-function getVerdict(s) {
-  if (s >= 9) return 'ELITE';
-  if (s >= 8) return 'GREAT';
-  if (s >= 7.5) return 'MUST VISIT';
-  if (s >= 7) return 'SOLID';
-  if (s >= 6) return 'DECENT';
-  if (s >= 5) return 'JUST OKAY';
-  return 'AVOID';
-}
-
-function esc(str) {
-  return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-function buildDarkBadge(name, score, suburb, slug) {
-  var c = getColor(score);
-  var verdict = getVerdict(score);
-  var displayName = name.length > 22 ? name.substring(0, 22) + '...' : name;
-  var r = 38;
-  var circ = 2 * Math.PI * r;
-  var off = circ - (score / 10) * circ;
-
-  return `<svg width="280" height="340" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#111111"/>
-      <stop offset="100%" stop-color="#0a0a0a"/>
-    </linearGradient>
-    <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="transparent"/>
-      <stop offset="20%" stop-color="#E6C073"/>
-      <stop offset="80%" stop-color="#E6C073"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
-    <linearGradient id="goldShine" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F6DDAA"/>
-      <stop offset="50%" stop-color="#E6C073"/>
-      <stop offset="100%" stop-color="#C49A3C"/>
-    </linearGradient>
-    <filter id="scoreGlow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 ${parseInt(c.main.slice(1,3),16)/255} 0 0 0 0 ${parseInt(c.main.slice(3,5),16)/255} 0 0 0 0 ${parseInt(c.main.slice(5,7),16)/255} 0 0 0 0.4 0"/>
-      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="goldGlow2">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
-      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.9 0 0 0 0 0.75 0 0 0 0 0.28 0 0 0 0.5 0"/>
-      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-
-  <!-- Card background with gold border -->
-  <rect width="280" height="340" rx="20" fill="url(#cardBg)"/>
-  <rect x="1" y="1" width="278" height="338" rx="19" fill="none" stroke="url(#goldShine)" stroke-width="1.5" opacity="0.4"/>
-
-  <!-- Top gold accent line -->
-  <rect x="30" y="0" width="220" height="2" fill="url(#goldLine)" rx="1"/>
-
-  <!-- Header — KOFFEE REVIEW -->
-  <circle cx="36" cy="32" r="12" fill="#E6C073"/>
-  <text x="36" y="37" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#0a0a0a" text-anchor="middle">K</text>
-  <text x="56" y="36" font-family="Georgia,serif" font-size="10" fill="#E6C073" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
-
-  <!-- Divider -->
-  <rect x="24" y="52" width="232" height="1" fill="url(#goldLine)" opacity="0.3"/>
-
-  <!-- Score ring — centred -->
-  <circle cx="140" cy="120" r="${r}" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="4"/>
-  <circle cx="140" cy="120" r="${r}" fill="none" stroke="${c.main}" stroke-width="4"
-    stroke-dasharray="${circ}" stroke-dashoffset="${off}" stroke-linecap="round"
-    transform="rotate(-90 140 120)" filter="url(#scoreGlow)"/>
-  <text x="140" y="114" font-family="Georgia,serif" font-size="42" font-weight="700" fill="${c.main}" text-anchor="middle" dominant-baseline="middle" filter="url(#scoreGlow)">${score.toFixed(1)}</text>
-  <text x="140" y="142" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.25)" text-anchor="middle">/10</text>
-
-  <!-- Verdict badge -->
-  <rect x="${140 - verdict.length * 5.5 - 14}" y="168" width="${verdict.length * 11 + 28}" height="24" rx="12" fill="${c.main}"/>
-  <text x="140" y="184" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#0a0a0a" text-anchor="middle" letter-spacing="2.5">${verdict}</text>
-
-  <!-- Café name -->
-  <text x="140" y="218" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">${esc(displayName)}</text>
-
-  <!-- Location -->
-  <text x="140" y="238" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="middle">${esc(suburb)}</text>
-
-  <!-- Bottom gold divider -->
-  <rect x="40" y="258" width="200" height="1" fill="url(#goldLine)" opacity="0.25"/>
-
-  <!-- Tagline -->
-  <text x="140" y="280" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="2.5">ONE LATTE · ONE DOUBLE SHOT</text>
-
-  <!-- CTA -->
-  <rect x="60" y="296" width="160" height="28" rx="14" fill="none" stroke="rgba(230,192,115,0.3)" stroke-width="1"/>
-  <text x="140" y="314" font-family="Georgia,serif" font-size="9" fill="#E6C073" text-anchor="middle" letter-spacing="1">Read Full Review →</text>
-
-  <!-- Bottom accent -->
-  <rect x="30" y="338" width="220" height="2" fill="url(#goldLine)" rx="1"/>
-</svg>`;
-}
-
-function buildLightBadge(name, score, suburb, slug) {
-  var c = getColor(score);
-  var verdict = getVerdict(score);
-  var displayName = name.length > 22 ? name.substring(0, 22) + '...' : name;
-  var r = 38;
-  var circ = 2 * Math.PI * r;
-  var off = circ - (score / 10) * circ;
-  // Darken score color for light bg
-  var darkColor = score >= 9 ? '#1a1a1a' : score >= 8 ? '#166534' : score >= 7 ? '#115e59' : score >= 6 ? '#854d0e' : score >= 5 ? '#9a3412' : '#991b1b';
-
-  return `<svg width="280" height="340" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="goldLineL" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="transparent"/>
-      <stop offset="20%" stop-color="#C49A3C"/>
-      <stop offset="80%" stop-color="#C49A3C"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
-  </defs>
-
-  <rect width="280" height="340" rx="20" fill="#faf9f6"/>
-  <rect x="1" y="1" width="278" height="338" rx="19" fill="none" stroke="#C49A3C" stroke-width="1.5" opacity="0.3"/>
-  <rect x="30" y="0" width="220" height="2" fill="url(#goldLineL)" rx="1"/>
-
-  <circle cx="36" cy="32" r="12" fill="#1a1a1a"/>
-  <text x="36" y="37" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#E6C073" text-anchor="middle">K</text>
-  <text x="56" y="36" font-family="Georgia,serif" font-size="10" fill="#1a1a1a" letter-spacing="3" font-weight="600">KOFFEE REVIEW</text>
-
-  <rect x="24" y="52" width="232" height="1" fill="url(#goldLineL)" opacity="0.3"/>
-
-  <circle cx="140" cy="120" r="${r}" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="4"/>
-  <circle cx="140" cy="120" r="${r}" fill="none" stroke="${darkColor}" stroke-width="4"
-    stroke-dasharray="${circ}" stroke-dashoffset="${off}" stroke-linecap="round"
-    transform="rotate(-90 140 120)"/>
-  <text x="140" y="114" font-family="Georgia,serif" font-size="42" font-weight="700" fill="${darkColor}" text-anchor="middle" dominant-baseline="middle">${score.toFixed(1)}</text>
-  <text x="140" y="142" font-family="Georgia,serif" font-size="11" fill="rgba(0,0,0,0.25)" text-anchor="middle">/10</text>
-
-  <rect x="${140 - verdict.length * 5.5 - 14}" y="168" width="${verdict.length * 11 + 28}" height="24" rx="12" fill="${darkColor}"/>
-  <text x="140" y="184" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="2.5">${verdict}</text>
-
-  <text x="140" y="218" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#1a1a1a" text-anchor="middle">${esc(displayName)}</text>
-  <text x="140" y="238" font-family="Georgia,serif" font-size="11" fill="rgba(0,0,0,0.45)" text-anchor="middle">${esc(suburb)}</text>
-
-  <rect x="40" y="258" width="200" height="1" fill="url(#goldLineL)" opacity="0.25"/>
-  <text x="140" y="280" font-family="Arial,Helvetica,sans-serif" font-size="7" fill="rgba(0,0,0,0.2)" text-anchor="middle" letter-spacing="2.5">ONE LATTE · ONE DOUBLE SHOT</text>
-
-  <rect x="60" y="296" width="160" height="28" rx="14" fill="none" stroke="rgba(26,26,26,0.2)" stroke-width="1"/>
-  <text x="140" y="314" font-family="Georgia,serif" font-size="9" fill="#1a1a1a" text-anchor="middle" letter-spacing="1">Read Full Review →</text>
-
-  <rect x="30" y="338" width="220" height="2" fill="url(#goldLineL)" rx="1"/>
-</svg>`;
-}
-
-function buildMinimalBadge(name, score, suburb) {
-  var c = getColor(score);
-  var verdict = getVerdict(score);
-
-  return `<svg width="200" height="48" viewBox="0 0 200 48" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="48" rx="24" fill="#0a0a0a"/>
-  <rect x="0.5" y="0.5" width="199" height="47" rx="23.5" fill="none" stroke="#E6C073" stroke-width="1" opacity="0.3"/>
-  <circle cx="28" cy="24" r="16" fill="none" stroke="${c.main}" stroke-width="2"/>
-  <text x="28" y="28" font-family="Georgia,serif" font-size="13" font-weight="700" fill="${c.main}" text-anchor="middle">${score.toFixed(1)}</text>
-  <text x="54" y="20" font-family="Georgia,serif" font-size="10" fill="#E6C073" letter-spacing="1.5" font-weight="600">KOFFEE REVIEW</text>
-  <text x="54" y="34" font-family="Georgia,serif" font-size="8" fill="rgba(255,255,255,0.4)">${verdict}</text>
-</svg>`;
-}
-
-export default function handler(req, res) {
-  var name = req.query.name || 'Cafe';
-  var score = parseFloat(req.query.score) || 0;
-  var suburb = req.query.suburb || '';
-  var slug = req.query.slug || '';
-  var style = req.query.style || 'dark';
-
-  var svg;
-  if (style === 'light') {
-    svg = buildLightBadge(name, score, suburb, slug);
-  } else if (style === 'minimal') {
-    svg = buildMinimalBadge(name, score, suburb);
-  } else {
-    svg = buildDarkBadge(name, score, suburb, slug);
+function splitCSVLine(line) {
+  var result = [];
+  var current = "";
+  var inQuotes = false;
+  for (var i = 0; i < line.length; i++) {
+    var char = line[i];
+    if (char === '"') { inQuotes = !inQuotes; }
+    else if (char === "," && !inQuotes) { result.push(current.trim()); current = ""; }
+    else { current += char; }
   }
+  result.push(current.trim());
+  return result;
+}
 
-  res.setHeader('Content-Type', 'image/svg+xml');
-  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
-  res.status(200).send(svg);
+function makeSlug(name, suburb) {
+  return (name + "-" + suburb).toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-");
+}
+
+function escapeHtml(str) {
+  return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function parseCSV(text) {
+  var lines = text.split("\n").filter(function(l) { return l && l.trim(); });
+  if (lines.length < 2) return [];
+  var headers = splitCSVLine(lines[0]).map(function(h) { return h.trim().toLowerCase(); });
+  var idx = { name: headers.indexOf("name"), suburb: headers.indexOf("suburb"), city: headers.indexOf("city"), score: headers.indexOf("score") };
+  if (idx.name === -1 || idx.suburb === -1) return [];
+  var out = [];
+  for (var i = 1; i < lines.length; i++) {
+    try {
+      var p = splitCSVLine(lines[i]);
+      var name = p[idx.name] || "";
+      var suburb = p[idx.suburb] || "";
+      if (!name || !suburb) continue;
+      out.push({ name: name, suburb: suburb, city: p[idx.city] || "", score: parseFloat(p[idx.score]) || 0 });
+    } catch (e) {}
+  }
+  return out;
+}
+
+export default async function handler(req, res) {
+  try {
+    var slug = (req.query.slug || "").replace(/-+/g, "-");
+    
+    if (!slug) {
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(400).send('<!DOCTYPE html><html><head><title>Badge - Koffee Review</title></head><body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:60px"><h1 style="color:#E6C073">Badge Generator</h1><p>Use /embed/[cafe-slug] to get your badge</p><a href="/" style="color:#E6C073">← Back</a></body></html>');
+    }
+
+    var controller = new AbortController();
+    var timeoutId = setTimeout(function() { controller.abort(); }, 10000);
+    var response = await fetch(SHEET_URL, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    if (!response.ok) throw new Error("Sheet fetch failed");
+
+    var text = await response.text();
+    var cafes = parseCSV(text);
+    
+    var cafe = cafes.find(function(c) { return makeSlug(c.name, c.suburb) === slug; });
+    
+    if (!cafe) {
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(404).send('<!DOCTYPE html><html><head><title>Not Found</title></head><body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:60px"><h1 style="color:#E6C073">Cafe not found</h1><a href="/" style="color:#E6C073">← Back</a></body></html>');
+    }
+    
+    if (cafe.score < 7.5) {
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(200).send('<!DOCTYPE html><html><head><title>Badge Not Available</title></head><body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:60px;max-width:600px;margin:0 auto"><h1 style="color:#E6C073">Badge Not Available</h1><p style="color:rgba(255,255,255,0.6);margin:16px 0">Badges are available for cafes scoring 7.5 or above.</p><p style="color:rgba(255,255,255,0.4)">' + escapeHtml(cafe.name) + ' currently scores ' + cafe.score + '/10.</p><a href="/review/' + slug + '" style="color:#E6C073;display:inline-block;margin-top:24px">← View Review</a></body></html>');
+    }
+
+    var badgeParams = "name=" + encodeURIComponent(cafe.name) + "&score=" + cafe.score.toFixed(1) + "&suburb=" + encodeURIComponent(cafe.suburb) + "&slug=" + encodeURIComponent(slug);
+    var badgeDarkUrl = "/api/badge?" + badgeParams + "&style=dark";
+    var badgeLightUrl = "/api/badge?" + badgeParams + "&style=light";
+    var badgeMinimalUrl = "/api/badge?" + badgeParams + "&style=minimal";
+    var reviewUrl = "https://koffeereview.com.au/review/" + slug;
+    
+    var embedDark = '<a href="' + reviewUrl + '" target="_blank" rel="noopener"><img src="https://koffeereview.com.au/api/badge?' + badgeParams + '&style=dark" alt="' + escapeHtml(cafe.name) + ' rated ' + cafe.score.toFixed(1) + ' by Koffee Review" width="280" /></a>';
+    var embedLight = '<a href="' + reviewUrl + '" target="_blank" rel="noopener"><img src="https://koffeereview.com.au/api/badge?' + badgeParams + '&style=light" alt="' + escapeHtml(cafe.name) + ' rated ' + cafe.score.toFixed(1) + ' by Koffee Review" width="280" /></a>';
+    var embedMinimal = '<a href="' + reviewUrl + '" target="_blank" rel="noopener"><img src="https://koffeereview.com.au/api/badge?' + badgeParams + '&style=minimal" alt="Rated ' + cafe.score.toFixed(1) + ' by Koffee Review" width="200" /></a>';
+    
+    var html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHtml(cafe.name)} Badge — Koffee Review</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/logo.webp" type="image/webp">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Georgia, 'Times New Roman', serif; background: #000; color: #fff; min-height: 100vh; }
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
+    
+    .header { text-align: center; margin-bottom: 48px; }
+    .header img { width: 48px; height: 48px; border-radius: 50%; margin-bottom: 16px; }
+    .header h1 { font-size: 28px; margin-bottom: 8px; }
+    .header p { color: rgba(255,255,255,0.5); font-size: 15px; }
+    .score-hero { color: #E6C073; font-size: 48px; font-weight: 700; margin: 16px 0 4px; }
+    .score-label { color: rgba(255,255,255,0.3); font-size: 14px; letter-spacing: 4px; }
+    
+    .gold-line { height: 1px; background: linear-gradient(90deg, transparent, #E6C073, transparent); margin: 40px 0; opacity: 0.3; }
+    
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 12px; letter-spacing: 4px; color: #E6C073; margin-bottom: 24px; font-weight: 600; }
+    
+    .badge-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .badge-option { text-align: center; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
+    .badge-option:hover, .badge-option.active { opacity: 1; }
+    .badge-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 8px; letter-spacing: 2px; }
+    
+    .embed-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; position: relative; margin-bottom: 16px; }
+    .embed-code { font-family: 'Courier New', monospace; font-size: 12px; color: rgba(255,255,255,0.6); word-break: break-all; line-height: 1.6; white-space: pre-wrap; }
+    .copy-btn { position: absolute; top: 12px; right: 12px; padding: 6px 16px; border-radius: 20px; border: 1px solid #E6C073; background: transparent; color: #E6C073; font-size: 11px; cursor: pointer; font-family: Georgia, serif; letter-spacing: 1px; transition: all 0.2s; }
+    .copy-btn:hover { background: #E6C073; color: #000; }
+    
+    .preview { display: flex; justify-content: center; padding: 40px; border-radius: 16px; margin-bottom: 24px; }
+    .preview-dark { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.06); }
+    .preview-light { background: #f5f5f0; border: 1px solid rgba(0,0,0,0.1); }
+    
+    .steps { counter-reset: step; }
+    .step { counter-increment: step; display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+    .step::before { content: counter(step); width: 28px; height: 28px; border-radius: 50%; background: rgba(230,192,115,0.1); border: 1px solid rgba(230,192,115,0.3); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #E6C073; flex-shrink: 0; }
+    .step-text { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .step-text strong { color: #fff; }
+    
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: #E6C073; text-decoration: none; font-size: 14px; margin-top: 32px; }
+    .back-link:hover { text-decoration: underline; }
+    
+    footer { text-align: center; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 11px; color: rgba(255,255,255,0.3); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="/logo.webp" alt="Koffee Review">
+      <h1>${escapeHtml(cafe.name)}</h1>
+      <p>${escapeHtml(cafe.suburb)}, ${escapeHtml(cafe.city)}</p>
+      <div class="score-hero">${cafe.score.toFixed(1)}</div>
+      <div class="score-label">OUT OF 10</div>
+    </div>
+
+    <div class="gold-line"></div>
+
+    <div class="section">
+      <div class="section-title">YOUR BADGE</div>
+      <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:24px;">
+        Congratulations — ${escapeHtml(cafe.name)} qualifies for a Koffee Review badge.
+        Display it on your website to show customers your independently verified score.
+      </p>
+
+      <!-- Dark Badge -->
+      <div class="section-title" style="margin-top:32px;">DARK BADGE</div>
+      <p style="color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:16px;">Best for light-coloured websites</p>
+      <div class="preview preview-light">
+        <img src="${badgeDarkUrl}" alt="Dark badge" width="280">
+      </div>
+      <div class="embed-box">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-dark').textContent);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
+        <div class="embed-code" id="code-dark">${escapeHtml(embedDark)}</div>
+      </div>
+
+      <!-- Light Badge -->
+      <div class="section-title" style="margin-top:40px;">LIGHT BADGE</div>
+      <p style="color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:16px;">Best for dark-coloured websites</p>
+      <div class="preview preview-dark">
+        <img src="${badgeLightUrl}" alt="Light badge" width="280">
+      </div>
+      <div class="embed-box">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-light').textContent);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
+        <div class="embed-code" id="code-light">${escapeHtml(embedLight)}</div>
+      </div>
+
+      <!-- Minimal Badge -->
+      <div class="section-title" style="margin-top:40px;">MINIMAL BADGE</div>
+      <p style="color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:16px;">Inline — perfect for footers or sidebars</p>
+      <div class="preview preview-dark">
+        <img src="${badgeMinimalUrl}" alt="Minimal badge" width="200">
+      </div>
+      <div class="embed-box">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-minimal').textContent);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
+        <div class="embed-code" id="code-minimal">${escapeHtml(embedMinimal)}</div>
+      </div>
+    </div>
+
+    <div class="gold-line"></div>
+
+    <div class="section">
+      <div class="section-title">HOW TO ADD YOUR BADGE</div>
+      <div class="steps">
+        <div class="step"><div class="step-text"><strong>Choose your style</strong> — dark for light websites, light for dark websites, minimal for footers.</div></div>
+        <div class="step"><div class="step-text"><strong>Copy the embed code</strong> — click the Copy button above.</div></div>
+        <div class="step"><div class="step-text"><strong>Paste into your website</strong> — add it to your homepage, about page, or footer HTML.</div></div>
+        <div class="step"><div class="step-text"><strong>That's it</strong> — the badge links to your review and updates automatically when your score changes.</div></div>
+      </div>
+    </div>
+
+    <a href="/review/${slug}" class="back-link">← View Full Review</a>
+
+    <footer>
+      <p style="margin-bottom:8px;">© 2026 Our Fair Dinkum Koffee Review</p>
+      <p>Badges are free to display. No sponsorship, no payment — just honest scores.</p>
+    </footer>
+  </div>
+</body>
+</html>`;
+
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
+    res.status(200).send(html);
+
+  } catch (error) {
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.status(500).send('<!DOCTYPE html><html><head><title>Error</title></head><body style="background:#000;color:#fff;text-align:center;padding:60px;font-family:sans-serif"><h1>Something went wrong</h1><a href="/" style="color:#E6C073">← Back</a></body></html>');
+  }
 }
