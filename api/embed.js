@@ -75,6 +75,12 @@ export default async function handler(req, res) {
       return res.status(200).send('<!DOCTYPE html><html><head><title>Badge Not Available</title></head><body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:60px;max-width:600px;margin:0 auto"><h1 style="color:#E6C073">Badge Not Available</h1><p style="color:rgba(255,255,255,0.6);margin:16px 0">Badges are available for cafes scoring 7.5 or above.</p><p style="color:rgba(255,255,255,0.4)">' + escapeHtml(cafe.name) + ' currently scores ' + cafe.score + '/10.</p><a href="/review/' + slug + '" style="color:#E6C073;display:inline-block;margin-top:24px">← View Review</a></body></html>');
     }
 
+    var scoreColor = cafe.score >= 9 ? '#ffffff' : cafe.score >= 8 ? '#4ade80' : cafe.score >= 7 ? '#2dd4bf' : cafe.score >= 6 ? '#facc15' : cafe.score >= 5 ? '#fb923c' : '#f87171';
+    var verdict = cafe.score >= 9 ? 'ELITE' : cafe.score >= 8 ? 'GREAT' : cafe.score >= 7.5 ? 'MUST VISIT' : cafe.score >= 7 ? 'SOLID' : cafe.score >= 6 ? 'DECENT' : cafe.score >= 5 ? 'JUST OKAY' : 'AVOID';
+    var r = 60;
+    var circ = 2 * Math.PI * r;
+    var off = circ - (cafe.score / 10) * circ;
+
     var badgeParams = "name=" + encodeURIComponent(cafe.name) + "&score=" + cafe.score.toFixed(1) + "&suburb=" + encodeURIComponent(cafe.suburb) + "&slug=" + encodeURIComponent(slug);
     var badgeDarkUrl = "/api/badge?" + badgeParams + "&style=dark";
     var badgeLightUrl = "/api/badge?" + badgeParams + "&style=light";
@@ -99,11 +105,15 @@ export default async function handler(req, res) {
     .container { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
     
     .header { text-align: center; margin-bottom: 48px; }
-    .header img { width: 48px; height: 48px; border-radius: 50%; margin-bottom: 16px; }
-    .header h1 { font-size: 28px; margin-bottom: 8px; }
-    .header p { color: rgba(255,255,255,0.5); font-size: 15px; }
-    .score-hero { color: #E6C073; font-size: 48px; font-weight: 700; margin: 16px 0 4px; }
-    .score-label { color: rgba(255,255,255,0.3); font-size: 14px; letter-spacing: 4px; }
+    .header img.logo { width: 64px; height: 64px; border-radius: 50%; margin-bottom: 12px; border: 2px solid rgba(230,192,115,0.3); }
+    .header h1 { font-size: 28px; margin-bottom: 4px; }
+    .header .location { color: rgba(255,255,255,0.6); font-size: 15px; margin-bottom: 24px; }
+    .score-ring { position: relative; width: 140px; height: 140px; margin: 0 auto 12px; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-num { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 44px; font-weight: 700; line-height: 1; }
+    .score-sub { position: absolute; top: 65%; left: 50%; transform: translateX(-50%); font-size: 13px; color: rgba(255,255,255,0.3); }
+    .verdict-badge { display: inline-block; padding: 6px 24px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 3px; margin-bottom: 8px; }
+    .score-label { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 4px; }
     
     .gold-line { height: 1px; background: linear-gradient(90deg, transparent, #E6C073, transparent); margin: 40px 0; opacity: 0.3; }
     
@@ -139,11 +149,21 @@ export default async function handler(req, res) {
 <body>
   <div class="container">
     <div class="header">
-      <img src="/logo.webp" alt="Koffee Review">
+      <img src="/logo.webp" alt="Koffee Review" class="logo">
       <h1>${escapeHtml(cafe.name)}</h1>
-      <p>${escapeHtml(cafe.suburb)}, ${escapeHtml(cafe.city)}</p>
-      <div class="score-hero">${cafe.score.toFixed(1)}</div>
-      <div class="score-label">OUT OF 10</div>
+      <div class="location">${escapeHtml(cafe.suburb)}, ${escapeHtml(cafe.city)}</div>
+      
+      <div class="score-ring">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="${r}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="5"/>
+          <circle cx="70" cy="70" r="${r}" fill="none" stroke="${scoreColor}" stroke-width="5"
+            stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" stroke-linecap="round"/>
+        </svg>
+        <div class="score-num" style="color:${scoreColor}">${cafe.score.toFixed(1)}</div>
+        <div class="score-sub">/10</div>
+      </div>
+      
+      <div class="verdict-badge" style="background:${scoreColor};color:#000;">${verdict}</div>
     </div>
 
     <div class="gold-line"></div>
