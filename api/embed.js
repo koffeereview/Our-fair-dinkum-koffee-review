@@ -125,9 +125,9 @@ export default async function handler(req, res) {
     .badge-option:hover, .badge-option.active { opacity: 1; }
     .badge-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 8px; letter-spacing: 2px; }
     
-    .embed-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; position: relative; margin-bottom: 16px; }
-    .embed-code { font-family: 'Courier New', monospace; font-size: 12px; color: rgba(255,255,255,0.6); word-break: break-all; line-height: 1.6; white-space: pre-wrap; }
-    .copy-btn { position: absolute; top: 12px; right: 12px; padding: 6px 16px; border-radius: 20px; border: 1px solid #E6C073; background: transparent; color: #E6C073; font-size: 11px; cursor: pointer; font-family: Georgia, serif; letter-spacing: 1px; transition: all 0.2s; }
+    .embed-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; margin-bottom: 8px; }
+    .embed-code { font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255,255,255,0.6); word-break: break-all; line-height: 1.6; white-space: pre-wrap; }
+    .copy-btn { display: block; width: 100%; padding: 10px; border-radius: 10px; border: 1px solid rgba(230,192,115,0.3); background: rgba(230,192,115,0.05); color: #E6C073; font-size: 12px; cursor: pointer; font-family: Georgia, serif; letter-spacing: 2px; font-weight: 600; transition: all 0.2s; margin-bottom: 16px; text-align: center; }
     .copy-btn:hover { background: #E6C073; color: #000; }
     
     .preview { display: flex; justify-content: center; padding: 40px; border-radius: 16px; margin-bottom: 24px; }
@@ -182,9 +182,9 @@ export default async function handler(req, res) {
         <img src="${badgeDarkUrl}" alt="Dark badge" width="280">
       </div>
       <div class="embed-box">
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-dark').textContent);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <div class="embed-code" id="code-dark">${escapeHtml(embedDark)}</div>
       </div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-dark').textContent);this.textContent='COPIED!';setTimeout(()=>this.textContent='COPY EMBED CODE',2000)">COPY EMBED CODE</button>
 
       <!-- Light Badge -->
       <div class="section-title" style="margin-top:40px;">LIGHT BADGE</div>
@@ -193,9 +193,9 @@ export default async function handler(req, res) {
         <img src="${badgeLightUrl}" alt="Light badge" width="280">
       </div>
       <div class="embed-box">
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-light').textContent);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <div class="embed-code" id="code-light">${escapeHtml(embedLight)}</div>
       </div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-light').textContent);this.textContent='COPIED!';setTimeout(()=>this.textContent='COPY EMBED CODE',2000)">COPY EMBED CODE</button>
 
       <!-- Minimal Badge -->
       <div class="section-title" style="margin-top:40px;">MINIMAL BADGE</div>
@@ -204,9 +204,9 @@ export default async function handler(req, res) {
         <img src="${badgeMinimalUrl}" alt="Minimal badge" width="200">
       </div>
       <div class="embed-box">
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-minimal').textContent);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <div class="embed-code" id="code-minimal">${escapeHtml(embedMinimal)}</div>
       </div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('code-minimal').textContent);this.textContent='COPIED!';setTimeout(()=>this.textContent='COPY EMBED CODE',2000)">COPY EMBED CODE</button>
     </div>
 
     <div class="gold-line"></div>
