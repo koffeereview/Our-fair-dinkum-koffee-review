@@ -533,9 +533,31 @@ export default function App() {
   const cityRef = useRef(null);
 
   useEffect(function() {
+    // Try cached CSV first for instant load, then refresh in background
+    var cacheKey = "koffee_csv_cache";
+    var cacheTimeKey = "koffee_csv_time";
+    var maxAge = 1800000; // 30 minutes
+    
+    try {
+      var cached = sessionStorage.getItem(cacheKey);
+      var cachedTime = parseInt(sessionStorage.getItem(cacheTimeKey) || "0");
+      if (cached && (Date.now() - cachedTime) < maxAge) {
+        setCafes(parseCSV(cached));
+        setLoading(false);
+        return; // Use cache, skip network
+      }
+    } catch(e) {}
+    
     fetch(SHEET_URL)
       .then(function(r) { return r.text(); })
-      .then(function(text) { setCafes(parseCSV(text)); setLoading(false); })
+      .then(function(text) {
+        setCafes(parseCSV(text));
+        setLoading(false);
+        try {
+          sessionStorage.setItem(cacheKey, text);
+          sessionStorage.setItem(cacheTimeKey, String(Date.now()));
+        } catch(e) {}
+      })
       .catch(function() { setLoading(false); });
   }, []);
 
@@ -713,7 +735,7 @@ export default function App() {
         {/* HEADER ROW — Logo+Title LEFT, Drawer RIGHT flush top */}
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 20 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <img src="/logo.webp" alt="Koffee Review" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(230,192,115,0.3)" }} />
+            <img src="/logo.webp" alt="Koffee Review" fetchpriority="high" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(230,192,115,0.3)" }} />
             <div>
               <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: "min(50px, 7.5vw)", whiteSpace: "nowrap", letterSpacing: 4, lineHeight: 1, background: "linear-gradient(135deg, #F6DDAA, #E6C073)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 OUR FAIR DINKUM
@@ -772,7 +794,7 @@ export default function App() {
           {/* KOFFEE MAP — premium gold, glow when active, maplatte floating above */}
           <div id="koffee-map-btn" style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
             <img
-              src="/maplatte.webp"
+              src="/maplatte.webp" loading="lazy"
               alt="Koffee Map"
               onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
               style={{ position: "absolute", bottom: "calc(100% - 8px)", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", zIndex: 2, cursor: "pointer" }}
@@ -791,7 +813,7 @@ export default function App() {
             {/* Close button */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "rgba(201,168,76,0.08)", borderBottom: "1px solid rgba(201,168,76,0.15)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <img src="/maplatte.webp" alt="" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
+                <img src="/maplatte.webp" loading="lazy" alt="" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
                 <span style={{ fontSize: 12, fontWeight: 700, color: "#E6C073", letterSpacing: 1 }}>KOFFEE MAP</span>
               </div>
               <button
