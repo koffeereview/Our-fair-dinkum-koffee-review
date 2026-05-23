@@ -3,7 +3,7 @@
 // /sitemap.xml?type=static → static pages
 // /sitemap.xml?type=reviews → all cafe reviews
 // /sitemap.xml?type=suburbs → all suburb pages (3+ cafes)
-// /sitemap.xml?type=cities → all city pages 
+// /sitemap.xml?type=cities → all city pages
 
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 
@@ -22,6 +22,8 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/how-we-score", priority: "0.70", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/about", priority: "0.70", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/disclosure", priority: "0.60", changefreq: "monthly" },
+  { url: "https://koffeereview.com.au/blog", priority: "0.80", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/blog/how-to-find-good-coffee", priority: "0.85", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/coffee-near/south-bank", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/coffee-near/queen-street-mall", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/coffee-near/brisbane-cbd", priority: "0.80", changefreq: "weekly" },
