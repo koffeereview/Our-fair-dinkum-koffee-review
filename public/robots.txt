@@ -1,4 +1,25 @@
+# Koffee Review — robots.txt
 User-agent: *
 Allow: /
+Allow: /review/
+Allow: /suburb/
+Allow: /city/
+Allow: /coffee-near/
+Allow: /best-coffee-*
+Allow: /best-latte-*
+Allow: /hidden-gem-*
+Allow: /leaderboard
+Allow: /brisbane-cafes-to-avoid
+Allow: /worst-cafes-by-suburb
+
+# Block internal API endpoints from indexing (content served via rewrites)
+Disallow: /api/
+
+# Block embed pages from crawl budget waste
+Disallow: /embed/
+
+# Block badge SVGs from being indexed as pages
+Disallow: /api/badge
+Disallow: /api/og
 
 Sitemap: https://koffeereview.com.au/sitemap.xml
