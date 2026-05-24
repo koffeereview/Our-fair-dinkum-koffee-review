@@ -24,6 +24,7 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/disclosure", priority: "0.60", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/blog", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/compare", priority: "0.75", changefreq: "monthly" },
+  { url: "https://koffeereview.com.au/map", priority: "0.85", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/blog/how-to-find-good-coffee", priority: "0.85", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/coffee-near/south-bank", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/coffee-near/queen-street-mall", priority: "0.80", changefreq: "weekly" },
