@@ -7,7 +7,7 @@ function parseCSV(text) {
   
   function splitCSVLine(line) {
     const result = [];
-    let current = "";
+    let current = ""; 
     let inQuotes = false;
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
