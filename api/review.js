@@ -509,6 +509,7 @@ function renderHTML(cafe, allCafes) {
       ${cityLink}
       <a class="internal-link" href="/leaderboard">Australia's Top 10 Cafés <span>→</span></a>
       <a class="internal-link" href="https://koffeereview.com.au">Browse All Reviews <span>→</span></a>
+      <a class="internal-link" href="/compare?a=${slug}">Compare This Caf\u00e9 <span>→</span></a>
     </div>
 
     <!-- LAST UPDATED STAMP -->
