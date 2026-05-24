@@ -30,6 +30,7 @@
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/coffee-near-me", "destination": "/api/near" },
     { "source": "/coffee-near/:landmark", "destination": "/api/near?landmark=:landmark" },
+    { "source": "/compare", "destination": "/api/compare" },
     { "source": "/blog", "destination": "/api/blog" },
     { "source": "/blog/:slug", "destination": "/api/blog?slug=:slug" },
     { "source": "/how-we-score", "destination": "/how-we-score.html" },
