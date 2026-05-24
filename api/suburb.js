@@ -228,6 +228,7 @@ export default async function handler(req, res) {
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="canonical" href="${canonical}">
+  <link rel="alternate" hreflang="en-AU" href="${canonical}">
   <meta name="robots" content="index, follow">
   
   <meta property="og:title" content="${escapeHtml(title)}">
@@ -386,7 +387,7 @@ export default async function handler(req, res) {
       </div>
       <div class="explore">
         <div class="explore-label">EXPLORE</div>
-        <a href="/best-latte-brisbane">Best Latte Brisbane</a> · <a href="/hidden-gem-cafes-brisbane">Hidden Gems</a> · <a href="/worst-cafes-by-suburb">Worst Cafés</a>
+        <a href="/best-latte-brisbane">Best Latte Brisbane</a> · <a href="/hidden-gem-cafes-brisbane">Hidden Gems</a> · <a href="/worst-cafes-by-suburb">Worst Cafés</a> · <a href="/blog">Blog</a>
       </div>
     </footer>
   </div>
