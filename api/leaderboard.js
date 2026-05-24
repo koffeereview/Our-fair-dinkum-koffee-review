@@ -120,6 +120,7 @@ export default async function handler(req, res) {
       "<meta property=\"og:description\" content=\"" + desc + "\" />\n" +
       "<meta property=\"og:image\" content=\"https://koffeereview.com.au/logo.webp\" />\n" +
       "<meta property=\"og:url\" content=\"" + canonicalUrl + "\" />\n" +
+      "<link rel=\"alternate\" hreflang=\"en-AU\" href=\"" + canonicalUrl + "\" />" +
       "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />\n" +
       "<script type=\"application/ld+json\">" + schema1 + "<\/script>\n" +
       "<script type=\"application/ld+json\">" + schema2 + "<\/script>\n" +
@@ -149,7 +150,7 @@ export default async function handler(req, res) {
       "</style>\n</head>\n<body>\n" +
       "<nav>\n" +
       "  <a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.webp\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a>\n" +
-      "  <div style=\"display:flex;gap:14px;align-items:center;\"><a href=\"/city/brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Brisbane</a><a href=\"/city/gold-coast\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Gold Coast</a><a href=\"/leaderboard\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Leaderboard</a></div>\n" +
+      "  <div style=\"display:flex;gap:14px;align-items:center;\"><a href=\"/city/brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Brisbane</a><a href=\"/city/gold-coast\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Gold Coast</a><a href=\"/leaderboard\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Leaderboard</a><a href="/blog" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Blog</a></div>\n" +
       "</nav>\n" +
       "<div class=\"hero\">\n" +
       "  <div class=\"eyebrow\">KOFFEE REVIEW \u00b7 600+ CAF\u00c9S \u00b7 ONE SYSTEM</div>\n" +
