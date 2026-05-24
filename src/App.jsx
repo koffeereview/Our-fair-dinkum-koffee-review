@@ -1216,6 +1216,8 @@ export default function App() {
                   <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Hidden Gems</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
                   <a href="/worst-cafes-by-suburb" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Worst Cafés</a>
+                  <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
+                  <a href="/blog" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Blog</a>
                 </div>
               </div>
             </div>
@@ -1242,6 +1244,8 @@ export default function App() {
                   <a href="/hidden-gem-cafes-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Hidden Gems</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
                   <a href="/worst-cafes-by-suburb" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Worst Cafés</a>
+                  <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
+                  <a href="/blog" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Blog</a>
                 </div>
               </div>
             </div>
