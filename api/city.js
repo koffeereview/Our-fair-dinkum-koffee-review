@@ -266,6 +266,8 @@ function renderCityPage(citySlug, cafes, allCafes) {
         <a href="/hidden-gem-cafes-brisbane" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Hidden Gems</a>
         <span style="color:rgba(255,255,255,0.2);">·</span>
         <a href="/worst-cafes-by-suburb" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Worst Cafés</a>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <a href="/blog" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Blog</a>
       </div>
     </div>
   </div>
