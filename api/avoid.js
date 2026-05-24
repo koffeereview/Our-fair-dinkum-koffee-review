@@ -74,6 +74,7 @@ export default async function handler(req, res) {
   <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
   <meta property="og:url" content="${canonicalUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
+  <link rel="alternate" hreflang="en-AU" href="${canonicalUrl}" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Brisbane","item":"https://koffeereview.com.au/city/brisbane"},{"@type":"ListItem","position":3,"name":"Cafes to Avoid","item":"${canonicalUrl}"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which Brisbane cafes should I avoid?","acceptedAnswer":{"@type":"Answer","text":"Based on our reviews, ${avoidCafes.length} Brisbane cafes scored below 5.0 out of 10. We recommend checking our full list before visiting."}},{"@type":"Question","name":"How does Koffee Review identify cafes to avoid?","acceptedAnswer":{"@type":"Answer","text":"We order one latte and one double espresso at every cafe. Cafes scoring below 5.0 out of 10 are listed on our avoid page. No exceptions, no sponsorships."}},{"@type":"Question","name":"Are there good cafes near the ones to avoid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Most suburbs with low-scoring cafes also have great options nearby. Check our suburb pages for better alternatives."}}]}</script>
@@ -170,6 +171,8 @@ export default async function handler(req, res) {
         <a href="/hidden-gem-cafes-brisbane" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Hidden Gems</a>
         <span style="color:rgba(255,255,255,0.2);">·</span>
         <a href="/worst-cafes-by-suburb" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Worst Cafés</a>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <a href="/blog" style="font-size:11px;color:rgba(255,255,255,0.55);text-decoration:none;white-space:nowrap;">Blog</a>
       </div>
     </div>
   </div>
