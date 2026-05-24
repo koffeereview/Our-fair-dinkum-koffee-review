@@ -102,6 +102,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
   <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
   <meta property="og:url" content="${canonicalUrl}" />
   <link rel="canonical" href="${canonicalUrl}" />
+  <link rel="alternate" hreflang="en-AU" href="${canonicalUrl}" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"},"about":{"@type":"City","name":"${cityName}","addressCountry":"AU"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Best Coffee ${cityName}","item":"${canonicalUrl}"}]}</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
@@ -163,6 +164,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
       <a href="/city/brisbane" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Brisbane</a>
       <a href="/city/gold-coast" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Gold Coast</a>
       <a href="/leaderboard" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Leaderboard</a>
+      <a href="/blog" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Blog</a>
     </div>
   </nav>
 
