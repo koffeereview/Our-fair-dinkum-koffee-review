@@ -387,7 +387,7 @@ export default async function handler(req, res) {
       </div>
       <div class="explore">
         <div class="explore-label">EXPLORE</div>
-        <a href="/best-latte-brisbane">Best Latte Brisbane</a> · <a href="/hidden-gem-cafes-brisbane">Hidden Gems</a> · <a href="/worst-cafes-by-suburb">Worst Cafés</a> · <a href="/blog">Blog</a>
+        <a href="/best-latte-brisbane">Best Latte Brisbane</a> · <a href="/hidden-gem-cafes-brisbane">Hidden Gems</a> · <a href="/worst-cafes-by-suburb">Worst Cafés</a> · <a href="/blog">Blog</a> · <a href="/map">Map</a>
       </div>
     </footer>
   </div>
