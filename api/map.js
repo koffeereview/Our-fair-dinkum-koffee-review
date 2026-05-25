@@ -6,7 +6,7 @@ function splitCSV(line){var r=[],c="",q=false;for(var i=0;i<line.length;i++){var
 function getColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
 function getVerdict(s){if(s>=9)return"ELITE";if(s>=8)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7)return"SOLID";if(s>=6)return"DECENT";if(s>=5)return"JUST OKAY";return"AVOID";}
 
-function parseCSV(text){
+function parseCSV(text){ 
   var lines=text.split("\n").filter(function(l){return l&&l.trim();});
   if(lines.length<2)return[];
   var h=splitCSV(lines[0]).map(function(x){return x.trim().toLowerCase();});
