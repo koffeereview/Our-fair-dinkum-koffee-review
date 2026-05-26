@@ -1,365 +1,188 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
-const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
+const SPAIN_CITIES = ["barcelona","catalonia","spain"];
 
-function splitCSVLine(line) {
-  const result = []; let current = ""; let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    if (char === '"') { inQuotes = !inQuotes; }
-    else if (char === "," && !inQuotes) { result.push(current.trim()); current = ""; }
-    else { current += char; }
-  }
-  result.push(current.trim());
-  return result;
-}
-
-function parseCSV(text) {
-  const lines = text.trim().split("\n");
-  const headers = splitCSVLine(lines[0]);
-  return lines.slice(1).map(function(line) {
-    const values = splitCSVLine(line);
-    const obj = {};
-    headers.forEach(function(h, i) { obj[h] = values[i] || ""; });
-    obj.score = parseFloat(obj.score) || 0;
-    obj.lat = parseFloat(obj.lat) || 0;
-    obj.lng = parseFloat(obj.lng) || 0;
-    return obj;
-  }).filter(function(c) {
-    return c.name && c.score > 0 && !SPAIN_CITIES.includes((c.city || "").toLowerCase());
-  });
-}
-
-function getScoreColor(score) {
-  if (score >= 9.0) return "#ffffff";
-  if (score >= 8.0) return "#4ade80";
-  if (score >= 7.0) return "#2dd4bf";
-  if (score >= 6.0) return "#facc15";
-  if (score >= 5.0) return "#fb923c";
-  return "#f87171";
-}
-
-function getVerdict(score) {
-  if (score >= 9.1) return "ELITE";
-  if (score >= 8.1) return "GREAT";
-  if (score >= 7.5) return "LOVED";
-  if (score >= 7.1) return "SOLID";
-  if (score >= 6.5) return "DECENT";
-  if (score >= 6.1) return "TAKE OR LEAVE";
-  if (score >= 5.5) return "AVERAGE";
-  if (score >= 5.1) return "JUST OKAY";
-  if (score >= 4.1) return "NOT FOR US";
-  return "AVOID";
-}
-
-function makeSlug(name, suburb) {
-  return (name + "-" + suburb).toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
-}
+function splitCSVLine(line){const r=[];let c="",q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"')q=!q;else if(ch===","&&!q){r.push(c.trim());c="";}else c+=ch;}r.push(c.trim());return r;}
+function parseCSV(text){const lines=text.trim().split("\n");const h=splitCSVLine(lines[0]);return lines.slice(1).map(function(line){const v=splitCSVLine(line);const o={};h.forEach(function(k,i){o[k]=v[i]||"";});o.score=parseFloat(o.score)||0;o.lat=parseFloat(o.lat)||0;o.lng=parseFloat(o.lng)||0;return o;}).filter(function(c){return c.name&&c.score>0&&!SPAIN_CITIES.includes((c.city||"").toLowerCase());});}
+function getScoreColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
+function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";return"AVOID";}
+function makeSlug(n,s){return(n+"-"+s).toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").trim();}
+function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
 function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
-  const cityCafes = cafes.filter(function(c) {
-    return (c.city || "").toLowerCase().trim() === cityName.toLowerCase();
-  }).sort(function(a, b) { return b.score - a.score; });
+  const cityCafes = cafes.filter(function(c){return(c.city||"").toLowerCase().trim()===cityName.toLowerCase();}).sort(function(a,b){return b.score-a.score;});
+  const mustVisit = cityCafes.filter(function(c){return c.score>=7.5;}).length;
+  const avg = cityCafes.length>0?(cityCafes.reduce(function(s,c){return s+c.score;},0)/cityCafes.length).toFixed(1):"0";
+  const suburbs = [...new Set(cityCafes.map(function(c){return c.suburb;}))].length;
+  const suburbList = [...new Set(cityCafes.map(function(c){return c.suburb;}))].sort();
+  const topCafe = cityCafes[0];
 
-  const mustVisit = cityCafes.filter(function(c) { return c.score >= 7.5; }).length;
-  const avg = cityCafes.length > 0 ? (cityCafes.reduce(function(s, c) { return s + c.score; }, 0) / cityCafes.length).toFixed(1) : "0";
-  const suburbs = [...new Set(cityCafes.map(function(c) { return c.suburb; }))].length;
-  const suburbList = [...new Set(cityCafes.map(function(c) { return c.suburb; }))].sort();
+  const title = "Best Coffee in "+cityName+" 2026 | "+cityCafes.length+"+ Cafés Ranked | Koffee Review";
+  const desc = "The definitive guide to "+cityName+"'s best coffee. "+cityCafes.length+"+ cafés reviewed with one latte and one double shot espresso. No sponsorships. Know before you go.";
 
-  const title = "Best Coffee in " + cityName + " 2026 | Koffee Review";
-  const desc = "The definitive guide to the best coffee in " + cityName + ". " + cityCafes.length + "+ cafés reviewed and scored by Koffee Review. One latte, one double shot espresso, one honest score. Know before you go.";
+  const suburbOptions = suburbList.map(function(s){return'<option value="'+esc(s)+'">'+esc(s)+'</option>';}).join("");
 
-  const suburbOptions = suburbList.map(function(s) {
-    return `<option value="${s}">${s}</option>`;
-  }).join("");
+  const cafeData = JSON.stringify(cityCafes.map(function(c){return{n:esc(c.name),s:esc(c.suburb),sc:c.score,sl:makeSlug(c.name,c.suburb),p:esc(c.price||""),nt:esc((c.notes||"").substring(0,70)),v:esc((c.verdict||getVerdict(c.score)).toUpperCase()),la:c.lat,ln:c.lng};})).replace(/</g,"\\u003c");
 
-  const cafeRows = cityCafes.map(function(cafe) {
-    const color = getScoreColor(cafe.score);
-    const slug = makeSlug(cafe.name, cafe.suburb);
-    const noteText = cafe.notes ? cafe.notes.substring(0, 70) + (cafe.notes.length > 70 ? "..." : "") : "";
-    return `<a href="/review/${slug}" class="cafe-card" data-lat="${cafe.lat || ""}" data-lng="${cafe.lng || ""}" data-suburb="${cafe.suburb}" data-name="${cafe.name}" data-score="${cafe.score}" style="position:relative;overflow:hidden;">
-      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:${color};border-radius:14px 0 0 14px;"></div>
-      <div class="cafe-score" style="color:${color};margin-left:8px;">${cafe.score.toFixed(1)}</div>
-      <div class="cafe-info">
-        <div class="cafe-name">${cafe.name}</div>
-        <div class="cafe-suburb">${cafe.suburb} · ${cafe.price || ""}</div>
-        <div class="cafe-distance"></div>
-        ${noteText ? `<div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;font-style:italic;">${noteText}</div>` : ""}
-      </div>
-      <div class="cafe-verdict" style="background:${color};color:#000;border:none;">${(cafe.verdict || getVerdict(cafe.score)).toUpperCase()}</div>
-    </a>`;
+  const noscript = cityCafes.slice(0,50).map(function(c){return'<a href="/review/'+makeSlug(c.name,c.suburb)+'" style="display:block;padding:4px 0;color:#2dd4bf;font-size:13px;text-decoration:none">'+c.score.toFixed(1)+' '+esc(c.name)+' — '+esc(c.suburb)+'</a>';}).join("");
+
+  // Top 3 highlight cards
+  const top3 = cityCafes.slice(0,3);
+  const top3Html = top3.map(function(c,i){
+    const col = getScoreColor(c.score);
+    const slug = makeSlug(c.name,c.suburb);
+    const medal = i===0?'🥇':i===1?'🥈':'🥉';
+    return '<a href="/review/'+slug+'" class="top-card" style="border-color:'+col+'22"><div class="top-medal">'+medal+'</div><div class="top-sc" style="color:'+col+'">'+c.score.toFixed(1)+'</div><div class="top-nm">'+esc(c.name)+'</div><div class="top-loc">'+esc(c.suburb)+'</div></a>';
   }).join("");
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${title}</title>
-  <meta name="description" content="${desc}" />
-  <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${desc}" />
-  <meta property="og:image" content="https://koffeereview.com.au/logo.webp" />
-  <meta property="og:url" content="${canonicalUrl}" />
-  <link rel="canonical" href="${canonicalUrl}" />
-  <link rel="alternate" hreflang="en-AU" href="${canonicalUrl}" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au","logo":"https://koffeereview.com.au/logo.webp"},"about":{"@type":"City","name":"${cityName}","addressCountry":"AU"}}</script>
+  <meta name="description" content="${desc}">
+  <meta property="og:title" content="${title}"><meta property="og:description" content="${desc}">
+  <meta property="og:image" content="https://koffeereview.com.au/logo.webp"><meta property="og:url" content="${canonicalUrl}">
+  <link rel="canonical" href="${canonicalUrl}"><link rel="alternate" hreflang="en-AU" href="${canonicalUrl}">
+  <link rel="icon" href="/logo.webp">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Best Coffee ${cityName}","item":"${canonicalUrl}"}]}</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background:#0a0a0a; color:#fff; font-family:'DM Sans',sans-serif; min-height:100vh; }
-    nav { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); }
-    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-    .nav-logo img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
-    .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    
-    .hero { padding:48px 24px 32px; max-width:800px; margin:0 auto; }
-    .hero-tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; background:rgba(197,157,80,0.1); color:#c8a96e; border:1px solid rgba(197,157,80,0.3); margin-bottom:16px; }
-    h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,6vw,56px); letter-spacing:2px; line-height:1.1; background:linear-gradient(135deg,#f5e6c8,#c8a96e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px; }
-    .hero p { font-size:15px; color:rgba(255,255,255,0.6); line-height:1.8; max-width:600px; }
-    .stats { display:flex; gap:16px; padding:0 24px 24px; max-width:800px; margin:0 auto; flex-wrap:wrap; }
-    .stat { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 20px; flex:1; min-width:100px; }
-    .stat-num { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#c8a96e; line-height:1; }
-    .stat-label { font-size:11px; color:rgba(255,255,255,0.4); margin-top:2px; }
-    .map-section { max-width:800px; margin:0 auto; padding:0 24px 32px; }
-    .map-section h2 { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:#f5e6c8; margin-bottom:12px; }
-    #map { height:400px; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); }
-    .cafe-list { max-width:800px; margin:0 auto; padding:0 24px 80px; }
-    .filter-row { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
-    .section-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:#f5e6c8; }
-    .filter-controls { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-    select { background:#1a1a1a; border:1px solid rgba(255,255,255,0.12); color:#fff; padding:8px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-family:'DM Sans',sans-serif; outline:none; }
-    .sort-btn { padding:7px 16px; border-radius:20px; font-size:12px; font-weight:500; cursor:pointer; border:1px solid rgba(255,255,255,0.15); background:transparent; color:rgba(255,255,255,0.5); font-family:'DM Sans',sans-serif; }
-    .sort-btn.active { border-color:rgba(197,157,80,0.5); background:rgba(197,157,80,0.15); color:#c8a96e; }
-    .near-me-btn { padding:7px 16px; border-radius:20px; font-size:12px; cursor:pointer; border:1px solid rgba(255,255,255,0.15); background:transparent; color:rgba(255,255,255,0.5); font-family:'DM Sans',sans-serif; white-space:nowrap; }
-    .near-me-active { border-color:rgba(197,157,80,0.5); background:rgba(197,157,80,0.15); color:#c8a96e; }
-    .near-me-banner { display:none; background:rgba(197,157,80,0.08); border:1px solid rgba(197,157,80,0.2); border-radius:12px; padding:10px 16px; margin-bottom:16px; font-size:13px; color:#c8a96e; }
-    .cafe-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:16px 20px; margin-bottom:8px; display:flex; align-items:center; gap:16px; text-decoration:none; color:inherit; transition:border 0.2s; }
-    .cafe-card:hover { border-color:rgba(197,157,80,0.3); }
-    .cafe-score { font-family:'Bebas Neue',sans-serif; font-size:24px; min-width:48px; text-align:center; line-height:1; }
-    .cafe-info { flex:1; }
-    .cafe-name { font-weight:600; font-size:15px; color:#fff; margin-bottom:2px; }
-    .cafe-suburb { font-size:12px; color:rgba(255,255,255,0.4); }
-    .cafe-distance { font-size:11px; color:rgba(197,157,80,0.6); margin-top:2px; }
-    .cafe-verdict { font-size:10px; font-weight:700; letter-spacing:2px; padding:3px 10px; border-radius:20px; }
-    .footer { border-top:1px solid rgba(255,255,255,0.06); padding:32px 24px; text-align:center; max-width:800px; margin:0 auto; }
-    .footer p { font-size:13px; color:rgba(255,255,255,0.3); margin-bottom:16px; line-height:1.7; }
-    .browse-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:12px; background:linear-gradient(135deg,#c8a96e,#f5e6c8); color:#0a0a0a; font-weight:700; font-size:14px; text-decoration:none; }
-    .browse-btn img { width:22px; height:22px; border-radius:50%; object-fit:cover; }
-    .footer-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
-    .footer-links a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }
-    .footer-links a:hover { color:#c8a96e; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#0d0d0f;color:#d4d4d4;font-family:'DM Sans',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+    .c{max-width:800px;margin:0 auto;padding:0 20px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(230,192,115,0.08)}.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}.nav-logo img{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(230,192,115,0.25)}.nav-logo span{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:#E6C073}.nav-links{display:flex;gap:14px}.nav-links a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none}.nav-links a:hover{color:#E6C073}
+    .hero{padding:36px 0 20px;text-align:center}.hero-tag{display:inline-block;padding:5px 16px;border-radius:24px;font-size:10px;font-weight:700;letter-spacing:3px;background:rgba(230,192,115,0.08);color:#E6C073;border:1px solid rgba(230,192,115,0.2);margin-bottom:14px}
+    h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,7vw,50px);letter-spacing:3px;line-height:1.05;color:#fff;margin-bottom:10px}
+    .hero-sub{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:540px;margin:0 auto}
+    .gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(230,192,115,0.3),transparent);margin:16px 0}
+    .stats{display:flex;gap:0;margin:0 auto 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden}.stat{flex:1;text-align:center;padding:14px 8px;border-right:1px solid rgba(255,255,255,0.04)}.stat:last-child{border:none}.stat-n{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#E6C073;line-height:1}.stat-l{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-top:2px}
+    .top3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 24px}
+    .top-card{display:flex;flex-direction:column;align-items:center;padding:16px 10px;border-radius:14px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);text-decoration:none;color:inherit;transition:all 0.15s;text-align:center}.top-card:hover{border-color:rgba(230,192,115,0.25);transform:translateY(-2px)}
+    .top-medal{font-size:20px;margin-bottom:4px}.top-sc{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1}.top-nm{font-size:12px;font-weight:600;color:#fff;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.top-loc{font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px}
+    .filter-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;justify-content:space-between}.section-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,0.4)}
+    select{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#fff;padding:8px 14px;border-radius:22px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
+    .near-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);padding:8px 16px;border-radius:22px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all 0.2s}.near-btn:hover{border-color:rgba(230,192,115,0.3);color:#E6C073}
+    .near-banner{display:none;background:rgba(230,192,115,0.06);border:1px solid rgba(230,192,115,0.15);border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:12px;color:#E6C073}
+    .cc{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);margin-bottom:6px;text-decoration:none;color:inherit;transition:all 0.15s;position:relative;overflow:hidden}.cc:hover{border-color:rgba(230,192,115,0.2);background:rgba(255,255,255,0.035);transform:translateX(2px)}
+    .cc-bar{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:14px 0 0 14px}
+    .cc-sc{font-family:'Bebas Neue',sans-serif;font-size:22px;min-width:44px;text-align:center;margin-left:6px}
+    .cc-info{flex:1;min-width:0}.cc-nm{font-size:14px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cc-loc{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}.cc-dist{font-size:11px;color:rgba(230,192,115,0.6);margin-top:2px}.cc-nt{font-size:12px;color:rgba(255,255,255,0.4);margin-top:3px;font-style:italic}
+    .cc-vd{padding:3px 10px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:1.5px;color:#000;flex-shrink:0}
+    .lm-btn{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(230,192,115,0.15);background:rgba(230,192,115,0.03);color:#E6C073;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:1px;margin-top:8px;transition:all 0.2s}.lm-btn:hover{background:rgba(230,192,115,0.08);border-color:rgba(230,192,115,0.3)}
+    .count-label{font-size:12px;color:rgba(255,255,255,0.3);text-align:center;margin-top:8px}
+    .ft{margin-top:36px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.04);text-align:center}.ft p{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.7;margin-bottom:12px}.ft a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:11px}.ft a:hover{color:#E6C073}
+    .browse-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,#c8a96e,#f5e6c8);color:#0a0a0a;font-weight:700;font-size:13px;text-decoration:none;margin-bottom:16px}.browse-btn img{width:20px;height:20px;border-radius:50%}
+    .avoid-link{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:12px;border:1px solid rgba(248,113,113,0.25);background:rgba(248,113,113,0.05);color:#f87171;text-decoration:none;font-size:12px;font-weight:600;margin-bottom:16px}
+    @media(max-width:480px){.top3{grid-template-columns:1fr 1fr 1fr;gap:6px}.top-card{padding:12px 6px}.top-sc{font-size:24px}.top-nm{font-size:11px}.stats{flex-wrap:wrap}.stat{min-width:45%}}
   </style>
 </head>
 <body>
-  <nav>
-    <a href="https://koffeereview.com.au" class="nav-logo">
-      <img src="/logo.webp" alt="Koffee Review" />
-      <span>KOFFEE REVIEW</span>
-    </a>
-    <a href="https://koffeereview.com.au" class="nav-back" style="display:none"></a>
-    <div style="display:flex;gap:14px;align-items:center;">
-      <a href="/city/brisbane" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Brisbane</a>
-      <a href="/city/gold-coast" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Gold Coast</a>
-      <a href="/leaderboard" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Leaderboard</a>
-      <a href="/blog" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;">Blog</a>
+  <div class="c">
+    <nav>
+      <a href="/" class="nav-logo"><img src="/logo.webp" alt="KR"><span>KOFFEE REVIEW</span></a>
+      <div class="nav-links"><a href="/leaderboard">Leaderboard</a><a href="/map">Map</a><a href="/blog">Blog</a></div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-tag">${stateShort} · RANKED GUIDE</div>
+      <h1>Best Coffee in ${cityName}</h1>
+      <p class="hero-sub">The definitive guide. ${cityCafes.length}+ cafés reviewed with one latte and one double shot espresso. No sponsorships, no agendas.</p>
     </div>
-  </nav>
+    <div class="gold-line"></div>
 
-  <div class="hero">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-      <div class="hero-tag">${stateShort} · CITY GUIDE</div>
-      <button onclick="if(navigator.share){navigator.share({title:'${title}',url:window.location.href})}else{navigator.clipboard.writeText(window.location.href);alert('Link copied!')}" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">↑ Share this guide</button>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">${cityCafes.length}</div><div class="stat-l">RANKED</div></div>
+      <div class="stat"><div class="stat-n" style="color:${mustVisit>=5?"#4ade80":"#E6C073"}">${mustVisit}</div><div class="stat-l">MUST VISIT</div></div>
+      <div class="stat"><div class="stat-n" style="color:${parseFloat(avg)>=7?"#4ade80":"#facc15"}">${avg}</div><div class="stat-l">AVG SCORE</div></div>
+      <div class="stat"><div class="stat-n">${suburbs}</div><div class="stat-l">SUBURBS</div></div>
     </div>
-    <h1>Best Coffee in ${cityName}</h1>
-    <p>Every café reviewed with the same two drinks — one latte and one double shot espresso. No sponsorships, no agendas. Just honest scores from ${cityCafes.length}+ ${cityName} cafés.</p>
-  </div>
 
-  <div class="stats">
-    <div class="stat"><div class="stat-num">${cityCafes.length}</div><div class="stat-label">Cafés Reviewed</div></div>
-    <div class="stat"><div class="stat-num">${mustVisit}</div><div class="stat-label">Must Visit (7.5+)</div></div>
-    <div class="stat"><div class="stat-num">${avg}</div><div class="stat-label">Avg Score</div></div>
-    <div class="stat"><div class="stat-num">${suburbs}</div><div class="stat-label">Suburbs</div></div>
-  </div>
+    <div class="top3">${top3Html}</div>
+    <p style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-bottom:20px">Last updated May 2026</p>
 
-  <div class="map-section">
-    <h2>Find Coffee Near You</h2>
-    <div id="map"></div>
-  </div>
-
-  <div class="cafe-list">
-    <div class="filter-row">
+    <div class="filter-bar">
       <div class="section-title">ALL ${cityName.toUpperCase()} CAFÉS</div>
-      <div class="filter-controls">
-        <button class="sort-btn active" onclick="sortList('score',this)">High Score</button>
-        <button class="sort-btn" onclick="sortList('name',this)">A to Z</button>
-        <select id="suburb-filter" onchange="filterBySuburb(this.value)">
-          <option value="all">All Suburbs</option>
-          ${suburbOptions}
-        </select>
-        <button class="near-me-btn" id="near-me-btn" onclick="handleNearMe()">📍 Near Me</button>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <select id="sf" onchange="filterSuburb(this.value)"><option value="all">All Suburbs</option>${suburbOptions}</select>
+        <button class="near-btn" id="nb" onclick="nearMe()">📍 Near Me</button>
       </div>
     </div>
-    <div class="near-me-banner" id="near-me-banner">📍 Showing cafés closest to your location</div>
-    <div id="cafe-list-content">${cafeRows}</div>
-  </div>
+    <div class="near-banner" id="nbanner">📍 Showing cafés closest to you</div>
 
-  <div class="footer">
-    <p>All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
-    No café pays for placement. <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a><br/><br/>
-    <a href="/brisbane-cafes-to-avoid" style="color:#f87171;font-size:13px;">${cityName === "Brisbane" ? "See cafés to avoid in Brisbane →" : ""}</a></p>
-    <a href="https://koffeereview.com.au" class="browse-btn">
-      <img src="/logo.webp" alt="Koffee Review" />Browse All Reviews
-    </a>
-    <div class="footer-links">
-      <a href="/about">About</a>
-      <a href="/how-we-score.html">How We Score</a>
-      <a href="/disclosure">Disclosure</a>
-      <a href="/leaderboard">Top 10 Australia</a>
-      <a href="/best-coffee-brisbane">Best Coffee Brisbane</a>
-      <a href="/best-coffee-gold-coast">Best Coffee Gold Coast</a>
+    <div id="cl"></div>
+    <button class="lm-btn" id="lmBtn" onclick="loadMore()" style="display:none">LOAD MORE</button>
+    <div class="count-label" id="countLabel"></div>
+
+    <noscript>${noscript}</noscript>
+
+    ${citySlug==="brisbane" ? '<div style="text-align:center;margin-top:24px"><a href="/brisbane-cafes-to-avoid" class="avoid-link">⚠ Cafés to Avoid in Brisbane →</a></div>' : ''}
+
+    <div class="ft">
+      <p>All scores based on one latte and one double shot espresso. No café pays for placement. <a href="/how-we-score" style="color:#E6C073">How we score →</a></p>
+      <a href="/" class="browse-btn"><img src="/logo.webp" alt="KR">Browse All Reviews</a>
+      <div style="margin-top:12px"><a href="/leaderboard">Leaderboard</a> · <a href="/map">Heat Map</a> · <a href="/compare">Compare</a> · <a href="/blog">Blog</a></div>
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script>
-    // Init map
-    const validCafes = Array.from(document.querySelectorAll(".cafe-card")).filter(function(c) {
-      return parseFloat(c.dataset.lat) && Math.abs(parseFloat(c.dataset.lat)) > 1;
-    });
-    if (validCafes.length > 0) {
-      const lats = validCafes.map(function(c) { return parseFloat(c.dataset.lat); });
-      const lngs = validCafes.map(function(c) { return parseFloat(c.dataset.lng); });
-      const avgLat = lats.reduce(function(a,b){return a+b;},0)/lats.length;
-      const avgLng = lngs.reduce(function(a,b){return a+b;},0)/lngs.length;
-      setTimeout(function() {
-        const map = L.map("map").setView([avgLat, avgLng], 11);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {attribution:""}).addTo(map);
-        validCafes.forEach(function(card) {
-          const lat = parseFloat(card.dataset.lat);
-          const lng = parseFloat(card.dataset.lng);
-          const score = parseFloat(card.dataset.score);
-          const name = card.dataset.name;
-          const colors = {"9":"#FFD700","8":"#4ade80","7":"#2dd4bf","6":"#facc15","5":"#fb923c"};
-          const color = score >= 9 ? colors["9"] : score >= 8 ? colors["8"] : score >= 7 ? colors["7"] : score >= 6 ? colors["6"] : score >= 5 ? colors["5"] : "#f87171";
-          const icon = L.divIcon({
-            html: '<div style="background:#0a0a0a;border:2px solid ' + color + ';border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="/logo.webp" style="width:32px;height:32px;border-radius:50%;object-fit:cover;"/></div><div style="background:' + color + ';color:#000;border-radius:8px;font-size:9px;font-weight:700;text-align:center;margin-top:2px;padding:1px 4px;">' + score.toFixed(1) + '</div>',
-            className:"", iconSize:[36,50], iconAnchor:[18,50]
-          });
-          L.marker([lat, lng], {icon:icon}).addTo(map).bindPopup("<strong>" + name + "</strong><br/>" + score.toFixed(1) + "/10");
-        });
-      }, 300);
-    }
-
-    // Sort
-    let currentSort = "score";
-    function sortList(sort, btn) {
-      currentSort = sort;
-      document.querySelectorAll(".sort-btn").forEach(function(b) { b.classList.remove("active"); });
-      btn.classList.add("active");
-      document.getElementById("suburb-filter").value = "all";
-      document.getElementById("near-me-btn").className = "near-me-btn";
-      document.getElementById("near-me-banner").style.display = "none";
-      const cards = Array.from(document.querySelectorAll(".cafe-card"));
-      cards.sort(function(a, b) {
-        if (sort === "score") return parseFloat(b.dataset.score) - parseFloat(a.dataset.score);
-        return a.dataset.name.localeCompare(b.dataset.name);
+    var AC=${cafeData};var page=0;var PP=10;var filtered=AC;var nearMode=false;
+    function gc(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
+    function render(){
+      var show=filtered.slice(0,(page+1)*PP);
+      var h="";show.forEach(function(c){var col=gc(c.sc);
+        h+='<a href="/review/'+c.sl+'" class="cc"><div class="cc-bar" style="background:'+col+'"></div><div class="cc-sc" style="color:'+col+'">'+c.sc.toFixed(1)+'</div><div class="cc-info"><div class="cc-nm">'+c.n+'</div><div class="cc-loc">'+c.s+(c.p?' · '+c.p:'')+'</div>'+(c._dist?'<div class="cc-dist">'+c._dist+'</div>':'')+(c.nt?'<div class="cc-nt">'+c.nt+(c.nt.length>=70?'...':'')+'</div>':'')+'</div><div class="cc-vd" style="background:'+col+'">'+c.v+'</div></a>';
       });
-      const list = document.getElementById("cafe-list-content");
-      cards.forEach(function(c) { c.style.display = "flex"; list.appendChild(c); });
+      document.getElementById("cl").innerHTML=h;
+      document.getElementById("countLabel").textContent="Showing "+show.length+" of "+filtered.length+" cafés";
+      var btn=document.getElementById("lmBtn");
+      if(show.length<filtered.length){btn.style.display="block";btn.textContent="LOAD "+Math.min(PP,filtered.length-show.length)+" MORE";}else btn.style.display="none";
     }
-
-    // Filter by suburb
-    function filterBySuburb(suburb) {
-      document.getElementById("near-me-btn").className = "near-me-btn";
-      document.getElementById("near-me-banner").style.display = "none";
-      document.querySelectorAll(".sort-btn").forEach(function(b) { b.classList.remove("active"); });
-      document.querySelectorAll(".cafe-card").forEach(function(card) {
-        if (suburb === "all") { card.style.display = "flex"; return; }
-        card.style.display = card.dataset.suburb === suburb ? "flex" : "none";
-      });
+    function loadMore(){page++;render();}
+    function filterSuburb(v){page=0;nearMode=false;document.getElementById("nbanner").style.display="none";
+      if(v==="all")filtered=AC;else filtered=AC.filter(function(c){return c.s===v;});render();}
+    function distKm(a,b,c,d){var R=6371;var x=(c-a)*Math.PI/180;var y=(d-b)*Math.PI/180;var z=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(y/2)*Math.sin(y/2);return R*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z));}
+    function nearMe(){if(!navigator.geolocation){alert("Location not supported");return;}
+      document.getElementById("nb").textContent="📍 Locating...";
+      navigator.geolocation.getCurrentPosition(function(p){
+        var la=p.coords.latitude,ln=p.coords.longitude;
+        filtered=AC.map(function(c){var d=(c.la&&c.ln&&Math.abs(c.la)>1)?distKm(la,ln,c.la,c.ln):9999;return Object.assign({},c,{_dist:d<9999?(d<1?(d*1000).toFixed(0)+"m":d.toFixed(1)+"km")+" away":"",_distN:d});}).sort(function(a,b){return a._distN-b._distN;});
+        page=0;nearMode=true;document.getElementById("sf").value="all";
+        document.getElementById("nb").textContent="📍 Near Me ✓";document.getElementById("nb").style.borderColor="rgba(230,192,115,0.4)";document.getElementById("nb").style.color="#E6C073";
+        document.getElementById("nbanner").style.display="block";render();
+      },function(){document.getElementById("nb").textContent="📍 Near Me";alert("Could not get location.");});
     }
-
-    // Near Me
-    function getDistKm(lat1, lng1, lat2, lng2) {
-      const R = 6371;
-      const dLat = (lat2-lat1)*Math.PI/180;
-      const dLng = (lng2-lng1)*Math.PI/180;
-      const a = Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
-      return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-    }
-
-    function handleNearMe() {
-      const btn = document.getElementById("near-me-btn");
-      if (!navigator.geolocation) { alert("Location not supported."); return; }
-      btn.textContent = "📍 Locating...";
-      navigator.geolocation.getCurrentPosition(function(pos) {
-        const uLat = pos.coords.latitude;
-        const uLng = pos.coords.longitude;
-        const cards = Array.from(document.querySelectorAll(".cafe-card"));
-        const withDist = cards.map(function(card) {
-          const lat = parseFloat(card.dataset.lat||"0");
-          const lng = parseFloat(card.dataset.lng||"0");
-          const dist = (lat && Math.abs(lat)>1) ? getDistKm(uLat,uLng,lat,lng) : 9999;
-          return {card:card, dist:dist};
-        });
-        withDist.sort(function(a,b){return a.dist-b.dist;});
-        const list = document.getElementById("cafe-list-content");
-        withDist.forEach(function(item) {
-          item.card.style.display = "flex";
-          const distEl = item.card.querySelector(".cafe-distance");
-          if (distEl) distEl.textContent = item.dist < 9999 ? (item.dist<1?(item.dist*1000).toFixed(0)+"m":item.dist.toFixed(1)+"km")+" away" : "";
-          list.appendChild(item.card);
-        });
-        btn.textContent = "📍 Near Me ✓";
-        btn.classList.add("near-me-active");
-        document.getElementById("near-me-banner").style.display = "block";
-        document.getElementById("suburb-filter").value = "all";
-        document.querySelectorAll(".sort-btn").forEach(function(b){b.classList.remove("active");});
-      }, function() {
-        btn.textContent = "📍 Near Me";
-        alert("Could not get your location. Please allow location access.");
-      });
-    }
-  </script>
+    render();
+  <\/script>
 </body>
 </html>`;
 }
 
 export default async function handler(req, res) {
   try {
-    const path = req.url || "";
-    let cityName = "Brisbane";
-    let citySlug = "best-coffee-brisbane";
-    let stateShort = "QLD";
-    let canonicalUrl = "https://koffeereview.com.au/best-coffee-brisbane";
-
-    if (path.includes("gold-coast")) {
-      cityName = "Gold Coast"; citySlug = "best-coffee-gold-coast";
-      canonicalUrl = "https://koffeereview.com.au/best-coffee-gold-coast";
-    } else if (path.includes("sunshine-coast")) {
-      cityName = "Sunshine Coast"; citySlug = "best-coffee-sunshine-coast";
-      canonicalUrl = "https://koffeereview.com.au/best-coffee-sunshine-coast";
-    } else if (path.includes("melbourne")) {
-      cityName = "Melbourne"; citySlug = "best-coffee-melbourne";
-      stateShort = "VIC";
-      canonicalUrl = "https://koffeereview.com.au/best-coffee-melbourne";
-    } else if (path.includes("moreton-bay")) {
-      cityName = "Moreton Bay"; citySlug = "best-coffee-moreton-bay";
-      canonicalUrl = "https://koffeereview.com.au/best-coffee-moreton-bay";
-    }
-
+    const slug = req.url.split("/").filter(Boolean).pop().replace("best-coffee-","").replace(".html","");
+    const CITIES = {
+      "brisbane":{ name:"Brisbane",slug:"brisbane",state:"QLD" },
+      "gold-coast":{ name:"Gold Coast",slug:"gold-coast",state:"QLD" },
+      "sunshine-coast":{ name:"Sunshine Coast",slug:"sunshine-coast",state:"QLD" },
+      "melbourne":{ name:"Melbourne",slug:"melbourne",state:"VIC" },
+      "sydney":{ name:"Sydney",slug:"sydney",state:"NSW" },
+      "ipswich":{ name:"Ipswich",slug:"ipswich",state:"QLD" },
+      "moreton-bay":{ name:"Moreton Bay",slug:"moreton-bay",state:"QLD" },
+      "logan":{ name:"Logan",slug:"logan",state:"QLD" },
+      "redland":{ name:"Redland",slug:"redland",state:"QLD" },
+    };
+    const city = CITIES[slug];
+    if (!city) { res.status(404).send("City not found"); return; }
     const response = await fetch(SHEET_URL);
     const text = await response.text();
     const cafes = parseCSV(text);
-    const html = renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl);
-
-    res.setHeader("Content-Type", "text/html");
+    const canonicalUrl = "https://koffeereview.com.au/best-coffee-" + city.slug;
+    const html = renderCityPage(city.name, city.slug, city.state, cafes, canonicalUrl);
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(html);
-  } catch (error) {
-    res.status(500).send("Error loading page: " + error.message);
+  } catch (e) {
+    res.status(500).send("Error loading page");
   }
 }
