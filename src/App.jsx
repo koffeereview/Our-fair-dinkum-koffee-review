@@ -7,7 +7,7 @@ function parseCSV(text) {
   
   function splitCSVLine(line) {
     const result = [];
-    let current = ""; 
+    let current = "";
     let inQuotes = false;
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
@@ -339,14 +339,105 @@ function AboutDrawer({ open, onClose }) {
           </button>
         </div>
 
-        {/* ACCORDION */}
-        <div style={{ padding:"0 24px 32px", display:"flex", flexDirection:"column", gap:10 }}>
+        {/* STRUCTURED DRAWER CONTENT */}
+        <div style={{ padding:"0 24px 32px" }}>
 
-          {/* OUR STORY */}
-          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="story" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
+          {/* ═══ BROWSE ═══ */}
+          <div style={{ fontSize:10, letterSpacing:3, color:"rgba(197,157,80,0.5)", paddingLeft:4, marginBottom:10, marginTop:4 }}>BROWSE</div>
+
+          <a href="/leaderboard" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(197,157,80,0.35)", background:"rgba(197,157,80,0.07)", textDecoration:"none", marginBottom:8 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ width:32, height:32, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#E6C073" stroke="#E6C073" strokeWidth="0.5" strokeLinejoin="round"/></svg>
+              </div>
+              <div>
+                <div style={{ fontSize:14, fontWeight:600, color:"#E6C073", letterSpacing:0.3 }}>Leaderboard</div>
+                <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)", marginTop:2 }}>Australia's top ranked cafés</div>
+              </div>
+            </div>
+            <span style={{ fontSize:13, color:"rgba(197,157,80,0.6)" }}>→</span>
+          </a>
+
+          <a href="/best-coffee-brisbane" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(74,222,128,0.35)", background:"rgba(74,222,128,0.06)", textDecoration:"none", marginBottom:8 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ width:32, height:32, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="#4ade80" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/><circle cx="12" cy="12" r="3.5" fill="#4ade80"/></svg>
+              </div>
+              <div>
+                <div style={{ fontSize:14, fontWeight:600, color:"#4ade80", letterSpacing:0.3 }}>Best Coffee in Brisbane</div>
+                <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)", marginTop:2 }}>161+ cafés ranked by score</div>
+              </div>
+            </div>
+            <span style={{ fontSize:13, color:"rgba(74,222,128,0.5)" }}>→</span>
+          </a>
+
+          <a href="/brisbane-cafes-to-avoid" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(248,113,113,0.35)", background:"rgba(248,113,113,0.06)", textDecoration:"none", marginBottom:8 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ width:32, height:32, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L22 20H2L12 2Z" fill="#0d0d0f" stroke="#f87171" strokeWidth="1.8" strokeLinejoin="round"/><path d="M12 9V14" stroke="#f87171" strokeWidth="2.2" strokeLinecap="round"/><circle cx="12" cy="17" r="1.2" fill="#f87171"/></svg>
+              </div>
+              <div>
+                <div style={{ fontSize:14, fontWeight:600, color:"#f87171", letterSpacing:0.3 }}>Cafés to Avoid</div>
+                <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)", marginTop:2 }}>Know before you go</div>
+              </div>
+            </div>
+            <span style={{ fontSize:13, color:"rgba(248,113,113,0.5)" }}>→</span>
+          </a>
+
+          <div style={{ height:1, background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)", margin:"16px 0" }}/>
+
+          {/* ═══ TOOLS ═══ */}
+          <div style={{ fontSize:10, letterSpacing:3, color:"rgba(197,157,80,0.5)", paddingLeft:4, marginBottom:10 }}>TOOLS</div>
+
+          <a href="/map" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(197,157,80,0.35)", background:"rgba(197,157,80,0.07)", textDecoration:"none", marginBottom:8 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ width:32, height:32, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" stroke="#E6C073" strokeWidth="1.8" fill="none"/><circle cx="12" cy="10" r="3" fill="#E6C073"/></svg>
+              </div>
+              <div>
+                <div style={{ fontSize:14, fontWeight:600, color:"#E6C073", letterSpacing:0.3 }}>Coffee Heat Map</div>
+                <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)", marginTop:2 }}>Score density across suburbs</div>
+              </div>
+            </div>
+            <span style={{ fontSize:13, color:"rgba(197,157,80,0.6)" }}>→</span>
+          </a>
+
+          <a href="/compare" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,255,255,0.1)", background:"rgba(255,255,255,0.03)", textDecoration:"none", marginBottom:8 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ width:32, height:32, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3V21" stroke="rgba(255,255,255,0.65)" strokeWidth="1.8" strokeLinecap="round"/><path d="M5 7L12 3L19 7" stroke="rgba(255,255,255,0.65)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M5 7L2 15H8L5 7Z" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" strokeLinejoin="round" fill="none"/><path d="M19 7L16 15H22L19 7Z" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" strokeLinejoin="round" fill="none"/></svg>
+              </div>
+              <div>
+                <div style={{ fontSize:14, fontWeight:600, color:"rgba(255,255,255,0.85)", letterSpacing:0.3 }}>Compare Cafés</div>
+                <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)", marginTop:2 }}>Head-to-head score breakdown</div>
+              </div>
+            </div>
+            <span style={{ fontSize:13, color:"rgba(255,255,255,0.3)" }}>→</span>
+          </a>
+
+          <a href="/blog" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,255,255,0.1)", background:"rgba(255,255,255,0.03)", textDecoration:"none", marginBottom:8 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ width:32, height:32, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </div>
+              <div>
+                <div style={{ fontSize:14, fontWeight:600, color:"rgba(255,255,255,0.85)", letterSpacing:0.3 }}>Blog</div>
+                <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)", marginTop:2 }}>Guides, lists, deep dives</div>
+              </div>
+            </div>
+            <span style={{ fontSize:13, color:"rgba(255,255,255,0.3)" }}>→</span>
+          </a>
+
+          <div style={{ height:1, background:"linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)", margin:"16px 0" }}/>
+
+          {/* ═══ MORE ═══ */}
+          <div style={{ fontSize:10, letterSpacing:3, color:"rgba(197,157,80,0.5)", paddingLeft:4, marginBottom:10 }}>MORE</div>
+
+          {/* Our Story */}
+          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="story" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s", marginBottom:8 }}>
             <button onClick={function() { toggle("story"); }}
               style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", background: expanded==="story" ? "rgba(197,157,80,0.1)" : "rgba(255,255,255,0.03)", border:"none", color: expanded==="story" ? "#c8a96e" : "rgba(255,255,255,0.7)", fontSize:14, fontWeight:600, cursor:"pointer", textAlign:"left" }}>
-              Our Story
+              <div style={{ display:"flex", alignItems:"center", gap:12 }}><span style={{ fontSize:18 }}>📖</span><span>Our Story</span></div>
               <span style={{ fontSize:12, transition:"transform 0.3s", transform: expanded==="story" ? "rotate(180deg)" : "rotate(0deg)", color:"rgba(255,255,255,0.3)" }}>▼</span>
             </button>
             {expanded==="story" && (
@@ -359,83 +450,54 @@ function AboutDrawer({ open, onClose }) {
             )}
           </div>
 
-          {/* LEADERBOARD LINK */}
-          <a href="/leaderboard" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,215,0,0.25)", background:"rgba(255,215,0,0.06)", textDecoration:"none" }}>
-            <span style={{ fontSize:14, fontWeight:600, color:"#FFD700" }}>Leaderboard</span>
-            <span style={{ fontSize:12, color:"rgba(255,215,0,0.5)" }}>→</span>
-          </a>
-
-          {/* BEST BRISBANE LINK */}
-          <a href="/best-coffee-brisbane" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(197,157,80,0.25)", background:"rgba(197,157,80,0.06)", textDecoration:"none" }}>
-            <span style={{ fontSize:14, fontWeight:600, color:"#c8a96e" }}>Best Coffee in Brisbane</span>
-            <span style={{ fontSize:12, color:"rgba(197,157,80,0.5)" }}>→</span>
-          </a>
-
-          {/* CAFES TO AVOID */}
-          <a href="/brisbane-cafes-to-avoid" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(248,113,113,0.2)", background:"rgba(248,113,113,0.05)", textDecoration:"none" }}>
-            <span style={{ fontSize:14, fontWeight:600, color:"#f87171" }}>Cafés to Avoid</span>
-            <span style={{ fontSize:12, color:"rgba(248,113,113,0.4)" }}>→</span>
-          </a>
-
-          {/* EXPLORE BY CITY */}
-          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="explore" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
+          {/* Explore by City */}
+          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="explore" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s", marginBottom:8 }}>
             <button onClick={function() { toggle("explore"); }}
               style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", background: expanded==="explore" ? "rgba(197,157,80,0.1)" : "rgba(255,255,255,0.03)", border:"none", color: expanded==="explore" ? "#c8a96e" : "rgba(255,255,255,0.7)", fontSize:14, fontWeight:600, cursor:"pointer", textAlign:"left" }}>
-              Explore
+              <div style={{ display:"flex", alignItems:"center", gap:12 }}><span style={{ fontSize:18 }}>🌏</span><span>Explore by City</span></div>
               <span style={{ fontSize:12, transition:"transform 0.3s", transform: expanded==="explore" ? "rotate(180deg)" : "rotate(0deg)", color:"rgba(255,255,255,0.3)" }}>▼</span>
             </button>
             {expanded==="explore" && (
-              <div style={{ padding:"12px 18px 18px", background:"rgba(197,157,80,0.05)", display:"flex", flexDirection:"column", gap:8 }}>
-                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginBottom:4 }}>BRISBANE</div>
+              <div style={{ padding:"0 18px 18px", background:"rgba(197,157,80,0.05)", display:"flex", flexDirection:"column", gap:6, marginTop:4 }}>
+                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginBottom:2 }}>BRISBANE</div>
                 <a href="/city/brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>All Brisbane Cafés <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/cbd-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>CBD <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/newstead-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Newstead <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/chermside-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Chermside <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/west-end-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>West End <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/fortitude-valley-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Fortitude Valley <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/hidden-gem-cafes-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Hidden Gems <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
                 <a href="/suburb/paddington-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Paddington <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/south-brisbane-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>South Brisbane <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/hamilton-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Hamilton <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/woolloongabba-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Woolloongabba <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/suburb/upper-mount-gravatt-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Upper Mount Gravatt <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-
-                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>GOLD COAST</div>
+                <a href="/suburb/west-end-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>West End <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/newstead-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Newstead <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <a href="/suburb/fortitude-valley-brisbane" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Fortitude Valley <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
+                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:2 }}>GOLD COAST</div>
                 <a href="/city/gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>All Gold Coast Cafés <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
                 <a href="/best-coffee-gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Best Coffee Gold Coast <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
                 <a href="/suburb/burleigh-heads-gold-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Burleigh Heads <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-
-                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:4 }}>MORE CITIES</div>
+                <div style={{ fontSize:10, letterSpacing:2, color:"rgba(197,157,80,0.5)", marginTop:8, marginBottom:2 }}>MORE CITIES</div>
                 <a href="/city/moreton-bay" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Moreton Bay <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
                 <a href="/city/sunshine-coast" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Sunshine Coast <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/city/ipswich" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Ipswich <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/city/logan" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Logan <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/city/redland" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Redland <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
                 <a href="/city/melbourne" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Melbourne <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
-                <a href="/city/sydney" style={{ fontSize:13, color:"rgba(255,255,255,0.6)", textDecoration:"none", padding:"8px 12px", borderRadius:10, background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", justifyContent:"space-between" }}>Sydney <span style={{ color:"rgba(255,255,255,0.2)" }}>→</span></a>
               </div>
             )}
           </div>
 
-          {/* OUR METHOD */}
-          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="method" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
+          {/* Our Method */}
+          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="method" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s", marginBottom:8 }}>
             <button onClick={function() { toggle("method"); }}
               style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", background: expanded==="method" ? "rgba(197,157,80,0.1)" : "rgba(255,255,255,0.03)", border:"none", color: expanded==="method" ? "#c8a96e" : "rgba(255,255,255,0.7)", fontSize:14, fontWeight:600, cursor:"pointer", textAlign:"left" }}>
-              Our Method
+              <div style={{ display:"flex", alignItems:"center", gap:12 }}><span style={{ fontSize:18 }}>🎯</span><span>Our Method</span></div>
               <span style={{ fontSize:12, transition:"transform 0.3s", transform: expanded==="method" ? "rotate(180deg)" : "rotate(0deg)", color:"rgba(255,255,255,0.3)" }}>▼</span>
             </button>
             {expanded==="method" && (
               <div style={{ padding:"0 18px 18px", background:"rgba(197,157,80,0.05)" }}>
                 <div style={{ background:"rgba(197,157,80,0.08)", border:"1px solid rgba(197,157,80,0.2)", borderRadius:12, padding:"12px 16px", marginBottom:16, marginTop:4 }}>
                   <div style={{ fontSize:13, color:"#c8a96e", fontWeight:700, marginBottom:4 }}>Same order. Every time.</div>
-                  <div style={{ fontSize:12, color:"rgba(255,255,255,0.5)", lineHeight:1.7 }}>One Latte & One Double Shot Espresso, no exceptions. That's how we keep every review fair and consistent.</div>
+                  <div style={{ fontSize:12, color:"rgba(255,255,255,0.5)", lineHeight:1.7 }}>One Latte & One Double Shot Espresso, no exceptions.</div>
                 </div>
-                <p style={{ fontSize:12, color:"rgba(255,255,255,0.45)", lineHeight:1.7, margin:"0 0 16px" }}>We look for balance, strength, and whether it leaves you wanting another sip. We don't overhype. We score coffee purely on the taste we personally enjoy.</p>
+                <p style={{ fontSize:12, color:"rgba(255,255,255,0.45)", lineHeight:1.7, margin:"0 0 16px" }}>We look for balance, strength, and whether it leaves you wanting another sip.</p>
                 {[
                   { range:"5.1 to 5.9", label:"Just Okay", desc:"Average cup. Drinkable, not memorable.", ref:5.5 },
-                  { range:"6.1 to 6.9", label:"Good Coffee", desc:"If we're around, we'll have it but we won't travel for it.", ref:6.5 },
-                  { range:"7.1 to 7.9", label:"Really Good", desc:"We'd happily travel up to 5km just to have this again.", ref:7.5 },
-                  { range:"8.1 to 8.9", label:"Great Coffee 👑", desc:"Top tier. Sits on the king seat.", ref:8.5 },
-                  { range:"9.1 to 9.9", label:"Elite / Anytime Coffee", desc:"Rare level. Exceptional taste. We'll go anywhere for this, any day, any time.", ref:9.5 },
+                  { range:"6.1 to 6.9", label:"Good Coffee", desc:"We'll have it but won't travel for it.", ref:6.5 },
+                  { range:"7.1 to 7.9", label:"Really Good", desc:"We'd travel 5km for this.", ref:7.5 },
+                  { range:"8.1 to 8.9", label:"Great Coffee 👑", desc:"Top tier. King seat.", ref:8.5 },
+                  { range:"9.1 to 9.9", label:"Elite", desc:"We'll go anywhere, any day.", ref:9.5 },
                 ].map(function(item) {
                   const color = getScoreColor(item.ref);
                   return (
@@ -445,44 +507,33 @@ function AboutDrawer({ open, onClose }) {
                     </div>
                   );
                 })}
-                <div style={{ marginTop:16, padding:"12px 16px", background:"rgba(255,255,255,0.03)", borderRadius:12, border:"1px solid rgba(255,255,255,0.06)" }}>
-                  <p style={{ fontSize:13, color:"rgba(197,157,80,0.8)", fontStyle:"italic", margin:0, textAlign:"center", lineHeight:1.6 }}>600+ cups in. Still chasing that perfect 10.</p>
-                </div>
-                <a href="/how-we-score.html" style={{ display:"block", marginTop:14, textAlign:"center", fontSize:13, color:"#c8a96e", textDecoration:"none", padding:"12px", borderRadius:12, border:"1px solid rgba(197,157,80,0.25)", background:"rgba(197,157,80,0.06)" }}>
-                  Read the full methodology →
-                </a>
+                <a href="/how-we-score" style={{ display:"block", marginTop:14, textAlign:"center", fontSize:13, color:"#c8a96e", textDecoration:"none", padding:"12px", borderRadius:12, border:"1px solid rgba(197,157,80,0.25)", background:"rgba(197,157,80,0.06)" }}>Read the full methodology →</a>
               </div>
             )}
           </div>
 
-          {/* HOW WE OPERATE removed from drawer - lives in footer as Disclosure */}
-
-          {/* CONTACT */}
-          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="contact" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s" }}>
+          {/* Contact */}
+          <div style={{ borderRadius:14, border:"1px solid " + (expanded==="contact" ? "rgba(197,157,80,0.4)" : "rgba(255,255,255,0.08)"), overflow:"hidden", transition:"border 0.2s", marginBottom:8 }}>
             <button onClick={function() { toggle("contact"); }}
               style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", background: expanded==="contact" ? "rgba(197,157,80,0.1)" : "rgba(255,255,255,0.03)", border:"none", color: expanded==="contact" ? "#c8a96e" : "rgba(255,255,255,0.7)", fontSize:14, fontWeight:600, cursor:"pointer", textAlign:"left" }}>
-              Contact
+              <div style={{ display:"flex", alignItems:"center", gap:12 }}><span style={{ fontSize:18 }}>📬</span><span>Contact</span></div>
               <span style={{ fontSize:12, transition:"transform 0.3s", transform: expanded==="contact" ? "rotate(180deg)" : "rotate(0deg)", color:"rgba(255,255,255,0.3)" }}>▼</span>
             </button>
             {expanded==="contact" && (
               <div style={{ padding:"0 18px 18px", background:"rgba(197,157,80,0.05)", display:"flex", flexDirection:"column", gap:10, marginTop:4 }}>
-                <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer"
-                  style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
+                <a href="https://www.instagram.com/koffeereview" target="_blank" rel="noreferrer" style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                   <div><div style={{ fontSize:13, fontWeight:600 }}>Instagram</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div></div>
                 </a>
-                <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer"
-                  style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
+                <a href="https://www.tiktok.com/@koffeereview" target="_blank" rel="noreferrer" style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
                   <div><div style={{ fontSize:13, fontWeight:600 }}>TikTok</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div></div>
                 </a>
-                <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer"
-                  style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
+                <a href="https://www.youtube.com/@koffeereview" target="_blank" rel="noreferrer" style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff" }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
                   <div><div style={{ fontSize:13, fontWeight:600 }}>YouTube</div><div style={{ fontSize:11, color:"rgba(255,255,255,0.4)" }}>@koffeereview</div></div>
                 </a>
-                <a href="https://linktr.ee/koffeereview" target="_blank" rel="noreferrer"
-                  style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(197,157,80,0.08)", border:"1px solid rgba(197,157,80,0.2)", borderRadius:12, textDecoration:"none", color:"#c8a96e" }}>
+                <a href="https://linktr.ee/koffeereview" target="_blank" rel="noreferrer" style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 16px", background:"rgba(197,157,80,0.08)", border:"1px solid rgba(197,157,80,0.2)", borderRadius:12, textDecoration:"none", color:"#c8a96e" }}>
                   <span style={{ fontSize:20 }}>🔗</span>
                   <div><div style={{ fontSize:13, fontWeight:600 }}>Linktree</div><div style={{ fontSize:11, color:"rgba(197,157,80,0.5)" }}>linktr.ee/koffeereview</div></div>
                 </a>
@@ -490,11 +541,13 @@ function AboutDrawer({ open, onClose }) {
             )}
           </div>
 
-          {/* ABOUT US — last item in drawer */}
-          <a href="/about"
-            style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,255,255,0.08)", background:"rgba(255,255,255,0.03)", textDecoration:"none" }}>
-            <span style={{ fontSize:14, fontWeight:600, color:"rgba(255,255,255,0.7)" }}>About Us</span>
-            <span style={{ fontSize:12, color:"rgba(255,255,255,0.3)" }}>→</span>
+          {/* About Us */}
+          <a href="/about" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderRadius:14, border:"1px solid rgba(255,255,255,0.1)", background:"rgba(255,255,255,0.03)", textDecoration:"none" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+              <span style={{ fontSize:18 }}>👤</span>
+              <span style={{ fontSize:14, fontWeight:600, color:"rgba(255,255,255,0.85)" }}>About Us</span>
+            </div>
+            <span style={{ fontSize:13, color:"rgba(255,255,255,0.3)" }}>→</span>
           </a>
 
         </div>
