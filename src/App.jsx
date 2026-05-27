@@ -933,12 +933,15 @@ export default function App() {
 
         {/* HOW WE SCORE BLOCK */}
         {!loading && cafes.length > 0 && (
-          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"12px 14px", borderRadius:10, background:"#1a1a1a", borderLeft:"2px solid #C9A84C", textDecoration:"none" }}>
+          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"14px 16px", borderRadius:12, background:"rgba(230,192,115,0.04)", border:"1px solid rgba(230,192,115,0.15)", textDecoration:"none", transition:"all 0.2s" }}>
             <div style={{ display:"flex", alignItems:"center", gap:8 }}>
               <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#E6C073", textTransform:"uppercase" }}>How We Score</div>
-              <div style={{ fontSize:11, color:"#ffffff", letterSpacing:0.5 }}>· One latte. One espresso. Every time.</div>
+              <div style={{ fontSize:11, color:"rgba(255,255,255,0.5)", letterSpacing:0.5 }}>· One latte. One espresso. Every time.</div>
             </div>
-            <div style={{ fontSize:18, color:"#C9A84C", marginLeft:8, flexShrink:0 }}>›</div>
+            <div style={{ display:"flex", alignItems:"center", gap:4, flexShrink:0 }}>
+              <span style={{ fontSize:10, color:"rgba(230,192,115,0.5)", fontWeight:600 }}>READ</span>
+              <span style={{ fontSize:16, color:"#E6C073", lineHeight:1 }}>→</span>
+            </div>
           </a>
         )}
 
@@ -1243,7 +1246,7 @@ export default function App() {
             <div style={{ padding: "0 28px 8px", maxWidth: 800, margin: "0 auto" }}>
               <button onClick={function() { setVisibleCount(function(c) { return c + 10; }); }}
                 style={{ width: "100%", padding: "14px", borderRadius: 12, background: "rgba(197,157,80,0.1)", border: "1px solid rgba(197,157,80,0.3)", color: "#c8a96e", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif", letterSpacing: 1 }}>
-                LOAD MORE · {Math.min(visibleCount + 10, cafes.length) - visibleCount} more cafés →
+                LOAD MORE · {visibleCount} of {cafes.length} shown
               </button>
             </div>
           )}
@@ -1262,7 +1265,7 @@ export default function App() {
                 <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
               <div style={{ margin: "8px 0" }}>
-                <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,255,255,0.55)", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
+                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 10, letterSpacing: 4, color: "rgba(230,192,115,0.5)", fontWeight: 400, marginBottom: 8 }}>EXPLORE</div>
                 <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
                   <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
@@ -1290,7 +1293,7 @@ export default function App() {
                 <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
               <div style={{ margin: "8px 0" }}>
-                <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,255,255,0.55)", fontWeight: 700, marginBottom: 8 }}>EXPLORE</div>
+                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 10, letterSpacing: 4, color: "rgba(230,192,115,0.5)", fontWeight: 400, marginBottom: 8 }}>EXPLORE</div>
                 <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
                   <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
