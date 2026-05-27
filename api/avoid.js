@@ -104,8 +104,8 @@ export default async function handler(req, res) {
     .link-btn { padding:10px 20px; border-radius:12px; border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); text-decoration:none; font-size:13px; }
     .link-btn-gold { border-color:rgba(197,157,80,0.3); color:#c8a96e; background:rgba(197,157,80,0.08); }
   </style>
-<link rel="icon" href="/logo.webp">
-</head>
+      "<link rel=\"icon\" href=\"/logo.webp\">" +
+      "</head>
 <body>
   <nav>
     <a href="https://koffeereview.com.au" class="nav-logo">
