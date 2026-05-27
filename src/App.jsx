@@ -933,15 +933,12 @@ export default function App() {
 
         {/* HOW WE SCORE BLOCK */}
         {!loading && cafes.length > 0 && (
-          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"14px 16px", borderRadius:12, background:"rgba(230,192,115,0.04)", border:"1px solid rgba(230,192,115,0.15)", textDecoration:"none", transition:"all 0.2s" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-              <div style={{ fontSize:10, fontWeight:700, letterSpacing:2, color:"#E6C073", textTransform:"uppercase" }}>How We Score</div>
-              <div style={{ fontSize:11, color:"rgba(255,255,255,0.5)", letterSpacing:0.5 }}>· One latte. One espresso. Every time.</div>
+          <a href="/how-we-score.html" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:8, marginBottom:8, padding:"12px 16px", borderRadius:12, background:"rgba(230,192,115,0.04)", border:"1px solid rgba(230,192,115,0.15)", textDecoration:"none", transition:"all 0.2s" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:6, minWidth:0 }}>
+              <div style={{ fontSize:11, fontWeight:700, letterSpacing:1, color:"#E6C073", whiteSpace:"nowrap" }}>How We Score</div>
+              <div style={{ fontSize:11, color:"rgba(255,255,255,0.35)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>· Same two drinks. Every time.</div>
             </div>
-            <div style={{ display:"flex", alignItems:"center", gap:4, flexShrink:0 }}>
-              <span style={{ fontSize:10, color:"rgba(230,192,115,0.5)", fontWeight:600 }}>READ</span>
-              <span style={{ fontSize:16, color:"#E6C073", lineHeight:1 }}>→</span>
-            </div>
+            <span style={{ fontSize:15, color:"#E6C073", flexShrink:0, marginLeft:8 }}>→</span>
           </a>
         )}
 
