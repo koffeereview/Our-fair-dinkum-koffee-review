@@ -133,10 +133,10 @@ function renderCityPage(citySlug, cafes) {
       <div class="section-title">ALL ${config.name.toUpperCase()} CAFÉS</div>
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
         <select id="sf" onchange="filterSuburb(this.value)">${suburbOptions ? '<option value="all">All Suburbs</option>'+suburbOptions : ''}</select>
-        <button class="near-btn" id="nb" onclick="nearMe()">📍 Near Me</button>
+        <button class="near-btn" id="nb" onclick="nearMe()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="vertical-align:-1px;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>Near Me</button>
       </div>
     </div>
-    <div class="near-banner" id="nbanner">📍 Showing cafés closest to you</div>
+    <div class="near-banner" id="nbanner">Showing cafes closest to you</div>
 
     <div id="cl"></div>
     <button class="lm-btn" id="lmBtn" onclick="loadMore()" style="display:none">LOAD MORE</button>
@@ -172,23 +172,22 @@ function renderCityPage(citySlug, cafes) {
     function filterSuburb(v){page=0;nearMode=false;document.getElementById("nbanner").style.display="none";
       if(v==="all")filtered=AC;else filtered=AC.filter(function(c){return c.s===v;});render();}
     function distKm(a,b,c,d){var R=6371;var x=(c-a)*Math.PI/180;var y=(d-b)*Math.PI/180;var z=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(y/2)*Math.sin(y/2);return R*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z));}
-    function nearMe(){if(!navigator.geolocation){document.getElementById("nb").textContent="📍 Not Available";return;}
-      document.getElementById("nb").textContent="📍 Locating...";document.getElementById("nb").style.opacity="0.5";
+    function nearMe(){if(!navigator.geolocation){document.getElementById("nb").textContent="Near Me";return;}
+      document.getElementById("nb").textContent="Locating...";document.getElementById("nb").style.opacity="0.5";
       navigator.geolocation.getCurrentPosition(function(p){
         var la=p.coords.latitude,ln=p.coords.longitude;
         var withCoords=AC.filter(function(c){return c.la&&c.ln&&Math.abs(c.la)>1;});
-        if(withCoords.length===0){document.getElementById("nb").textContent="📍 No GPS Data";document.getElementById("nb").style.opacity="1";return;}
+        if(withCoords.length===0){document.getElementById("nb").textContent="No GPS Data";document.getElementById("nb").style.opacity="1";return;}
         filtered=withCoords.map(function(c){var d=distKm(la,ln,c.la,c.ln);return Object.assign({},c,{_dist:(d<1?(d*1000).toFixed(0)+"m":d.toFixed(1)+"km")+" away",_distN:d});}).sort(function(a,b){return a._distN-b._distN;});
         page=0;nearMode=true;document.getElementById("sf").value="all";
-        document.getElementById("nb").textContent="📍 Nearest ✓";document.getElementById("nb").style.borderColor="rgba(230,192,115,0.4)";document.getElementById("nb").style.color="#E6C073";document.getElementById("nb").style.opacity="1";
-        document.getElementById("nbanner").style.display="block";document.getElementById("nbanner").innerHTML="📍 Showing "+filtered.length+" cafés nearest to you · <span onclick=\\"resetNear()\\" style=\\"cursor:pointer;text-decoration:underline\\">Reset</span>";render();
-      },function(err){document.getElementById("nb").textContent="📍 Near Me";document.getElementById("nb").style.opacity="1";
-        if(err.code===1)alert("Location access denied. Please allow location in your browser settings.");
+        document.getElementById("nb").textContent="Nearest \\u2713";document.getElementById("nb").style.borderColor="rgba(230,192,115,0.4)";document.getElementById("nb").style.color="#E6C073";document.getElementById("nb").style.opacity="1";
+        document.getElementById("nbanner").style.display="block";document.getElementById("nbanner").textContent="Showing "+filtered.length+" cafes nearest to you";render();
+      },function(err){document.getElementById("nb").textContent="Near Me";document.getElementById("nb").style.opacity="1";
+        if(err.code===1)alert("Location access denied. Allow location in browser settings.");
         else alert("Could not get location. Try again.");
       },{enableHighAccuracy:false,timeout:10000,maximumAge:60000});
     }
-    function resetNear(){nearMode=false;filtered=AC;page=0;document.getElementById("sf").value="all";document.getElementById("nb").textContent="📍 Near Me";document.getElementById("nb").style.borderColor="";document.getElementById("nb").style.color="";document.getElementById("nbanner").style.display="none";render();}
-    }
+    function resetNear(){nearMode=false;filtered=AC;page=0;document.getElementById("sf").value="all";document.getElementById("nb").textContent="Near Me";document.getElementById("nb").style.borderColor="";document.getElementById("nb").style.color="";document.getElementById("nbanner").style.display="none";render();}
     render();
   <\/script>
 </body>
