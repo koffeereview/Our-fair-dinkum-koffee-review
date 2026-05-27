@@ -147,8 +147,9 @@ export default async function handler(req, res) {
       ".footer-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px; }\n" +
       ".footer-links a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }\n" +
       ".footer-links a:hover { color:#c8a96e; }\n" +
-      "</style>\n<link rel="icon" href="/logo.webp">
-</head>\n<body>\n" +
+      "</style>\n" +
+      "<link rel=\"icon\" href=\"/logo.webp\">\n" +
+      "</head>\n<body>\n" +
       "<nav>\n" +
       "  <a href=\"https://koffeereview.com.au\" class=\"nav-logo\"><img src=\"/logo.webp\" alt=\"Koffee Review\" /><span>KOFFEE REVIEW</span></a>\n" +
       "  <div style=\"display:flex;gap:14px;align-items:center;\"><a href=\"/city/brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Brisbane</a><a href=\"/city/gold-coast\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Gold Coast</a><a href=\"/leaderboard\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Leaderboard</a><a href=\"/blog\" style=\"font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;\">Blog</a></div>\n" +
