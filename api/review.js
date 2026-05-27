@@ -189,11 +189,11 @@ function renderHTML(cafe, allCafes) {
   }
 
   let betterPicksHTML = "";
-  if (cafe.score < 7.5 && cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1) {
+  if (cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1) {
     const higherScored = allCafes
       .filter(function(c) {
         return c.name !== cafe.name &&
-               c.score > cafe.score &&
+               c.suburb.toLowerCase() !== cafe.suburb.toLowerCase() &&
                c.score >= 6.0 &&
                !SPAIN_CITIES.includes((c.city || "").toLowerCase()) &&
                c.lat && c.lng && Math.abs(c.lat) > 1;
@@ -201,25 +201,13 @@ function renderHTML(cafe, allCafes) {
       .map(function(c) {
         c._dist = getDistKm(cafe.lat, cafe.lng, c.lat, c.lng);
         return c;
-      });
-
-    // Same suburb first, then nearest
-    const sameSuburb = higherScored
-      .filter(function(c) { return c.suburb.toLowerCase() === cafe.suburb.toLowerCase(); })
+      })
+      .filter(function(c) { return c._dist < 15; })
       .sort(function(a, b) { return b.score - a.score; })
-      .slice(0, 3);
+      .slice(0, 4);
 
-    const needed = 3 - sameSuburb.length;
-    const sameSuburbNames = sameSuburb.map(function(c) { return c.name; });
-    const nearby = higherScored
-      .filter(function(c) { return !sameSuburbNames.includes(c.name); })
-      .sort(function(a, b) { return a._dist - b._dist; })
-      .slice(0, 3 - sameSuburb.length);
-
-    const picks = [...sameSuburb, ...nearby].slice(0, 3);
-
-    if (picks.length > 0) {
-      const pickCards = picks.map(function(c) {
+    if (higherScored.length > 0) {
+      const pickCards = higherScored.map(function(c) {
         const col = getScoreColor(c.score);
         const s = makeSlug(c.name, c.suburb);
         const distText = c._dist < 1 ? (c._dist * 1000).toFixed(0) + "m away" : c._dist.toFixed(1) + "km away";
@@ -228,7 +216,7 @@ function renderHTML(cafe, allCafes) {
           <div class="better-pick-info">
             <div class="better-pick-name">${c.name}</div>
             <div class="better-pick-sub">${c.suburb}</div>
-            <div class="better-pick-dist">📍 ${distText}</div>
+            <div class="better-pick-dist">${distText}</div>
           </div>
           <div class="better-pick-arrow">→</div>
         </a>`;
@@ -236,8 +224,8 @@ function renderHTML(cafe, allCafes) {
 
       betterPicksHTML = `
       <div class="better-picks">
-        <div class="better-picks-title">BETTER PICKS NEARBY</div>
-        <div class="better-picks-sub">This café scored ${cafe.score.toFixed(1)}. These reviewed cafés scored higher and are close by.</div>
+        <div class="better-picks-title">WORTH A DETOUR</div>
+        <div class="better-picks-sub">Top-rated cafes within 15km of ${cafe.suburb}</div>
         ${pickCards}
       </div>
       <hr class="divider" />`;
@@ -373,6 +361,7 @@ function renderHTML(cafe, allCafes) {
     .btn-maps { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
     .btn-review { background: rgba(197,157,80,0.15); border: 1px solid rgba(197,157,80,0.3); color: #c8a96e; }
     .btn-share { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; cursor: pointer; }
+    .btn-copy { background: rgba(230,192,115,0.08); border: 1px solid rgba(230,192,115,0.25); color: #E6C073; cursor: pointer; }
     #map { height: 280px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
     .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 28px 0; }
     .internal-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
@@ -464,6 +453,7 @@ function renderHTML(cafe, allCafes) {
       <a class="btn btn-maps" href="${getMapsUrl(cafe)}" target="_blank">📍 Maps</a>
       ${cafe.link ? `<a class="btn btn-review" href="${cafe.link}" target="_blank">▶ Our Review</a>` : ""}
       <button class="btn btn-share" onclick="generateShareCard()">Share Card</button>
+      <button class="btn btn-copy" onclick="copyLink()">Copy Link</button>
     </div>
 
     <div class="section">
@@ -533,6 +523,24 @@ function renderHTML(cafe, allCafes) {
     const cafe = ${JSON.stringify({ name: cafe.name, suburb: cafe.suburb, city: cafe.city, score: cafe.score, verdict: cafe.verdict, lat: cafe.lat, lng: cafe.lng, link: cafe.link })};
     let shareCardDataUrl = null;
 
+    // COPY LINK
+    function copyLink() {
+      var url = window.location.href;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function() {
+          var btn = document.querySelector(".btn-copy");
+          if (btn) { btn.textContent = "Copied!"; setTimeout(function() { btn.textContent = "Copy Link"; }, 2000); }
+        });
+      } else {
+        var t = document.createElement("textarea");
+        t.value = url; t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select(); document.execCommand("copy");
+        document.body.removeChild(t);
+        var btn = document.querySelector(".btn-copy");
+        if (btn) { btn.textContent = "Copied!"; setTimeout(function() { btn.textContent = "Copy Link"; }, 2000); }
+      }
+    }
+
     // Smart back button
     const backBtn = document.getElementById("nav-back");
     if (document.referrer && document.referrer.includes("koffeereview.com.au")) {
@@ -585,26 +593,33 @@ function renderHTML(cafe, allCafes) {
     } catch(e) {}
 
     ${(cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1 && Math.abs(cafe.lng) > 1) ? `
-    // SCORE RING ANIMATION
-    document.addEventListener("DOMContentLoaded", function() {
+    // SCORE RING ANIMATION — IntersectionObserver
+    (function() {
       const ring = document.getElementById("score-ring");
-      if (ring) {
-        ring.style.strokeDashoffset = "276";
-        ring.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1)";
-        setTimeout(function() {
-          ring.style.strokeDashoffset = "${offset}";
-        }, 200);
-      }
+      if (!ring) return;
+      ring.style.strokeDashoffset = "276";
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            ring.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1)";
+            ring.style.strokeDashoffset = "${offset}";
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(ring.closest(".score-ring-wrap") || ring);
+    })();
 
-      // HAPTIC FEEDBACK
-      const score = ${cafe.score};
+    // HAPTIC FEEDBACK
+    (function() {
+      var score = ${cafe.score};
       if (navigator.vibrate) {
         if (score >= 8.0) navigator.vibrate([40, 20, 40]);
         else if (score >= 7.5) navigator.vibrate(40);
         else if (score < 4.0) navigator.vibrate([30, 10, 30, 10, 30]);
         else navigator.vibrate(20);
       }
-    });
+    })();
 
     // SMOOTH TRANSITION on links — fade out before navigating
     document.addEventListener("click", function(e) {
