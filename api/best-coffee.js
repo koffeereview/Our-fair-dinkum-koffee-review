@@ -142,15 +142,22 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
     function filterSuburb(v){page=0;nearMode=false;document.getElementById("nbanner").style.display="none";
       if(v==="all")filtered=AC;else filtered=AC.filter(function(c){return c.s===v;});render();}
     function distKm(a,b,c,d){var R=6371;var x=(c-a)*Math.PI/180;var y=(d-b)*Math.PI/180;var z=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(y/2)*Math.sin(y/2);return R*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z));}
-    function nearMe(){if(!navigator.geolocation){alert("Location not supported");return;}
-      document.getElementById("nb").textContent="📍 Locating...";
+    function nearMe(){if(!navigator.geolocation){document.getElementById("nb").textContent="📍 Not Available";return;}
+      document.getElementById("nb").textContent="📍 Locating...";document.getElementById("nb").style.opacity="0.5";
       navigator.geolocation.getCurrentPosition(function(p){
         var la=p.coords.latitude,ln=p.coords.longitude;
-        filtered=AC.map(function(c){var d=(c.la&&c.ln&&Math.abs(c.la)>1)?distKm(la,ln,c.la,c.ln):9999;return Object.assign({},c,{_dist:d<9999?(d<1?(d*1000).toFixed(0)+"m":d.toFixed(1)+"km")+" away":"",_distN:d});}).sort(function(a,b){return a._distN-b._distN;});
+        var withCoords=AC.filter(function(c){return c.la&&c.ln&&Math.abs(c.la)>1;});
+        if(withCoords.length===0){document.getElementById("nb").textContent="📍 No GPS Data";document.getElementById("nb").style.opacity="1";return;}
+        filtered=withCoords.map(function(c){var d=distKm(la,ln,c.la,c.ln);return Object.assign({},c,{_dist:(d<1?(d*1000).toFixed(0)+"m":d.toFixed(1)+"km")+" away",_distN:d});}).sort(function(a,b){return a._distN-b._distN;});
         page=0;nearMode=true;document.getElementById("sf").value="all";
-        document.getElementById("nb").textContent="📍 Near Me ✓";document.getElementById("nb").style.borderColor="rgba(230,192,115,0.4)";document.getElementById("nb").style.color="#E6C073";
-        document.getElementById("nbanner").style.display="block";render();
-      },function(){document.getElementById("nb").textContent="📍 Near Me";alert("Could not get location.");});
+        document.getElementById("nb").textContent="📍 Nearest ✓";document.getElementById("nb").style.borderColor="rgba(230,192,115,0.4)";document.getElementById("nb").style.color="#E6C073";document.getElementById("nb").style.opacity="1";
+        document.getElementById("nbanner").style.display="block";document.getElementById("nbanner").innerHTML="📍 Showing "+filtered.length+" cafés nearest to you · <span onclick=\\"resetNear()\\" style=\\"cursor:pointer;text-decoration:underline\\">Reset</span>";render();
+      },function(err){document.getElementById("nb").textContent="📍 Near Me";document.getElementById("nb").style.opacity="1";
+        if(err.code===1)alert("Location access denied. Please allow location in your browser settings.");
+        else alert("Could not get location. Try again.");
+      },{enableHighAccuracy:false,timeout:10000,maximumAge:60000});
+    }
+    function resetNear(){nearMode=false;filtered=AC;page=0;document.getElementById("sf").value="all";document.getElementById("nb").textContent="📍 Near Me";document.getElementById("nb").style.borderColor="";document.getElementById("nb").style.color="";document.getElementById("nbanner").style.display="none";render();}
     }
     render();
   <\/script>
