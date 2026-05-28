@@ -118,6 +118,16 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
 
     ${citySlug==="brisbane" ? '<div style="text-align:center;margin-top:24px"><a href="/brisbane-cafes-to-avoid" class="avoid-link">⚠ Cafés to Avoid in Brisbane →</a></div>' : ''}
 
+    <!-- EMAIL CAPTURE -->
+    <div style="margin:24px 0;padding:20px 24px;border-radius:16px;background:rgba(230,192,115,0.04);border:1px solid rgba(230,192,115,0.12)">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:#E6C073;margin-bottom:8px">WEEKLY COFFEE INTEL</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:14px">New ${cityName} reviews, hidden gems, and cafes to avoid. One email a week.</div>
+      <div style="display:flex;gap:8px" id="email-row">
+        <input type="email" id="email-input" placeholder="your@email.com" style="flex:1;padding:11px 14px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;min-width:0" />
+        <button onclick="subEmail()" id="email-btn" style="padding:11px 20px;border-radius:10px;background:linear-gradient(135deg,#c8a96e,#f5e6c8);border:none;color:#0a0a0a;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap">Subscribe</button>
+      </div>
+    </div>
+
     <div class="ft">
       <p>All scores based on one latte and one double shot espresso. No café pays for placement. <a href="/how-we-score" style="color:#E6C073">How we score →</a></p>
       <a href="/" class="browse-btn"><img src="/logo.webp" alt="KR">Browse All Reviews</a>
@@ -158,6 +168,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
       },{enableHighAccuracy:false,timeout:10000,maximumAge:60000});
     }
     function resetNear(){nearMode=false;filtered=AC;page=0;document.getElementById("sf").value="all";document.getElementById("nb").textContent="Near Me";document.getElementById("nb").style.borderColor="";document.getElementById("nb").style.color="";document.getElementById("nbanner").style.display="none";render();}
+    function subEmail(){var i=document.getElementById("email-input");var e=(i.value||"").trim();if(!e||e.indexOf("@")===-1){i.style.borderColor="rgba(248,113,113,0.5)";return;}document.getElementById("email-btn").textContent="...";fetch("https://script.google.com/macros/s/AKfycby5MtceLXZBJKFkzN58gACK5UBARxmMCV9UMyfz0qWKcgadlBu79CfSUFswP20Cm2w4bA/exec",{method:"POST",body:JSON.stringify({email:e,source:"best-coffee",ts:new Date().toISOString()})}).catch(function(){});document.getElementById("email-row").parentElement.innerHTML='<div style="text-align:center;padding:8px 0"><div style="color:#4ade80;font-size:18px;margin-bottom:4px">\\u2713</div><div style="font-size:14px;font-weight:600;color:#fff">You are in.</div><div style="font-size:12px;color:rgba(255,255,255,0.4)">Weekly coffee intel incoming.</div></div>';}
     render();
   <\/script>
 </body>
