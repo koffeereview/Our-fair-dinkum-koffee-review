@@ -1,23 +1,48 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 const SPAIN_CITIES = ["barcelona","catalonia","spain"];
 
+const STATE_MAP = {
+  "brisbane":"QLD","gold-coast":"QLD","moreton-bay":"QLD","sunshine-coast":"QLD","ipswich":"QLD","logan":"QLD","redland":"QLD","toowoomba":"QLD","noosa":"QLD","scenic-rim":"QLD","lockyer-valley":"QLD","somerset":"QLD","fraser-coast":"QLD","bundaberg":"QLD","gladstone":"QLD","rockhampton":"QLD","mackay":"QLD","townsville":"QLD","cairns":"QLD",
+  "melbourne":"VIC","geelong":"VIC","ballarat":"VIC","bendigo":"VIC","mornington-peninsula":"VIC",
+  "sydney":"NSW","newcastle":"NSW","wollongong":"NSW","central-coast":"NSW","blue-mountains":"NSW",
+  "adelaide":"SA","perth":"WA","hobart":"TAS","darwin":"NT","canberra":"ACT",
+  "barcelona":"ESP","catalonia":"ESP"
+};
+
 function splitCSVLine(line){const r=[];let c="",q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"')q=!q;else if(ch===","&&!q){r.push(c.trim());c="";}else c+=ch;}r.push(c.trim());return r;}
 function parseCSV(text){const lines=text.trim().split("\n");const h=splitCSVLine(lines[0]);return lines.slice(1).map(function(line){const v=splitCSVLine(line);const o={};h.forEach(function(k,i){o[k]=v[i]||"";});o.score=parseFloat(o.score)||0;o.lat=parseFloat(o.lat)||0;o.lng=parseFloat(o.lng)||0;return o;}).filter(function(c){return c.name&&c.score>0&&!SPAIN_CITIES.includes((c.city||"").toLowerCase());});}
 function getScoreColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
 function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";return"AVOID";}
 function makeSlug(n,s){return(n+"-"+s).toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").trim();}
+function makeCitySlug(c){return c.toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").trim();}
+function toTitleCase(s){return(s||"").split(" ").map(function(w){return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase();}).join(" ");}
 function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
-function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
-  const cityCafes = cafes.filter(function(c){return(c.city||"").toLowerCase().trim()===cityName.toLowerCase();}).sort(function(a,b){return b.score-a.score;});
+function renderCityPage(citySlug, cafes) {
+  const cityCafes = cafes.filter(function(c){return makeCitySlug(c.city)===citySlug;}).sort(function(a,b){return b.score-a.score;});
+  if (cityCafes.length === 0) return null;
+
+  const cityName = toTitleCase(cityCafes[0].city);
+  const stateShort = STATE_MAP[citySlug] || "AU";
   const mustVisit = cityCafes.filter(function(c){return c.score>=7.5;}).length;
-  const avg = cityCafes.length>0?(cityCafes.reduce(function(s,c){return s+c.score;},0)/cityCafes.length).toFixed(1):"0";
+  const avg = (cityCafes.reduce(function(s,c){return s+c.score;},0)/cityCafes.length).toFixed(1);
   const suburbs = [...new Set(cityCafes.map(function(c){return c.suburb;}))].length;
   const suburbList = [...new Set(cityCafes.map(function(c){return c.suburb;}))].sort();
   const topCafe = cityCafes[0];
+  const canonicalUrl = "https://koffeereview.com.au/best-coffee-"+citySlug;
 
   const title = "Best Coffee in "+cityName+" 2026 | "+cityCafes.length+"+ Cafés Ranked | Koffee Review";
   const desc = "The definitive guide to "+cityName+"'s best coffee. "+cityCafes.length+"+ cafés reviewed with one latte and one double shot espresso. No sponsorships. Know before you go.";
+
+  // ── NEW: ItemList schema with AggregateRating per café ──
+  const itemListSchema = {"@context":"https://schema.org","@type":"ItemList","name":"Best Cafes in "+cityName,"numberOfItems":cityCafes.length,"itemListElement":cityCafes.slice(0,30).map(function(c,i){return{"@type":"ListItem","position":i+1,"item":{"@type":"CafeOrCoffeeShop","name":c.name,"url":"https://koffeereview.com.au/review/"+makeSlug(c.name,c.suburb),"address":{"@type":"PostalAddress","addressLocality":c.suburb,"addressRegion":stateShort,"addressCountry":"AU"},"aggregateRating":{"@type":"AggregateRating","ratingValue":c.score.toFixed(1),"bestRating":"10","worstRating":"0","ratingCount":"1"}}};})};
+
+  // ── NEW: FAQPage schema ──
+  const faqSchema = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is the best cafe in "+cityName+"?","acceptedAnswer":{"@type":"Answer","text":"Based on our reviews, "+topCafe.name+" in "+topCafe.suburb+" is the top-rated cafe in "+cityName+" with a score of "+topCafe.score.toFixed(1)+"/10."}},
+    {"@type":"Question","name":"How many cafes are reviewed in "+cityName+"?","acceptedAnswer":{"@type":"Answer","text":"We have reviewed "+cityCafes.length+"+ cafes across "+suburbs+" suburbs in "+cityName+". The average score is "+avg+"/10."}},
+    {"@type":"Question","name":"How does Koffee Review score cafes?","acceptedAnswer":{"@type":"Answer","text":"We order the same two drinks at every cafe — one latte and one double shot espresso. We score purely on taste. No sponsorships, no paid placements."}}
+  ]};
 
   const suburbOptions = suburbList.map(function(s){return'<option value="'+esc(s)+'">'+esc(s)+'</option>';}).join("");
 
@@ -30,7 +55,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
   const top3Html = top3.map(function(c,i){
     const col = getScoreColor(c.score);
     const slug = makeSlug(c.name,c.suburb);
-    const medal = i===0?'🥇':i===1?'🥈':'🥉';
+    const medal = i===0?'&#129351;':i===1?'&#129352;':'&#129353;';
     return '<a href="/review/'+slug+'" class="top-card" style="border-color:'+col+'22"><div class="top-medal">'+medal+'</div><div class="top-sc" style="color:'+col+'">'+c.score.toFixed(1)+'</div><div class="top-nm">'+esc(c.name)+'</div><div class="top-loc">'+esc(c.suburb)+'</div></a>';
   }).join("");
 
@@ -46,6 +71,8 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
   <link rel="icon" href="/logo.webp">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Best Coffee ${cityName}","item":"${canonicalUrl}"}]}</script>
+  <script type="application/ld+json">${JSON.stringify(itemListSchema)}<\/script>
+  <script type="application/ld+json">${JSON.stringify(faqSchema)}<\/script>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -116,7 +143,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
 
     <noscript>${noscript}</noscript>
 
-    ${citySlug==="brisbane" ? '<div style="text-align:center;margin-top:24px"><a href="/brisbane-cafes-to-avoid" class="avoid-link">⚠ Cafés to Avoid in Brisbane →</a></div>' : ''}
+    ${citySlug==="brisbane" ? '<div style="text-align:center;margin-top:24px"><a href="/brisbane-cafes-to-avoid" class="avoid-link">Cafés to Avoid in Brisbane →</a></div>' : ''}
 
     <!-- EMAIL CAPTURE — Compact Card -->
     <div id="email-card" style="margin:24px 0;padding:16px 18px;border-radius:14px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.12)">
@@ -183,25 +210,12 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
 
 export default async function handler(req, res) {
   try {
-    const slug = (req.query.city || "brisbane").toLowerCase().trim();
-    const CITIES = {
-      "brisbane":{ name:"Brisbane",slug:"brisbane",state:"QLD" },
-      "gold-coast":{ name:"Gold Coast",slug:"gold-coast",state:"QLD" },
-      "sunshine-coast":{ name:"Sunshine Coast",slug:"sunshine-coast",state:"QLD" },
-      "melbourne":{ name:"Melbourne",slug:"melbourne",state:"VIC" },
-      "sydney":{ name:"Sydney",slug:"sydney",state:"NSW" },
-      "ipswich":{ name:"Ipswich",slug:"ipswich",state:"QLD" },
-      "moreton-bay":{ name:"Moreton Bay",slug:"moreton-bay",state:"QLD" },
-      "logan":{ name:"Logan",slug:"logan",state:"QLD" },
-      "redland":{ name:"Redland",slug:"redland",state:"QLD" },
-    };
-    const city = CITIES[slug];
-    if (!city) { res.status(404).send("City not found"); return; }
+    const citySlug = (req.query.city || "brisbane").toLowerCase().trim();
     const response = await fetch(SHEET_URL);
     const text = await response.text();
     const cafes = parseCSV(text);
-    const canonicalUrl = "https://koffeereview.com.au/best-coffee-" + city.slug;
-    const html = renderCityPage(city.name, city.slug, city.state, cafes, canonicalUrl);
+    const html = renderCityPage(citySlug, cafes);
+    if (!html) { res.status(404).send('<!DOCTYPE html><html><head><title>City Not Found</title><meta name="robots" content="noindex"><link rel="icon" href="/logo.webp"></head><body style="font-family:sans-serif;background:#0d0d0f;color:#fff;text-align:center;padding:60px"><h1 style="color:#E6C073">City not found</h1><p style="color:rgba(255,255,255,0.5)">We haven\'t reviewed cafés in this city yet.</p><a href="/" style="color:#E6C073">Browse All Reviews</a></body></html>'); return; }
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
     res.status(200).send(html);
