@@ -20,14 +20,11 @@ function getScoreColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=
 function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";return"AVOID";}
 
 function renderCityPage(citySlug, cafes) {
-  // Dynamic city matching — find cafés where the city slug matches
   const cityCafes = cafes.filter(function(c){return makeCitySlug(c.city)===citySlug;}).sort(function(a,b){return b.score-a.score;});
   if (cityCafes.length === 0) return null;
 
-  // Derive city name and state from the actual data
   const cityName = toTitleCase(cityCafes[0].city);
   const stateShort = STATE_MAP[citySlug] || "AU";
-  if (cityCafes.length === 0) return null;
 
   const mustVisit = cityCafes.filter(function(c){return c.score>=7.5;}).length;
   const avg = (cityCafes.reduce(function(s,c){return s+c.score;},0)/cityCafes.length).toFixed(1);
@@ -38,6 +35,16 @@ function renderCityPage(citySlug, cafes) {
   const title = "Best Coffee in "+cityName+" 2026 | "+cityCafes.length+"+ Cafés | Koffee Review";
   const desc = cityName+"'s best cafés reviewed and scored. "+cityCafes.length+"+ cafés rated with one latte and one double shot espresso. No sponsorships. Know before you go.";
   const canonicalUrl = "https://koffeereview.com.au/city/"+citySlug;
+
+  // ── NEW: ItemList schema with AggregateRating per café ──
+  const itemListSchema = {"@context":"https://schema.org","@type":"ItemList","name":"Best Cafes in "+cityName,"numberOfItems":cityCafes.length,"itemListElement":cityCafes.slice(0,30).map(function(c,i){return{"@type":"ListItem","position":i+1,"item":{"@type":"CafeOrCoffeeShop","name":c.name,"url":"https://koffeereview.com.au/review/"+makeSlug(c.name,c.suburb),"address":{"@type":"PostalAddress","addressLocality":c.suburb,"addressRegion":stateShort,"addressCountry":"AU"},"aggregateRating":{"@type":"AggregateRating","ratingValue":c.score.toFixed(1),"bestRating":"10","worstRating":"0","ratingCount":"1"}}};})};
+
+  // ── NEW: FAQPage schema ──
+  const faqSchema = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is the best cafe in "+cityName+"?","acceptedAnswer":{"@type":"Answer","text":"Based on our reviews, "+topCafe.name+" in "+topCafe.suburb+" is the top-rated cafe in "+cityName+" with a score of "+topCafe.score.toFixed(1)+"/10."}},
+    {"@type":"Question","name":"How many cafes are reviewed in "+cityName+"?","acceptedAnswer":{"@type":"Answer","text":"We have reviewed "+cityCafes.length+"+ cafes across "+suburbs+" suburbs in "+cityName+". The average score is "+avg+"/10."}},
+    {"@type":"Question","name":"How does Koffee Review score cafes?","acceptedAnswer":{"@type":"Answer","text":"We order the same two drinks at every cafe — one latte and one double shot espresso. We score purely on taste. No sponsorships, no paid placements."}}
+  ]};
 
   const contextLine = mustVisit>=5
     ? cityName+" is a strong city for coffee. "+mustVisit+" cafés worth going out of your way for."
@@ -59,7 +66,6 @@ function renderCityPage(citySlug, cafes) {
     return '<a href="/suburb/'+s.slug+'-'+citySlug+'" class="sub-card"><div class="sub-name">'+esc(s.name)+'</div><div class="sub-meta">'+s.count+' cafés · avg '+s.avg+'</div><div class="sub-row"><span class="sub-top">Top: '+esc(s.top)+'</span><span class="sub-sc" style="color:'+col+'">'+s.topSc.toFixed(1)+'</span></div></a>';
   }).join("");
 
-  // Noscript fallback
   const noscript = cityCafes.slice(0,50).map(function(c){return'<a href="/review/'+makeSlug(c.name,c.suburb)+'" style="display:block;padding:4px 0;color:#2dd4bf;font-size:13px;text-decoration:none">'+c.score.toFixed(1)+' '+esc(c.name)+' — '+esc(c.suburb)+'</a>';}).join("");
 
   return `<!DOCTYPE html>
@@ -74,6 +80,8 @@ function renderCityPage(citySlug, cafes) {
   <link rel="icon" href="/logo.webp">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${desc}","url":"${canonicalUrl}","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Best Coffee ${cityName}","item":"${canonicalUrl}"}]}</script>
+  <script type="application/ld+json">${JSON.stringify(itemListSchema)}<\/script>
+  <script type="application/ld+json">${JSON.stringify(faqSchema)}<\/script>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -147,7 +155,7 @@ function renderCityPage(citySlug, cafes) {
 
     ${hotSuburbs.length > 0 ? '<div class="sub-section"><div class="sub-title">BROWSE '+cityName.toUpperCase()+' BY SUBURB</div><div class="sub-desc">Suburbs with 3+ reviewed cafés</div><div class="sub-grid">'+suburbCards+'</div></div>' : ''}
 
-    ${citySlug==="brisbane" ? '<div style="text-align:center;margin-top:24px"><a href="/brisbane-cafes-to-avoid" class="avoid-link">⚠ Cafés to Avoid in Brisbane →</a></div>' : ''}
+    ${citySlug==="brisbane" ? '<div style="text-align:center;margin-top:24px"><a href="/brisbane-cafes-to-avoid" class="avoid-link">Cafés to Avoid in Brisbane →</a></div>' : ''}
 
     <!-- EMAIL CAPTURE — Compact Card -->
     <div id="email-card" style="margin:24px 0;padding:16px 18px;border-radius:14px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.12)">
