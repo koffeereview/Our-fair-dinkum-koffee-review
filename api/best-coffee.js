@@ -123,9 +123,9 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
       <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px">
         <div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;color:#E6C073">WEEKLY COFFEE INTEL</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.5"><strong style="color:rgba(255,255,255,0.7)">Know before you go</strong> — new ${cityName} reviews & hidden gems.</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.5"><strong style="color:rgba(255,255,255,0.7)">Know before you go</strong> — new reviews and hidden gems.</div>
         </div>
-        <span style="font-size:8px;letter-spacing:2px;color:rgba(230,192,115,0.4);border:1px solid rgba(230,192,115,0.15);padding:3px 8px;border-radius:4px;white-space:nowrap;margin-left:10px;flex-shrink:0">WEEKLY</span>
+        <span style="font-size:8px;letter-spacing:2px;color:#0d0d0f;background:linear-gradient(135deg,#c8a96e,#E6C073);padding:3px 10px;border-radius:5px;font-weight:700;border:none;white-space:nowrap;margin-left:10px;flex-shrink:0">WEEKLY</span>
       </div>
       <div style="display:flex;gap:6px" id="email-row">
         <input type="email" id="email-input" placeholder="your@email.com" onkeydown="if(event.key==='Enter')subEmail()" style="flex:1;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:#fff;font-size:12px;outline:none;font-family:'DM Sans',sans-serif;min-width:0;transition:border 0.2s" />
