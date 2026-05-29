@@ -183,7 +183,7 @@ function renderCityPage(cityName, citySlug, stateShort, cafes, canonicalUrl) {
 
 export default async function handler(req, res) {
   try {
-    const slug = req.url.split("/").filter(Boolean).pop().replace("best-coffee-","").replace(".html","");
+    const slug = (req.query.city || "brisbane").toLowerCase().trim();
     const CITIES = {
       "brisbane":{ name:"Brisbane",slug:"brisbane",state:"QLD" },
       "gold-coast":{ name:"Gold Coast",slug:"gold-coast",state:"QLD" },
