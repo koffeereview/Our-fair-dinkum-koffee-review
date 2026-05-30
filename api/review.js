@@ -1,7 +1,7 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 const SPAIN_CITIES = ["barcelona", "catalonia", "spain"];
 
-function makeSlug(name, suburb) { 
+function makeSlug(name, suburb) {
   return (name + "-" + suburb)
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, "")
@@ -104,8 +104,11 @@ function renderHTML(cafe, allCafes) {
   const citySlug = citySlugMap[(cafe.city || "").toLowerCase()];
   const suburbSlug = suburbSlugMap[(cafe.suburb || "").toLowerCase()];
   const brisbaneLink = cafe.city.toLowerCase().includes("brisbane") ? '<a class="internal-link" href="/best-coffee-brisbane">Best Coffee in Brisbane <span>→</span></a>' : "";
+  const bestCoffeeLink = citySlug && !cafe.city.toLowerCase().includes("brisbane") ? `<a class="internal-link" href="/best-coffee-${citySlug}">Best Coffee in ${cafe.city} <span>→</span></a>` : "";
   const suburbLink = suburbSlug ? `<a class="internal-link" href="/suburb/${suburbSlug}">Best Coffee in ${cafe.suburb} <span>→</span></a>` : "";
   const cityLink = citySlug ? `<a class="internal-link" href="/city/${citySlug}">All ${cafe.city} Cafés <span>→</span></a>` : "";
+  const mapLink = '<a class="internal-link" href="/map">Coffee Heat Map <span>→</span></a>';
+  const blogLink = '<a class="internal-link" href="/blog">Blog — Guides & Lists <span>→</span></a>';
 
   // Better Picks Nearby — only for cafes scoring below 7.5
   function getDistKm(lat1, lng1, lat2, lng2) {
@@ -493,13 +496,32 @@ function renderHTML(cafe, allCafes) {
     <hr class="divider" />
     ` : ''}
 
+    <!-- EMAIL CAPTURE — Compact Card -->
+    <div id="email-card" style="margin:0 0 24px;padding:16px 18px;border-radius:14px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.12)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px">
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;color:#E6C073">WEEKLY COFFEE INTEL</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.5"><strong style="color:rgba(255,255,255,0.7)">Know before you go</strong> — new reviews and hidden gems.</div>
+        </div>
+        <span style="font-size:8px;letter-spacing:2px;color:#0d0d0f;background:linear-gradient(135deg,#c8a96e,#E6C073);padding:3px 10px;border-radius:5px;font-weight:700;border:none;white-space:nowrap;margin-left:10px;flex-shrink:0">WEEKLY</span>
+      </div>
+      <div style="display:flex;gap:6px" id="email-row">
+        <input type="email" id="email-input" placeholder="your@email.com" onkeydown="if(event.key==='Enter')submitEmail()" style="flex:1;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:#fff;font-size:12px;outline:none;font-family:'DM Sans',sans-serif;min-width:0;transition:border 0.2s" />
+        <button onclick="submitEmail()" id="email-btn" style="padding:10px 18px;border-radius:8px;background:linear-gradient(135deg,#c8a96e,#f5e6c8);border:none;color:#0a0a0a;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap">Notify Me</button>
+      </div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:6px">&#128274; No spam &middot; Unsubscribe any time</div>
+    </div>
+
     <div class="internal-links">
       ${suburbLink}
       ${brisbaneLink}
+      ${bestCoffeeLink}
       ${cityLink}
+      ${mapLink}
       <a class="internal-link" href="/leaderboard">Australia's Top 10 Cafés <span>→</span></a>
-      <a class="internal-link" href="https://koffeereview.com.au">Browse All Reviews <span>→</span></a>
       <a class="internal-link" href="/compare?a=${slug}">Compare This Caf\u00e9 <span>→</span></a>
+      ${blogLink}
+      <a class="internal-link" href="https://koffeereview.com.au">Browse All Reviews <span>→</span></a>
     </div>
 
     <!-- LAST UPDATED STAMP -->
@@ -522,6 +544,21 @@ function renderHTML(cafe, allCafes) {
   <script>
     const cafe = ${JSON.stringify({ name: cafe.name, suburb: cafe.suburb, city: cafe.city, score: cafe.score, verdict: cafe.verdict, lat: cafe.lat, lng: cafe.lng, link: cafe.link })};
     let shareCardDataUrl = null;
+
+    // EMAIL SUBSCRIBE
+    function submitEmail() {
+      var input = document.getElementById("email-input");
+      var btn = document.getElementById("email-btn");
+      var email = (input.value || "").trim();
+      if (!email || email.indexOf("@") === -1) { input.style.borderColor = "rgba(248,113,113,0.5)"; return; }
+      btn.textContent = "..."; btn.style.opacity = "0.6";
+      fetch("https://script.google.com/macros/s/AKfycby5MtceLXZBJKFkzN58gACK5UBARxmMCV9UMyfz0qWKcgadlBu79CfSUFswP20Cm2w4bA/exec", {
+        method: "POST",
+        body: JSON.stringify({ email: email, source: "review", ts: new Date().toISOString() })
+      }).catch(function(){});
+      var card = document.getElementById("email-card");
+      card.innerHTML = '<div style="text-align:center;padding:6px 0"><div style="font-size:16px;color:#4ade80;margin-bottom:4px">\\u2713</div><div style="font-size:13px;font-weight:600;color:#fff">You are in.</div><div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px">Weekly coffee intel incoming.</div></div>';
+    }
 
     // COPY LINK
     function copyLink() {
