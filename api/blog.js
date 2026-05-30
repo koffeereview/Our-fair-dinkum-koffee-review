@@ -194,6 +194,7 @@ function css() {
   +'.ps{margin-bottom:48px}'
   +'.ps h2{font-size:24px;margin-bottom:16px;color:#fff;padding-top:8px}'
   +'.ps p{font-size:16px;color:rgba(255,255,255,0.75);margin-bottom:16px}'
+  +'.ps p a{color:#E6C073;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(230,192,115,0.3);transition:border-color 0.2s}.ps p a:hover{border-color:#E6C073}'
   +'.sc a{color:#E6C073;text-decoration:none;font-weight:600;font-size:14px}.sc a:hover{text-decoration:underline}'
   +'.sl{display:flex;flex-direction:column;gap:8px;margin-top:16px}'
   +'.sl a{display:block;padding:12px 16px;background:rgba(230,192,115,0.04);border:1px solid rgba(230,192,115,0.15);border-radius:10px;color:#E6C073;text-decoration:none;font-size:14px;transition:all 0.2s}'
@@ -239,7 +240,7 @@ function renderPost(post) {
   var toc = post.sections.map(function(s) { return '<a href="#' + sid(s.heading) + '" class="ta">' + esc(s.heading) + '</a>'; }).join("");
   var introHtml = post.intro ? post.intro.split("\n\n").map(function(p) { return '<p>' + esc(p) + '</p>'; }).join("") : '<p>' + esc(post.description) + '</p>';
   var body = post.sections.map(function(s) {
-    var paras = s.body.split("\n\n").map(function(p) { return '<p>' + esc(p) + '</p>'; }).join("");
+    var paras = s.body.split("\n\n").map(function(p) { return '<p>' + p + '</p>'; }).join("");
     var cta = s.cta ? '<p class="sc"><a href="' + s.cta.url + '">' + esc(s.cta.text) + ' &rarr;</a></p>' : '';
     var links = '';
     if (s.links && s.links.length > 0) {
