@@ -29,6 +29,27 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/blog", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/map", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/compare", priority: "0.70", changefreq: "weekly" },
+  // Coffee near landmark pages
+  { url: "https://koffeereview.com.au/coffee-near/south-bank", priority: "0.75", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/queen-street-mall", priority: "0.75", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/brisbane-airport", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/suncorp-stadium", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/brisbane-cbd", priority: "0.75", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/west-village", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/eat-street", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/the-gabba", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/fortitude-valley", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/new-farm-park", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/mt-coot-tha", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/kangaroo-point", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/uq-st-lucia", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/qut-gardens-point", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/roma-street", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/howard-smith-wharves", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/james-street", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/pacific-fair", priority: "0.65", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/surfers-paradise", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/coffee-near/burleigh-beach", priority: "0.65", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/compare", priority: "0.75", changefreq: "monthly" },
   { url: "https://koffeereview.com.au/map", priority: "0.85", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/blog/how-to-find-good-coffee", priority: "0.85", changefreq: "monthly" },
@@ -184,7 +205,7 @@ export default async function handler(req, res) {
       var suburbKeys = Object.keys(suburbCount);
       for (var i = 0; i < suburbKeys.length; i++) {
         try {
-          if (suburbCount[suburbKeys[i]] < 3) continue;
+          if (suburbCount[suburbKeys[i]] < 1) continue;
           var info = suburbCity[suburbKeys[i]];
           var slug = safeSlug(info.suburb + "-" + info.city);
           if (!slug) continue;
