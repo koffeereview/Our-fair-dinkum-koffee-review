@@ -77,6 +77,86 @@ var POSTS = [
       { q: "What cities does Koffee Review cover?", a: "We primarily cover Brisbane (160+ cafes), Gold Coast, Sunshine Coast, Moreton Bay, Ipswich, Logan, and Melbourne. Our coverage expands every week." },
       { q: "Can I suggest a cafe for review?", a: "Yes. Visit koffeereview.com.au and use the Suggest a Cafe button to nominate any Australian cafe for review." }
     ]
+  },
+  {
+    slug: "coffee-terminology-explained",
+    title: "Coffee Terminology Explained: The Complete Guide",
+    description: "We have reviewed 600+ cafes across Australia and use these terms in every review. From extraction to microfoam, this guide decodes every coffee word so you know exactly what baristas are talking about.",
+    date: "2026-05-30", readingTime: "9 min",
+    keywords: ["coffee terminology","what is espresso","microfoam","coffee extraction","coffee glossary","barista terms","coffee guide australia","espresso terms explained"],
+    intro: "Walk into a cafe and order a coffee. The barista asks: single or double shot? Microfoam or wet? Single origin or blend?\n\nIf you do not know what these words mean, you are lost.\n\nWe have reviewed over 600 cafes across Australia. Every review uses coffee terminology to describe exactly what we tasted. This guide breaks down every word so you understand what baristas are actually talking about and more importantly, what it means for your coffee.",
+    sections: [
+      {
+        heading: "Why Terminology Matters",
+        body: "Coffee language is not gatekeeping. It is precision.\n\n\"Good espresso\" could mean anything. \"Balanced extraction with a clean finish and no bitter bite\" tells you exactly what you are getting. The terminology exists because coffee quality has specific, measurable components. Learning the words means you can predict whether you will like a cafe before you buy a drink.\n\nWhen we write our reviews, we use these terms to be precise about what happened in the cup. A punchy start is not the same as a smooth opening. A clean finish is not the same as a short finish. Once you learn the difference, you will start tasting it yourself."
+      },
+      {
+        heading: "Extraction and Shot Terms",
+        body: "A shot is a single pull of espresso. Standard size: 30ml of liquid pulled from 18 to 20 grams of ground coffee in about 27 to 30 seconds.\n\nSingle shot means one pull. Standard in some regions. Double shot means two pulls, or the standard in Australia. When we order a latte, it comes with a double shot espresso.\n\nExtraction is how much flavour the water pulls from the coffee grounds. Think of it like brewing tea. Steep for 10 seconds and you get weak tea. Steep for 5 minutes and it is bitter. Same with espresso.\n\nProper extraction takes 25 to 30 seconds and produces smooth, balanced sweetness. Under extraction at 15 to 20 seconds tastes sour or thin. Over extraction at 35 plus seconds tastes bitter or burnt.\n\nWhen we review a cafe and say \"smooth extraction\" it means the espresso hit that sweet spot perfectly. You can see this in action in our review of <a href=\"/review/ona-coffee-east-brisbane\" style=\"color:#E6C073\">Ona Coffee in East Brisbane</a>.\n\nA pull is the act of running water through ground coffee. \"Shots are pulling thin today\" means the espresso is coming out too fast, which means under extraction.",
+        cta: { text: "See how we score every cafe", url: "/how-we-score" }
+      },
+      {
+        heading: "Flavour Descriptors: The Opening",
+        body: "These words describe what the coffee tastes like. We use them in every review because they predict whether you will enjoy it.\n\nPunchy start means bold, immediate flavour. Coffee hits your palate right away. Good sign.\n\nTimid opening means weak initial flavour. Often means under extraction or stale beans.\n\nSmooth opening means no harshness. Balanced right from the first sip. Excellent technique. This is what separates a 7.5 from a 6.5 in our system."
+      },
+      {
+        heading: "Flavour Descriptors: The Body",
+        body: "Body is the weight and texture of the coffee in your mouth. Like the difference between skim milk and whole milk.\n\nLight body is thin, clean, tea like. Can be intentional in pour over style or a sign of under extraction.\n\nSmooth body is medium weight, pleasant to drink. This is the target for most espresso based drinks and what we look for in a latte.\n\nFull body is heavy, rich, creamy. Often from dark roasts or excellent milk integration. Many of our <a href=\"/leaderboard\" style=\"color:#E6C073\">top rated cafes on the leaderboard</a> achieve full body without sacrificing balance."
+      },
+      {
+        heading: "Flavour Descriptors: The Profile",
+        body: "Bright means acidic in a good way. Fruity, citrus notes. Light roasts or African beans are typically bright.\n\nFruity means it literally tastes like fruit. Berries, citrus, stone fruit. Not artificial flavour. This comes from quality beans and proper roasting.\n\nNutty means chocolate, hazelnut, almond notes. Often from South American or Indonesian beans.\n\nEarthy means soil, wood, tobacco depth. Deeper coffees often from darker roasts or Indonesian regions.\n\nChocolatey or cocoa notes are sweet and rich. Sign of good balance and proper roasting.\n\nBalanced means all the flavours work together. No single note dominates. This is the gold standard. When we give a cafe 8.0 or above, balance is almost always present.\n\nAcidic in a bad way means sour, sharp, uncomfortable. Under extraction or stale beans. We always note this when it is a problem."
+      },
+      {
+        heading: "Flavour Descriptors: The Finish",
+        body: "The finish is the aftertaste. What does the flavour do after you swallow?\n\nClean finish means flavour fades cleanly. No bitterness lingering. Excellent.\n\nLingering sweetness means pleasant aftertaste. Coffee continues to taste good after you have swallowed. Great sign of quality.\n\nBitter finish means bitterness sticks around. Often over extraction. Not pleasant.\n\nSour finish means sourness stays on your palate. Usually under extraction or poor bean quality.\n\nShort finish means flavour disappears quickly. Can mean the coffee is not complex enough or beans were not fresh.\n\nWhen we say <a href=\"/review/bang-coffee-bar-brisbane\" style=\"color:#E6C073\">a cafe like Bang Coffee Bar has a clean, sweet finish</a>, we mean your mouth feels pleasant even 30 seconds after swallowing."
+      },
+      {
+        heading: "Milk and Texture Terms",
+        body: "Milk technique separates good baristas from great ones. These terms describe how well the milk is steamed and integrated with espresso.\n\nMicrofoam is tiny, uniform bubbles in steamed milk. Not big foam bubbles like hot chocolate. These are microscopic, created by injecting steam into cold milk.\n\nProper microfoam is velvety, pourable, and integrates perfectly with espresso. The milk and espresso blend seamlessly. This is what you want in a latte and what we test for at every single cafe.\n\nWet microfoam is more liquid, less foam. Easier to pour, better for latte art.\n\nDry microfoam is more foam, less liquid. You get a thicker layer on top. Better for cappuccinos.\n\nSteamed milk is milk heated and aerated using the steam wand. Properly steamed milk hits 65 to 70 degrees, creates microfoam naturally, and integrates well with espresso. Over steamed milk goes above 70 degrees and tastes burnt.\n\nIntegration is how well the milk and espresso blend together. In a great latte, you do not taste them separately. They are one unified drink. <a href=\"/how-we-score\" style=\"color:#E6C073\">This is exactly what we are looking for when we score a latte.</a>\n\nCrema is the thin layer of caramel coloured foam on top of properly pulled espresso. Good crema is thick, golden, and slightly caramel coloured. No crema means stale beans or improper extraction.",
+        cta: { text: "See our full scoring methodology", url: "/how-we-score" }
+      },
+      {
+        heading: "Coffee Bean Terms",
+        body: "Single origin coffee comes from one specific region, farm, or country. Not blended with beans from anywhere else.\n\nEthiopian single origin is usually bright, fruity, floral. Colombian single origin is usually balanced, nutty, chocolate. Indonesian single origin is usually earthy, full bodied, smoky.\n\nSingle origin coffees let you taste the terroir, the unique flavours that come from that specific place. More expensive, but typically higher quality. <a href=\"/leaderboard\" style=\"color:#E6C073\">Many of our top rated cafes on the leaderboard</a> highlight single origins.\n\nA blend is coffee from multiple origins mixed together. A roaster blends beans to create a consistent flavour profile year round. House blend is the cafe's signature mix. Espresso blend is specifically designed to work well as espresso.\n\nFreshness matters enormously for coffee. Beans are best 2 to 4 weeks after roasting. After that, flavour degrades. Fresh beans produce bright flavour, good crema, vibrant taste. Stale beans produce flat flavour, no crema, and bitter or dull taste.\n\nWhen we note that <a href=\"/review/the-source-specialty-coffee-brisbane\" style=\"color:#E6C073\">a cafe like The Source has fresh bean flavour</a>, it means the beans are at their peak."
+      },
+      {
+        heading: "Roast Levels Explained",
+        body: "Light roast beans are roasted for a shorter time. More of the original bean flavour comes through. Characteristics include bright acidity, fruity notes, and pronounced origin flavours. Best for single origin, pour over, and espresso at cafes with excellent technique.\n\nMedium roast is the sweet spot for most cafes. Balanced between origin flavours and roast character. Balanced acidity, balanced body, with chocolate and nut notes plus some acidity. Most house blends are medium roast.\n\nDark roast beans are roasted longer. The roasting process flavours dominate over origin flavours. Low acidity, full body, smoky and sometimes burnt flavours. Best for milk based drinks where you want bold coffee to cut through milk."
+      },
+      {
+        heading: "How We Use These Terms in Real Reviews",
+        body: "Here is an example from a real review. We wrote: \"Punchy start, smooth body, balanced, clean finish. Bright acidity without harshness. Single origin Ethiopian beans really sing. Microfoam integrated beautifully with the espresso.\"\n\nTranslation: The espresso had excellent technique (punchy opening, clean finish, balanced). The Ethiopian beans' natural fruity flavours came through (bright acidity). The barista steamed the milk perfectly (integrated microfoam, smooth body). This is a 7.5 plus cafe.\n\nNow you can read that and know exactly what to expect before you walk in.",
+        links: [
+          { text: "Browse all Brisbane cafes", url: "/city/brisbane" },
+          { text: "See Australia's top 10 cafes", url: "/leaderboard" },
+          { text: "Read how we score", url: "/how-we-score" },
+          { text: "Explore the coffee heat map", url: "/map" }
+        ]
+      },
+      {
+        heading: "Common Mistakes in Coffee Language",
+        body: "Bitter does not mean bad. Bitterness is a flavour note found in dark chocolate and espresso. \"Unpleasantly bitter\" is a problem because it means burnt or over extracted.\n\nAcidic is not always negative. Good acidic coffee is bright and fruity. Bad acidic coffee is sour and sharp. Context matters.\n\nHeavy coffee is not better. Light, bright coffee from quality Ethiopian beans is often more complex than heavy, dark roast. Preference is personal.\n\nConsistency matters more than any single term. A cafe that is consistently balanced at 7.6 is better than one that is sometimes bright but sometimes sour."
+      },
+      {
+        heading: "Start Understanding Coffee",
+        body: "Pick any cafe from our Brisbane reviews or the leaderboard. Read the tasting notes. Now you know what the barista was working with, what the beans brought, and how well the technique executed.\n\nNext time you order, ask the barista about the origin. Ask if it is a blend or single origin. Notice the microfoam. Taste the opening, the body, the finish.\n\nYou will start tasting what we are tasting. And you will stop accepting mediocre coffee.\n\nThat is the point of learning the terminology. Not to sound smart. But to know what you are drinking, why it matters, and whether it is worth coming back.\n\n600 plus cafes. Same order. Same scoring. Every single time.\n\nOne latte. One double shot. No exceptions.",
+        links: [
+          { text: "Browse all cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best coffee Brisbane 2026", url: "/best-coffee-brisbane" },
+          { text: "Hidden gem cafes", url: "/hidden-gem-cafes-brisbane" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is coffee extraction?", a: "Extraction is how much flavour the water pulls from coffee grounds. Proper extraction takes 25 to 30 seconds and produces balanced, smooth espresso. Under extraction tastes sour. Over extraction tastes bitter." },
+      { q: "What is microfoam?", a: "Microfoam is tiny, uniform bubbles in steamed milk created by the steam wand. Proper microfoam is velvety and pourable, integrating seamlessly with espresso. It is what makes a great latte." },
+      { q: "What does single origin coffee mean?", a: "Single origin means the coffee comes from one specific region, farm, or country. It lets you taste the unique flavours of that place. Ethiopian is typically fruity, Colombian is nutty, Indonesian is earthy." },
+      { q: "What is a clean finish in coffee?", a: "A clean finish means the flavour fades away smoothly after swallowing with no lingering bitterness. It is a sign of proper extraction and fresh beans. Most cafes scoring 7.5 plus in our system have clean finishes." },
+      { q: "How does Koffee Review use these terms?", a: "Every one of our 600 plus cafe reviews uses these terms to describe exactly what we tasted. We order one latte and one double shot espresso at every cafe, then describe the opening, body, flavour profile, and finish using precise terminology." },
+      { q: "What is the difference between light and dark roast?", a: "Light roast preserves more of the original bean flavour with bright, fruity notes. Dark roast has smoky, bold flavours from the roasting process itself. Medium roast is the balance point and most common in Australian cafes." }
+    ]
   }
 ];
 
