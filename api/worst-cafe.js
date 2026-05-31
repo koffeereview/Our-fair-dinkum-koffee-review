@@ -39,8 +39,6 @@ function suburbSlug(suburb, city) {
 
 export default async function handler(req, res) {
   try {
-    const path = req.url || "";
-
     const response = await fetch(SHEET_URL);
     const text = await response.text();
     const cafes = parseCSV(text);
@@ -62,11 +60,10 @@ export default async function handler(req, res) {
     const worstList = Object.values(worstBySuburb).sort(function(a, b) { return a.score - b.score; });
 
     // Check if requesting a specific suburb page
-    const suburbMatch = path.match(/\/worst-cafe-(.+)/);
+    const suburbKey = req.query.suburb || "";
 
-    if (suburbMatch) {
+    if (suburbKey) {
       // Individual suburb worst cafe page
-      const suburbKey = suburbMatch[1];
       const cafe = worstList.find(function(c) {
         return suburbSlug(c.suburb, c.city) === suburbKey ||
                suburbSlug(c.suburb, "") === suburbKey;
@@ -92,7 +89,8 @@ export default async function handler(req, res) {
         "<meta property=\"og:title\" content=\"" + title + "\" />" +
         "<meta property=\"og:description\" content=\"" + desc + "\" />" +
         "<meta property=\"og:image\" content=\"https://koffeereview.com.au/logo.webp\" />" +
-        "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />" +
+        "<link rel=\"alternate\" hreflang=\"en-AU\" href=\"" + canonicalUrl + "\" />" +
+      "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />" +
         "<script type=\"application/ld+json\">" + breadcrumbSchema + "<\/script>" +
       "<script type=\"application/ld+json\">" + schema + "<\/script>" +
         "<link href=\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap\" rel=\"stylesheet\" />" +
@@ -146,6 +144,7 @@ export default async function handler(req, res) {
       "<meta charset=\"UTF-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" +
       "<title>" + title + "</title>" +
       "<meta name=\"description\" content=\"" + desc + "\" />" +
+      "<link rel=\"alternate\" hreflang=\"en-AU\" href=\"" + canonicalUrl + "\" />" +
       "<link rel=\"canonical\" href=\"" + canonicalUrl + "\" />" +
       "<script type=\"application/ld+json\">" + schema + "<\/script>" +
       "<link href=\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap\" rel=\"stylesheet\" />" +
