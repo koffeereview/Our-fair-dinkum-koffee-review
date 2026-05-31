@@ -29,6 +29,8 @@ const STATIC_PAGES = [
   { url: "https://koffeereview.com.au/blog", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/map", priority: "0.80", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/compare", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/random", priority: "0.70", changefreq: "weekly" },
+  { url: "https://koffeereview.com.au/new", priority: "0.80", changefreq: "daily" },
   // Coffee near landmark pages
   { url: "https://koffeereview.com.au/coffee-near/south-bank", priority: "0.75", changefreq: "weekly" },
   { url: "https://koffeereview.com.au/coffee-near/queen-street-mall", priority: "0.75", changefreq: "weekly" },
