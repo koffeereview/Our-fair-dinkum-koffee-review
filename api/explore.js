@@ -47,10 +47,6 @@ export default async function handler(req,res){
       var citySlug=makeSlug(cityName);
       return'<a href="/suburb/'+slug+'-'+citySlug+'" class="card-sm"><div class="card-sm-name">'+esc(name)+'</div><div class="card-sm-count">'+count+' cafes</div></a>';
     }
-    function landmarkCard(name,slug){
-      return'<a href="/coffee-near/'+slug+'" class="card-sm" style="border-left:2px solid rgba(45,212,191,0.3)"><div class="card-sm-name" style="color:#2dd4bf">'+name+'</div><div class="card-sm-count">Nearest cafes</div></a>';
-    }
-
     var cityCards=cities.slice(0,10).map(function(c){
       var slug=makeSlug(c);
       var accent=cityCount[c]>=50?"#4ade80":cityCount[c]>=20?"#2dd4bf":cityCount[c]>=10?"#facc15":"#fb923c";
@@ -59,17 +55,6 @@ export default async function handler(req,res){
 
     var bestCards=cities.slice(0,6).map(function(c){return bestCard(c,makeSlug(c));}).join("");
     var subCards=topSuburbs.map(function(s){return suburbCard(s,suburbCount[s]);}).join("");
-
-    var landmarks=[
-      ["South Bank","south-bank"],["Queen Street Mall","queen-street-mall"],["Brisbane CBD","brisbane-cbd"],
-      ["Suncorp Stadium","suncorp-stadium"],["The Gabba","the-gabba"],["Fortitude Valley","fortitude-valley"],
-      ["Howard Smith Wharves","howard-smith-wharves"],["James Street","james-street"],["New Farm Park","new-farm-park"],
-      ["UQ St Lucia","uq-st-lucia"],["QUT Gardens Point","qut-gardens-point"],["Roma Street","roma-street"],
-      ["West Village","west-village"],["Eat Street","eat-street"],["Mt Coot-tha","mt-coot-tha"],
-      ["Kangaroo Point","kangaroo-point"],["Brisbane Airport","brisbane-airport"],
-      ["Surfers Paradise","surfers-paradise"],["Pacific Fair","pacific-fair"],["Burleigh Beach","burleigh-beach"]
-    ];
-    var landmarkCards=landmarks.map(function(l){return landmarkCard(l[0],l[1]);}).join("");
 
     var html=`<!DOCTYPE html>
 <html lang="en">
@@ -211,10 +196,20 @@ export default async function handler(req,res){
         ${pageCard("New This Month","Latest reviews weekly","/new","#4ade80")}
       </div>
 
-      <div class="sub-label">BROWSE BY CITY</div>
+      <div class="sh" style="margin-top:20px;border:none;padding-bottom:8px">
+        <div class="sh-icon" style="background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.12)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3" stroke="#4ade80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21v-4h6v4" stroke="#4ade80" stroke-width="1.8"/><rect x="7" y="10" width="3" height="3" rx="0.5" fill="#4ade80" fill-opacity="0.4"/><rect x="14" y="10" width="3" height="3" rx="0.5" fill="#4ade80" fill-opacity="0.4"/></svg>
+        </div>
+        <div><div class="sh-label">BROWSE BY CITY</div><div class="sh-desc">${cities.length} cities reviewed across Australia</div></div>
+      </div>
       <div class="g2">${cityCards}</div>
 
-      <div class="sub-label">POPULAR SUBURBS</div>
+      <div class="sh" style="margin-top:20px;border:none;padding-bottom:8px">
+        <div class="sh-icon" style="background:rgba(45,212,191,0.06);border:1px solid rgba(45,212,191,0.12)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" stroke="#2dd4bf" stroke-width="1.8"/><circle cx="12" cy="10" r="3" fill="#2dd4bf"/></svg>
+        </div>
+        <div><div class="sh-label">POPULAR SUBURBS</div><div class="sh-desc">Suburbs with 3+ reviewed cafes</div></div>
+      </div>
       <div class="g3">${subCards}</div>
     </div>
 
@@ -249,8 +244,15 @@ export default async function handler(req,res){
         ${pageCard("How We Score","Our method and scoring system","/how-we-score","#E6C073")}
       </div>
 
-      <div class="sub-label">COFFEE NEAR LANDMARKS</div>
-      <div class="g3">${landmarkCards}</div>
+      <a href="/coffee-near" class="wide" style="background:linear-gradient(145deg,rgba(45,212,191,0.07),rgba(45,212,191,0.02));border:1px solid rgba(45,212,191,0.18);margin-top:10px">
+        <div class="wide-icon" style="background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.2)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" stroke="#2dd4bf" stroke-width="1.8"/><circle cx="12" cy="10" r="3" fill="#2dd4bf"/></svg>
+        </div>
+        <div>
+          <div class="wide-title" style="color:#2dd4bf">Coffee Near Landmarks</div>
+          <div class="wide-sub" style="color:rgba(45,212,191,0.55)">Find reviewed cafes near 20 Brisbane and Gold Coast landmarks. Stadiums, universities, beaches, and more.</div>
+        </div>
+      </a>
     </div>
 
     <div class="divider"></div>
