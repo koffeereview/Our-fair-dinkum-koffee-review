@@ -107,7 +107,7 @@ function renderHTML(cafe, allCafes) {
   const bestCoffeeLink = citySlug && !cafe.city.toLowerCase().includes("brisbane") ? `<a class="internal-link" href="/best-coffee-${citySlug}">Best Coffee in ${cafe.city} <span>→</span></a>` : "";
   const suburbLink = suburbSlug ? `<a class="internal-link" href="/suburb/${suburbSlug}">Best Coffee in ${cafe.suburb} <span>→</span></a>` : "";
   const cityLink = citySlug ? `<a class="internal-link" href="/city/${citySlug}">All ${cafe.city} Cafés <span>→</span></a>` : "";
-  const mapLink = '<a class="internal-link" href="/map">Coffee Heat Map <span>→</span></a>';
+  const mapLink = '<a class="internal-link" href="/explore" style="border-color:rgba(230,192,115,0.15);background:rgba(230,192,115,0.03)"><span style="color:#E6C073">Explore Koffee Review</span><span style="color:rgba(230,192,115,0.4)">→</span></a>';
   const blogLink = '<a class="internal-link" href="/blog">Blog — Guides & Lists <span>→</span></a>';
 
   // Better Picks Nearby — only for cafes scoring below 7.5
