@@ -18,6 +18,7 @@ Allow: /compare
 Allow: /how-we-score
 Allow: /random
 Allow: /new
+Allow: /explore
 
 # Block internal API endpoints from indexing (content served via rewrites)
 Disallow: /api/
