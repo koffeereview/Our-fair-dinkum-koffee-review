@@ -28,6 +28,7 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/coffee-near-me", "destination": "/api/near" },
+    { "source": "/coffee-near", "destination": "/api/near" },
     { "source": "/coffee-near/:landmark", "destination": "/api/near?landmark=:landmark" },
     { "source": "/map", "destination": "/api/map" },
     { "source": "/compare", "destination": "/api/compare" },
