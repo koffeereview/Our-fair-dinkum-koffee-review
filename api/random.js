@@ -209,6 +209,27 @@ export default async function handler(req,res){
       });
       document.getElementById("counter").textContent=filtered.length+" cafes in the wheel";
       document.getElementById("result").classList.remove("show");
+
+      // Auto-declare winner if only 1 cafe
+      if(filtered.length===1){
+        var solo=filtered[0];var col=gc(solo.sc);
+        document.getElementById("rScore").textContent=solo.sc.toFixed(1);
+        document.getElementById("rScore").style.color=col;
+        document.getElementById("rName").textContent=solo.n;
+        document.getElementById("rLoc").textContent=solo.s+", "+solo.c+(solo.p?" \\u00b7 "+solo.p:"");
+        document.getElementById("rVerdict").textContent=gv(solo.sc);
+        document.getElementById("rVerdict").style.background=col;
+        document.getElementById("result").querySelector(".result-label").textContent="ONLY ONE CAFE HERE";
+        if(solo.nt&&solo.nt.length>5){document.getElementById("rNotes").textContent=solo.nt;document.getElementById("rNotes").style.borderColor=col;document.getElementById("rNotes").style.display="block";}else{document.getElementById("rNotes").style.display="none";}
+        document.getElementById("rLink").href="/review/"+solo.sl;
+        document.getElementById("result").classList.add("show");
+        document.getElementById("counter").textContent="Only 1 cafe matches your filters";
+        // Hide spin button
+        document.getElementById("spinBtn").style.opacity="0.3";document.getElementById("spinBtn").style.pointerEvents="none";
+      }else{
+        document.getElementById("result").querySelector(".result-label").textContent="FATE HAS CHOSEN";
+        document.getElementById("spinBtn").style.opacity="1";document.getElementById("spinBtn").style.pointerEvents="auto";
+      }
       drawWheel();
     }
 
@@ -223,6 +244,17 @@ export default async function handler(req,res){
         ctx.fillStyle="#141416";ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
         ctx.fillStyle="rgba(255,255,255,0.3)";ctx.font="18px 'DM Sans',sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("No cafes match",cx,cy);
         wheelSlices=[];return;
+      }
+
+      if(filtered.length===1){
+        // Single cafe — show it as the whole wheel
+        var col=gc(filtered[0].sc);
+        ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fillStyle=col;ctx.globalAlpha=0.12;ctx.fill();ctx.globalAlpha=1;
+        ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=3;ctx.globalAlpha=0.4;ctx.stroke();ctx.globalAlpha=1;
+        ctx.fillStyle="#fff";ctx.font="bold 14px 'DM Sans',sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";
+        ctx.fillText(filtered[0].n,cx,cy-10);
+        ctx.fillStyle=col;ctx.font="bold 24px 'Bebas Neue',Georgia,serif";ctx.fillText(filtered[0].sc.toFixed(1),cx,cy+20);
+        wheelSlices=filtered;return;
       }
 
       // Show ALL cafes on the wheel (or up to 60 for readability)
@@ -279,7 +311,7 @@ export default async function handler(req,res){
     }
 
     function spin(){
-      if(spinning||filtered.length===0)return;
+      if(spinning||filtered.length<2)return;
       spinning=true;
       document.getElementById("result").classList.remove("show");
       document.getElementById("wheelRing").classList.add("glow");
