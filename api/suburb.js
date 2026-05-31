@@ -128,7 +128,7 @@ export default async function handler(req, res) {
   <div class="c">
     <nav>
       <a href="/" class="nav-logo"><img src="/logo.webp" alt="KR"><span>KOFFEE REVIEW</span></a>
-      <div class="nav-links"><a href="/city/${cityLower}">${cityName}</a><a href="/map">Map</a><a href="/blog">Blog</a></div>
+      <div class="nav-links"><a href="/city/${cityLower}">${cityName}</a><a href="/explore">Explore</a><a href="/blog">Blog</a></div>
     </nav>
     <div class="bc"><a href="/">Home</a> &middot; <a href="/city/${cityLower}">${cityName}</a> &middot; ${suburbName}</div>
 
@@ -185,7 +185,7 @@ export default async function handler(req, res) {
 
     <footer class="ft">
       <p>All scores based on one latte and one double shot espresso. <a href="/how-we-score" style="color:#E6C073">How we score &rarr;</a></p>
-      <div style="margin-top:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:4px;color:rgba(230,192,115,0.5);margin-bottom:8px">EXPLORE</div><a href="/leaderboard">Leaderboard</a> &middot; <a href="/map">Heat Map</a> &middot; <a href="/compare">Compare</a> &middot; <a href="/blog">Blog</a></div>
+      <div style="margin-top:12px"><div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:4px;color:rgba(230,192,115,0.5);margin-bottom:8px">EXPLORE</div><a href="/leaderboard">Leaderboard</a> &middot; <a href="/explore">Explore</a> &middot; <a href="/compare">Compare</a> &middot; <a href="/blog">Blog</a></div>
     </footer>
   </div>
 
