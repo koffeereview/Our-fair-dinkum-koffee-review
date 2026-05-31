@@ -16,10 +16,23 @@ function parseCSV(text){
   return out;
 }
 
+function parseCSVAll(text){
+  var lines=text.split("\n").filter(function(l){return l.trim();});
+  if(lines.length<2)return[];
+  var h=splitCSV(lines[0]).map(function(x){return x.trim().toLowerCase();});
+  var ni=h.indexOf("name"),si=h.indexOf("suburb"),ci=h.indexOf("city"),sci=h.indexOf("score");
+  if(ni===-1||si===-1)return[];
+  var out=[];
+  for(var i=1;i<lines.length;i++){try{var p=splitCSV(lines[i]);var n=(p[ni]||"").trim();if(!n)continue;var sc=parseFloat(p[sci])||0;if(sc<=0)continue;
+  out.push({name:n,suburb:(p[si]||"").trim(),city:(p[ci]||"").trim(),score:sc});}catch(e){}}
+  return out;
+}
+
 export default async function handler(req,res){
   try{
-    var response=await fetch(SHEET_URL);var text=await response.text();var cafes=parseCSV(text);
-    var total=cafes.length;
+    var response=await fetch(SHEET_URL);var text=await response.text();var allParsed=parseCSVAll(text);
+    var total=allParsed.length;
+    var cafes=allParsed.filter(function(c){return["barcelona","catalonia","spain"].indexOf(c.city.toLowerCase())===-1;});
     var cityCount={};cafes.forEach(function(c){if(c.city)cityCount[c.city]=(cityCount[c.city]||0)+1;});
     var cities=Object.keys(cityCount).sort(function(a,b){return cityCount[b]-cityCount[a];});
     var suburbCount={};cafes.forEach(function(c){if(c.suburb){suburbCount[c.suburb]=(suburbCount[c.suburb]||0)+1;}});
@@ -244,14 +257,15 @@ export default async function handler(req,res){
         ${pageCard("How We Score","Our method and scoring system","/how-we-score","#E6C073")}
       </div>
 
-      <a href="/coffee-near" class="wide" style="background:linear-gradient(145deg,rgba(45,212,191,0.07),rgba(45,212,191,0.02));border:1px solid rgba(45,212,191,0.18);margin-top:10px">
-        <div class="wide-icon" style="background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" stroke="#2dd4bf" stroke-width="1.8"/><circle cx="12" cy="10" r="3" fill="#2dd4bf"/></svg>
+      <div class="sh" style="margin-top:20px;border:none;padding-bottom:8px">
+        <div class="sh-icon" style="background:rgba(45,212,191,0.06);border:1px solid rgba(45,212,191,0.12)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" stroke="#2dd4bf" stroke-width="1.8"/><circle cx="12" cy="10" r="3" fill="#2dd4bf"/></svg>
         </div>
-        <div>
-          <div class="wide-title" style="color:#2dd4bf">Coffee Near Landmarks</div>
-          <div class="wide-sub" style="color:rgba(45,212,191,0.55)">Find reviewed cafes near 20 Brisbane and Gold Coast landmarks. Stadiums, universities, beaches, and more.</div>
-        </div>
+        <div><div class="sh-label">COFFEE NEAR LANDMARKS</div><div class="sh-desc">Find reviewed cafes near popular Brisbane and Gold Coast spots</div></div>
+      </div>
+      <a href="/coffee-near" class="card" style="border-left:3px solid #2dd4bf">
+        <div class="card-top"><div class="card-title" style="color:#2dd4bf">Find near 20 landmarks</div><span class="card-arrow" style="color:#2dd4bf">&#8594;</span></div>
+        <div class="card-sub">Stadiums, universities, beaches, parks and more</div>
       </a>
     </div>
 
