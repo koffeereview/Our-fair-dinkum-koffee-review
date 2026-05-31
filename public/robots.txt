@@ -16,6 +16,8 @@ Allow: /blog/
 Allow: /map
 Allow: /compare
 Allow: /how-we-score
+Allow: /random
+Allow: /new
 
 # Block internal API endpoints from indexing (content served via rewrites)
 Disallow: /api/
