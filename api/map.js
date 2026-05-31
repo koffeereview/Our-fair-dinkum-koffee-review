@@ -6,7 +6,7 @@ function splitCSV(line){var r=[],c="",q=false;for(var i=0;i<line.length;i++){var
 function getColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
 function getVerdict(s){if(s>=9)return"ELITE";if(s>=8)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7)return"SOLID";if(s>=6)return"DECENT";if(s>=5)return"JUST OKAY";return"AVOID";}
 
-function parseCSV(text){ 
+function parseCSV(text){
   var lines=text.split("\n").filter(function(l){return l&&l.trim();});
   if(lines.length<2)return[];
   var h=splitCSV(lines[0]).map(function(x){return x.trim().toLowerCase();});
@@ -32,8 +32,8 @@ export default async function handler(req,res){
     var cityList=Object.keys(cities).sort(function(a,b){return cities[b]-cities[a];});
 
     // Top suburbs by avg score
-    var subMap={};cafes.forEach(function(c){if(!subMap[c.suburb])subMap[c.suburb]={total:0,count:0};subMap[c.suburb].total+=c.score;subMap[c.suburb].count++;});
-    var hotZones=Object.keys(subMap).filter(function(s){return subMap[s].count>=3;}).map(function(s){return{name:s,count:subMap[s].count,avg:(subMap[s].total/subMap[s].count).toFixed(1)};}).sort(function(a,b){return b.avg-a.avg;}).slice(0,6);
+    var subMap={};cafes.forEach(function(c){if(!subMap[c.suburb])subMap[c.suburb]={total:0,count:0,city:c.city};subMap[c.suburb].total+=c.score;subMap[c.suburb].count++;});
+    var hotZones=Object.keys(subMap).filter(function(s){return subMap[s].count>=3;}).map(function(s){var citySlug=(subMap[s].city||"").toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-");var subSlug=s.toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-");return{name:s,count:subMap[s].count,avg:(subMap[s].total/subMap[s].count).toFixed(1),slug:subSlug+"-"+citySlug};}).sort(function(a,b){return b.avg-a.avg;}).slice(0,6);
 
     var mapData=JSON.stringify(cafes.map(function(c){return{n:c.name,s:c.suburb,c:c.city,sc:c.score,la:c.lat,ln:c.lng,sl:makeSlug(c.name,c.suburb),p:c.price};})).replace(/</g,"\\u003c");
     var listData=JSON.stringify(allCafes.map(function(c){return{n:c.name,s:c.suburb,c:c.city,sc:c.score,sl:makeSlug(c.name,c.suburb),p:c.price};})).replace(/</g,"\\u003c");
@@ -50,7 +50,7 @@ export default async function handler(req,res){
 
     var hotZoneCards=hotZones.map(function(z){
       var col=parseFloat(z.avg)>=7.5?"#4ade80":parseFloat(z.avg)>=7?"#2dd4bf":"#facc15";
-      return'<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px 16px;transition:all 0.2s;cursor:pointer" onclick="fm(\''+esc(z.name)+'\',null)"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-size:14px;font-weight:600;color:#fff">'+esc(z.name)+'</span><span style="font-family:Bebas Neue,sans-serif;font-size:20px;color:'+col+'">'+z.avg+'</span></div><div style="display:flex;align-items:center;gap:6px"><div style="height:3px;flex:1;border-radius:2px;background:rgba(255,255,255,0.06);overflow:hidden"><div style="height:100%;width:'+(parseFloat(z.avg)*10)+'%;background:'+col+';border-radius:2px"></div></div><span style="font-size:11px;color:rgba(255,255,255,0.4)">'+z.count+' cafes</span></div></div>';
+      return'<a href="/suburb/'+z.slug+'" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px 16px;transition:all 0.2s;cursor:pointer;text-decoration:none;color:inherit" onmouseover="this.style.borderColor=\'rgba(230,192,115,0.25)\';this.style.background=\'rgba(255,255,255,0.06)\'" onmouseout="this.style.borderColor=\'rgba(255,255,255,0.06)\';this.style.background=\'rgba(255,255,255,0.04)\'"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-size:14px;font-weight:600;color:#fff">'+esc(z.name)+'</span><span style="font-family:Bebas Neue,sans-serif;font-size:20px;color:'+col+'">'+z.avg+'</span></div><div style="display:flex;align-items:center;gap:6px"><div style="height:3px;flex:1;border-radius:2px;background:rgba(255,255,255,0.06);overflow:hidden"><div style="height:100%;width:'+(parseFloat(z.avg)*10)+'%;background:'+col+';border-radius:2px"></div></div><span style="font-size:11px;color:rgba(255,255,255,0.4)">'+z.count+' cafes</span></div></a>';
     }).join("");
 
     var html='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+'</title><meta name="description" content="'+esc(desc)+'"><link rel="canonical" href="'+canonical+'"><link rel="alternate" hreflang="en-AU" href="'+canonical+'"><meta property="og:title" content="'+esc(title)+'"><meta property="og:description" content="'+esc(desc)+'"><meta property="og:url" content="'+canonical+'"><meta property="og:image" content="https://koffeereview.com.au/logo.webp"><link rel="icon" href="/logo.webp">'+schemas
