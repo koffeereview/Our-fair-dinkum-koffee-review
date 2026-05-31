@@ -20,6 +20,8 @@
     { "source": "/worst-cafe-:suburb", "destination": "/api/worst-cafe" },
     { "source": "/brisbane-cafes-to-avoid", "destination": "/api/avoid" },
     { "source": "/leaderboard", "destination": "/api/leaderboard" },
+    { "source": "/random", "destination": "/api/random" },
+    { "source": "/new", "destination": "/api/new-reviews" },
     { "source": "/best-coffee-:city", "destination": "/api/best-coffee?city=:city" },
     { "source": "/disclosure", "destination": "/disclosure.html" },
     { "source": "/about", "destination": "/about.html" },
