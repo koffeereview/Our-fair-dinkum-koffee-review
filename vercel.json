@@ -17,7 +17,7 @@
     { "source": "/best-latte-brisbane", "destination": "/api/best-latte-brisbane" },
     { "source": "/hidden-gem-cafes-brisbane", "destination": "/api/hidden-gems" },
     { "source": "/worst-cafes-by-suburb", "destination": "/api/worst-cafe" },
-    { "source": "/worst-cafe-:suburb", "destination": "/api/worst-cafe" },
+    { "source": "/worst-cafe-:suburb", "destination": "/api/worst-cafe?suburb=:suburb" },
     { "source": "/brisbane-cafes-to-avoid", "destination": "/api/avoid" },
     { "source": "/leaderboard", "destination": "/api/leaderboard" },
     { "source": "/random", "destination": "/api/random" },
