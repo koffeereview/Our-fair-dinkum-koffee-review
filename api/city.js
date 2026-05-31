@@ -119,7 +119,7 @@ function renderCityPage(citySlug, cafes) {
   <div class="c">
     <nav>
       <a href="/" class="nav-logo"><img src="/logo.webp" alt="KR"><span>KOFFEE REVIEW</span></a>
-      <div class="nav-links"><a href="/leaderboard">Leaderboard</a><a href="/map">Map</a><a href="/blog">Blog</a></div>
+      <div class="nav-links"><a href="/leaderboard">Leaderboard</a><a href="/explore">Explore</a><a href="/blog">Blog</a></div>
     </nav>
 
     <div class="hero">
@@ -176,7 +176,7 @@ function renderCityPage(citySlug, cafes) {
     <div class="ft">
       <p>All scores based on one latte and one double shot espresso, ordered the same way every time. No café pays for placement. <a href="/how-we-score" style="color:#E6C073">How we score →</a></p>
       <a href="/" class="browse-btn"><img src="/logo.webp" alt="KR">Browse All Reviews</a>
-      <div style="margin-top:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:4px;color:rgba(230,192,115,0.5);margin-bottom:8px">EXPLORE</div><a href="/leaderboard">Leaderboard</a> · <a href="/map">Heat Map</a> · <a href="/compare">Compare</a> · <a href="/blog">Blog</a></div>
+      <div style="margin-top:16px"><div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:4px;color:rgba(230,192,115,0.5);margin-bottom:8px">EXPLORE</div><a href="/leaderboard">Leaderboard</a> · <a href="/explore">Explore</a> · <a href="/compare">Compare</a> · <a href="/blog">Blog</a></div>
     </div>
   </div>
 
