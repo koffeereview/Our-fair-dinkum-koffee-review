@@ -3,7 +3,7 @@
   "short_name": "Koffee Review",
   "description": "Australia's most honest café reviews. One latte, one double espresso, every time.",
   "start_url": "/",
-  "id": "/",
+  "id": "com.koffeereview.app",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
