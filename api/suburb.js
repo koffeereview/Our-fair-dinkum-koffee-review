@@ -198,9 +198,10 @@ export default async function handler(req, res) {
         h+='<a href="/review/'+c.sl+'" class="cc"><div class="cc-bar" style="background:'+col+'"></div><div class="cc-sc" style="color:'+col+'">'+c.sc.toFixed(1)+'</div><div class="cc-info"><div class="cc-nm">'+c.n+'</div><div class="cc-loc">'+c.s+(c.p?' \\u00b7 '+c.p:'')+'</div>'+(c.nt?'<div class="cc-nt">'+c.nt+(c.nt.length>=70?'...':'')+'</div>':'')+'</div><div class="cc-vd" style="background:'+col+'">'+c.v+'</div></a>';
       });
       document.getElementById("cl").innerHTML=h;
-      document.getElementById("countLabel").textContent="Showing "+show.length+" of "+AC.length+" cafes";
+      if(AC.length<=PP){document.getElementById("countLabel").textContent="";document.getElementById("lmBtn").style.display="none";}
+      else{document.getElementById("countLabel").textContent="Showing "+show.length+" of "+AC.length+" cafes";
       var btn=document.getElementById("lmBtn");
-      if(show.length<AC.length){btn.style.display="block";btn.textContent="LOAD "+Math.min(PP,AC.length-show.length)+" MORE \\u00b7 "+show.length+" of "+AC.length+" shown";}else btn.style.display="none";
+      if(show.length<AC.length){btn.style.display="block";btn.textContent="LOAD "+Math.min(PP,AC.length-show.length)+" MORE \\u00b7 "+show.length+" of "+AC.length+" shown";}else btn.style.display="none";}
     }
     function loadMore(){page++;render();}
     render();
