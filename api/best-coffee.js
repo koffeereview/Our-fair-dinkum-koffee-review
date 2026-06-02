@@ -177,9 +177,10 @@ function renderCityPage(citySlug, cafes) {
         h+='<a href="/review/'+c.sl+'" class="cc"><div class="cc-bar" style="background:'+col+'"></div><div class="cc-sc" style="color:'+col+'">'+c.sc.toFixed(1)+'</div><div class="cc-info"><div class="cc-nm">'+c.n+'</div><div class="cc-loc">'+c.s+(c.p?' · '+c.p:'')+'</div>'+(c._dist?'<div class="cc-dist">'+c._dist+'</div>':'')+(c.nt?'<div class="cc-nt">'+c.nt+(c.nt.length>=70?'...':'')+'</div>':'')+'</div><div class="cc-vd" style="background:'+col+'">'+c.v+'</div></a>';
       });
       document.getElementById("cl").innerHTML=h;
-      document.getElementById("countLabel").textContent="Showing "+show.length+" of "+filtered.length+" cafés";
+      if(filtered.length<=PP){document.getElementById("countLabel").textContent="";document.getElementById("lmBtn").style.display="none";}
+      else{document.getElementById("countLabel").textContent="Showing "+show.length+" of "+filtered.length+" cafés";
       var btn=document.getElementById("lmBtn");
-      if(show.length<filtered.length){btn.style.display="block";btn.textContent="LOAD "+Math.min(PP,filtered.length-show.length)+" MORE · "+show.length+" of "+filtered.length+" shown";}else btn.style.display="none";
+      if(show.length<filtered.length){btn.style.display="block";btn.textContent="LOAD "+Math.min(PP,filtered.length-show.length)+" MORE · "+show.length+" of "+filtered.length+" shown";}else btn.style.display="none";}
     }
     function loadMore(){page++;render();}
     function filterSuburb(v){page=0;nearMode=false;document.getElementById("nbanner").style.display="none";
