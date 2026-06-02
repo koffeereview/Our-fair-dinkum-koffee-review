@@ -131,7 +131,7 @@ export default async function handler(req, res) {
       "<div class=\"section-title\">BRISBANE CAF\u00c9S \u2014 RANKED BY LATTE QUALITY</div>" +
       rows +
       "</div>" +
-      "<div class=\"footer\"><p>Every latte reviewed the same way. One order, one score, no exceptions.<br/><a href=\"/how-we-score.html\" style=\"color:#c8a96e;\">Read how we score \u2192</a></p>" +
+      "<div class=\"footer\"><p>Every latte reviewed the same way. One order, one score, no exceptions.<br/><a href=\"/how-we-score\" style=\"color:#c8a96e;\">Read how we score \u2192</a></p>" +
       "<a href=\"/best-coffee-brisbane\" class=\"browse-btn\"><img src=\"/logo.webp\" alt=\"Koffee Review\" />See All Brisbane Caf\u00e9s</a>" +
       "<div style=\"display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:16px;\"><a href=\"/best-coffee-brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Best Coffee Brisbane</a><a href=\"/hidden-gem-cafes-brisbane\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Hidden Gems</a><a href=\"/leaderboard\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Top 10 Australia</a><a href=\"/brisbane-cafes-to-avoid\" style=\"font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;\">Caf\u00e9s to Avoid</a></div>" +
       "<div style=\"margin-top:24px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;\"><div style=\"font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,0.6);margin-bottom:12px;\">FREQUENTLY ASKED</div>" +
