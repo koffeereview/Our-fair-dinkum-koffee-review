@@ -157,7 +157,7 @@ export default async function handler(req, res) {
 
   <div class="footer">
     <p style="font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:16px;line-height:1.7;">All scores based on one latte and one double shot espresso, ordered the same way every time.<br/>
-    <a href="/how-we-score.html" style="color:#c8a96e;">Read how we score →</a></p>
+    <a href="/how-we-score" style="color:#c8a96e;">Read how we score →</a></p>
     <div class="links-row">
       <a href="/best-coffee-brisbane" class="link-btn link-btn-gold">Best Coffee Brisbane →</a>
       <a href="/city/brisbane" class="link-btn">All Brisbane Cafés</a>
