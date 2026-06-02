@@ -171,7 +171,7 @@ export default async function handler(req, res) {
       "  <div class=\"footer-quote\">\"600+ cups in. Still chasing that perfect 10.\"</div>\n" +
       "  <div class=\"footer-links\">\n" +
       "    <a href=\"/about\">About</a>\n" +
-      "    <a href=\"/how-we-score.html\">How We Score</a>\n" +
+      "    <a href=\"/how-we-score\">How We Score</a>\n" +
       "    <a href=\"/disclosure\">Disclosure</a>\n" +
       "    <a href=\"/best-coffee-brisbane\">Best Coffee Brisbane</a>\n" +
       "    <a href=\"/best-coffee-gold-coast\">Best Coffee Gold Coast</a>\n" +
