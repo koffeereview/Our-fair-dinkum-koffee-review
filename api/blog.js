@@ -7,6 +7,7 @@ var POSTS = [
   {
     slug: "how-to-find-good-coffee",
     title: "How to Find Good Coffee (The Real Way)",
+    ogImage: "https://koffeereview.com.au/og-blog-1.png",
     description: "We have reviewed 600+ cafes across Australia with a locked scoring system. No sponsorships, no bias. Here is how to use our data to find genuinely great coffee every time.",
     date: "2026-05-23", readingTime: "8 min",
     keywords: ["how to find good coffee","best coffee brisbane","coffee guide australia","cafe reviews brisbane","best latte brisbane","coffee scoring system"],
@@ -81,6 +82,7 @@ var POSTS = [
   {
     slug: "coffee-terminology-explained",
     title: "Coffee Terminology Explained: The Complete Guide",
+    ogImage: "https://koffeereview.com.au/og-blog-2.png",
     description: "We have reviewed 600+ cafes across Australia and use these terms in every review. From extraction to microfoam, this guide decodes every coffee word so you know exactly what baristas are talking about.",
     date: "2026-05-30", readingTime: "9 min",
     keywords: ["coffee terminology","what is espresso","microfoam","coffee extraction","coffee glossary","barista terms","coffee guide australia","espresso terms explained"],
@@ -262,7 +264,7 @@ function renderPost(post) {
     faqSchema = '<script type="application/ld+json">' + JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":post.faqs.map(function(f){return{"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}})}) + '</script>';
   }
   var shortTitle = post.title.length > 30 ? post.title.substring(0,30) + '...' : post.title;
-  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + esc(post.title) + ' | Koffee Review</title><meta name="description" content="' + esc(post.description) + '"><link rel="canonical" href="' + canonical + '"><link rel="alternate" hreflang="en-AU" href="' + canonical + '"><meta property="og:title" content="' + esc(post.title) + '"><meta property="og:description" content="' + esc(post.description) + '"><meta property="og:url" content="' + canonical + '"><meta property="og:type" content="article"><meta property="og:image" content="https://koffeereview.com.au/logo.webp"><meta property="article:published_time" content="' + post.date + '"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/logo.webp"><script type="application/ld+json">' + articleSchema + '</script><script type="application/ld+json">' + bcSchema + '</script>' + faqSchema + '<style>' + css() + '</style></head><body><div class="c">'
+  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + esc(post.title) + ' | Koffee Review</title><meta name="description" content="' + esc(post.description) + '"><link rel="canonical" href="' + canonical + '"><link rel="alternate" hreflang="en-AU" href="' + canonical + '"><meta property="og:title" content="' + esc(post.title) + '"><meta property="og:description" content="' + esc(post.description) + '"><meta property="og:url" content="' + canonical + '"><meta property="og:type" content="article"><meta property="og:image" content="' + (post.ogImage || 'https://koffeereview.com.au/logo.webp') + '"><meta property="article:published_time" content="' + post.date + '"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/logo.webp"><script type="application/ld+json">' + articleSchema + '</script><script type="application/ld+json">' + bcSchema + '</script>' + faqSchema + '<style>' + css() + '</style></head><body><div class="c">'
   + nav()
   + '<div class="bc"><a href="/">Home</a> &middot; <a href="/blog">Blog</a> &middot; <span>' + esc(shortTitle) + '</span></div>'
   + '<article class="post"><h1>' + esc(post.title) + '</h1><div class="pm"><span>By Koffee Review</span><span class="md">&middot;</span><span>' + post.date + '</span><span class="md">&middot;</span><span>' + post.readingTime + ' read</span></div>'
