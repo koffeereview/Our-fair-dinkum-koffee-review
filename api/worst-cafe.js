@@ -109,7 +109,7 @@ export default async function handler(req, res) {
         "<a href=\"/review/" + slug + "\" style=\"display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;text-decoration:none;color:#c8a96e;font-size:14px;font-weight:600;margin-bottom:16px;\">Read the full review \u2192</a>" +
         "<a href=\"/brisbane-cafes-to-avoid\" style=\"display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15);border-radius:14px;text-decoration:none;color:#f87171;font-size:14px;font-weight:600;margin-bottom:16px;\">See all Brisbane caf\u00e9s to avoid \u2192</a>" +
         "</div>" +
-        "<div class=\"footer\"><p>Know before you go. <a href=\"/how-we-score.html\" style=\"color:#c8a96e;\">How we score \u2192</a></p>" +
+        "<div class=\"footer\"><p>Know before you go. <a href=\"/how-we-score\" style=\"color:#c8a96e;\">How we score \u2192</a></p>" +
         "<a href=\"https://koffeereview.com.au\" class=\"browse-btn\"><img src=\"/logo.webp\" alt=\"Koffee Review\" />Browse All Reviews</a>" +
         "</div></body></html>";
 
