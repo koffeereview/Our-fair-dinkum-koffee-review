@@ -20,6 +20,7 @@ Allow: /random
 Allow: /new
 Allow: /explore
 Allow: /about
+Allow: /guide/
 
 # Block internal API endpoints from indexing (content served via rewrites)
 Disallow: /api/
