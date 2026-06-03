@@ -214,6 +214,11 @@ export default async function handler(req, res) {
           var slug = safeSlug(info.suburb + "-" + info.city);
           if (!slug) continue;
           xml += buildUrlEntry('https://koffeereview.com.au/suburb/' + slug, today, 'weekly', '0.75');
+          // Also add neighbourhood guide page for suburbs with 3+ cafes
+          if (suburbCount[suburbKeys[i]] >= 3) {
+            var gSlug = safeSlug(info.suburb + "-" + info.city + "-coffee");
+            if (gSlug) xml += buildUrlEntry('https://koffeereview.com.au/guide/' + gSlug, today, 'weekly', '0.80');
+          }
         } catch (e) {}
       }
       xml += '</urlset>';
