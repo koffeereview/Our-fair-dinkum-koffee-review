@@ -552,7 +552,7 @@ function renderHTML(cafe, allCafes) {
       var email = (input.value || "").trim();
       if (!email || email.indexOf("@") === -1) { input.style.borderColor = "rgba(248,113,113,0.5)"; return; }
       btn.textContent = "..."; btn.style.opacity = "0.6";
-      fetch("https://script.google.com/macros/s/AKfycbyEfpt-bI6adgTioLI0xlF5PAeCR5k7U4Ku1Q_p-WRkr5g10TbzpRhsrxkgQtsanZ1A/exec", {
+      fetch("https://script.google.com/macros/s/AKfycby5MtceLXZBJKFkzN58gACK5UBARxmMCV9UMyfz0qWKcgadlBu79CfSUFswP20Cm2w4bA/exec", {
         method: "POST",
         body: JSON.stringify({ email: email, source: "review", ts: new Date().toISOString() })
       }).catch(function(){});
