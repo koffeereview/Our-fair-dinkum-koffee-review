@@ -1,6 +1,6 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYEU8Khk3R5I879v3FcXPqhq0aCXa2ZWM1BwwJOyUitx2Boak_AFTOkwvB8qQrKIeU55NM4htFjHbI/pub?gid=0&single=true&output=csv";
 const SPAIN_CITIES = ["barcelona","catalonia","spain"];
-const EMAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbyEfpt-bI6adgTioLI0xlF5PAeCR5k7U4Ku1Q_p-WRkr5g10TbzpRhsrxkgQtsanZ1A/exec";
+const EMAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbwUf8FChUmnvnUrdvmRZRZV0YhgFZocNHw36RXb5xep1eZIKaKwS-Fx1vKoiyE4aa-9/exec";
 
 function makeSlug(n,s){return(n+"-"+s).toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").trim();}
 function guideSlug(s,c){return(s+"-"+c+"-coffee").toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").trim();}
