@@ -78,9 +78,8 @@ export default async function handler(req,res){
     +'.faq{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.04)}.faq-t{font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:4px;color:#E6C073;margin-bottom:12px}.fi{margin-bottom:6px;border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden}.fi[open]{border-color:rgba(230,192,115,0.2)}.fq{padding:12px 14px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;list-style:none}.fq::-webkit-details-marker{display:none}.fq::after{content:"+";color:#E6C073;font-size:14px;float:right}.fi[open] .fq::after{content:"-"}.fa{padding:0 14px 12px;font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7}'
     +'.ft{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.04);text-align:center;font-size:11px;color:rgba(255,255,255,0.35)}.ft a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 8px}'
     +'.leaflet-popup-content-wrapper{background:#1a1a1e!important;border:1px solid rgba(230,192,115,0.2)!important;border-radius:12px!important;box-shadow:0 8px 24px rgba(0,0,0,0.5)!important}.leaflet-popup-content{margin:12px 14px!important;color:#fff!important;font-family:"DM Sans",sans-serif!important}.leaflet-popup-tip{background:#1a1a1e!important}'
-    +'.hero h1{font-size:28px}.hz-grid{grid-template-columns:1fr}.stats{max-width:100%}}'
-    +'    @media(max-width:480px){body{overflow-x:hidden}.c{padding:0 14px!important;max-width:100vw}#map{height:300px!important}.hero h1{font-size:28px!important}.hz-grid{grid-template-columns:1fr!important}.stats{max-width:100%!important}nav{padding:12px 0!important}.nav-links{gap:10px}.nav-links a{font-size:10px!important}.nav-logo span{font-size:14px!important}.nav-logo img{width:30px!important;height:30px!important}select{font-size:11px!important}img{max-width:100%!important;height:auto!important}}
-  </style></head><body><div class="c">'
+    +'@media(max-width:480px){#map{height:340px}.hero h1{font-size:28px}.hz-grid{grid-template-columns:1fr}.stats{max-width:100%}}'
+    +'</style></head><body><div class="c">'
 
     +'<nav class="nav"><a href="/" class="nav-logo"><img src="/logo.webp" alt="KR"><span>KOFFEE REVIEW</span></a><div class="nav-links"><a href="/compare">Compare</a><a href="/blog">Blog</a><a href="/leaderboard">Leaderboard</a></div></nav>'
 
