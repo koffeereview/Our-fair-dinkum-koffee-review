@@ -781,6 +781,35 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: "#0a0a0a", fontFamily: "'DM Sans', sans-serif", color: "#fff" }}>
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media(max-width:480px){
+          body{overflow-x:hidden!important}
+          div[style*="padding: \\"32px 28px"]{padding:20px 14px 16px!important}
+          div[style*="padding: \\"0 28px"]{padding-left:14px!important;padding-right:14px!important}
+          div[style*="padding: \\"0 24px"]{padding-left:14px!important;padding-right:14px!important}
+          div[style*="maxWidth: 800"]{max-width:100vw!important}
+          img[style*="width: 80"]{width:56px!important;height:56px!important}
+          div[style*="fontSize: \\"min(50px"]{font-size:min(36px,7vw)!important}
+          div[style*="fontSize: \\"min(22px"]{font-size:min(16px,3.5vw)!important;letter-spacing:4px!important}
+          div[style*="gap: 12"]{gap:8px!important}
+          div[style*="gap: 16"]{gap:10px!important}
+          div[style*="borderRadius: 16"]{border-radius:12px!important}
+          div[style*="padding: 24"]{padding:16px!important}
+          div[style*="padding: \\"28px"]{padding:16px!important}
+          div[style*="fontSize: 28"]{font-size:22px!important}
+          div[style*="fontSize: 26"]{font-size:20px!important}
+          div[style*="fontSize: 32"]{font-size:24px!important}
+          div[style*="maxWidth: 500"]{max-width:100%!important}
+          input[style*="fontSize: 15"]{font-size:13px!important}
+          *{max-width:100vw!important;box-sizing:border-box!important}
+          img{max-width:100%!important;height:auto!important}
+        }
+        @media(max-width:380px){
+          div[style*="fontSize: \\"min(50px"]{font-size:min(30px,7vw)!important}
+          div[style*="fontSize: \\"min(22px"]{font-size:min(14px,3.5vw)!important}
+          img[style*="width: 80"]{width:48px!important;height:48px!important}
+        }
+      `}} />
       <AboutDrawer open={aboutOpen} onClose={function() { setAboutOpen(false); }} />
 
       <div style={{ padding: "32px 28px 24px", maxWidth: 800, margin: "0 auto" }}>
@@ -848,7 +877,7 @@ export default function App() {
           <div id="koffee-map-btn" style={{ position: "relative", flex: 1, display: "flex", overflow: "visible" }}>
             <img
               src="/maplatte.webp" loading="lazy"
-              alt="Koffee Map"
+              alt="Latte art at a Brisbane cafe reviewed by Koffee Review"
               onClick={function() { setView(view === "map" ? "list" : "map"); setQuickFilter(null); }}
               style={{ position: "absolute", bottom: "calc(100% - 8px)", left: "50%", transform: "translateX(-50%)", width: 72, height: 72, objectFit: "cover", borderRadius: "50%", zIndex: 2, cursor: "pointer" }}
             />
@@ -866,7 +895,7 @@ export default function App() {
             {/* Close button */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "rgba(201,168,76,0.08)", borderBottom: "1px solid rgba(201,168,76,0.15)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <img src="/maplatte.webp" loading="lazy" alt="" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
+                <img src="/maplatte.webp" loading="lazy" alt="Coffee map icon" style={{ width: 24, height: 24, borderRadius: "50%", objectFit: "cover" }} />
                 <span style={{ fontSize: 12, fontWeight: 700, color: "#E6C073", letterSpacing: 1 }}>KOFFEE MAP</span>
               </div>
               <button
