@@ -404,7 +404,6 @@ function renderHTML(cafe, allCafes) {
     #share-overlay img { max-width: min(320px, 90vw); border-radius: 24px; }
     .share-overlay-btns { display: flex; gap: 10px; margin-top: 24px; }
     .share-overlay-btn { padding: 11px 20px; border-radius: 12px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; border: none; }
-      @media(max-width:480px){body{overflow-x:hidden}.c{padding:0 14px!important;max-width:100vw}nav{padding:12px 0!important}.nav-links{gap:10px}.nav-links a{font-size:10px!important}.nav-logo span{font-size:14px!important}.nav-logo img{width:30px!important;height:30px!important}h1{font-size:clamp(24px,6vw,32px)!important}.hero-sub{font-size:12px!important}.score-ring{width:80px!important;height:80px!important}.score-num{font-size:32px!important}.verdict{font-size:10px!important}.notes{font-size:13px!important;padding:14px!important}.internal-links{gap:6px!important}.internal-link{padding:10px 14px!important;font-size:12px!important}.share-btn,.copy-btn{font-size:11px!important;padding:8px 14px!important}.nearby-card{padding:12px!important}.nearby-nm{font-size:13px!important}img{max-width:100%!important;height:auto!important}}
   </style>
 </head>
 <body>

@@ -103,7 +103,6 @@ export default async function handler(req, res) {
     .links-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
     .link-btn { padding:10px 20px; border-radius:12px; border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); text-decoration:none; font-size:13px; }
     .link-btn-gold { border-color:rgba(197,157,80,0.3); color:#c8a96e; background:rgba(197,157,80,0.08); }
-      @media(max-width:480px){body{overflow-x:hidden}div[style*="max-width"]{padding-left:14px!important;padding-right:14px!important;max-width:100vw!important}h1{font-size:clamp(24px,7vw,34px)!important}img{max-width:100%!important;height:auto!important}a[style*="display:flex"]{padding:12px 14px!important;gap:10px!important}}
   </style>
   <link rel="icon" href="/logo.webp">
 </head>
