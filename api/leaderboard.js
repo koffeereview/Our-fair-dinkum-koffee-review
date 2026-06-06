@@ -147,7 +147,8 @@ export default async function handler(req, res) {
       ".footer-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px; }\n" +
       ".footer-links a { font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; }\n" +
       ".footer-links a:hover { color:#c8a96e; }\n" +
-      "</style>\n" +
+      "    @media(max-width:480px){body{overflow-x:hidden}div[style*="max-width"]{padding-left:14px!important;padding-right:14px!important;max-width:100vw!important}h1{font-size:clamp(24px,7vw,34px)!important}img{max-width:100%!important;height:auto!important}a[style*="display:flex"]{padding:12px 14px!important;gap:10px!important}}
+  </style>\n" +
       "<link rel=\"icon\" href=\"/logo.webp\">\n" +
       "</head>\n<body>\n" +
       "<nav>\n" +
