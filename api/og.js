@@ -3,20 +3,28 @@
 // Returns an SVG image that social platforms render as the preview card
 
 function getColor(s) {
-  if (s >= 9) return '#ffffff';
-  if (s >= 8) return '#4ade80';
-  if (s >= 7) return '#2dd4bf';
-  if (s >= 6) return '#facc15';
-  if (s >= 5) return '#fb923c';
+  if (s >= 9.1) return '#ffffff';
+  if (s >= 8.1) return '#4ade80';
+  if (s >= 7.5) return '#2dd4bf';
+  if (s >= 7.1) return '#2dd4bf';
+  if (s >= 6.5) return '#facc15';
+  if (s >= 6.1) return '#facc15';
+  if (s >= 5.5) return '#fb923c';
+  if (s >= 5.1) return '#fb923c';
+  if (s >= 4.1) return '#f87171';
   return '#f87171';
 }
 
 function getVerdict(s) {
-  if (s >= 9) return 'ELITE';
-  if (s >= 8) return 'GREAT';
-  if (s >= 7) return 'SOLID';
-  if (s >= 6) return 'DECENT';
-  if (s >= 5) return 'JUST OKAY';
+  if (s >= 9.1) return 'ELITE';
+  if (s >= 8.1) return 'GREAT';
+  if (s >= 7.5) return 'MUST VISIT';
+  if (s >= 7.1) return 'SOLID';
+  if (s >= 6.5) return 'DECENT';
+  if (s >= 6.1) return 'TAKE OR LEAVE';
+  if (s >= 5.5) return 'AVERAGE';
+  if (s >= 5.1) return 'JUST OKAY';
+  if (s >= 4.1) return 'NOT FOR US';
   return 'AVOID';
 }
 
