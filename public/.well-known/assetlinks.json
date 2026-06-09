@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.koffeereview.app",
+      "sha256_cert_fingerprints": [
+        "A8:D8:89:8B:1D:31:27:AD:D3:9D:2A:D7:11:93:64:A6:83:9A:8D:F9:BA:4A:E5:C5:28:21:50:41:EC:A4:CA:3A"
+      ]
+    }
+  }
+]
