@@ -39,11 +39,15 @@ function parseCSV(text) {
 }
 
 function getScoreColor(score) {
-  if (score >= 9.0) return "#ffffff";
-  if (score >= 8.0) return "#4ade80";
-  if (score >= 7.0) return "#2dd4bf";
-  if (score >= 6.0) return "#facc15";
-  if (score >= 5.0) return "#fb923c";
+  if (score >= 9.1) return "#ffffff";
+  if (score >= 8.1) return "#4ade80";
+  if (score >= 7.5) return "#2dd4bf";
+  if (score >= 7.1) return "#2dd4bf";
+  if (score >= 6.5) return "#facc15";
+  if (score >= 6.1) return "#facc15";
+  if (score >= 5.5) return "#fb923c";
+  if (score >= 5.1) return "#fb923c";
+  if (score >= 4.1) return "#f87171";
   return "#f87171";
 }
 
