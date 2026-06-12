@@ -18,6 +18,10 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/sitemap-static.xml", "destination": "/api/sitemap?type=static" },
+    { "source": "/sitemap-reviews.xml", "destination": "/api/sitemap?type=reviews" },
+    { "source": "/sitemap-cities.xml", "destination": "/api/sitemap?type=cities" },
+    { "source": "/sitemap-suburbs.xml", "destination": "/api/sitemap?type=suburbs" },
     { "source": "/review/:slug", "destination": "/api/review?slug=:slug" },
     { "source": "/city/:city", "destination": "/api/city?city=:city" },
     { "source": "/suburb/:suburb", "destination": "/api/suburb?suburb=:suburb" },
@@ -44,6 +48,6 @@
     { "source": "/blog/:slug", "destination": "/api/blog?slug=:slug" },
     { "source": "/how-we-score", "destination": "/how-we-score.html" },
     { "source": "/embed/:slug", "destination": "/api/embed?slug=:slug" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/og", "destination": "/api/og" }
   ]
 }
