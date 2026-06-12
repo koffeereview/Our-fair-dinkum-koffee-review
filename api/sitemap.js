@@ -50,6 +50,7 @@ export default async function handler(req,res){
       xml+=url(BASE+"/explore",today,"weekly","0.90");
       xml+=url(BASE+"/about",today,"monthly","0.85");
       xml+=url(BASE+"/leaderboard",today,"weekly","0.90");
+      xml+=url(BASE+"/must-visit-cafes",today,"weekly","0.90");
       xml+=url(BASE+"/blog",today,"weekly","0.85");
       xml+=url(BASE+"/blog/how-to-find-good-coffee",today,"monthly","0.80");
       xml+=url(BASE+"/blog/coffee-terminology-explained",today,"monthly","0.80");
@@ -83,6 +84,7 @@ export default async function handler(req,res){
         var s=slug(c);
         xml+=url(BASE+"/city/"+s,today,"weekly","0.85");
         xml+=url(BASE+"/best-coffee-"+s,today,"weekly","0.85");
+        xml+=url(BASE+"/best-latte-"+s,today,"weekly","0.80");
       });
     }
 
