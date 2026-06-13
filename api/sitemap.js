@@ -65,6 +65,9 @@ export default async function handler(req,res){
       xml+=url(BASE+"/worst-cafes-by-suburb",today,"weekly","0.75");
       xml+=url(BASE+"/hidden-gem-cafes-brisbane",today,"weekly","0.80");
       xml+=url(BASE+"/best-latte-brisbane",today,"weekly","0.80");
+      xml+=url(BASE+"/best-latte-australia",today,"weekly","0.85");
+      xml+=url(BASE+"/best-cafes-australia",today,"weekly","0.85");
+      xml+=url(BASE+"/best-coffee-australia",today,"weekly","0.85");
       // Landmarks
       var landmarks=["south-bank","queen-street-mall","brisbane-cbd","suncorp-stadium","the-gabba","fortitude-valley","howard-smith-wharves","james-street","new-farm-park","uq-st-lucia","qut-gardens-point","roma-street","west-village","eat-street","mt-coot-tha","kangaroo-point","brisbane-airport","surfers-paradise","pacific-fair","burleigh-beach"];
       landmarks.forEach(function(l){xml+=url(BASE+"/coffee-near/"+l,today,"monthly","0.65");});
