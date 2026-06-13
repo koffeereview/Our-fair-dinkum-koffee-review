@@ -66,6 +66,8 @@ export default async function handler(req,res){
       xml+=url(BASE+"/hidden-gem-cafes-brisbane",today,"weekly","0.80");
       xml+=url(BASE+"/best-latte-brisbane",today,"weekly","0.80");
       xml+=url(BASE+"/best-latte-australia",today,"weekly","0.85");
+      xml+=url(BASE+"/best-espresso-brisbane",today,"weekly","0.80");
+      xml+=url(BASE+"/best-espresso-australia",today,"weekly","0.85");
       xml+=url(BASE+"/best-cafes-australia",today,"weekly","0.85");
       xml+=url(BASE+"/best-coffee-australia",today,"weekly","0.85");
       // Landmarks
@@ -88,6 +90,7 @@ export default async function handler(req,res){
         xml+=url(BASE+"/city/"+s,today,"weekly","0.85");
         xml+=url(BASE+"/best-coffee-"+s,today,"weekly","0.85");
         xml+=url(BASE+"/best-latte-"+s,today,"weekly","0.80");
+        xml+=url(BASE+"/best-espresso-"+s,today,"weekly","0.80");
       });
     }
 
