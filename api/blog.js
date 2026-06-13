@@ -229,6 +229,71 @@ var POSTS = [
       { q: "Where should I go for coffee on the Gold Coast?", a: "Burleigh Heads and Currumbin. Avoid the main tourist strips in Surfers Paradise and Main Beach. Our top Gold Coast picks are Next Door Burleigh (7.8), Silipo Coffee Southport (7.8), and The Market Place Cafe Robina (7.6)." },
       { q: "How does Koffee Review compare cities?", a: "Same method everywhere. One latte, one double shot espresso, same scoring system. A 7.5 in Brisbane means the same thing as a 7.5 in Melbourne. We have reviewed 600+ cafes using this locked system since 2021." }
     ]
+  },
+  {
+    slug: "why-our-scoring-system-works",
+    title: "Why Our Scoring System Works",
+    ogImage: "https://koffeereview.com.au/og-blog-4.png",
+    description: "Why a 0 to 10 scale with locked verdict tiers is the most honest way to rate coffee. No hedging. Here is how we score 600+ cafes consistently across Australia.",
+    date: "2026-06-13", readingTime: "7 min",
+    keywords: ["coffee scoring system","how to rate coffee","coffee rating scale","cafe ratings","coffee quality assessment","koffee review scoring"],
+    intro: "Most cafe reviews are garbage.\n\nThey waffle. They hedge. They will tell you a cafe is great for the vibe or not bad actually and you still do not know if the coffee is worth your time.\n\nWe do not do that.\n\nWe built a scoring system that works because it is simple, consistent, and leaves no room for ambiguity. After 600+ reviews across Australia, it has proven itself.\n\nHere is why it works.",
+    sections: [
+      {
+        heading: "The Problem With Other Rating Systems",
+        body: "Five star ratings are useless. Everyone knows this. Every bad cafe has four stars. Every good one has four point five. The scale collapses because people do not want to hurt feelings.\n\nPercentage scores hide inconsistency. This cafe scores 74% tells you nothing. 74% of what? The maximum score? The average score? You do not know if that is good or mediocre.\n\nVague adjectives are worse. Good, solid, decent. These words mean something different to everyone. To you, decent might be a cafe you would return to. To someone else, it is one you would avoid.\n\nWe needed something that worked every time, across every cafe, with no interpretation needed."
+      },
+      {
+        heading: "Our System: 0 to 10, Locked Verdicts",
+        body: "We use a simple 0 to 10 scale with locked verdict tiers.\n\n9.1+ is ELITE. Exceptional in every way. Destination worthy.\n\n8.1 to 8.9 is GREAT. Worth going out of your way for. Fresh beans, sharp technique.\n\n7.5 to 7.9 is MUST VISIT. Genuinely good coffee. You will think about it after you leave. This is the sticker threshold.\n\n7.1 to 7.4 is SOLID. Reliable. You will not be disappointed.\n\n6.5 to 6.9 is DECENT. Acceptable on a good day. Better options likely nearby.\n\n6.1 to 6.4 is TAKE OR LEAVE. Not bad enough to avoid but not good enough to recommend.\n\n5.5 to 5.9 is AVERAGE. Forgettable coffee that does the job without impressing.\n\n5.1 to 5.4 is JUST OKAY. Below average. You will wish you went somewhere else.\n\n4.1 to 4.9 is NOT FOR US. Skip it.\n\nBelow 4.0 is AVOID. We will tell you exactly why.\n\nThe verdict is locked to the score. If it scores 7.7, it is MUST VISIT. Not pretty good. Not worth trying. MUST VISIT. Meaning it is genuinely good enough to go out of your way for.\n\nThis removes interpretation. No guessing. No debate.",
+        cta: { text: "See our full scoring methodology", url: "/how-we-score" }
+      },
+      {
+        heading: "Why 0 to 10 Works Better Than 5 Star",
+        body: "Range. Five stars collapses everything into five buckets. 0 to 10 gives you ten tiers. More granularity. More honesty.\n\nFamiliarity. Everyone understands 0 to 10. It is how you scored tests in school. It is how you rate things in your head. No learning curve.\n\nNo middle ground. With five stars, the middle (3 stars) is ambiguous. With 0 to 10, anything below 5.5 is clearly do not bother. Anything above 7.0 is worth your time. The gap is real.\n\nSpecificity. A 7.2 is different from a 7.8. Both are in different tiers (SOLID vs MUST VISIT) and that distinction matters. Our system preserves that nuance without making you decode a percentage."
+      },
+      {
+        heading: "Why The Verdicts Are Locked",
+        body: "Here is the key: the verdict does not change. The score does.\n\nIf we said a cafe was MUST VISIT, it is MUST VISIT. Every time. No exceptions. That is the commitment.\n\nBut the score within that tier can move. A 7.5 is MUST VISIT. So is a 7.9. Same verdict, different quality level.\n\nThis is intentional. It creates a confidence floor. Once something hits MUST VISIT, you know it is worth going. You might find a 7.5 or a 7.9, but both pass the threshold.\n\nMeanwhile, the score tells you what we really thought. Precision inside consistency."
+      },
+      {
+        heading: "How We Actually Score",
+        body: "Every cafe. Same order. Every time.\n\nOne latte. One double shot espresso.\n\nThe latte tests milk technique, espresso to milk ratio, balance, and texture.\n\nThe espresso tests raw extraction quality, crema, finish, and whether the shot was pulled properly.\n\nWhat we are really judging: technical execution (did the barista do their job), bean quality (are they using fresh, decent beans), consistency (would this be the same next week), and value (are you getting what you are paying for).\n\nThat is it. No nostalgia. No vibe. No forgiveness for bad coffee in a pretty cafe.",
+        cta: { text: "Read the full methodology", url: "/how-we-score" }
+      },
+      {
+        heading: "The Three Rules That Keep It Honest",
+        body: "Rule 1: No hedging. Pretty good actually is not a verdict. Either it works or it does not. Either it is worth your time or it is not. Anything below 5.5 is AVERAGE or worse. Not you might hate it. Not it is polarising.\n\nRule 2: One order, one score. We do not taste the coffee three times and average. We order once. One latte. One espresso. That is your score. Because that is what you are getting. If a cafe is inconsistent, that is a problem. But we are not averaging away the bad days.\n\nRule 3: The verdict tier is the promise. If we say MUST VISIT (7.5+), we are saying go out of your way, this is worth it. That is not a casual rating. That is a commitment. We have tested 600+ cafes. We know what good looks like. If we say MUST VISIT, we mean it."
+      },
+      {
+        heading: "Why This Matters",
+        body: "For you: you know exactly what you are getting. A 7.6 cafe is worth the drive. A 6.2 cafe is a maybe. A 4.8 cafe is a waste of time. No guessing.\n\nFor cafes: if they score well, they earned it. No participation trophies. No everyone is a winner. The rating means something because the standard is real.\n\nFor consistency: we have rated 600+ cafes across Australia. Same system. Same order. Same threshold. You can compare a Brisbane cafe to a Melbourne one with confidence.",
+        links: [
+          { text: "See the leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "Cafes to avoid", url: "/brisbane-cafes-to-avoid" }
+        ]
+      },
+      {
+        heading: "How To Use The System",
+        body: "If you see MUST VISIT (7.5+): go. You will get genuinely good coffee. No regrets.\n\nIf you see SOLID (7.1 to 7.4): good. No complaints. Worth visiting if you are in the area.\n\nIf you see DECENT (6.5 to 6.9): fine. It exists. You will not hate it.\n\nIf you see TAKE OR LEAVE (6.1 to 6.4): meh. Better options out there.\n\nIf you see AVERAGE (5.5 to 5.9): forgettable. You will not remember it tomorrow.\n\nIf you see NOT FOR US (4.1 to 4.9): do not. Your time and money are worth more.\n\nIf you see AVOID (below 4.0): absolutely not.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Explore Koffee Review", url: "/explore" },
+          { text: "Compare two cafes", url: "/compare" },
+          { text: "Hidden gem cafes", url: "/hidden-gem-cafes-brisbane" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "How does Koffee Review score cafes?", a: "We order one latte and one double shot espresso at every cafe. Same order, same size, every time. We score on taste, extraction, milk technique, and value out of 10. No sponsorships, no free coffees, no exceptions." },
+      { q: "What score means a cafe is worth visiting?", a: "Anything 7.5 or above is a Must Visit in our system. Cafes scoring 8.1+ are Great. 9.1+ is Elite. Below 5.5 is Average or worse. Below 4.0 is Avoid." },
+      { q: "Why does Koffee Review use a 0 to 10 scale?", a: "A 0 to 10 scale gives 10 verdict tiers instead of 5. It preserves nuance (a 7.2 is different from a 7.8) while being universally understood. Five star ratings collapse everything into too few buckets." },
+      { q: "Are Koffee Review scores consistent across cities?", a: "Yes. A 7.5 in Brisbane means the same thing as a 7.5 in Melbourne. Same order, same scoring criteria, same locked verdict tiers across all 600+ reviews." },
+      { q: "What is the Koffee Review sticker?", a: "Any cafe scoring 7.5 or above earns a Koffee Review sticker, our Must Visit badge. It means the cafe passed our blind taste test and is genuinely worth going out of your way for." }
+    ]
   }
 ];
 
