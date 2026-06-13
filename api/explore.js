@@ -80,7 +80,10 @@ export default async function handler(req,res){
   <meta property="og:url" content="https://koffeereview.com.au/explore"><meta property="og:image" content="https://koffeereview.com.au/logo.webp">
   <link rel="icon" href="/logo.webp">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Explore Koffee Review","description":"${desc}","url":"https://koffeereview.com.au/explore","publisher":{"@type":"Organization","name":"Koffee Review"}}<\/script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Explore Koffee Review","description":"${desc}","url":"https://koffeereview.com.au/explore","publisher":{"@type":"Organization","name":"Our Fair Dinkum Koffee Review","url":"https://koffeereview.com.au"}}<\/script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Browse by City","numberOfItems":${cities.length},"itemListElement":[${cities.slice(0,10).map(function(c,i){var s=makeSlug(c);return'{"@type":"ListItem","position":'+(i+1)+',"url":"https://koffeereview.com.au/city/'+s+'","name":"Best Coffee in '+esc(c)+'"}'}).join(",")}]}<\/script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Popular Suburbs","numberOfItems":${topSuburbs.length},"itemListElement":[${topSuburbs.slice(0,12).map(function(s,i){var sub=makeSlug(s);var cityName=(cafes.find(function(c){return c.suburb===s;})||{}).city||"Brisbane";var cityS=makeSlug(cityName);return'{"@type":"ListItem","position":'+(i+1)+',"url":"https://koffeereview.com.au/suburb/'+sub+'-'+cityS+'","name":"'+esc(s)+' Cafes"}'}).join(",")}]}<\/script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Koffee Review?","acceptedAnswer":{"@type":"Answer","text":"Koffee Review is an independent Australian cafe review platform. We have reviewed ${total}+ cafes across ${cities.length} cities by ordering one latte and one double shot espresso at every cafe. No sponsorships, no paid placements."}},{"@type":"Question","name":"How many cafes has Koffee Review reviewed?","acceptedAnswer":{"@type":"Answer","text":"We have reviewed ${total}+ cafes across Australia including Brisbane, Gold Coast, Melbourne, Sydney, Sunshine Coast, and more. ${mustVisit} cafes have earned our Must Visit rating (7.5+)."}},{"@type":"Question","name":"What score means a cafe is worth visiting?","acceptedAnswer":{"@type":"Answer","text":"Any cafe scoring 7.5 or above earns our Must Visit rating and a Koffee Review sticker. Scores of 8.1+ are rated Great, and 9.1+ is Elite. We use a locked 10 tier verdict system across all reviews."}},{"@type":"Question","name":"Is Koffee Review free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. Koffee Review is completely free. Browse all ${total}+ reviews, compare cafes, explore suburb guides, and use our heat map at no cost. No account required."}},{"@type":"Question","name":"Which Australian city has the best coffee?","acceptedAnswer":{"@type":"Answer","text":"Based on ${total}+ reviews, Melbourne has the highest average scores. Brisbane has the most reviews and is the fastest growing coffee scene. Gold Coast has pockets of excellence but is inconsistent. Each city has a different coffee personality."}}]}<\/script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{background:#0a0a0c;color:#d4d4d4;font-family:'DM Sans',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -153,7 +156,8 @@ export default async function handler(req,res){
     .ft{margin-top:36px;text-align:center;padding:16px 0}
     .ft-copy{font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.5px}
 
-    @media(max-width:480px){.g2,.fg{grid-template-columns:1fr}.stats{flex-wrap:wrap}.stat{min-width:45%}}
+    .stats{display:grid;grid-template-columns:1fr 1fr}.stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.03);padding:12px 8px;min-width:0}.stat:nth-child(odd){border-right:1px solid rgba(255,255,255,0.03)}.stat:nth-last-child(-n+2){border-bottom:none}}
+      .g2,.fg{grid-template-columns:1fr!important}.g3{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))!important}.card-title{font-size:12px!important}.fc-title{font-size:14px!important}.wide{flex-direction:column!important;gap:12px!important;text-align:center}
   </style>
 </head>
 <body>
@@ -203,10 +207,14 @@ export default async function handler(req,res){
         ${bestCards}
       </div>
       <div class="g2">
+        ${pageCard("Must Visit Cafes","All "+mustVisit+" sticker earners (7.5+)","/must-visit-cafes","#2dd4bf")}
         ${pageCard("Best Latte Brisbane","Latte specific rankings","/best-latte-brisbane","#E6C073")}
+      </div>
+      <div class="g2">
         ${pageCard("Cafes to Avoid","Save your money","/brisbane-cafes-to-avoid","#f87171")}
         ${pageCard("Worst by Suburb","Lowest scored per suburb","/worst-cafes-by-suburb","#f87171")}
         ${pageCard("New This Month","Latest reviews weekly","/new","#4ade80")}
+        ${pageCard("Best Latte Gold Coast","GC latte rankings","/best-latte-gold-coast","#E6C073")}
       </div>
 
       <div class="sh" style="margin-top:20px;border:none;padding-bottom:8px">
