@@ -52,6 +52,8 @@
     { "source": "/compare", "destination": "/api/compare" },
     { "source": "/blog", "destination": "/api/blog" },
     { "source": "/blog/:slug", "destination": "/api/blog?slug=:slug" },
+    { "source": "/roaster", "destination": "/api/roaster" },
+    { "source": "/roaster/:slug", "destination": "/api/roaster?slug=:slug" },
     { "source": "/how-we-score", "destination": "/how-we-score.html" },
     { "source": "/embed/:slug", "destination": "/api/embed?slug=:slug" },
     { "source": "/og", "destination": "/api/og" }
