@@ -111,3 +111,4 @@ export default async function handler(req,res){
     return res.status(200).send(renderRoaster(roaster,allRoasters));
   }catch(e){res.status(500).send("Error loading roasters");}
 }
+ 
