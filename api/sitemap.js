@@ -9,11 +9,11 @@ function makeSlug(n,s){return slug(n+"-"+s);}
 function parseCSV(text){
   var lines=text.split("\n").filter(function(l){return l.trim();});if(lines.length<2)return[];
   var h=splitCSV(lines[0]).map(function(x){return x.trim().toLowerCase();});
-  var ni=h.indexOf("name"),si=h.indexOf("suburb"),ci=h.indexOf("city"),sci=h.indexOf("score");
+  var ni=h.indexOf("name"),si=h.indexOf("suburb"),ci=h.indexOf("city"),sci=h.indexOf("score"),ri=h.indexOf("roaster");
   if(ni===-1||si===-1)return[];var out=[];
   for(var i=1;i<lines.length;i++){try{var p=splitCSV(lines[i]);var n=(p[ni]||"").trim();if(!n)continue;var sc=parseFloat(p[sci])||0;if(sc<=0)continue;
   var city=(p[ci]||"").trim();if(SPAIN.indexOf(city.toLowerCase())!==-1)continue;
-  out.push({name:n,suburb:(p[si]||"").trim(),city:city,score:sc});}catch(e){}}
+  out.push({name:n,suburb:(p[si]||"").trim(),city:city,score:sc,roaster:(ri!==-1?(p[ri]||""):"").trim()});}catch(e){}}
   return out;
 }
 
@@ -68,6 +68,7 @@ export default async function handler(req,res){
       xml+=url(BASE+"/best-latte-australia",today,"weekly","0.85");
       xml+=url(BASE+"/best-espresso-brisbane",today,"weekly","0.80");
       xml+=url(BASE+"/best-espresso-australia",today,"weekly","0.85");
+      xml+=url(BASE+"/roaster",today,"weekly","0.85");
       xml+=url(BASE+"/best-cafes-australia",today,"weekly","0.85");
       xml+=url(BASE+"/best-coffee-australia",today,"weekly","0.85");
       // Landmarks
@@ -96,6 +97,14 @@ export default async function handler(req,res){
 
     // SUBURBS — /sitemap-suburbs.xml
     if(type==="suburbs"){
+      // Roaster pages
+      var roasterMap={};cafes.forEach(function(c){
+        if(c.roaster){var rs=c.roaster.toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").trim();
+        if(rs)roasterMap[rs]=true;}
+      });
+      Object.keys(roasterMap).forEach(function(r){
+        xml+=url(BASE+"/roaster/"+r,today,"weekly","0.75");
+      });
       var subMap={};cafes.forEach(function(c){
         if(c.suburb&&c.city){
           var key=c.suburb+"|||"+c.city;
