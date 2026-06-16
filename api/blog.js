@@ -294,6 +294,135 @@ var POSTS = [
       { q: "Are Koffee Review scores consistent across cities?", a: "Yes. A 7.5 in Brisbane means the same thing as a 7.5 in Melbourne. Same order, same scoring criteria, same locked verdict tiers across all 600+ reviews." },
       { q: "What is the Koffee Review sticker?", a: "Any cafe scoring 7.5 or above earns a Koffee Review sticker, our Must Visit badge. It means the cafe passed our blind taste test and is genuinely worth going out of your way for." }
     ]
+  },
+  {
+    slug: "brisbane-vs-gold-coast-coffee",
+    title: "Brisbane vs Gold Coast Coffee \u2014 What 350+ Reviews Tell Us",
+    ogImage: "https://koffeereview.com.au/og-blog-5.png",
+    description: "We have reviewed 350+ cafes across Brisbane and the Gold Coast. Same order every time. Here is which city does coffee better, the best suburbs in each, and where to actually go.",
+    date: "2026-06-20", readingTime: "8 min",
+    keywords: ["brisbane vs gold coast coffee","best coffee brisbane","best coffee gold coast","brisbane coffee","gold coast coffee","queensland coffee"],
+    intro: "Two cities. One state. Completely different coffee cultures.\n\nWe have reviewed 350+ cafes across Brisbane and the Gold Coast. Same order every time. One latte, one double shot espresso. No vibe scores. No nostalgia. Just the coffee.\n\nAfter all those visits, the data tells a clear story. Here is who wins, where to go, and why the two cities feel nothing alike in the cup.",
+    sections: [
+      {
+        heading: "The Headline Numbers",
+        body: "Brisbane has the volume. Gold Coast has the gaps.\n\nBrisbane: more cafes reviewed, more genuine standouts, higher floor. The bad ones are fewer and the good ones run deeper.\n\nGold Coast: fewer reviews, more inconsistency. Tourist pressure means a lot of cafes coast on location, not craft. But the top end holds its own against anything in Brisbane.\n\nThe short version: Brisbane is more reliable. Gold Coast is more hit or miss, but the hits are real."
+      },
+      {
+        heading: "Brisbane \u2014 Volume and Consistency",
+        body: "Brisbane's coffee scene works because it is not trying to impress anyone. The culture here is functional. Good coffee, fair price, move on. No one is lecturing you about extraction yield. They just pull a clean shot and hand it over.\n\nWhat Brisbane does well: consistency. The gap between the best and the average cafe is smaller than you would expect. Value. You get good coffee for less than anywhere else in the country. Depth. The good suburbs have multiple genuine options, not just one hero cafe.\n\nWhere Brisbane falls short: less experimentation. Single origins and specialty pour overs are rarer. The CBD is a coin flip. High foot traffic, mixed quality.\n\nTop Brisbane cafes: <a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista (Manly) at 7.8</a>, <a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin (West End) at 7.8</a>, and <a href=\"/review/coffee-speed-dial-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Speed Dial (Newstead) at 7.5</a>.\n\nBest Brisbane suburbs for coffee: West End, Newstead, Manly, Woolloongabba. These carry the highest concentration of genuine picks.",
+        links: [
+          { text: "Explore all Brisbane cafes", url: "/city/brisbane" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" }
+        ]
+      },
+      {
+        heading: "Gold Coast \u2014 Scenery First, Coffee Second (Usually)",
+        body: "The Gold Coast has a different problem. Too many cafes are selling a view, not a coffee. When you are on the water with tourist foot traffic out the door, there is no pressure to pull a great shot. People are there for the beach, not the bean. A lot of cafes know it and coast.\n\nBut the serious ones, the cafes tucked into Burleigh, Currumbin, the back streets, are genuinely excellent. They have to be, because they are competing on coffee, not location.\n\nWhat Gold Coast does well: the top end. Its best cafes match Brisbane's best, no question. Setting. Nobody does an oceanfront coffee like the Goldy. Specialty pockets. Burleigh and Currumbin punch above their weight.\n\nWhere Gold Coast falls short: the floor is lower. More mediocre cafes riding on location. Inconsistency. Quality swings hard suburb to suburb. Price. You pay more, and not always for better coffee.\n\nTop Gold Coast cafes: <a href=\"/review/next-door-burleigh-burleigh-heads\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Next Door Burleigh (Burleigh Heads) at 7.8</a>, <a href=\"/review/silipo-coffee-southport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Silipo Coffee (Southport) at 7.8</a>, and <a href=\"/review/the-market-place-cafe-robina\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Market Place Cafe (Robina) at 7.6</a>.\n\nBest Gold Coast suburbs for coffee: Burleigh Heads, Currumbin, Southport. Skip Surfers Paradise and Main Beach unless you are already there.",
+        links: [
+          { text: "Explore all Gold Coast cafes", url: "/city/gold-coast" },
+          { text: "Best coffee Gold Coast", url: "/best-coffee-gold-coast" }
+        ]
+      },
+      {
+        heading: "Head to Head",
+        body: "Consistency: Brisbane wins. Smaller gap top to bottom.\n\nTop end quality: equal. Gold Coast matches Brisbane's best.\n\nValue: Brisbane wins. Cheapest good coffee in Australia.\n\nSetting: Gold Coast wins. Oceanfront is hard to beat.\n\nDepth (good options): Brisbane wins. More genuine picks across more suburbs.\n\nExperimentation: Gold Coast slightly ahead in specialty pockets.\n\nOverall: Brisbane takes it on consistency, value, and depth. Gold Coast wins on setting and matches Brisbane at the very top. If you want reliable, go Brisbane. If you want a great coffee with a view and you know where to look, go Gold Coast."
+      },
+      {
+        heading: "The Style Difference",
+        body: "This is the part the numbers do not fully capture.\n\nBrisbane coffee is built for the daily drinker. Medium roasts, house blends, dialled in milk. The aim is a coffee you would happily drink every morning. Comfortable, not flashy.\n\nGold Coast coffee splits in two. The tourist cafes serve a predictable, safe latte to people who will not notice either way. The serious cafes go harder. Single origins, brighter roasts, more deliberate extraction. Because their regulars actually care.\n\nSo a Brisbane 7.5 and a Gold Coast 7.5 do not taste the same. Brisbane's is reliably good. Gold Coast's is good because someone fought to make it good in a market that does not demand it."
+      },
+      {
+        heading: "Where To Actually Go",
+        body: "In Brisbane, if you want a sure thing: head to West End or Newstead. Pick anything 7.5+ on the leaderboard. You will not be disappointed.\n\nOn the Gold Coast, if you want a sure thing: go to Burleigh Heads or Currumbin. Ignore the beachfront chains. The good coffee is one street back.\n\nIf you are choosing between the two for a coffee trip: Brisbane for breadth. More cafes, less risk. Gold Coast for a standout day. Fewer options, but a great one by the water beats anything.",
+        links: [
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best latte Brisbane", url: "/best-latte-brisbane" },
+          { text: "Best latte Gold Coast", url: "/best-latte-gold-coast" },
+          { text: "Best espresso Brisbane", url: "/best-espresso-brisbane" }
+        ]
+      },
+      {
+        heading: "The Verdict",
+        body: "Brisbane wins on paper. More consistency, better value, deeper bench.\n\nBut the Gold Coast is not far behind, and its best cafes will hold their own against any cafe in the state. The difference is you have to know where to look. Brisbane forgives a blind choice. The Gold Coast punishes it.\n\nBoth cities have genuinely great coffee. You just need the data to find it.\n\nThat is what we are here for.",
+        links: [
+          { text: "Browse Brisbane cafes", url: "/city/brisbane" },
+          { text: "Browse Gold Coast cafes", url: "/city/gold-coast" },
+          { text: "Explore all pages", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Is Brisbane or Gold Coast better for coffee?", a: "Based on 350+ reviews, Brisbane is more consistent with better value and more good cafes spread across more suburbs. Gold Coast matches Brisbane at the top end but has a wider quality gap. Brisbane wins overall but Gold Coast's best cafes are genuinely excellent." },
+      { q: "Where is the best coffee on the Gold Coast?", a: "Burleigh Heads and Currumbin have the highest concentration of good cafes. Our top picks are Next Door Burleigh (7.8), Silipo Coffee Southport (7.8), and The Market Place Cafe Robina (7.6). Avoid the main tourist strips." },
+      { q: "Is Gold Coast coffee overpriced?", a: "Gold Coast cafes are typically $1 to $1.50 more expensive than Brisbane for equivalent quality. You are partly paying for the setting. The serious cafes in Burleigh and Currumbin are worth the premium. Tourist strip cafes generally are not." },
+      { q: "What makes Brisbane coffee different from Gold Coast?", a: "Brisbane coffee is built for daily drinkers. Medium roasts, house blends, reliable consistency. Gold Coast splits between tourist cafes serving safe lattes and serious cafes pushing specialty coffee. Different cultures, different priorities." }
+    ]
+  },
+  {
+    slug: "coffee-bean-origins-guide",
+    title: "Coffee Bean Origins Guide \u2014 What Every Region Actually Tastes Like",
+    ogImage: "https://koffeereview.com.au/og-blog-6.png",
+    description: "Ethiopian coffees are not all fruity. Brazilian coffees are not all chocolate. Here is what actually happens when you drink single origins from 8 major coffee regions.",
+    date: "2026-06-27", readingTime: "9 min",
+    keywords: ["coffee bean origins","single origin coffee","Ethiopian coffee","Colombian coffee","coffee regions","where coffee comes from","coffee taste guide"],
+    intro: "Coffee tastes like geography. Not metaphorically. Literally. Where a bean grows, the altitude, soil, rainfall, processing, determines what you taste when you drink it.\n\nMost people do not care. They see single origin and assume it matters. It does. But not how most cafes explain it.\n\nHere is what actually happens when you drink coffee from different parts of the world.",
+    sections: [
+      {
+        heading: "The Rule: Altitude + Processing = Flavour",
+        body: "Before diving into regions, remember this.\n\nHigh altitude means more acid, more complexity. Beans grow slower at elevation, developing more sugars and acids.\n\nLow altitude means heavier, more earthy. Beans grow faster, less time to develop.\n\nWashed processing means cleaner, brighter. Water removes the fruit, so you taste the bean.\n\nNatural processing means fruitier, messier. Bean dries inside the fruit, so you taste the fruit.\n\nMost high quality coffee is high altitude plus washed. That is not a rule. That is just what works."
+      },
+      {
+        heading: "Ethiopia \u2014 The Birthplace",
+        body: "Flavour profile: fruity, floral, tea like, bright. High altitude plus washed processing plus genetic diversity. Ethiopian coffees are what coffee should taste like if you want to taste coffee, not chocolate.\n\nLight roast: blueberry, jasmine, citrus. Thin bodied. High acidity. Feels delicate. Medium roast: berries flatten out. Becomes more balanced. Still bright. Dark roast: loses all identity. Do not bother.\n\nThe catch: inconsistency. Some Ethiopian coffees are incredible. Some taste like hay. Processing standards vary wildly.\n\nBest for: people who like tea like coffee, bright acidity, complex flavour layers. Worst for: people who want chocolate, sweetness, or heavy body."
+      },
+      {
+        heading: "Colombia \u2014 The Reliable Middle Ground",
+        body: "Flavour profile: balanced, nutty, caramel, chocolate, medium body. Volcanic soil, decent altitude, consistent processing standards. Colombian coffee is engineered to be consistently good.\n\nLight roast: slight brightness, berries edge but muted. Medium roast: chocolate, caramel, almond. Balanced. Comfortable. Dark roast: rich, full bodied, slightly bitter. Works well.\n\nThe catch: balanced means boring to some people. Colombian coffee rarely surprises.\n\nBest for: people who just want good coffee without overthinking. Espresso base for lattes. Consistent cafe blends. Worst for: people who want excitement or extreme flavour profiles."
+      },
+      {
+        heading: "Brazil \u2014 The Heavy Hitter",
+        body: "Flavour profile: heavy body, low acid, chocolate, nuts, sometimes earthy. Lower altitude plus larger scale production. Brazilian farms are massive. Volume over complexity.\n\nLight roast: nutty, slightly fruity but the weight is there. Medium roast: chocolate, brown sugar, walnut. Smooth. Dense. Dark roast: bold, full bodied, almost syrupy. Harsh notes emerge.\n\nThe catch: low acidity means it tastes flat to some people. But if you like chocolate coffee, Brazil is your friend.\n\nBest for: dark roast fans, espresso drinks (milk based), people who want bold, punchy coffee. Worst for: espresso purists, people who like bright acidity."
+      },
+      {
+        heading: "Kenya \u2014 The Hidden Gem",
+        body: "Flavour profile: berry forward, wine like, balanced acidity, black tea notes. High altitude, volcanic soil, washed processing. Similar to Ethiopia but more refined and consistent.\n\nLight roast: blackcurrant, raspberry, bergamot tea. Clean. Crisp. Medium roast: berries smooth out. Red wine notes emerge. Still balanced. Dark roast: loses the brightness. Not recommended.\n\nThe catch: expensive. Quality Kenyan coffee costs more than Colombian. You taste why.\n\nBest for: people who like Ethiopian coffees but want more consistency. Espresso enthusiasts. Worst for: budget conscious people. People who want heavy body."
+      },
+      {
+        heading: "Indonesia (Sumatra) \u2014 The Wild Card",
+        body: "Flavour profile: earthy, herbal, heavy body, low acid, unusual. Wet processing in humid climate means funky fermentation means weird flavours. Sometimes brilliant, sometimes undrinkable.\n\nAny roast: damp soil, mushroom, cedar, leather. Heavy mouthfeel. Thick. Some people find this disgusting. Some find it addictive. Sumatran processing is imprecise. You are gambling.\n\nThe catch: inconsistency is extreme. One batch is great. The next batch is undrinkable.\n\nBest for: adventurous coffee drinkers, people who like heavy body, dark roast espresso. Worst for: people who want clean, predictable coffee."
+      },
+      {
+        heading: "Central America \u2014 The Balanced Alternative",
+        body: "Costa Rica, Guatemala, Honduras. Flavour profile: similar to Colombia but slightly more refined. Balanced, slightly fruity, medium body. High altitude, volcanic soil, washed processing.\n\nLight roast: stone fruit, slight brightness, clean. Medium roast: chocolate, caramel, balanced acidity. Comfortable. Dark roast: bold, smooth, not harsh.\n\nThe catch: price. Central American coffee costs more than Colombian.\n\nBest for: people who like Colombian coffee but want slightly more complexity. Worst for: budget shoppers."
+      },
+      {
+        heading: "How To Actually Use This At A Cafe",
+        body: "You are at a cafe. They have three single origins on pour over.\n\nEthiopian Yirgacheffe: pick this if you want brightness, complexity, floral notes. Accept tea like body.\n\nColombian Huila: pick this if you want comfortable, balanced, consistent. Safe choice.\n\nKenyan AA: pick this if you want Ethiopian vibes but higher consistency. Costs more.\n\nFor espresso: Colombian blend is the best baseline, works with milk. Brazilian is best for dark roast espresso, bold and punchy. Kenya is best for espresso purists who want clarity.\n\nFor home brewing pour over: Ethiopian or Kenyan because you taste everything, good or bad. Colombian because it is forgiving and hard to mess up. Central American for the sweet spot between clarity and forgiveness.",
+        cta: { text: "See how we score espresso and lattes", url: "/how-we-score" }
+      },
+      {
+        heading: "The Truth About Origins",
+        body: "Single origin does not guarantee quality. An Ethiopian coffee can be 5.2 or 8.1 depending on the farm, processing, roast, and storage. A blend can be more complex and interesting than a single origin.\n\nWhat matters: the roaster knows what they are doing. Good roasters understand their origins and roast accordingly. The coffee is fresh. Beans degrade. A month old Ethiopian tastes flat. Your expectations match the origin. Ethiopian will not taste like chocolate. Brazilian will not taste like flowers.\n\nMost bad single origin experiences come from mismatched expectations, not bad coffee.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "See the leaderboard", url: "/leaderboard" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Which coffee origin tastes best?", a: "It depends on preference. Ethiopian coffee is fruity and complex. Colombian is balanced and reliable. Brazilian is heavy and chocolatey. Kenyan is berry forward with wine like acidity. There is no best origin, only what matches your taste." },
+      { q: "What is single origin coffee?", a: "Single origin means the beans come from one specific farm, region, or country. It has a distinct flavour profile reflecting where it was grown. Blends combine beans from multiple origins for consistency. Neither is inherently better." },
+      { q: "Why does Ethiopian coffee taste fruity?", a: "High altitude, genetic diversity, and often natural processing where the bean dries inside the fruit. This transfers fruit sugars into the bean. Light roasting preserves these fruity and floral notes." },
+      { q: "What is the best coffee origin for espresso?", a: "Colombian is the safest baseline for espresso, especially with milk. Brazilian works best for dark roast espresso. Kenyan is ideal for espresso purists who want clarity and brightness in the shot." },
+      { q: "Does single origin mean better quality?", a: "No. Single origin does not guarantee quality. An Ethiopian coffee can score anywhere from 5.2 to 8.1 depending on the farm, processing, and roast. A well crafted blend can be more complex than a poor single origin." }
+    ]
   }
 ];
 
