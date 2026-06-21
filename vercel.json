@@ -56,6 +56,7 @@
     { "source": "/roaster/:slug", "destination": "/api/roaster?slug=:slug" },
     { "source": "/coffee-guide", "destination": "/api/coffee-guide" },
     { "source": "/countries", "destination": "/api/countries" },
+    { "source": "/countries/:country", "destination": "/api/countries?country=:country" },
     { "source": "/how-we-score", "destination": "/how-we-score.html" },
     { "source": "/embed/:slug", "destination": "/api/embed?slug=:slug" },
     { "source": "/og", "destination": "/api/og" }
