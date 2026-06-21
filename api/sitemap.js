@@ -70,6 +70,7 @@ export default async function handler(req,res){
       xml+=url(BASE+"/best-espresso-australia",today,"weekly","0.85");
       xml+=url(BASE+"/roaster",today,"weekly","0.85");
       xml+=url(BASE+"/coffee-guide",today,"monthly","0.85");
+      xml+=url(BASE+"/countries",today,"monthly","0.75");
       xml+=url(BASE+"/best-cafes-australia",today,"weekly","0.85");
       xml+=url(BASE+"/best-coffee-australia",today,"weekly","0.85");
       // Landmarks
