@@ -35,6 +35,7 @@
     { "source": "/moreton-bay-cafes-to-avoid", "destination": "/api/cafes-to-avoid?city=moreton-bay" },
     { "source": "/ipswich-cafes-to-avoid", "destination": "/api/cafes-to-avoid?city=ipswich" },
     { "source": "/logan-cafes-to-avoid", "destination": "/api/cafes-to-avoid?city=logan" },
+    { "source": "/redland-cafes-to-avoid", "destination": "/api/cafes-to-avoid?city=redland" },
     { "source": "/best-espresso-australia", "destination": "/api/best-espresso?city=all" },
     { "source": "/best-espresso-:city", "destination": "/api/best-espresso?city=:city" },
     { "source": "/best-latte-australia", "destination": "/api/best-latte?city=all" },
