@@ -62,6 +62,13 @@ export default async function handler(req,res){
       xml+=url(BASE+"/new",today,"daily","0.80");
       xml+=url(BASE+"/coffee-near",today,"weekly","0.75");
       xml+=url(BASE+"/brisbane-cafes-to-avoid",today,"weekly","0.80");
+      xml+=url(BASE+"/gold-coast-cafes-to-avoid",today,"weekly","0.75");
+      xml+=url(BASE+"/melbourne-cafes-to-avoid",today,"weekly","0.75");
+      xml+=url(BASE+"/sunshine-coast-cafes-to-avoid",today,"weekly","0.70");
+      xml+=url(BASE+"/moreton-bay-cafes-to-avoid",today,"weekly","0.70");
+      xml+=url(BASE+"/best-value-brisbane",today,"weekly","0.80");
+      xml+=url(BASE+"/best-value-gold-coast",today,"weekly","0.75");
+      xml+=url(BASE+"/best-value-australia",today,"weekly","0.80");
       xml+=url(BASE+"/worst-cafes-by-suburb",today,"weekly","0.75");
       xml+=url(BASE+"/hidden-gem-cafes-brisbane",today,"weekly","0.80");
       xml+=url(BASE+"/best-latte-brisbane",today,"weekly","0.80");
