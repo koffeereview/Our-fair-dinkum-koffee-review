@@ -479,6 +479,77 @@ var POSTS = [
       { q: "Are independent cafes in Brisbane better than chains?", a: "Based on 600+ reviews using the same standardised test, independent Brisbane cafes average significantly higher than chains. 21 independent cafes scored 7.5+ (Must Visit tier). No chain location has scored above 5.0 in our system." },
       { q: "Does a good independent cafe cost more than Starbucks?", a: "No. A latte at most Brisbane independent cafes costs $6 to $6.50, roughly the same as Starbucks. You are not paying extra for better coffee. The quality difference comes from craft, fresh beans, and barista skill, not price." }
     ]
+  },
+  {
+    slug: "what-makes-good-coffee",
+    title: "What Makes Good Coffee \u2014 The Complete Guide",
+    ogImage: "https://koffeereview.com.au/og-blog-8.png",
+    description: "What actually separates good coffee from mediocre. Based on 600+ cafe reviews and a simple methodology: fresh beans, proper extraction, and milk execution. Three rules. That is it.",
+    date: "2026-07-11", readingTime: "10 min",
+    keywords: ["what makes good coffee","how to choose good coffee","quality coffee","specialty coffee","good coffee taste","coffee quality","how to find good coffee"],
+    intro: "Most people cannot define good coffee. They know it when they taste it, but they cannot say why.\n\nAfter 600+ cafe reviews across Australia, same order every time, no exceptions, we can tell you exactly what separates a 7.5 cafe from a 5.2.\n\nIt is not subjective. It is not about your personal preference. It is measurable.\n\nHere is what makes coffee good, and how to spot it every single time.",
+    sections: [
+      {
+        heading: "The Three Rules",
+        body: "Good coffee comes down to three things. That is it.\n\nRule 1: Fresh beans. Coffee is fruit. It has a lifespan. Beans peak 2 to 3 weeks after roasting. After a month, they start degrading. After 3 months, they are stale. Stale beans taste flat. No matter how well you pull the shot, you cannot fix degraded beans. Good cafes rotate their beans weekly. They know the roast date. They pull old stock and replace it. How to spot this: ask the cafe when the beans were roasted. If they do not know, they are not paying attention. If it is older than 3 weeks, the coffee will taste hollow.\n\nRule 2: Proper extraction. Extraction is the skill part. The barista pulls hot water through grounds. Under extraction means the shot runs too fast. You get sour, thin, weak coffee. Over extraction means the shot runs too slow. You get bitter, harsh, unpleasant coffee. Proper extraction takes 25 to 30 seconds for espresso. The shot should look honey coloured with thick crema. How to spot this: look at the crema. Thick, golden crema means proper extraction. Thin, pale, or missing crema means the shot ran too fast or the machine needs cleaning.\n\nRule 3: Milk execution (if you are ordering milk coffee). If you are getting a latte or flat white, milk is 60 to 70 percent of the drink. Proper milk means microfoam texture (silky, glossy, integrated), temperature around 65 degrees (hot, not scalding), and espresso to milk ratio that lets you taste both. How to spot this: if the milk tastes eggy or burnt, the barista steamed it too hot. If it is bubbly, they introduced too much air. If you cannot taste the espresso, there is too much milk.",
+        cta: { text: "See how we score these three rules", url: "/how-we-score" }
+      },
+      {
+        heading: "What Our 600+ Reviews Show",
+        body: "We have tested 600+ cafes with the same order: one latte, one double shot espresso. Here is the breakdown.\n\nCafes scoring 7.5+ (MUST VISIT): fresh beans roasted within 2 weeks and rotated monthly. Consistent extraction with crema present, colour right, timing right. Proper milk technique with silky texture, right temperature, balanced ratio. All three rules nailed.\n\nCafes scoring 6.5 to 7.4 (SOLID to DECENT): usually 2 out of 3 nailed. One is weak. Example: fresh beans plus good extraction, but milk temperature off. Example: great milk work, but beans are a week past peak.\n\nCafes scoring 5.5 to 6.4 (AVERAGE to TAKE OR LEAVE): at least one fundamental failing. Often the beans are past peak and extraction is inconsistent.\n\nCafes scoring below 5.0 (NOT FOR US to AVOID): multiple rules failing. Often stale beans plus over extraction plus scorched milk. All three gone wrong.\n\nThe data is consistent across 600+ reviews. These three things matter. Nothing else moves the needle.",
+        links: [
+          { text: "See the full leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" }
+        ]
+      },
+      {
+        heading: "Four Signs You Are in a Good Cafe",
+        body: "Before you order, you can already predict whether the coffee will be good.\n\nSign 1: they know their beans. The cafe has information showing bean origin (Ethiopian, Colombian, Kenyan), roast date (not roast style, actual date), and roaster name. If they cannot answer these questions, the beans were bought as a commodity. That is a red flag. Good cafes like <a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista (7.8)</a> and <a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin (7.8)</a> have visible, current bean information.\n\nSign 2: the espresso machine looks maintained. Look at the group head. Is it clean? Does the barista purge before pulling a shot? A clean machine means someone cares about consistency.\n\nSign 3: they steam milk properly. Watch the barista. Do they submerge the wand at the beginning (introduces air), then dunk deeper (integrates foam), then pull out before the end (prevents overheating)? If yes to all three: silky milk.\n\nSign 4: they dial in. Good baristas pull a test shot, taste it, then adjust the grind if needed. This takes 30 seconds. It is the difference between 7.5 and 6.5.",
+        links: [
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Coffee terminology explained", url: "/blog/coffee-terminology-explained" }
+        ]
+      },
+      {
+        heading: "The Quality Spectrum",
+        body: "Here is how to read a cafe score and know what you are getting.\n\n9.1+ ELITE: all three rules nailed, plus exceptional technique. Memorable. Worth a drive across the city.\n\n8.1 to 8.9 GREAT: all three rules nailed consistently. Reliable. Go out of your way.\n\n7.5 to 7.9 MUST VISIT: all three rules nailed, maybe one minor slip. Good taste, worth visiting, repeatable. This is the sticker threshold.\n\n7.1 to 7.4 SOLID: two rules nailed, one average. No complaints, fine for your routine.\n\n6.5 to 6.9 DECENT: one rule nailed, others average. Forgettable, better options likely nearby.\n\n6.1 to 6.4 TAKE OR LEAVE: at least one rule failing noticeably. Not bad enough to avoid but not good enough to recommend.\n\n5.5 to 5.9 AVERAGE: forgettable coffee. Does the job without impressing.\n\n5.1 to 5.4 JUST OKAY: below average. You will wish you went somewhere else.\n\n4.1 to 4.9 NOT FOR US: skip it. Multiple rules failing.\n\nBelow 4.0 AVOID: bad coffee. Do not waste money.",
+        cta: { text: "Full scoring methodology", url: "/how-we-score" }
+      },
+      {
+        heading: "Why Specialty Coffee Matters (And When It Does Not)",
+        body: "Specialty coffee is a real term. It means beans scored 80+ on the Specialty Coffee Association scale, traceable origin (single farm, single lot), and intentional roasting.\n\nSpecialty beans cost more. They are worth it if the cafe knows how to extract them (most do not) and you can taste the difference (you can, if the barista does not bury it under bad technique).\n\nBut a cafe serving commodity beans with perfect technique will outscore a cafe serving specialty beans with mediocre technique. We have seen this repeatedly in our reviews.\n\nSpecialty is the ceiling. Technique is the floor. You need both.",
+        links: [
+          { text: "Coffee bean origins guide", url: "/blog/coffee-bean-origins-guide" },
+          { text: "Browse cafes by roaster", url: "/roaster" }
+        ]
+      },
+      {
+        heading: "The Three Tests (Try This Next Time)",
+        body: "Walk into a cafe. Run these tests.\n\nTest 1: the crema test. Order an espresso. Look at the crema. Thick and golden? Score probably 7+. Thin or pale? Probably below 6.\n\nTest 2: the milk test. Order a latte. Taste the milk first (just milk). Does it taste like milk, or does it taste burnt or eggy? Burnt means the score is probably 6 or below.\n\nTest 3: the finish test. Finish your coffee. Does the taste linger pleasantly, or does it disappear? Good coffee lingers. Bad coffee vanishes. If nothing stays on your palate, the beans were stale or the extraction was wrong.\n\nThese three tests take seconds. They tell you everything.",
+        cta: { text: "Read our full coffee guide", url: "/coffee-guide" }
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Good coffee is simple. Three things: fresh beans, proper extraction, milk execution (if applicable).\n\nMaster those three and you can walk into any cafe in Australia and predict the score before you order.\n\nBecause coffee quality is not mysterious. It is measurable. And once you know what to measure, you know exactly what you are paying for.\n\nOne latte. One double shot. Every time. No exceptions.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Best value coffee", url: "/best-value-brisbane" },
+          { text: "Coffee terminology explained", url: "/blog/coffee-terminology-explained" },
+          { text: "Coffee bean origins guide", url: "/blog/coffee-bean-origins-guide" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What makes coffee good?", a: "Three things: fresh beans (roasted within 2 to 3 weeks), proper extraction (25 to 30 seconds, thick golden crema), and milk execution (silky microfoam, right temperature, balanced ratio). Based on 600+ cafe reviews, these three factors predict the score every time." },
+      { q: "How can I tell if a cafe makes good coffee?", a: "Four signs: they display bean origin and roast date, the espresso machine is clean, the barista steams milk with technique (not just blasting steam), and they taste test shots before serving. You can spot all four before you even order." },
+      { q: "What score means good coffee on Koffee Review?", a: "7.5 or above is our Must Visit tier. These cafes nail all three rules: fresh beans, proper extraction, and milk execution. 8.1+ is Great. 9.1+ is Elite. Below 5.5 is Average or worse." },
+      { q: "Does specialty coffee mean better coffee?", a: "Not always. Specialty beans (scored 80+ by the SCA) have higher potential, but a cafe serving commodity beans with perfect technique will outscore a cafe serving specialty beans with mediocre technique. Specialty is the ceiling. Technique is the floor." },
+      { q: "Why does Koffee Review only test lattes and espressos?", a: "A latte tests milk technique. A double shot espresso tests the coffee itself. If a cafe cannot make these two foundational drinks well, nothing else on the menu matters. Same order, every cafe, 600+ reviews." }
+    ]
   }
 ];
 
