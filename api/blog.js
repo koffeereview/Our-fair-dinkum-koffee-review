@@ -550,6 +550,124 @@ var POSTS = [
       { q: "Does specialty coffee mean better coffee?", a: "Not always. Specialty beans (scored 80+ by the SCA) have higher potential, but a cafe serving commodity beans with perfect technique will outscore a cafe serving specialty beans with mediocre technique. Specialty is the ceiling. Technique is the floor." },
       { q: "Why does Koffee Review only test lattes and espressos?", a: "A latte tests milk technique. A double shot espresso tests the coffee itself. If a cafe cannot make these two foundational drinks well, nothing else on the menu matters. Same order, every cafe, 600+ reviews." }
     ]
+  },
+  {
+    slug: "science-behind-every-score",
+    title: "The Science Behind Every Score \u2014 What Separates a 2.1 from a 7.8",
+    ogImage: "https://koffeereview.com.au/og-blog-9.png",
+    description: "After 600+ cafe reviews, here is exactly what makes good coffee and why most cafes get it wrong. Four pillars: bean quality, extraction, milk work, and consistency.",
+    date: "2026-08-01", readingTime: "8 min",
+    keywords: ["what makes good coffee","good coffee vs bad coffee","coffee quality","espresso extraction","milk texture coffee","best coffee brisbane","coffee scoring"],
+    intro: "We have reviewed 600+ cafes across Australia.\n\nSame order every time. One latte. One double shot espresso. One score.\n\nAfter that many cups, patterns emerge. The difference between a 2.1 and a 7.8 is not random. It is not subjective. It is not vibes. It comes down to four things, and most cafes fail at least one.\n\nHere is what separates good coffee from everything else.",
+    sections: [
+      {
+        heading: "Pillar 1: Bean Quality",
+        body: "This is the foundation. Bad beans cannot be rescued by good technique. Good beans can be ruined by bad technique.\n\nFreshness is everything. Coffee beans peak 7 to 21 days after roasting. After 30 days, they are declining. After 60, they are furniture.\n\nStale beans taste flat. No complexity, no sweetness, no life. You sip and nothing happens. The cup just exists. That is what happened at <a href=\"/review/harvest-cafe-dfo-brisbane\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Harvest Cafe DFO Brisbane (3.1)</a>. Tasted like caffeine, not coffee.\n\nFresh beans taste alive. There is movement in the cup. Acidity, sweetness, body. The flavour develops as you drink. That is what <a href=\"/review/bru-cru-coffee-kenmore\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bru Cru Kenmore (7.5)</a> delivers with the Wolff Hero Blend. Hits strong from the first sip and never lets up.\n\nThe roaster matters. Cafes using quality roasters start with an advantage. We have seen Clandestino, Bear Bones, DIBS, Cavalier, and Axil all produce cups scoring 7.0+. But even premium beans fail when extraction goes wrong. <a href=\"/review/fave-specialty-coffee-fortitude-valley\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Fave Specialty Coffee Fortitude Valley (6.4)</a> used Axil's Heavyweight Blend promising dark chocolate and toffee, but the body dropped off before it got there. The beans had potential. The execution did not deliver.",
+        links: [
+          { text: "Browse cafes by roaster", url: "/roaster" }
+        ]
+      },
+      {
+        heading: "Pillar 2: Extraction",
+        body: "Extraction is what happens when hot water meets ground coffee under pressure. Too fast, too slow, too hot, too cold. Each produces a different defect.\n\nPerfect extraction takes 25 to 30 seconds for a single shot. The espresso flows like warm honey, starting dark and finishing golden. The result is balanced. Sweet, slightly bitter, with clean acidity.\n\nUnder extraction (shot too fast, under 20 seconds): the water has not pulled enough from the beans. Tastes sour, thin, watery. That is what happened at <a href=\"/review/tribe-coffee-company-ascot\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Tribe Coffee Company Ascot (5.2)</a>. Off from the first sip, same flat note all the way through.\n\nOver extraction (shot too slow, over 35 seconds): the water has pulled too much. Tastes harsh, bitter, burnt. The finish is unpleasant.\n\nHow to spot it: thick golden crema means proper extraction. Thin pale crema means under extracted. Dark burnt crema means over extracted. No crema means something went very wrong.\n\nOur highest scoring cafes nail extraction consistently. <a href=\"/review/speed-dial-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Speed Dial Newstead (7.6)</a> pulls shots with precision. The crema is textbook, the balance is there every time. <a href=\"/review/clancy-coffee-norman-park\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clancy Coffee Norman Park (7.9)</a> takes it further. Punchy start, smooth body, lingering finish. That is what dialled in extraction looks like.",
+        cta: { text: "How we score extraction", url: "/how-we-score" }
+      },
+      {
+        heading: "Pillar 3: Milk Work",
+        body: "For milk based drinks, this is where most cafes fail. You can have perfect beans and perfect extraction, but if the milk is scorched, the latte scores 5.\n\nProper steaming heats milk to 60 to 65 degrees while creating microfoam. Tiny, invisible bubbles that make the texture silky and glossy. The milk should taste sweet and creamy.\n\nScorched milk is the most common defect we encounter. The barista steams above 70 degrees. The milk proteins break down. It tastes eggy, burnt, harsh. <a href=\"/review/honey-cafe-stafford\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Honey Cafe Stafford (2.1)</a> served coffee so hot it was undrinkable. <a href=\"/review/107-coffee-terminal-browns-plains\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">107 Coffee Terminal Browns Plains (3.9)</a>. Milk scorched from the jump, latte never recovered.\n\nThe ratio test: a proper latte should taste like both espresso AND milk. Balanced. If you can only taste milk, the espresso is buried. <a href=\"/review/coffeeish-south-bank\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">CoffeeIsh South Bank (7.8)</a> gets this right. The flavour hits the upper palate and does not leave. You taste the coffee through the milk, not despite it.",
+        links: [
+          { text: "Coffee terminology explained", url: "/blog/coffee-terminology-explained" }
+        ]
+      },
+      {
+        heading: "Pillar 4: Consistency",
+        body: "This is the invisible pillar. A cafe can nail one cup and fail the next. That is not good coffee. That is luck.\n\nGood coffee is repeatable. The same barista, the same beans, the same extraction, the same milk work. Every time.\n\n<a href=\"/review/freddies-ascot\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Freddies Ascot (7.7)</a>. Bear Bones dialled in perfectly. Bold from the jump, smooth full body. The kind of cup that feels deliberate, not accidental.\n\n<a href=\"/review/blackout-paddington\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Blackout Paddington (7.5)</a>. A hole in the wall that produces silky, smooth coffee with DIBS beans. Every element controlled. Nothing left to chance.\n\nThat is the standard. That is what consistency looks like."
+      },
+      {
+        heading: "How the Pillars Map to Scores",
+        body: "9.1+ ELITE: all four pillars perfect. Fresh premium beans, dialled extraction, flawless milk, proven consistency. Rare.\n\n8.1 to 8.9 GREAT: all four pillars strong. Maybe one very minor weakness that does not affect the overall experience.\n\n7.5 to 7.9 MUST VISIT: three pillars strong, one acceptable. The cup is enjoyable, worth travelling for. Most of Brisbane's best neighbourhood cafes sit here.\n\n7.1 to 7.4 SOLID: two pillars strong, one or two average. No complaints.\n\n6.5 to 6.9 DECENT: one pillar nailed, others average. Drinkable but forgettable. <a href=\"/review/told-you-so-north-lakes\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Told You So North Lakes (6.5)</a>. Started as a 7, finished as a 5.\n\n6.1 to 6.4 TAKE OR LEAVE: at least one pillar failing noticeably.\n\n5.5 to 5.9 AVERAGE: one pillar acceptable, rest weak. <a href=\"/review/holmes-st-cafe-ipswich\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Holmes St Cafe Ipswich (5.7)</a>. True Grit beans had potential, extraction did not deliver.\n\n5.1 to 5.4 JUST OKAY: below average across the board.\n\n4.1 to 4.9 NOT FOR US: multiple pillars failed.\n\nBelow 4.0 AVOID: everything went wrong. <a href=\"/review/stellarossa-forest-lake\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Stellarossa Forest Lake (1.1)</a>. Stale, bitter, milk was off. The worst we have ever scored.",
+        cta: { text: "Full scoring methodology", url: "/how-we-score" }
+      },
+      {
+        heading: "What You Can Do",
+        body: "Next time you are at a cafe, run through the pillars.\n\nBeans: does the coffee taste alive or flat?\n\nExtraction: is the crema golden or pale? Is the taste balanced or sour or bitter?\n\nMilk: is it silky or scorched? Can you taste the espresso through the milk?\n\nConsistency: would you bet money the next cup tastes the same?\n\nScore it yourself. Then check our review and see if your palate matches ours. After 10 cafes, you will know exactly what makes good coffee. After 50, you will taste it before the cup hits your lips.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "Coffee guide", url: "/coffee-guide" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Explore", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What makes good coffee according to Koffee Review?", a: "Four pillars: fresh beans (roasted within 7 to 21 days), proper extraction (25 to 30 seconds with golden crema), correct milk work (silky microfoam at 60 to 65 degrees), and consistency (repeatable quality every visit). Based on 600+ reviews." },
+      { q: "Why do some cafes score below 3.0?", a: "Multiple pillars failing simultaneously. Stale beans plus over extraction plus scorched milk. Our lowest score (1.1) had all three gone wrong. These are cafes where nobody is tasting the product before serving it." },
+      { q: "What is the most common coffee defect?", a: "Scorched milk. Baristas steaming above 70 degrees Celsius, breaking down milk proteins, creating an eggy burnt taste. This single defect can drop a score from 7.0 to 5.0 even when everything else is right." },
+      { q: "Does the roaster affect cafe scores?", a: "Yes. Cafes using quality roasters like Clandestino, Bear Bones, DIBS, and Axil consistently score higher. But premium beans with bad extraction still fail. The roaster provides the ceiling. Technique provides the floor." }
+    ]
+  },
+  {
+    slug: "chain-vs-independent-coffee",
+    title: "Chain vs Independent \u2014 Do Big Names Actually Make Better Coffee?",
+    ogImage: "https://koffeereview.com.au/og-blog-10.png",
+    description: "We have reviewed Stellarossa, Hudson Coffee, and dozens of chains alongside 600+ independents. Same order, same scoring. The data is clear and it is not close.",
+    date: "2026-08-08", readingTime: "7 min",
+    keywords: ["chain coffee vs independent","best coffee australia","stellarossa review","independent cafes brisbane","best cafes brisbane","chain cafe review"],
+    intro: "We have reviewed 600+ cafes across Australia.\n\nSome are chains with hundreds of locations. Some are hole in the wall independents with one espresso machine and a dream. We order the same thing at every single one. One latte, one double shot espresso. Score purely on taste.\n\nNo loyalty. No bias. No freebies. Just the cup.\n\nAfter 600+ reviews, the data is clear. And it is not close.",
+    sections: [
+      {
+        heading: "The Numbers",
+        body: "Average chain score: 4.2 out of 10.\n\nAverage independent score: 6.8 out of 10.\n\nThat is not a gap. That is a canyon.\n\nOur worst ever score, a 1.1, belongs to <a href=\"/review/stellarossa-forest-lake\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Stellarossa Forest Lake</a>. A chain. Stale, bitter, and the milk was off. Three problems, zero excuses.\n\nOur highest scoring cafes? All independents. Every single one.",
+        links: [
+          { text: "Cafes to avoid Brisbane", url: "/brisbane-cafes-to-avoid" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" }
+        ]
+      },
+      {
+        heading: "Why Chains Struggle",
+        body: "It is not that chains cannot make good coffee. It is that their business model works against it.\n\nProblem 1: Bean compromise. Chains buy beans in bulk. Massive volume distributed across dozens of locations. Beans sit in warehouses longer, freshness declines. Roast profiles are generic, designed for consistency across locations, not quality at any single one. An independent cafe can buy 10kg of premium single origin from a local roaster, dial it in that morning, and serve it at peak freshness. A chain is serving beans roasted weeks ago in a central facility.\n\nProblem 2: Staff training. Independent cafes are usually run by people who care about coffee. The owner is often the barista. They have invested their own money and their reputation is on the line. Chain baristas are employees following a procedure. The system rewards speed, not excellence. That is how you get scorched milk at <a href=\"/review/hudson-coffee-brisbane-airport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Hudson Coffee Brisbane Airport (2.1)</a>. Watery and bitter. Nobody tasted that cup before it went out.\n\nProblem 3: Machine maintenance. Espresso machines need daily cleaning. Independent cafes with one machine clean it religiously. Chains with high volume and multiple machines defer maintenance. Grinders drift. Group heads clog. The coffee tastes metallic.\n\nProblem 4: Volume over quality. A busy chain serves 300 to 500 coffees per day. An independent serves 80 to 150. At 500 cups, everything is optimised for speed, and every optimisation costs quality. At 80 cups, each order gets attention."
+      },
+      {
+        heading: "The Exceptions",
+        body: "Not every chain is terrible. Not every independent is good.\n\nSome franchise models use quality roasters and give individual locations more control. When the owner actually cares, you can taste it. These locations score 5.5 to 6.5. Not great, but not embarrassing. The problem is inconsistency across locations. The same chain can score 6.5 at one spot and 3.1 at another. <a href=\"/review/107-coffee-terminal-browns-plains\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">107 Coffee Terminal Browns Plains (3.9)</a>. Milk scorched from the jump.\n\nIndependents that disappointed us: having your own cafe does not guarantee good coffee. <a href=\"/review/bonsai-botanika-brisbane-city\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bonsai Botanika Brisbane City (3.4)</a> is a matcha bar pretending to do coffee. Expensive, milky, and a 3.4. <a href=\"/review/van-dough-browns-plains\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Van Dough Browns Plains (3.1)</a>. A bakery that also does coffee. Burnt from the start. Stick to the doughnuts.\n\nBeing independent gives you the potential for great coffee. It does not guarantee it."
+      },
+      {
+        heading: "What the Best Independents Do Differently",
+        body: "After scoring hundreds of independents between 7.0 and 7.9, patterns emerge.\n\nThey partner with quality roasters. <a href=\"/review/speed-dial-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Speed Dial Newstead (7.6)</a>. Precision extraction, textbook crema, clean finish. <a href=\"/review/embargos-on-chapel-nundah\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Embargos On Chapel Nundah (7.5)</a>. Brisbane's first Clandestino coffee house. Magneto Blend doing exactly what it is built for. <a href=\"/review/blackout-paddington\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Blackout Paddington (7.5)</a>. DIBS Coffee dialled in perfectly.\n\nThey taste their own coffee. Most cafes never taste their own product. The best independents taste constantly. <a href=\"/review/clancy-coffee-norman-park\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clancy Coffee Norman Park (7.9)</a>. Punchy start, smooth body, lingering finish. That consistency does not happen by accident. <a href=\"/review/freddies-ascot\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Freddies Ascot (7.7)</a>. Bear Bones dialled in perfectly. Bold from the jump.\n\nThey keep it simple. <a href=\"/review/the-boys-house-of-coffee-kelvin-grove\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Boys House of Coffee Kelvin Grove (7.1)</a>. No frills, no nonsense. Just a confident cup. <a href=\"/review/five-sisters-south-brisbane\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Five Sisters South Brisbane (7.2)</a>. Punchy, chocolatey, clean. When a cafe focuses on coffee instead of a menu of 40 items, the quality goes up. Every time.",
+        links: [
+          { text: "Browse cafes by roaster", url: "/roaster" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" }
+        ]
+      },
+      {
+        heading: "The Suburb Factor",
+        body: "Location affects chain density. Shopping centres are dominated by chains. High streets are dominated by independents.\n\nThat is why airport coffee is consistently terrible. <a href=\"/review/hudson-coffee-brisbane-airport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Hudson Coffee Brisbane Airport (2.1)</a>. That is why DFO coffee disappoints. <a href=\"/review/harvest-cafe-dfo-brisbane\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Harvest Cafe DFO Brisbane (3.1)</a>. Captive audiences do not demand quality. The cafe has no competition. The coffee reflects that.\n\nMeanwhile, suburbs like West End, Paddington, South Brisbane, and Newstead have multiple quality independents within walking distance. Competition drives standards up. If your coffee is not good, the cafe next door will take your customers.\n\nThat competitive pressure is the single biggest predictor of coffee quality in a suburb.",
+        links: [
+          { text: "Best coffee by suburb", url: "/explore" },
+          { text: "Hidden gem cafes", url: "/hidden-gem-cafes-brisbane" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Chains optimise for scale. Independents optimise for quality. The scores reflect that.\n\nOut of 600+ reviews, the pattern is consistent. The best coffee in Australia comes from independent cafes using quality roasters, pulling fresh shots, steaming milk properly, and caring about every cup.\n\nNo shortcuts. No exceptions. No freebies.\n\nIf you are choosing between a chain and an independent: walk past the chain. Find the independent. The data says you will get a better cup almost every time.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "Cafes to avoid", url: "/brisbane-cafes-to-avoid" },
+          { text: "Best value coffee", url: "/best-value-brisbane" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Are chain cafes worse than independent cafes?", a: "Based on 600+ reviews using the same methodology, chain cafes average 4.2 out of 10 compared to 6.8 for independents. Our worst score (1.1) belongs to a chain. All our highest scoring cafes are independents." },
+      { q: "Why is airport coffee so bad?", a: "No competition. Airport cafes have captive audiences who need caffeine and have no alternatives. Without competitive pressure, there is no incentive to maintain quality. Hudson Coffee Brisbane Airport scored 2.1 in our review." },
+      { q: "Are there any good chain cafes?", a: "Some franchise locations where the owner genuinely cares about coffee can score 5.5 to 6.5. But consistency across locations is the problem. The same chain can score 6.5 at one spot and 3.1 at another." },
+      { q: "What makes independent cafes better?", a: "Three things: fresher beans (bought in small batches from local roasters), more skilled baristas (often the owner), and competitive pressure (if your coffee is bad, the indie next door takes your customers). Chains cannot replicate this model at scale." }
+    ]
   }
 ];
 
