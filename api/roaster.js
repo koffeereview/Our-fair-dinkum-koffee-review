@@ -96,6 +96,67 @@ export default async function handler(req,res){
     res.setHeader("Content-Type","text/html; charset=utf-8");
     res.setHeader("Cache-Control","public, s-maxage=3600, stale-while-revalidate=86400");
 
+    // CITY ROASTERS — /brisbane-coffee-roasters
+    var cityParam=req.query.city||"";
+    if(cityParam){
+      var cityName=cityParam.replace(/-/g," ").replace(/\w\S*/g,function(t){return t.charAt(0).toUpperCase()+t.substr(1).toLowerCase();});
+      var citySlugClean=cityParam.toLowerCase().replace(/\s+/g,"-");
+      // Filter roasters to only those with cafes in this city
+      var cityRoasters=[];
+      Object.values(roasterMap).forEach(function(r){
+        var cityCafes=r.cafes.filter(function(c){return c.city.toLowerCase()===cityParam.replace(/-/g," ");});
+        if(cityCafes.length>0){
+          cityRoasters.push({name:r.name,slug:r.slug,cafes:cityCafes,count:cityCafes.length,avg:cityCafes.reduce(function(s,c){return s+c.score;},0)/cityCafes.length,top:cityCafes.reduce(function(mx,c){return c.score>mx?c.score:mx;},0)});
+        }
+      });
+      cityRoasters.sort(function(a,b){return b.count-a.count||b.avg-a.avg;});
+      var year=new Date().getFullYear();
+      var totalTaggedCity=cityRoasters.reduce(function(s,r){return s+r.count;},0);
+
+      if(cityRoasters.length===0){
+        return res.status(200).send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Coffee Roasters in '+esc(cityName)+' | Koffee Review</title><link rel="icon" href="/logo.webp"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"><style>'+css()+'</style></head><body><div class="c">'+nav()+'<div style="padding:60px 0;text-align:center"><h1 style="font-family:Bebas Neue,sans-serif;font-size:32px;color:#E6C073;margin-bottom:12px">No Roaster Data for '+esc(cityName)+' Yet</h1><p style="color:rgba(255,255,255,0.5)">Fill in the roaster column in your Google Sheet for '+esc(cityName)+' cafes.</p><a href="/roaster" style="display:inline-block;margin-top:20px;color:#E6C073;text-decoration:none">&larr; All Roasters</a></div>'+footer(year)+'</div></body></html>');
+      }
+
+      var cityTitle="Coffee Roasters in "+cityName+" "+year+" | "+cityRoasters.length+" Roasters, "+totalTaggedCity+" Cafes | Koffee Review";
+      var cityDesc="Every coffee roaster powering "+cityName+"'s cafes. "+cityRoasters.length+" roasters, "+totalTaggedCity+" cafes tagged. See which roaster makes the best coffee in "+cityName+".";
+      var cityCanonical="https://koffeereview.com.au/"+citySlugClean+"-coffee-roasters";
+
+      // Other cities for cross-linking
+      var allCityMap={};cafes.forEach(function(c){if(c.roaster&&c.city)allCityMap[c.city]=true;});
+      var otherCities=Object.keys(allCityMap).filter(function(c){return c.toLowerCase()!==cityParam.replace(/-/g," ");}).sort();
+      var otherCityLinks=otherCities.map(function(c){var s=c.toLowerCase().replace(/\s+/g,"-");return'<a href="/'+s+'-coffee-roasters" style="display:inline-block;padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);font-size:12px;text-decoration:none;margin:0 4px 4px 0">'+esc(c)+'</a>';}).join("");
+
+      var cityCards=cityRoasters.map(function(r){
+        var mv=r.cafes.filter(function(c){return c.score>=7.5;}).length;
+        var mvBadge=mv>0?'<span style="font-size:9px;letter-spacing:1.5px;background:rgba(45,212,191,0.08);color:#2dd4bf;border:1px solid rgba(45,212,191,0.2);border-radius:4px;padding:2px 8px;font-weight:700;margin-left:6px">'+mv+' MUST VISIT</span>':'';
+        return'<a href="/roaster/'+r.slug+'" class="rc"><div style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:15px;font-weight:600;color:#fff;display:flex;align-items:center">'+esc(r.name)+mvBadge+'</div><div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px">'+r.count+' '+esc(cityName)+' cafes &middot; avg '+r.avg.toFixed(1)+'/10 &middot; top '+r.top.toFixed(1)+'/10</div></div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:#E6C073">'+r.count+'</div></div></a>';
+      }).join("");
+
+      var faqCitySchema=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"What coffee roasters are used in "+cityName+"?","acceptedAnswer":{"@type":"Answer","text":cityRoasters.length+" roasters supply beans to "+totalTaggedCity+" cafes in "+cityName+". The most popular is "+cityRoasters[0].name+" with "+cityRoasters[0].count+" cafes. We track which roaster each cafe uses across our "+totalTaggedCity+" "+cityName+" reviews."}},
+        {"@type":"Question","name":"Which roaster makes the best coffee in "+cityName+"?","acceptedAnswer":{"@type":"Answer","text":"Based on average cafe scores, "+cityRoasters[0].name+" averages "+cityRoasters[0].avg.toFixed(1)+"/10 across "+cityRoasters[0].count+" "+cityName+" cafes. However, individual cafe technique matters more than the roaster alone."}}
+      ]});
+
+      return res.status(200).send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        +'<title>'+cityTitle+'</title><meta name="description" content="'+esc(cityDesc)+'">'
+        +'<link rel="canonical" href="'+cityCanonical+'"><link rel="icon" href="/logo.webp">'
+        +'<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">'
+        +'<script type="application/ld+json">'+faqCitySchema+'<\/script>'
+        +'<style>'+css()+'</style></head><body><div class="c">'+nav()
+        +'<div style="font-size:12px;color:rgba(255,255,255,0.35);padding:12px 0"><a href="/" style="color:#E6C073;text-decoration:none">Home</a> &middot; <a href="/roaster" style="color:#E6C073;text-decoration:none">Roasters</a> &middot; '+esc(cityName)+'</div>'
+        +'<div style="padding:16px 0 16px"><div style="font-size:10px;letter-spacing:3px;color:rgba(230,192,115,0.5);margin-bottom:8px">'+esc(cityName.toUpperCase())+' &middot; COFFEE ROASTERS &middot; '+year+'</div>'
+        +'<h1 style="font-family:Bebas Neue,sans-serif;font-size:clamp(26px,6vw,40px);letter-spacing:2px;color:#fff;margin-bottom:10px">Coffee Roasters in '+esc(cityName)+'</h1>'
+        +'<p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.6">'+cityRoasters.length+' roasters supply beans to '+totalTaggedCity+' cafes across '+esc(cityName)+'. We track which roaster each cafe uses and score the coffee the same way every time. Here is who is powering '+esc(cityName)+'\'s coffee scene.</p></div>'
+        +'<div class="stats"><div class="stat"><div class="stat-n">'+cityRoasters.length+'</div><div class="stat-l">ROASTERS</div></div><div class="stat"><div class="stat-n">'+totalTaggedCity+'</div><div class="stat-l">CAFES TAGGED</div></div></div>'
+        +cityCards
+        +(otherCityLinks?'<div style="margin-top:24px"><div style="font-family:Bebas Neue,sans-serif;font-size:12px;letter-spacing:3px;color:rgba(255,255,255,0.25);margin-bottom:10px">ROASTERS IN OTHER CITIES</div><div style="display:flex;flex-wrap:wrap">'+otherCityLinks+'</div></div>':'')
+        +'<div style="margin-top:24px;display:flex;flex-direction:column;gap:8px">'
+        +'<a href="/roaster" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px">All Australian Roasters &rarr;</a>'
+        +'<a href="/best-coffee-'+citySlugClean+'" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.12);border-radius:14px;text-decoration:none;color:#E6C073;font-size:13px">Best Coffee '+esc(cityName)+' &rarr;</a>'
+        +'<a href="/explore" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px">Explore &rarr;</a></div>'
+        +footer(year)+'</div></body></html>');
+    }
+
     // INDEX
     if(!slug){
       var totalTagged=allRoasters.reduce(function(s,r){return s+r.count;},0);
@@ -111,4 +172,3 @@ export default async function handler(req,res){
     return res.status(200).send(renderRoaster(roaster,allRoasters));
   }catch(e){res.status(500).send("Error loading roasters");}
 }
- 
