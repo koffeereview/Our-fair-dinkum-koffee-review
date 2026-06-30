@@ -668,6 +668,84 @@ var POSTS = [
       { q: "Are there any good chain cafes?", a: "Some franchise locations where the owner genuinely cares about coffee can score 5.5 to 6.5. But consistency across locations is the problem. The same chain can score 6.5 at one spot and 3.1 at another." },
       { q: "What makes independent cafes better?", a: "Three things: fresher beans (bought in small batches from local roasters), more skilled baristas (often the owner), and competitive pressure (if your coffee is bad, the indie next door takes your customers). Chains cannot replicate this model at scale." }
     ]
+  },
+  {
+    slug: "australias-coffee-ranking",
+    title: "Australia\u2019s Coffee Ranking \u2014 Where We Stand Globally",
+    ogImage: "https://koffeereview.com.au/og-blog-11.png",
+    description: "Is Australian coffee the best in the world? We have reviewed 600+ cafes across Australia and tested international standards. Here is where Australia actually ranks and how we score it.",
+    date: "2026-08-15", readingTime: "10 min",
+    keywords: ["australian coffee","best coffee australia","australia coffee quality","australian coffee culture","is australian coffee good","australia vs world coffee"],
+    intro: "Australia has a coffee reputation. Flat whites, microfoam, cafe culture. The internet says Australian coffee is world class. But is it? And how do we actually know?\n\nWe have reviewed 600+ cafes across Brisbane, Melbourne, Gold Coast, and regional areas. We have also tasted coffee in Barcelona. We used the same methodology everywhere. One latte, one double shot espresso, every time.\n\nHere is what the data actually shows.",
+    sections: [
+      {
+        heading: "The Short Answer",
+        body: "Australian coffee is good, but not the best in the world.\n\nAustralian top tier cafes (7.5+) match European standards. Australian mid tier cafes (6.5 to 7.4) are better than most American chains. Australian low tier cafes (below 5.5) exist everywhere.\n\nAustralia's advantage is consistency and availability. You are more likely to get a 7.0+ coffee in Brisbane than in most US cities. You are less likely to get a world class 8.5+ coffee than in Barcelona or Melbourne's absolute best."
+      },
+      {
+        heading: "How We Rate Every Cafe",
+        body: "We do not guess. We use a locked system.\n\nEvery cafe, same order: one double shot espresso (tests extraction quality, crema, bean freshness, finish) and one latte (tests milk technique, espresso to milk ratio, temperature, texture).\n\nThe espresso tells us if the cafe knows coffee. The latte tells us if the cafe has technique. Together they give us a complete picture.\n\nWe do not break scores into weighted percentages. We do not use a rubric with point allocations. We taste both drinks, assess the four pillars (bean quality, extraction, milk work, consistency), and give a single overall score out of 10.\n\nA 7.5 in Brisbane means the same thing as a 7.5 in Barcelona. No country adjustment. No grading on a curve. Just the coffee.",
+        cta: { text: "Full scoring methodology", url: "/how-we-score" }
+      },
+      {
+        heading: "Australia's Scoring Distribution",
+        body: "Here is what 600+ reviews show.\n\n9.1+ ELITE: 0% of Australian cafes. None found yet. This tier exists for exceptional coffee that is flawless in every dimension.\n\n8.1 to 8.9 GREAT: under 1%. A handful of cafes, mostly in our international reviews (Barcelona). Australian cafes are approaching this tier but have not broken through consistently.\n\n7.5 to 7.9 MUST VISIT: about 4%. These are the 23+ cafes that earned our sticker. Worth going out of your way for. Genuinely good coffee.\n\n7.1 to 7.4 SOLID: about 4%. Good, repeatable, no complaints.\n\n6.5 to 6.9 DECENT: about 8%. Acceptable on a good day. Better options likely nearby.\n\n6.1 to 6.4 TAKE OR LEAVE: about 7%. Not bad enough to avoid but not good enough to recommend.\n\n5.5 to 5.9 AVERAGE: forgettable coffee.\n\n5.1 to 5.4 JUST OKAY: below average.\n\n4.1 to 4.9 NOT FOR US: skip it.\n\nBelow 4.0 AVOID: multiple things went wrong.\n\nKey insight: about 15% of Australian cafes score 7.0+. If you walk into a random Australian cafe, you have roughly a 50/50 chance of getting decent coffee. The other half is mediocre or worse. That is why we exist. To tell you which half you are walking into.",
+        links: [
+          { text: "See the full leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" }
+        ]
+      },
+      {
+        heading: "Brisbane vs Gold Coast vs Melbourne",
+        body: "Brisbane (261+ cafes reviewed, avg 6.4): the most accessible coffee scene in Australia. Consistent, good value, growing fast. Top cafes: <a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a>, <a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin West End (7.8)</a>. Best suburbs: West End, Newstead, Manly. Good coffee for $6 to $6.50.\n\nGold Coast (80+ cafes reviewed, avg 6.2): more inconsistent than Brisbane. Tourist pressure means many cafes coast on location. But the top end matches Brisbane. Top cafes: <a href=\"/review/next-door-burleigh-burleigh-heads\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Next Door Burleigh (7.8)</a>, <a href=\"/review/silipo-coffee-southport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Silipo Coffee Southport (7.8)</a>. Best suburbs: Burleigh Heads, Currumbin.\n\nMelbourne (growing coverage): higher standards across the board. More competition, deeper talent pool. The traditional coffee capital. Our Melbourne coverage is expanding with every trip.\n\nVerdict: Brisbane wins on value and depth. Gold Coast wins on setting. Melbourne wins on technique and consistency at the top end. All three have genuinely great coffee if you know where to look.",
+        links: [
+          { text: "Brisbane cafes", url: "/city/brisbane" },
+          { text: "Gold Coast cafes", url: "/city/gold-coast" },
+          { text: "Melbourne cafes", url: "/city/melbourne" },
+          { text: "Brisbane vs Gold Coast deep dive", url: "/blog/brisbane-vs-gold-coast-coffee" }
+        ]
+      },
+      {
+        heading: "What Australia Does Better Than Anywhere",
+        body: "Milk texture. Australian microfoam is the global standard. No bubbly cappuccinos. No papery lattes. Even average Australian cafes usually steam milk correctly. This is Australia's signature contribution to coffee culture.\n\nLatte execution. The latte is the test. Australia's best lattes (7.5+) rival anywhere globally. Even average Australian lattes (6.5) beat most international chains.\n\nBarista professionalism. Australian baristas are trained professionals. They understand extraction, timing, and technique. Specialty Coffee Association certifications are common. Roasters train their own cafe partners.\n\nCafe density and competition. You are never far from a decent cafe in Australian cities. Competition forces quality up. Bad cafes close faster in Australia than elsewhere. That competitive pressure is the single biggest driver of quality."
+      },
+      {
+        heading: "Where Australia Needs to Improve",
+        body: "Bean sourcing. Australia imports most specialty beans. European roasters have direct farm relationships that give them access to better lots. Australian roasters are catching up but the gap still shows in the cup.\n\nEspresso precision. Espresso work is harder than milk work. More Australian cafes need to dial in properly every morning. Some still rely on good milk to hide weak extraction. Our data shows this clearly: milk scores tend to be higher than espresso scores at the same cafe.\n\nConsistency across regions. Brisbane's top is 7.8. Regional areas top out lower. That gap needs to close as specialty coffee moves beyond major cities.\n\nNo local growing regions. Australia has no high altitude coffee growing regions. Ethiopia, Colombia, and Kenya grow at 1,500 to 2,000 metres. Australia's climate is wrong for quality coffee production. We import everything.",
+        links: [
+          { text: "Coffee bean origins guide", url: "/blog/coffee-bean-origins-guide" },
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" }
+        ]
+      },
+      {
+        heading: "Our International Comparison",
+        body: "We have reviewed cafes in Barcelona and Catalonia using the exact same system. The results: Barcelona's top cafes scored higher than any Australian cafe we have reviewed. The technique is sharper, the beans are fresher (direct sourced from farms), and the consistency is tighter.\n\nBut Barcelona's average is not dramatically higher than Brisbane's average. The difference is at the top end. Australia has many good cafes (7.0 to 7.4). Barcelona has more great cafes (8.0+). The gap is not in the baseline. It is in the ceiling.\n\nAustralia's strength is not peaks. It is plateaus. You can walk into almost any suburb in Brisbane and find a 6.5+. That reliability is rare globally. Most countries have pockets of excellence surrounded by mediocrity. Australia has a higher, more consistent floor.",
+        links: [
+          { text: "International reviews", url: "/countries" },
+          { text: "Spain reviews", url: "/countries/spain" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Australian coffee is good. Very good. But not best in the world good.\n\nAustralia excels at milk work, barista training, cafe density, and competitive pressure that drives quality. Australia lags at bean sourcing, espresso precision at the elite level, and regional consistency.\n\nIf you want a guaranteed 7.0+ latte, Australia is one of the best countries in the world for that. If you want a transcendent 8.5+ espresso, you might need to look at Barcelona or specialty hubs in Japan and Scandinavia.\n\nBut here is the thing: we are getting better. Fast. Brisbane's coffee scene barely existed 10 years ago. Now it has 20+ must visit cafes. Melbourne is pushing toward 8.0+. Gold Coast is finding its identity beyond tourism.\n\nThe trajectory matters more than the current ranking. And Australia's trajectory is up.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Is Australian coffee the best in the world?", a: "Based on 600+ reviews using a locked scoring system, Australian coffee is top 3 to 4 globally. Australia excels at milk work and consistency. The top Australian cafes score 7.8 out of 10. Barcelona's top scored 8.6. The gap is at the elite level, not the baseline." },
+      { q: "Where does Australia rank for coffee globally?", a: "Australia ranks in the top 3 to 4 countries for cafe coffee quality. Strong milk culture, trained baristas, and competitive cafe density give Australia a higher average than most countries. The weakness is bean sourcing and elite level espresso precision." },
+      { q: "Is Melbourne or Brisbane better for coffee?", a: "Melbourne has higher standards at the top end and a deeper talent pool. Brisbane has better value, more coverage in our system (261+ cafes reviewed), and is the fastest growing coffee scene. Both have genuinely excellent cafes." },
+      { q: "Why is Australian coffee good?", a: "Four reasons: milk work culture (flat white was invented here), structured barista training (SCA certifications are common), cafe density (competition forces quality up), and educated consumers who demand quality over convenience." },
+      { q: "How does Koffee Review compare countries?", a: "Same method everywhere. One latte, one double shot espresso, same scoring system. A 7.5 in Brisbane means the same as a 7.5 in Barcelona. No country adjustment, no grading on a curve. We have reviewed cafes in Australia and Spain so far." }
+    ]
   }
 ];
 
