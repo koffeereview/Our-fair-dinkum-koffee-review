@@ -83,6 +83,8 @@ export default async function handler(req,res){
       xml+=url(BASE+"/sunshine-coast-coffee-roasters",today,"weekly","0.70");
       xml+=url(BASE+"/moreton-bay-coffee-roasters",today,"weekly","0.70");
       xml+=url(BASE+"/coffee-guide",today,"monthly","0.85");
+      xml+=url(BASE+"/guess-the-score",today,"weekly","0.75");
+      xml+=url(BASE+"/score-battle",today,"weekly","0.75");
       xml+=url(BASE+"/countries",today,"monthly","0.75");
       xml+=url(BASE+"/best-cafes-australia",today,"weekly","0.85");
       xml+=url(BASE+"/best-coffee-australia",today,"weekly","0.85");
