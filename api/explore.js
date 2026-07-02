@@ -213,6 +213,8 @@ export default async function handler(req,res){
       <div class="g2">
         ${pageCard("Best Espresso Brisbane","Double shot rankings","/best-espresso-brisbane","#E6C073")}
         ${pageCard("Coffee Guide","Your questions answered","/coffee-guide","#E6C073")}
+        ${pageCard("Guess the Score","Can you match our ratings?","/guess-the-score","#4ade80")}
+        ${pageCard("Score Battle","Which cafe scored higher?","/score-battle","#4ade80")}
         ${pageCard("International","Barcelona & beyond","/countries","#E6C073")}
         ${pageCard("Cafes to Avoid","Save your money","/brisbane-cafes-to-avoid","#f87171")}
         ${pageCard("Worst by Suburb","Lowest scored per suburb","/worst-cafes-by-suburb","#f87171")}
