@@ -882,6 +882,200 @@ var POSTS = [
       { q: "Why is Australian coffee better than other countries?", a: "Training culture. Australia trains baristas in extraction theory and milk technique as standard. The flat white was invented here. Even mediocre Australian cafes rarely produce bubbly lattes because milk work is baseline competence, not a specialty skill." },
       { q: "How can I tell if a barista is trained?", a: "Three signals: visible SCA certificates, pulling test shots before your order, and being able to explain the bean origin and roast profile. These correlate strongly with 7.5+ scores in our data." }
     ]
+  },
+  {
+    slug: "why-most-cafes-score-6",
+    title: "Why Most Cafes Score Between 6.0 and 6.9 \u2014 The Stuck Zone",
+    ogImage: "https://koffeereview.com.au/og-blog-14.png",
+    description: "After 600+ reviews, we found that most Australian cafes cluster between 6.0 and 6.9. Not bad. Not good. Just stuck. Here is why, and what separates the stuck from the great.",
+    date: "2026-07-11", readingTime: "8 min",
+    keywords: ["why cafes are average","coffee quality","good vs great coffee","cafe improvement","coffee scoring","decent coffee"],
+    intro: "Here is something nobody talks about in Australian coffee.\n\nMost cafes are fine. Not bad. Not great. Just fine.\n\nAfter 600+ reviews, the data shows a clear bell curve. The peak sits right between 6.0 and 6.9. DECENT to TAKE OR LEAVE territory. More cafes live in this range than any other.\n\nThey are not failing. They are stuck. And most of them do not know it.",
+    sections: [
+      {
+        heading: "The Bell Curve",
+        body: "Here is the distribution across 600+ reviews.\n\nBelow 4.0 (AVOID): about 3% of cafes. Multiple things went wrong.\n\n4.1 to 5.4 (NOT FOR US to JUST OKAY): about 12%. One or two fundamental problems.\n\n5.5 to 5.9 (AVERAGE): about 10%. Forgettable.\n\n6.0 to 6.9 (TAKE OR LEAVE to DECENT): about 35%. This is where most cafes live.\n\n7.0 to 7.4 (SOLID): about 15%. Reliable, no complaints.\n\n7.5 to 7.9 (MUST VISIT): about 4%. Genuinely good. Sticker worthy.\n\n8.0+ (GREAT to ELITE): under 1%. Exceptional.\n\nThat middle cluster, 6.0 to 6.9, holds over a third of all Australian cafes we have reviewed. They are doing enough to stay open but not enough to be worth recommending.",
+        links: [
+          { text: "See the full leaderboard", url: "/leaderboard" },
+          { text: "How we score", url: "/how-we-score" }
+        ]
+      },
+      {
+        heading: "What 6.0 to 6.9 Actually Tastes Like",
+        body: "You walk in. You order a latte and a double shot. You drink them. You leave.\n\nNothing was wrong. Nothing was memorable. The milk was fine. The espresso was fine. The crema existed. The temperature was acceptable. You got caffeine.\n\nBut you will not think about it tomorrow. You will not tell anyone to go there. You will not drive across the suburb to return. It just happened.\n\nThat is 6.0 to 6.9. It is not offensive. It is invisible. And for a cafe trying to build a loyal customer base, invisible is worse than bad. Bad gets talked about. Invisible gets ignored.",
+        cta: { text: "See what 7.5+ tastes like", url: "/must-visit-cafes" }
+      },
+      {
+        heading: "The Five Reasons Cafes Get Stuck",
+        body: "Reason 1: beans are good enough, not great. They buy from a decent roaster. The beans are fresh enough. But they do not rotate, do not track roast dates, do not taste new batches. The beans are acceptable. Acceptable equals 6.5.\n\nReason 2: they do not dial in daily. The grind setting from yesterday works today, right? Wrong. Humidity, bean age, and temperature all change. A cafe that does not adjust daily will pull inconsistent shots. Some days 7.0. Some days 5.8. Average: 6.4.\n\nReason 3: milk technique is learned but not mastered. The barista steams milk correctly 80% of the time. That other 20% introduces burnt notes, wrong temperature, or bubbly texture. Inconsistent milk caps the score at 6.9 maximum.\n\nReason 4: the machine needs servicing. Group heads build up residue. Seals wear. Pressure drifts. A machine that was pulling 7.0 shots when it was new is pulling 6.3 shots after 6 months without servicing. Most cafes service annually. The best service quarterly.\n\nReason 5: nobody tastes the product. This is the biggest one. The barista makes 150 coffees a day and never drinks one. They do not know what their own coffee tastes like. If you do not taste it, you cannot fix it. You cannot fix what you do not measure."
+      },
+      {
+        heading: "What 7.5+ Cafes Do Differently",
+        body: "Every cafe that broke out of the 6.0 to 6.9 range did the same things.\n\nThey taste their own coffee. Every morning. Test shots before opening. If the first shot is off, they adjust before a single customer orders.\n\nThey rotate beans. Not when they run out. On a schedule. Fresh beans in, old beans out. They know the roast date of every bag in the hopper.\n\nThey train continuously. Not once. Not at hiring. Ongoing. The barista who was good six months ago might be drifting. Regular calibration keeps quality locked in.\n\nThey maintain their machines. Quarterly deep cleans. Daily group head purges. Weekly grinder calibration. The machine is an instrument, not a appliance.\n\nThey measure. They track their own scores. They get feedback. They care whether today was a 7.5 day or a 6.8 day.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "The Cost of Stuck",
+        body: "A 6.5 cafe in a suburb with a 7.5 cafe loses. Every time.\n\nCustomers walk past 6.5 to get to 7.5. They drive further. They pay the same price. They get a better cup.\n\nIn Brisbane alone, the average suburb has 3 to 5 reviewed cafes. If one is 7.5 and the others are 6.5, the 7.5 gets the repeat business. The 6.5 cafes survive on foot traffic and convenience, not loyalty.\n\nThat is the cost of stuck. You are not bad enough to close. You are not good enough to thrive. You exist in a zone where customers tolerate you but do not choose you.",
+        links: [
+          { text: "Best coffee by suburb", url: "/explore" },
+          { text: "Browse by roaster", url: "/roaster" }
+        ]
+      },
+      {
+        heading: "Can a 6.5 Become a 7.5?",
+        body: "Yes. We have seen it.\n\nThe jump from 6.5 to 7.5 is not about money. A new machine helps but is not required. A new roaster helps but is not required.\n\nThe jump is about attention. Start tasting your own coffee. Dial in every morning. Get your machine serviced. Train your staff on milk technique. Track your quality.\n\nThese are free or cheap. They require care, not capital.\n\nEvery cafe scoring 7.5+ was once a 6.5. They just decided that fine was not enough.",
+        links: [
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Why do most cafes score between 6.0 and 6.9?", a: "Five reasons: beans that are good enough but not great, no daily grind adjustment, inconsistent milk technique, deferred machine maintenance, and nobody tasting the product. These cafes are not failing. They are stuck in a zone where the coffee is acceptable but not memorable." },
+      { q: "What percentage of cafes score 7.5 or above?", a: "Less than 4% of 600+ cafes we have reviewed. The majority (about 35%) sit between 6.0 and 6.9. Breaking into 7.5+ requires daily dialling in, bean rotation, ongoing training, and regular machine maintenance." },
+      { q: "Can a cafe improve its Koffee Review score?", a: "Yes. The jump from 6.5 to 7.5 is about attention, not money. Start tasting your own coffee, dial in every morning, service your machine quarterly, and train staff on milk technique. These changes are free or cheap." }
+    ]
+  },
+  {
+    slug: "what-600-reviews-taught-us",
+    title: "What 600+ Reviews Taught Us \u2014 Patterns, Surprises, and the Truth About Australian Coffee",
+    ogImage: "https://koffeereview.com.au/og-blog-15.png",
+    description: "After reviewing 600+ cafes across Australia with the same order every time, here are the patterns we did not expect, the suburbs that surprised us, and the truths nobody talks about.",
+    date: "2026-07-25", readingTime: "9 min",
+    keywords: ["cafe reviews australia","coffee patterns","best coffee lessons","australian coffee culture","coffee review insights","600 cafe reviews"],
+    intro: "We did not plan to review 600+ cafes.\n\nIt started as a hobby. Two coffees at a cafe. One latte, one double shot. Score it. Move on. Repeat.\n\nBut after 600+, something happened. Patterns emerged that we never expected. Assumptions we had about coffee turned out to be wrong. Suburbs we dismissed turned out to be brilliant. Cafes we expected to love disappointed us.\n\nHere is what 600+ reviews actually taught us.",
+    sections: [
+      {
+        heading: "Lesson 1: Price Does Not Predict Quality",
+        body: "We assumed expensive cafes would score higher. They do not.\n\nCafes charging $7+ for a latte do not consistently outscore cafes charging $6. Some of our highest scoring cafes are in the cheapest price tier. Some of our lowest scoring cafes are the most expensive.\n\nThe correlation between price and score is almost zero.\n\nWhat does predict quality: bean freshness, barista training, and machine maintenance. None of these are visible on the menu. A $6 latte from a trained barista with fresh beans beats a $7.50 latte from an untrained barista with stale beans. Every time.\n\nThis was our biggest early surprise. Price is marketing. Quality is craft.",
+        links: [
+          { text: "Best value coffee Brisbane", url: "/best-value-brisbane" }
+        ]
+      },
+      {
+        heading: "Lesson 2: Suburbs Have Personalities",
+        body: "West End in Brisbane has a specific coffee personality. Creative, slightly experimental, medium roast dominant. Baristas tend to be owner operators.\n\nNewstead has a different one. Polished, commercial, brand conscious. Higher investment in equipment and fit out.\n\nBurleigh Heads on the Gold Coast. Laid back, specialty forward, single origin curious.\n\nEvery suburb with 3+ cafes develops a distinct coffee culture. The suburb shapes the cafe more than the cafe shapes the suburb. When a new cafe opens in West End, it absorbs the West End coffee identity within months.\n\nWe did not expect this. We expected cafes to be independent of location. They are not. Geography is flavour.",
+        links: [
+          { text: "Explore by suburb", url: "/explore" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" }
+        ]
+      },
+      {
+        heading: "Lesson 3: The Morning Shift Matters",
+        body: "Cafes are measurably better before 10am.\n\nBeans are freshest. The machine is just warmed up and dialled in. The barista is focused, not fatigued. The milk is from the first carton, not the third.\n\nWe have reviewed cafes at different times and the pattern is consistent. The same cafe can score 0.3 to 0.5 points higher at 7:30am than at 2pm.\n\nWhy? Fatigue. Grind drift. Bean depletion. Milk that has been resteamed. Equipment that has not been cleaned mid shift.\n\nIf you want the best possible cup from any cafe, go early."
+      },
+      {
+        heading: "Lesson 4: Chains Can Surprise (But Rarely Do)",
+        body: "We expected every chain to score below 5.0. Most do. But not all.\n\nSome franchise locations where the owner genuinely cares about coffee score 5.5 to 6.5. The system works against them, but individual passion can lift a chain location above its corporate average.\n\nThe problem is consistency. The same chain can score 6.5 at one location and 3.1 at another. The brand means nothing. The individual location means everything.\n\nOur takeaway: judge the location, not the name. We have given high scores to unbranded hole in the wall cafes and low scores to locations with beautiful fit outs and strong branding. The name on the door predicts nothing.",
+        links: [
+          { text: "Chain vs independent deep dive", url: "/blog/chain-vs-independent-coffee" }
+        ]
+      },
+      {
+        heading: "Lesson 5: The Human Element Cannot Be Automated",
+        body: "The best cafes in our system share one thing: someone who cares.\n\nNot cares about the brand. Not cares about the Instagram page. Cares about the cup.\n\nThey taste their own coffee. They adjust throughout the day. They notice when a shot runs long. They notice when the milk is 2 degrees too hot. They care about the thing that most people will not even notice.\n\nThat human attention is the single biggest predictor of quality in our dataset. Not the machine. Not the beans. Not the fit out. The person pulling the shot.\n\nYou cannot automate that. And that is why the best coffee will always come from independent cafes run by people who give a damn.",
+        links: [
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Australian barista training", url: "/blog/australian-barista-training" }
+        ]
+      },
+      {
+        heading: "Lesson 6: Your Palate Is Trainable",
+        body: "When we started, a 6.5 and a 7.5 tasted similar. After 100 reviews, the gap became obvious. After 300, we could predict the score from the first sip.\n\nYour palate calibrates with exposure. The more good coffee you drink, the more you notice bad coffee. The more bad coffee you drink, the less you notice good coffee.\n\nThis is why our scoring is consistent. Not because we are special. Because we have calibrated through volume. 600+ cups trains your tongue.\n\nTry it yourself. Visit 10 cafes in a week. Order the same thing at each. By cafe 7, you will start noticing things you never noticed before. By cafe 10, you will know exactly what you like and why.",
+        links: [
+          { text: "Guess the Score game", url: "/guess-the-score" },
+          { text: "Score Battle game", url: "/score-battle" },
+          { text: "Coffee terminology", url: "/blog/coffee-terminology-explained" }
+        ]
+      },
+      {
+        heading: "What Comes Next",
+        body: "We are not done. 600 is a milestone, not a finish line.\n\nMore cities. More suburbs. More roasters. More data. The system keeps building on itself. Every review makes the next one more accurate because we have more context, more comparisons, more patterns to draw from.\n\nAustralian coffee is getting better. The data shows it. The averages are creeping up. The number of 7.5+ cafes is growing. The number of below 5.0 cafes is shrinking.\n\nWe will keep testing. Same order. Same system. Same honesty.\n\nOne latte. One double shot. Every time.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What has Koffee Review learned from 600+ reviews?", a: "Six key lessons: price does not predict quality, suburbs have distinct coffee personalities, morning coffee is measurably better, chains can occasionally surprise, the human element matters most, and your palate is trainable through exposure." },
+      { q: "Does price affect coffee quality?", a: "No. The correlation between latte price and review score is almost zero. Some of our highest scoring cafes charge the least. Quality comes from bean freshness, barista training, and machine maintenance, not price." },
+      { q: "Is morning coffee better than afternoon?", a: "Yes. Based on our data, the same cafe can score 0.3 to 0.5 points higher before 10am. Beans are fresher, the machine is just dialled in, the barista is less fatigued, and the milk is from the first carton." }
+    ]
+  },
+  {
+    slug: "worst-coffee-mistakes",
+    title: "The 5 Worst Coffee Mistakes We See \u2014 Based on 600+ Reviews",
+    ogImage: "https://koffeereview.com.au/og-blog-16.png",
+    description: "After 600+ cafe reviews, these are the five most common defects that kill coffee quality. Every cafe scoring below 5.0 makes at least two of them.",
+    date: "2026-08-08", readingTime: "7 min",
+    keywords: ["bad coffee","coffee mistakes","why is my coffee bad","common coffee defects","scorched milk","stale coffee beans","worst cafes"],
+    intro: "Bad coffee does not happen randomly. It happens for specific, identifiable, fixable reasons.\n\nAfter 600+ reviews, we have catalogued every defect we encounter. Five come up over and over. Every cafe scoring below 5.0 makes at least two of them. Most make three or more.\n\nHere are the five worst coffee mistakes and how to spot them before you waste $6.",
+    sections: [
+      {
+        heading: "Mistake 1: Scorched Milk",
+        body: "Frequency: we encounter this in about 25% of reviews.\n\nWhat it is: the barista heats the milk above 70 degrees. The milk proteins denature. The taste changes from sweet and creamy to eggy, burnt, and harsh. Once scorched, it cannot be fixed. The drink is ruined.\n\nHow to spot it: the cup is too hot to hold comfortably. The milk has a yellowish tint. The taste is sulphuric or eggy on the first sip.\n\nThis single defect can drop a score from 7.0 to 5.0. We have reviewed cafes where the beans were excellent, the extraction was clean, but the barista destroyed everything by overheating the milk.\n\nThe fix is embarrassingly simple: stop steaming at 65 degrees. Every trained barista knows this. Cafes that scorched milk were not trained or were not paying attention.",
+        links: [
+          { text: "Coffee terminology explained", url: "/blog/coffee-terminology-explained" }
+        ]
+      },
+      {
+        heading: "Mistake 2: Stale Beans",
+        body: "Frequency: about 30% of cafes show signs of stale beans.\n\nWhat it is: coffee beans degrade after roasting. Peak flavour is 7 to 21 days after roast. After 30 days, they are declining. After 60 days, they are flat. After 90 days, they are furniture.\n\nHow to spot it: no crema or very thin pale crema on the espresso. The coffee tastes hollow. Nothing happens when you sip. No acidity, no sweetness, no complexity. Just brown liquid.\n\nStale beans are the most common reason cafes score below 6.0. The cafe might have a great machine, a trained barista, and a beautiful fit out. None of it matters if the beans were roasted two months ago.\n\nThe fix: rotate stock. Buy smaller quantities more frequently. Display the roast date. Taste the beans weekly and pull them when they start declining.",
+        links: [
+          { text: "Browse by roaster", url: "/roaster" }
+        ]
+      },
+      {
+        heading: "Mistake 3: No Dialling In",
+        body: "Frequency: about 40% of cafes do not dial in daily.\n\nWhat it is: espresso extraction depends on grind size. The correct grind changes daily based on humidity, temperature, and bean age. Dialling in means pulling a test shot, tasting it, and adjusting the grind until the extraction is correct.\n\nHow to spot it: inconsistent shots. Your latte tastes different from your friend's even though you ordered the same thing. Or it tastes different from your last visit. Sour one day, bitter the next.\n\nCafes that do not dial in produce random quality. Some shots are good. Some are terrible. The average lands around 6.0 to 6.5 simply because of variability.\n\nThe fix: pull a test shot every morning before opening. Taste it. Adjust the grind. This takes 2 minutes. The cafes that skip it are choosing inconsistency.",
+        links: [
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "Mistake 4: Dirty Equipment",
+        body: "Frequency: visible signs in about 15% of cafes.\n\nWhat it is: espresso machines need daily cleaning. Coffee oils build up in the group head, portafilter, and seals. These oils go rancid. The rancid oils flavour every shot that passes through the machine.\n\nHow to spot it: a metallic or bitter aftertaste that does not match the bean profile. Visible brown residue around the group head. The portafilter basket has old coffee caked in the edges.\n\nThis defect is subtle but persistent. It adds a background bitterness to every drink. The cafe might think their coffee tastes fine because they have normalised the bitterness. It does not taste fine.\n\nThe fix: backflush daily. Deep clean weekly. Replace seals quarterly. It costs nothing except time and attention.",
+        links: [
+          { text: "How we score", url: "/how-we-score" }
+        ]
+      },
+      {
+        heading: "Mistake 5: Wrong Ratio",
+        body: "Frequency: about 20% of lattes have the wrong espresso to milk ratio.\n\nWhat it is: too much milk, not enough espresso. The latte tastes like warm milk with a hint of coffee. Or too little milk, and the espresso dominates aggressively.\n\nHow to spot it: you cannot taste the espresso through the milk. Or inversely, the milk adds nothing and you are drinking a harsh espresso with some white stuff floating in it.\n\nThe correct ratio for a latte: roughly 1 part espresso to 3 parts milk. For a flat white: roughly 1 to 2. These ratios let both elements shine.\n\nCafes using oversized cups are the worst offenders. A standard latte in a 12 ounce cup works. The same espresso shot in a 16 ounce cup means 30% more milk and 30% less flavour. You are paying the same price for a weaker drink.\n\nThe fix: use the right cup size. Or add an extra shot for larger cups. Do not dilute the customer's coffee to fill a bigger vessel.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" }
+        ]
+      },
+      {
+        heading: "The Compound Effect",
+        body: "Here is the thing about these mistakes: they compound.\n\nOne mistake drops a score by 1 to 1.5 points. Two mistakes drop it by 2 to 3 points. Three or more and you are below 5.0.\n\nOur lowest scoring cafes almost always have three or more of these defects happening simultaneously. Stale beans plus no dialling in plus scorched milk equals a 2 to 3 out of 10. It is not one bad thing. It is everything going wrong at once because nobody is paying attention.\n\nConversely, fixing just one of these defects can lift a score by 1+ points. A cafe scoring 5.5 that fixes its milk technique becomes a 6.5. A 6.5 that starts dialling in becomes a 7.0. A 7.0 that rotates beans becomes a 7.5.\n\nThe path from average to great is not dramatic. It is five small fixes done consistently.",
+        links: [
+          { text: "Cafes to avoid Brisbane", url: "/brisbane-cafes-to-avoid" },
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What are the most common coffee defects?", a: "Five defects account for most bad coffee: scorched milk (25% of cafes), stale beans (30%), no daily grind adjustment (40%), dirty equipment (15%), and wrong espresso to milk ratio (20%). Every cafe scoring below 5.0 makes at least two of these." },
+      { q: "Why does my latte taste burnt?", a: "Scorched milk. The barista heated the milk above 70 degrees, denaturing the proteins. It tastes eggy, sulphuric, or harsh. Proper steaming stops at 65 degrees. This single defect can drop a score from 7.0 to 5.0." },
+      { q: "How can you tell if coffee beans are stale?", a: "Look at the crema on an espresso. Fresh beans produce thick golden crema. Stale beans produce thin pale crema or no crema at all. The taste will be hollow with no complexity, acidity, or sweetness. Just flat brown liquid." },
+      { q: "Can a bad cafe become good?", a: "Yes. Fixing just one of the five common defects can lift a score by 1+ points. The path from average (6.0) to great (7.5) is five small fixes done consistently: fresh beans, daily dialling in, proper milk technique, clean equipment, correct ratios." }
+    ]
   }
 ];
 
