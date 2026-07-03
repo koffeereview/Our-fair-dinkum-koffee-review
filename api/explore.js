@@ -213,13 +213,17 @@ export default async function handler(req,res){
       <div class="g2">
         ${pageCard("Best Espresso Brisbane","Double shot rankings","/best-espresso-brisbane","#E6C073")}
         ${pageCard("Coffee Guide","Your questions answered","/coffee-guide","#E6C073")}
-        ${pageCard("Guess the Score","Can you match our ratings?","/guess-the-score","#4ade80")}
-        ${pageCard("Score Battle","Which cafe scored higher?","/score-battle","#4ade80")}
         ${pageCard("International","Barcelona & beyond","/countries","#E6C073")}
         ${pageCard("Cafes to Avoid","Save your money","/brisbane-cafes-to-avoid","#f87171")}
         ${pageCard("Worst by Suburb","Lowest scored per suburb","/worst-cafes-by-suburb","#f87171")}
+        ${pageCard("Roaster Directory","Which roaster powers your cafe","/roaster","#E6C073")}
+        ${pageCard("Brisbane Roasters","Roasters in Brisbane","/brisbane-coffee-roasters","#E6C073")}
+        ${pageCard("Best Value Brisbane","Quality per dollar ranked","/best-value-brisbane","#4ade80")}
+        ${pageCard("Best Value Gold Coast","GC value rankings","/best-value-gold-coast","#4ade80")}
         ${pageCard("New This Month","Latest reviews weekly","/new","#4ade80")}
         ${pageCard("Best Latte Gold Coast","GC latte rankings","/best-latte-gold-coast","#E6C073")}
+        ${pageCard("Best Espresso Gold Coast","GC espresso rankings","/best-espresso-gold-coast","#E6C073")}
+        ${pageCard("GC Cafes to Avoid","Gold Coast avoid list","/gold-coast-cafes-to-avoid","#f87171")}
       </div>
 
       <div class="sh" style="margin-top:20px;border:none;padding-bottom:8px">
@@ -302,6 +306,10 @@ export default async function handler(req,res){
           <div class="wide-sub" style="color:rgba(244,114,182,0.6)">Can't decide? Spin the wheel and let fate pick. Filter by city, suburb, or score.</div>
         </div>
       </a>
+      <div class="g2">
+        ${pageCard("Guess the Score","Read the notes, guess our rating. 10 rounds.","/guess-the-score","#f472b6")}
+        ${pageCard("Score Battle","Two cafes. Which scored higher? Build a streak.","/score-battle","#f472b6")}
+      </div>
     </div>
 
     <div class="divider"></div>
