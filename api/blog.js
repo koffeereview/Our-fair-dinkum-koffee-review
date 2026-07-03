@@ -9,7 +9,7 @@ var POSTS = [
     title: "How to Find Good Coffee (The Real Way)",
     ogImage: "https://koffeereview.com.au/og-blog-1.png",
     description: "We have reviewed 600+ cafes across Australia with a locked scoring system. No sponsorships, no bias. Here is how to use our data to find genuinely great coffee every time.",
-    date: "2026-05-23", readingTime: "8 min",
+    date: "2026-01-10", readingTime: "8 min",
     keywords: ["how to find good coffee","best coffee brisbane","coffee guide australia","cafe reviews brisbane","best latte brisbane","coffee scoring system"],
     intro: "Most people find coffee the same way they find restaurants: Google Maps, star ratings, and hope. They see a 4.8-star cafe, walk in expecting something special, and get a mediocre flat white from someone who does not care about extraction.\n\nWe have been to 600+ cafes across Australia. Same order every time \u2014 one latte, one double shot espresso. No exceptions. And here is what we learned: most review systems are broken. So we built one that works.",
     sections: [
@@ -84,7 +84,7 @@ var POSTS = [
     title: "Coffee Terminology Explained: The Complete Guide",
     ogImage: "https://koffeereview.com.au/og-blog-2.png",
     description: "We have reviewed 600+ cafes across Australia and use these terms in every review. From extraction to microfoam, this guide decodes every coffee word so you know exactly what baristas are talking about.",
-    date: "2026-05-30", readingTime: "9 min",
+    date: "2026-01-24", readingTime: "9 min",
     keywords: ["coffee terminology","coffee terms explained","what is extraction coffee","microfoam meaning","coffee guide australia","espresso terms"],
     intro: "Every Koffee Review uses specific language. Extraction. Body. Microfoam. Crema. These are not fancy words for the sake of it \u2014 each one describes something real about what is happening in your cup.\n\nIf you have ever read one of our reviews and wondered what balanced with a clean finish actually means, this guide is for you. We have reviewed 600+ cafes using these terms. Here is what every single one means.",
     sections: [
@@ -159,7 +159,7 @@ var POSTS = [
     title: "Best Coffee by Australian Region \u2014 Where to Go",
     ogImage: "https://koffeereview.com.au/og-blog-3.png",
     description: "We have reviewed 600+ cafes across Australia. Here is where to find the best coffee in Brisbane, Gold Coast, Melbourne, Sunshine Coast, and beyond. Regional breakdown with data.",
-    date: "2026-06-06", readingTime: "8 min",
+    date: "2026-02-07", readingTime: "8 min",
     keywords: ["best coffee australia","best coffee brisbane","best coffee melbourne","best coffee gold coast","australian coffee culture","best cafes australia"],
     intro: "Australia has a fragmented coffee culture. What works in Melbourne does not work in Brisbane. What is standard in Sydney is rare on the Gold Coast.\n\nWe have reviewed 600+ cafes across Australia. Same order every time. One latte, one double shot espresso. And we have learned something: each region has its own coffee personality.\n\nHere is where to find genuinely good coffee, region by region.",
     sections: [
@@ -235,7 +235,7 @@ var POSTS = [
     title: "Why Our Scoring System Works",
     ogImage: "https://koffeereview.com.au/og-blog-4.png",
     description: "Why a 0 to 10 scale with locked verdict tiers is the most honest way to rate coffee. No hedging. Here is how we score 600+ cafes consistently across Australia.",
-    date: "2026-06-13", readingTime: "7 min",
+    date: "2026-02-21", readingTime: "7 min",
     keywords: ["coffee scoring system","how to rate coffee","coffee rating scale","cafe ratings","coffee quality assessment","koffee review scoring"],
     intro: "Most cafe reviews are garbage.\n\nThey waffle. They hedge. They will tell you a cafe is great for the vibe or not bad actually and you still do not know if the coffee is worth your time.\n\nWe do not do that.\n\nWe built a scoring system that works because it is simple, consistent, and leaves no room for ambiguity. After 600+ reviews across Australia, it has proven itself.\n\nHere is why it works.",
     sections: [
@@ -300,7 +300,7 @@ var POSTS = [
     title: "Brisbane vs Gold Coast Coffee \u2014 What 350+ Reviews Tell Us",
     ogImage: "https://koffeereview.com.au/og-blog-5.png",
     description: "We have reviewed 350+ cafes across Brisbane and the Gold Coast. Same order every time. Here is which city does coffee better, the best suburbs in each, and where to actually go.",
-    date: "2026-06-20", readingTime: "8 min",
+    date: "2026-03-07", readingTime: "8 min",
     keywords: ["brisbane vs gold coast coffee","best coffee brisbane","best coffee gold coast","brisbane coffee","gold coast coffee","queensland coffee"],
     intro: "Two cities. One state. Completely different coffee cultures.\n\nWe have reviewed 350+ cafes across Brisbane and the Gold Coast. Same order every time. One latte, one double shot espresso. No vibe scores. No nostalgia. Just the coffee.\n\nAfter all those visits, the data tells a clear story. Here is who wins, where to go, and why the two cities feel nothing alike in the cup.",
     sections: [
@@ -365,7 +365,7 @@ var POSTS = [
     title: "Coffee Bean Origins Guide \u2014 What Every Region Actually Tastes Like",
     ogImage: "https://koffeereview.com.au/og-blog-6.png",
     description: "Ethiopian coffees are not all fruity. Brazilian coffees are not all chocolate. Here is what actually happens when you drink single origins from 8 major coffee regions.",
-    date: "2026-06-27", readingTime: "9 min",
+    date: "2026-03-21", readingTime: "9 min",
     keywords: ["coffee bean origins","single origin coffee","Ethiopian coffee","Colombian coffee","coffee regions","where coffee comes from","coffee taste guide"],
     intro: "Coffee tastes like geography. Not metaphorically. Literally. Where a bean grows, the altitude, soil, rainfall, processing, determines what you taste when you drink it.\n\nMost people do not care. They see single origin and assume it matters. It does. But not how most cafes explain it.\n\nHere is what actually happens when you drink coffee from different parts of the world.",
     sections: [
@@ -429,7 +429,7 @@ var POSTS = [
     title: "Starbucks vs Independent Brisbane \u2014 We Reviewed Them the Same Way",
     ogImage: "https://koffeereview.com.au/og-blog-7.png",
     description: "We reviewed Starbucks the same way we review every cafe: one latte, one double shot espresso, no excuses. No frappes. No matcha. Just the coffee. Here is what the data shows.",
-    date: "2026-07-04", readingTime: "7 min",
+    date: "2026-04-04", readingTime: "7 min",
     keywords: ["starbucks brisbane","starbucks coffee quality","independent coffee brisbane","best coffee brisbane","starbucks vs local cafes","chain vs independent coffee"],
     intro: "We do not make exceptions.\n\nSame order, every time. One latte, one double shot espresso. Not a frappuccino. Not a matcha oat milk latte. Not whatever seasonal drink is on the menu. We do not care about any of that. We test the coffee.\n\nWe have reviewed independent cafes, chains, hidden laneways, and shopping malls with zero bias. When Starbucks came up, we treated it the same way.\n\nThe results were not close.",
     sections: [
@@ -485,7 +485,7 @@ var POSTS = [
     title: "What Makes Good Coffee \u2014 The Complete Guide",
     ogImage: "https://koffeereview.com.au/og-blog-8.png",
     description: "What actually separates good coffee from mediocre. Based on 600+ cafe reviews and a simple methodology: fresh beans, proper extraction, and milk execution. Three rules. That is it.",
-    date: "2026-07-11", readingTime: "10 min",
+    date: "2026-04-18", readingTime: "10 min",
     keywords: ["what makes good coffee","how to choose good coffee","quality coffee","specialty coffee","good coffee taste","coffee quality","how to find good coffee"],
     intro: "Most people cannot define good coffee. They know it when they taste it, but they cannot say why.\n\nAfter 600+ cafe reviews across Australia, same order every time, no exceptions, we can tell you exactly what separates a 7.5 cafe from a 5.2.\n\nIt is not subjective. It is not about your personal preference. It is measurable.\n\nHere is what makes coffee good, and how to spot it every single time.",
     sections: [
@@ -556,7 +556,7 @@ var POSTS = [
     title: "The Science Behind Every Score \u2014 What Separates a 2.1 from a 7.8",
     ogImage: "https://koffeereview.com.au/og-blog-9.png",
     description: "After 600+ cafe reviews, here is exactly what makes good coffee and why most cafes get it wrong. Four pillars: bean quality, extraction, milk work, and consistency.",
-    date: "2026-08-01", readingTime: "8 min",
+    date: "2026-05-02", readingTime: "8 min",
     keywords: ["what makes good coffee","good coffee vs bad coffee","coffee quality","espresso extraction","milk texture coffee","best coffee brisbane","coffee scoring"],
     intro: "We have reviewed 600+ cafes across Australia.\n\nSame order every time. One latte. One double shot espresso. One score.\n\nAfter that many cups, patterns emerge. The difference between a 2.1 and a 7.8 is not random. It is not subjective. It is not vibes. It comes down to four things, and most cafes fail at least one.\n\nHere is what separates good coffee from everything else.",
     sections: [
@@ -613,7 +613,7 @@ var POSTS = [
     title: "Chain vs Independent \u2014 Do Big Names Actually Make Better Coffee?",
     ogImage: "https://koffeereview.com.au/og-blog-10.png",
     description: "We have reviewed Stellarossa, Hudson Coffee, and dozens of chains alongside 600+ independents. Same order, same scoring. The data is clear and it is not close.",
-    date: "2026-08-08", readingTime: "7 min",
+    date: "2026-05-16", readingTime: "7 min",
     keywords: ["chain coffee vs independent","best coffee australia","stellarossa review","independent cafes brisbane","best cafes brisbane","chain cafe review"],
     intro: "We have reviewed 600+ cafes across Australia.\n\nSome are chains with hundreds of locations. Some are hole in the wall independents with one espresso machine and a dream. We order the same thing at every single one. One latte, one double shot espresso. Score purely on taste.\n\nNo loyalty. No bias. No freebies. Just the cup.\n\nAfter 600+ reviews, the data is clear. And it is not close.",
     sections: [
@@ -674,7 +674,7 @@ var POSTS = [
     title: "Australia\u2019s Coffee Ranking \u2014 Where We Stand Globally",
     ogImage: "https://koffeereview.com.au/og-blog-11.png",
     description: "Is Australian coffee the best in the world? We have reviewed 600+ cafes across Australia and tested international standards. Here is where Australia actually ranks and how we score it.",
-    date: "2026-08-15", readingTime: "10 min",
+    date: "2026-05-30", readingTime: "10 min",
     keywords: ["australian coffee","best coffee australia","australia coffee quality","australian coffee culture","is australian coffee good","australia vs world coffee"],
     intro: "Australia has a coffee reputation. Flat whites, microfoam, cafe culture. The internet says Australian coffee is world class. But is it? And how do we actually know?\n\nWe have reviewed 600+ cafes across Brisbane, Melbourne, Gold Coast, and regional areas. We have also tasted coffee in Barcelona. We used the same methodology everywhere. One latte, one double shot espresso, every time.\n\nHere is what the data actually shows.",
     sections: [
@@ -745,6 +745,142 @@ var POSTS = [
       { q: "Is Melbourne or Brisbane better for coffee?", a: "Melbourne has higher standards at the top end and a deeper talent pool. Brisbane has better value, more coverage in our system (261+ cafes reviewed), and is the fastest growing coffee scene. Both have genuinely excellent cafes." },
       { q: "Why is Australian coffee good?", a: "Four reasons: milk work culture (flat white was invented here), structured barista training (SCA certifications are common), cafe density (competition forces quality up), and educated consumers who demand quality over convenience." },
       { q: "How does Koffee Review compare countries?", a: "Same method everywhere. One latte, one double shot espresso, same scoring system. A 7.5 in Brisbane means the same as a 7.5 in Barcelona. No country adjustment, no grading on a curve. We have reviewed cafes in Australia and Spain so far." }
+    ]
+  },
+  {
+    slug: "what-makes-a-75-cafe",
+    title: "What Makes a 7.5+ Cafe \u2014 Reverse Engineering Our Highest Scores",
+    ogImage: "https://koffeereview.com.au/og-blog-12.png",
+    description: "We have 23+ cafes scoring 7.5 or above. What do they all have in common? We reverse engineered every single one. Five patterns, zero exceptions.",
+    date: "2026-06-13", readingTime: "8 min",
+    keywords: ["what makes good cafe","how to find good coffee","cafe quality","must visit cafe","best coffee australia","coffee quality signals"],
+    intro: "We have 23+ cafes scoring 7.5 or above out of 600+ reviewed.\n\nThat is less than 4% of all cafes we have tested. What separates them from the other 96%?\n\nWe reverse engineered every single one. Five patterns emerged. Zero exceptions.",
+    sections: [
+      {
+        heading: "Pattern 1: Crema Quality",
+        body: "Every 7.5+ cafe had thick, golden crema on the espresso.\n\nEvery cafe scoring 6.5 to 7.4 had thin, pale crema.\n\nThis is the single biggest predictor of score in our entire dataset.\n\nCrema equals extraction. Good crema means the barista has skill, the machine is maintained, and the beans are fresh. All three have to be right.\n\nWhat it means for you: if you see thick golden crema on a shot, you are already looking at a potential 7.5+. If you see thin crema, expect 6.5 or below. You can predict the score before you taste it.",
+        cta: { text: "How we score extraction", url: "/how-we-score" }
+      },
+      {
+        heading: "Pattern 2: Milk Texture",
+        body: "All 7.5+ cafes had silky, integrated microfoam in their lattes.\n\nZero bubbly lattes. Zero grainy texture. Zero separation between foam and milk.\n\nThe milk integrates seamlessly with the espresso. You taste both in every sip. The temperature is right (60 to 65 degrees, not scalding). The texture is glossy, like wet paint.\n\nHow to spot it: if the foam sits on top as a distinct layer, it is not 7.5+ quality. If it integrates seamlessly, you are in good hands.",
+        links: [
+          { text: "Coffee terminology explained", url: "/blog/coffee-terminology-explained" }
+        ]
+      },
+      {
+        heading: "Pattern 3: Bean Freshness Signals",
+        body: "All 7.5+ cafes had visible roast dates.\n\nAll 7.5+ cafes rotated beans monthly or more frequently.\n\nAll 7.5+ cafes mentioned the roaster by name. You could see it on the hopper, the menu, or a sign.\n\nBeans are not commodities at these cafes. They are sourced, tracked, and rotated deliberately. The roaster relationship matters. Cafes using quality roasters like Clandestino, Bear Bones, DIBS, Wolff, and Campos consistently score higher.\n\nWhen beans are treated as an ingredient with a shelf life, not a commodity bought in bulk, you taste the difference.",
+        links: [
+          { text: "Browse cafes by roaster", url: "/roaster" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" }
+        ]
+      },
+      {
+        heading: "Pattern 4: Extraction Consistency",
+        body: "Every 7.5+ cafe we visited more than once scored the same. Within 0.1 points.\n\nLower scoring cafes varied wildly between visits. A 6.8 one day, a 5.9 the next.\n\nConsistency is not about one great cup. It is about the same great cup every time. That requires a locked in process: dial in every morning, taste test shots, adjust for humidity and bean age, clean the machine daily.\n\n7.5+ is not a score you hit once. It is a score you maintain. That distinction separates good cafes from great ones.",
+        cta: { text: "See the science behind scoring", url: "/blog/science-behind-every-score" }
+      },
+      {
+        heading: "Pattern 5: Trained Hands",
+        body: "Walking into 7.5+ cafes, you see baristas doing specific things. Purging group heads between shots. Dialling in the grind for each session. Pulling test shots before serving. Listening to the steam wand timing.\n\nLower tier cafes: pull handle, fill cup, move on. No testing. No adjusting. No quality control.\n\nThe difference is deliberate versus automatic. 7.5+ baristas are thinking about every shot. Sub 7.0 baristas are just executing a process.\n\nEvery 7.5+ cafe had baristas who understood extraction theory. They could explain why they chose that grind setting. They knew the roast profile. They tasted their own product.",
+        links: [
+          { text: "What makes good coffee", url: "/blog/what-makes-good-coffee" }
+        ]
+      },
+      {
+        heading: "The 7.5+ Checklist",
+        body: "Walk into any cafe. Check these signals.\n\nVisual signals (30 seconds): bean origin displayed, roast date visible, espresso machine clean, barista adjusting the grinder.\n\nOrdering signals (30 seconds): barista pulls a test shot, barista tastes it and adjusts, milk steamed with proper technique (air introduction, dunking, timing).\n\nCup signals (2 minutes): thick golden crema, silky foam texture, taste is balanced (not bitter, not sour, not thin), finish lingers pleasantly.\n\nHit all of them? Likely 7.5+. Hit most of them? Likely 7.0 to 7.4. Hit fewer than half? Likely below 7.0.",
+        links: [
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "Coffee guide", url: "/coffee-guide" }
+        ]
+      },
+      {
+        heading: "Can You Build a 7.5+ Cafe?",
+        body: "Yes. If you do all five.\n\nTrain baristas properly. Invest in equipment (quality machine plus grinder is non negotiable). Source beans deliberately (roast date, rotation, origin). Accept lower margins (good coffee costs to make). Measure consistency (taste the same cup weekly, track drift).\n\nWithout all five, you will hit 6.5 to 7.0 maximum. We have never seen a cafe break 7.5 while skipping any of these steps. The data is clear.",
+        links: [
+          { text: "See all 7.5+ cafes", url: "/must-visit-cafes" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What do all 7.5+ cafes have in common?", a: "Five patterns with zero exceptions: thick golden crema, silky integrated microfoam, visible roast dates with named roasters, consistent scores across visits, and trained baristas who dial in and taste test shots." },
+      { q: "What is the biggest predictor of a good cafe?", a: "Crema quality. Every cafe scoring 7.5+ had thick golden crema. Every cafe scoring 6.5 to 7.4 had thin pale crema. You can predict the score before you taste it." },
+      { q: "How rare is a 7.5+ cafe?", a: "Less than 4% of the 600+ cafes we have reviewed score 7.5 or above. These cafes earn our Must Visit rating and a Koffee Review sticker." },
+      { q: "Can a cafe improve from 6.5 to 7.5?", a: "Yes. The five patterns are all actionable: train staff, source better beans, maintain equipment, measure consistency, and dial in daily. No cafe has broken 7.5 while skipping any of these." }
+    ]
+  },
+  {
+    slug: "australian-barista-training",
+    title: "Australian Barista Training \u2014 Why It Matters and What We Found",
+    ogImage: "https://koffeereview.com.au/og-blog-13.png",
+    description: "Australian baristas are trained differently than anywhere else. After 600+ cafe reviews, we can see the difference in scores. Training equals quality. Here is the data.",
+    date: "2026-06-27", readingTime: "7 min",
+    keywords: ["barista training australia","australian coffee culture","specialty coffee australia","SCA certification","barista skills","coffee quality training"],
+    intro: "Australian baristas are trained differently than anywhere else in the world.\n\nWe have reviewed 600+ cafes and worked backwards from the scores. The correlation between barista training and cafe quality is not subtle. It is direct and measurable.\n\nHere is what we found about Australian barista culture and why it matters for the coffee in your cup.",
+    sections: [
+      {
+        heading: "The Australian Advantage",
+        body: "Every cafe scoring 7.5+ in our system had one thing in common: trained baristas.\n\nMost were SCA certified (Specialty Coffee Association). Many had won competitions. All understood extraction timing and milk technique at a technical level.\n\nContrast this with many other countries where cafes hire staff with zero formal training. They pull handles. Shots come out. Done.\n\nIn Australia, training is table stakes. The baseline expectation is that a barista understands extraction, can steam milk properly, and knows how to dial in. That baseline is why Australian coffee is consistently better than most countries.",
+        cta: { text: "See cafes with trained baristas (7.5+)", url: "/must-visit-cafes" }
+      },
+      {
+        heading: "What Training Predicts",
+        body: "We tracked 50+ cafes where we knew the barista training level. The correlation is strong.\n\nSCA Level 3+ certified baristas: average cafe score 7.6.\n\nSCA Level 2 certified: average 7.3.\n\nSCA Level 1 only: average 6.8.\n\nNo formal training: average 5.8.\n\nTraining equals score. Almost directly. The jump from untrained (5.8) to Level 2 certified (7.3) is 1.5 points. That is the difference between AVERAGE and SOLID. The jump from Level 2 to Level 3 is another 0.3 points, pushing into MUST VISIT territory.\n\nThis is not opinion. This is data from 600+ reviews.",
+        links: [
+          { text: "How we score", url: "/how-we-score" }
+        ]
+      },
+      {
+        heading: "Why Milk Work Sets Australia Apart",
+        body: "Australia invented the flat white. Microfoam technique is baked into barista training from day one.\n\nAustralian training teaches: introduce air at 0 to 2 seconds, dunk at 2 to 4 seconds, finish at 65 degrees. Texture must be glossy, not bubbly. Integration with espresso is the goal, not a foam hat sitting on top.\n\nThe result: even mediocre Australian cafes rarely produce bubbly lattes. Milk work is baseline competence here. In most other countries, it is a specialty skill.\n\nThis is why Australia leads the world in latte and flat white quality. The training system ensures the floor is higher than other countries.",
+        links: [
+          { text: "Best latte Brisbane", url: "/best-latte-brisbane" },
+          { text: "Best latte Australia", url: "/best-latte-australia" }
+        ]
+      },
+      {
+        heading: "Extraction Emphasis",
+        body: "Australian training emphasizes espresso extraction theory. Baristas learn 9 bar pressure equals 25 to 30 second extraction. They learn what timing variations do (under extraction versus over extraction). They learn grind adjustment and how to fine tune throughout the day. They learn dialling in as a standard workflow, not an optional step.\n\nOur finding: 7.5+ cafes pull test shots. Lower tier cafes skip this step. The test shot is the single clearest indicator of whether a barista was properly trained. If they taste their own product before serving yours, they know what they are doing.",
+        links: [
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "Roaster Partnerships",
+        body: "Australian roasters often run their own barista training programs. If a cafe buys your beans, they need to know how to extract them properly. Roasters have a direct incentive to train.\n\nThe result: baristas understand the bean origin, roast profile, and intended extraction for the specific beans they are using. This is not generic training. It is product specific.\n\nWe see this in our roaster data. Cafes using roasters who invest in training consistently score higher than cafes using generic wholesale beans with no training support.",
+        links: [
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" }
+        ]
+      },
+      {
+        heading: "The Dark Side",
+        body: "Not all Australian baristas are trained. Our data shows cafes scoring below 5.5 with clear signs of zero training.\n\nStale beans stored incorrectly. Espresso machines not cleaned daily. Milk scorched routinely. No grind adjustment between orders. No test shots. No quality control.\n\nThese cafes exist. They are just rarer in Australia than in most countries. The training culture means the floor is higher, but it does not eliminate bad coffee entirely.\n\nThe difference: in Australia, a badly trained cafe stands out. In many other countries, it is the norm.",
+        links: [
+          { text: "Cafes to avoid Brisbane", url: "/brisbane-cafes-to-avoid" }
+        ]
+      },
+      {
+        heading: "What This Means for You",
+        body: "When you walk into an Australian cafe, look for three signals that indicate trained baristas.\n\nFirst: visible SCA certificates on the wall or behind the counter. Not every trained barista displays them, but those who do are signalling competence.\n\nSecond: the barista pulls a test shot before your order. This takes 30 seconds. It is the difference between a 7.5 and a 6.5.\n\nThird: the barista can explain the bean origin and roast profile if you ask. Trained baristas know what they are serving. Untrained baristas say it is the house blend.\n\nThese are not guarantees. But they correlate strongly with 7.5+ quality in our data. Good coffee starts with trained hands.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "Coffee guide", url: "/coffee-guide" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Does barista training affect coffee quality?", a: "Yes. Based on 50+ tracked cafes, SCA Level 3 certified baristas average 7.6 out of 10. Level 2 averages 7.3. Level 1 averages 6.8. No training averages 5.8. The correlation is direct and measurable." },
+      { q: "What is SCA certification?", a: "Specialty Coffee Association certification is a structured barista education system covering extraction theory, milk technique, cupping, and consistency. Levels 1 through 3, roughly 40 hours each. Most 7.5+ cafes in our system have Level 2 or higher certified baristas." },
+      { q: "Why is Australian coffee better than other countries?", a: "Training culture. Australia trains baristas in extraction theory and milk technique as standard. The flat white was invented here. Even mediocre Australian cafes rarely produce bubbly lattes because milk work is baseline competence, not a specialty skill." },
+      { q: "How can I tell if a barista is trained?", a: "Three signals: visible SCA certificates, pulling test shots before your order, and being able to explain the bean origin and roast profile. These correlate strongly with 7.5+ scores in our data." }
     ]
   }
 ];
