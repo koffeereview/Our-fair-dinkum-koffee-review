@@ -33,7 +33,56 @@ export default async function handler(req,res){
     res.setHeader("Cache-Control","public, s-maxage=3600, stale-while-revalidate=86400");
 
     // Find both cafes from the slug
-    if(!slug||slug.indexOf("-vs-")===-1){
+    if(!slug){
+      // INDEX PAGE — show popular matchups
+      // Generate matchups from same-suburb cafes with score differences
+      var matchups=[];
+      for(var i=0;i<cafes.length&&matchups.length<30;i++){
+        for(var j=i+1;j<cafes.length&&matchups.length<30;j++){
+          var a=cafes[i],b=cafes[j];
+          if(a.s.toLowerCase()!==b.s.toLowerCase())continue;
+          var d=Math.abs(a.sc-b.sc);
+          if(d<0.3||!a.nt||!b.nt)continue;
+          var pair=[a.sl,b.sl].sort();
+          matchups.push({a:a,b:b,slug:pair[0]+"-vs-"+pair[1],diff:d});
+        }
+      }
+      // Also add some cross-suburb top cafe matchups
+      var top20=cafes.filter(function(c){return c.sc>=7.0&&c.nt;}).sort(function(a,b){return b.sc-a.sc;}).slice(0,20);
+      for(var i=0;i<top20.length&&matchups.length<40;i++){
+        for(var j=i+1;j<top20.length&&matchups.length<40;j++){
+          var a=top20[i],b=top20[j];
+          if(a.s.toLowerCase()===b.s.toLowerCase())continue;
+          var pair=[a.sl,b.sl].sort();
+          var exists=matchups.some(function(m){return m.slug===pair[0]+"-vs-"+pair[1];});
+          if(!exists)matchups.push({a:a,b:b,slug:pair[0]+"-vs-"+pair[1],diff:Math.abs(a.sc-b.sc)});
+        }
+      }
+      matchups.sort(function(a,b){return b.diff-a.diff;});
+      var matchupCards=matchups.slice(0,20).map(function(m){
+        var colA=gc(m.a.sc),colB=gc(m.b.sc);
+        return'<a href="/vs/'+m.slug+'" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;margin-bottom:8px;text-decoration:none;color:inherit"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#fff">'+esc(m.a.n)+' <span style="color:rgba(255,255,255,0.25)">vs</span> '+esc(m.b.n)+'</div><div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px">'+esc(m.a.s)+(m.a.s.toLowerCase()!==m.b.s.toLowerCase()?' vs '+esc(m.b.s):'')+'</div></div><div style="display:flex;gap:8px;align-items:center;flex-shrink:0"><span style="font-family:Bebas Neue,sans-serif;font-size:18px;color:'+colA+'">'+m.a.sc.toFixed(1)+'</span><span style="font-size:10px;color:rgba(255,255,255,0.2)">vs</span><span style="font-family:Bebas Neue,sans-serif;font-size:18px;color:'+colB+'">'+m.b.sc.toFixed(1)+'</span></div></a>';
+      }).join("");
+
+      return res.status(200).send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        +'<title>Cafe Comparisons '+year+' | Head to Head Reviews | Koffee Review</title>'
+        +'<meta name="description" content="Cafe vs cafe. Head to head comparisons based on '+cafes.length+'+ reviews. Same order, same scoring. See which cafe wins.">'
+        +'<link rel="canonical" href="https://koffeereview.com.au/vs"><link rel="icon" href="/logo.webp">'
+        +'<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">'
+        +'<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#111827;color:#e2e8f0;font-family:DM Sans,sans-serif;-webkit-font-smoothing:antialiased}.c{max-width:620px;margin:0 auto;padding:0 20px 60px}.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08)}.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}.nav-logo img{width:34px;height:34px;border-radius:50%}.nav-logo span{font-family:Bebas Neue,sans-serif;font-size:15px;letter-spacing:3px;color:#E6C073}.nav-links{display:flex;gap:14px}.nav-links a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none}.ft{margin-top:32px;padding:20px 0;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:11px;color:rgba(255,255,255,0.3)}.ft a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 8px}</style>'
+        +'</head><body><div class="c"><nav class="nav"><a href="/" class="nav-logo"><img src="/logo.webp" alt="KR"><span>KOFFEE REVIEW</span></a><div class="nav-links"><a href="/compare">Compare Tool</a><a href="/explore">Explore</a></div></nav>'
+        +'<div style="text-align:center;padding:28px 0 20px"><div style="font-size:10px;letter-spacing:3px;color:rgba(230,192,115,0.5);margin-bottom:8px">HEAD TO HEAD</div><h1 style="font-family:Bebas Neue,sans-serif;font-size:clamp(28px,7vw,42px);letter-spacing:2px;color:#fff">Cafe Comparisons</h1><p style="font-size:14px;color:rgba(255,255,255,0.5);margin-top:8px">Same order. Same scoring. Who wins? '+matchups.length+'+ matchups from '+cafes.length+'+ reviews.</p></div>'
+        +'<div style="background:rgba(230,192,115,0.04);border:1px solid rgba(230,192,115,0.15);border-radius:14px;padding:14px 16px;margin-bottom:20px;text-align:center"><a href="/compare" style="color:#E6C073;text-decoration:none;font-size:14px;font-weight:600">Want to compare any two cafes? Use the interactive Compare Tool &rarr;</a></div>'
+        +'<div style="font-family:Bebas Neue,sans-serif;font-size:12px;letter-spacing:3px;color:rgba(255,255,255,0.25);margin-bottom:12px">POPULAR MATCHUPS</div>'
+        +matchupCards
+        +'<div style="margin-top:24px;display:flex;flex-direction:column;gap:8px">'
+        +'<a href="/compare" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.12);border-radius:14px;text-decoration:none;color:#E6C073;font-size:13px">Interactive Compare Tool &rarr;</a>'
+        +'<a href="/must-visit-cafes" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px">Must Visit Cafes &rarr;</a>'
+        +'<a href="/explore" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px">Explore &rarr;</a></div>'
+        +'<footer class="ft"><a href="/leaderboard">Leaderboard</a><a href="/explore">Explore</a><a href="/blog">Blog</a></footer></div></body></html>');
+    }
+
+    if(slug.indexOf("-vs-")===-1){
       return res.status(404).send('<!DOCTYPE html><html><head><title>Not Found</title><meta name="robots" content="noindex"></head><body style="background:#111827;color:#fff;font-family:sans-serif;text-align:center;padding:60px"><h1 style="color:#E6C073">Comparison Not Found</h1><a href="/explore" style="color:#E6C073">&larr; Explore</a></body></html>');
     }
 
