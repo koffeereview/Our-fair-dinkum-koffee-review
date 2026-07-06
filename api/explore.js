@@ -307,8 +307,10 @@ export default async function handler(req,res){
         </div>
       </a>
       <div class="g2">
-        ${pageCard("Guess the Score","Read the notes, guess our rating. 10 rounds.","/guess-the-score","#f472b6")}
-        ${pageCard("Score Battle","Two cafes. Which scored higher? Build a streak.","/score-battle","#f472b6")}
+        ${pageCard("Guess the Score","Read the notes, guess our rating","/guess-the-score","#f472b6")}
+        ${pageCard("Score Battle","Which cafe scored higher?","/score-battle","#f472b6")}
+        ${pageCard("Guess the Suburb","Pick the right suburb from 4","/guess-the-suburb","#a78bfa")}
+        ${pageCard("The Gauntlet","20 cafes. 60 seconds. Survive.","/the-gauntlet","#f87171")}
       </div>
     </div>
 
