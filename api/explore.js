@@ -224,6 +224,13 @@ export default async function handler(req,res){
         ${pageCard("Best Latte Gold Coast","GC latte rankings","/best-latte-gold-coast","#E6C073")}
         ${pageCard("Best Espresso Gold Coast","GC espresso rankings","/best-espresso-gold-coast","#E6C073")}
         ${pageCard("GC Cafes to Avoid","Gold Coast avoid list","/gold-coast-cafes-to-avoid","#f87171")}
+        ${pageCard("Neighbourhood Guides","Editorial suburb coffee guides","/guide/west-end-brisbane-coffee","#60a5fa")}
+        ${pageCard("Coffee Near You","90+ stations, hospitals, unis","/coffee-near","#38bdf8")}
+        ${pageCard("Cafe Comparisons","Head to head matchups","/vs","#a78bfa")}
+        ${pageCard("Best Coffee Gold Coast","GC rankings","/best-coffee-gold-coast","#E6C073")}
+        ${pageCard("Best Latte Australia","National latte rankings","/best-latte-australia","#E6C073")}
+        ${pageCard("Best Espresso Australia","National espresso rankings","/best-espresso-australia","#E6C073")}
+        ${pageCard("Interactive Map","Heat map of all cafes","/map","#4ade80")}
       </div>
 
       <div class="sh" style="margin-top:20px;border:none;padding-bottom:8px">
