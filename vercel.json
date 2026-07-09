@@ -73,6 +73,7 @@
     { "source": "/sydney-coffee-roasters", "destination": "/api/roaster?city=sydney" },
     { "source": "/redland-coffee-roasters", "destination": "/api/roaster?city=redland" },
     { "source": "/coffee-guide", "destination": "/api/coffee-guide" },
+    { "source": "/api/og-image", "destination": "/api/og-image" },
     { "source": "/vs", "destination": "/api/vs" },
     { "source": "/vs/:slug", "destination": "/api/vs?slug=:slug" },
     { "source": "/guess-the-score", "destination": "/api/guess-the-score" },
