@@ -1076,6 +1076,148 @@ var POSTS = [
       { q: "How can you tell if coffee beans are stale?", a: "Look at the crema on an espresso. Fresh beans produce thick golden crema. Stale beans produce thin pale crema or no crema at all. The taste will be hollow with no complexity, acidity, or sweetness. Just flat brown liquid." },
       { q: "Can a bad cafe become good?", a: "Yes. Fixing just one of the five common defects can lift a score by 1+ points. The path from average (6.0) to great (7.5) is five small fixes done consistently: fresh beans, daily dialling in, proper milk technique, clean equipment, correct ratios." }
     ]
+  },
+  {
+    slug: "worst-coffee-mistakes-queensland",
+    title: "Worst Coffee in Queensland \u2014 The Complete List",
+    ogImage: "https://koffeereview.com.au/og-blog-17.png",
+    description: "After 600+ cafe reviews across Australia, we found the worst. Scores below 3.0. Harsh, bitter, undrinkable. Here is the full breakdown of what to avoid.",
+    date: "2026-08-22", readingTime: "8 min",
+    keywords: ["worst coffee queensland","cafes to avoid brisbane","worst cafe brisbane","bad coffee","coffee to avoid queensland"],
+    intro: "You want to know the bad ones.\n\nNot the mediocre, average, forgettable ones. The actually bad ones. The cafes that make you question if they hate coffee.\n\nAfter 600+ reviews across Australia, we found them. Here is the brutal truth.",
+    sections: [
+      {
+        heading: "The Bottom Tier",
+        body: "Out of 600+ cafes reviewed, a small percentage scored below 3.0. These are not just bad. These are cafes where multiple things went wrong simultaneously.\n\nOur lowest ever score: <a href=\"/review/stellarossa-forest-lake-forest-lake\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Stellarossa Forest Lake at 1.1</a>. Burnt, harsh, bitter finish. Charred crema, over extracted espresso, scorched milk. The cup was technically hot. That is the only positive.\n\nEvery cafe below 3.0 shares the same failures: stale beans (weeks old, flat aroma), over roasted profiles (charred, not caramelised), machines not cleaned (metallic notes), and milk scalded (eggy, sulphuric).",
+        links: [
+          { text: "Full Brisbane cafes to avoid list", url: "/brisbane-cafes-to-avoid" },
+          { text: "Gold Coast cafes to avoid", url: "/gold-coast-cafes-to-avoid" }
+        ]
+      },
+      {
+        heading: "Why Chains Dominate the Bottom",
+        body: "Most of the lowest scoring cafes are chains or franchises.\n\n<a href=\"/review/hudsons-coffee-brisbane-int-airport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Hudsons Coffee Brisbane Airport (2.1)</a>. Airport chain energy. Volume over quality. Milk scalded on purpose because it is faster. Beans are weeks old by the time they arrive.\n\n<a href=\"/review/honey-cafe-restaurant-stafford\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Honey Cafe Stafford (2.1)</a>. Beautiful setting, weak coffee. Instagram ready. Taste bud ready? No.\n\nThe pattern is consistent: chains optimise for speed and volume, not extraction quality. Automated machines, no dialling in, no test shots. The result is predictable mediocrity that occasionally drops into genuinely bad territory.",
+        links: [
+          { text: "Chain vs independent deep dive", url: "/blog/chain-vs-independent-coffee" },
+          { text: "Starbucks vs independent", url: "/blog/starbucks-vs-independent-brisbane" }
+        ]
+      },
+      {
+        heading: "The Food Place Problem",
+        body: "Another pattern: food businesses that also sell coffee as an afterthought.\n\nDoughnut shops, patisseries, churro places. They are excellent at what they do. But coffee is not what they do. The espresso machine sits in the corner. Nobody dials it in. Nobody tastes the shots. The beans are whatever was cheapest from the supplier.\n\nIf a cafe is famous for something other than coffee, the coffee is probably below 5.0. This is not a rule. But our data supports it strongly.\n\nThe lesson: if you are at a bakery or dessert place, get the pastry. Skip the coffee. Find an actual cafe for the coffee.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" }
+        ]
+      },
+      {
+        heading: "The Six Failures",
+        body: "Every cafe scoring below 3.0 in our system has at least three of these six failures happening simultaneously.\n\nFailure 1: over roasted beans. Charred is not bold. It is just burnt. Good roasters develop flavour. Bad roasters hide inconsistency behind dark roasts.\n\nFailure 2: stale inventory. Beans older than 3 weeks are declining. Older than 6 weeks they are flat. No roast date visible means nobody is tracking freshness.\n\nFailure 3: scalded milk. Steamed above 70 degrees. The proteins break down. Eggy, sulphuric finish. This single defect ruins everything else.\n\nFailure 4: no dialling in. The machine pulls every shot identically regardless of humidity, bean age, or grind drift. Some shots are acceptable by accident. Most are not.\n\nFailure 5: automated systems. No human skill. No tasting. No adjusting. Volume is the only metric.\n\nFailure 6: nobody cares. This is the root cause of the other five. When nobody in the building cares about the coffee, everything else fails.",
+        links: [
+          { text: "The 5 worst coffee mistakes", url: "/blog/worst-coffee-mistakes" },
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "The Gold Standard (For Comparison)",
+        body: "What does great coffee look like compared to these failures?\n\n<a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a>: visible roast date, monthly rotation, barista pulls test shots, golden crema, silky milk, finish lingers pleasantly.\n\n<a href=\"/review/coffeeish-south-brisbane\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">CoffeeIsh South Brisbane (7.8)</a>: flavour hits the upper palate and does not leave. You taste the coffee through the milk.\n\nThe gap between 1.1 and 7.8 is not luck. It is not taste. It is craft versus commerce. Every cafe scoring 7.5+ does five things that every cafe scoring below 3.0 skips.",
+        links: [
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "National leaderboard", url: "/leaderboard" }
+        ]
+      },
+      {
+        heading: "Should You Ever Visit These?",
+        body: "No.\n\nUnless you are trapped at the airport with 10 minutes before boarding (drink water instead), stuck in a suburb with zero other options (there is always another option within 5km), or at a patisserie (grab the pastry, skip the coffee).\n\nQueensland has some of the best coffee in Australia. It also has some of the worst. The gap is massive. And it is entirely due to whether someone in the building cares about what they are serving.\n\nAvoid the commerce. Find the craft. That is what we are here for.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Best coffee Gold Coast", url: "/best-coffee-gold-coast" },
+          { text: "Best value coffee", url: "/best-value-brisbane" },
+          { text: "Coffee guide", url: "/coffee-guide" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the worst cafe in Queensland?", a: "Stellarossa Forest Lake scored 1.1 out of 10 in our system. Charred beans, scalded milk, over extracted espresso. The lowest score in 600+ reviews across Australia." },
+      { q: "Why do chain cafes score so low?", a: "Chains optimise for speed and volume, not quality. Automated machines, no dialling in, no test shots, bulk beans. Most chain locations score below 5.0. Some drop below 3.0." },
+      { q: "How can I avoid bad coffee?", a: "Look for visible roast dates, baristas pulling test shots, and golden crema on the espresso. If none of these are present, expect a score below 6.0. Check our cafes to avoid lists for specific locations." }
+    ]
+  },
+  {
+    slug: "gold-coast-coffee-suburb-guide",
+    title: "Gold Coast Coffee by Suburb \u2014 Where to Go and Where to Skip",
+    ogImage: "https://koffeereview.com.au/og-blog-18.png",
+    description: "We reviewed 80+ Gold Coast cafes with the same order every time. Here is which suburbs have the best coffee, ranked by score. Burleigh Heads leads. Not everything near the beach is good.",
+    date: "2026-09-05", readingTime: "8 min",
+    keywords: ["best coffee gold coast","gold coast cafe","burleigh heads coffee","southport coffee","coolangatta cafe","gold coast suburbs coffee"],
+    intro: "You came to the Gold Coast for the beaches.\n\nBut you also want decent coffee. Not chain coffee. Not airport coffee. Real coffee.\n\nWe have reviewed 80+ Gold Coast cafes. Same order every visit: one latte, one double shot espresso. Same scoring system we use across 600+ cafes Australia wide. No exceptions.\n\nHere is the breakdown by suburb, ranked by score.",
+    sections: [
+      {
+        heading: "Gold Coast in Numbers",
+        body: "80+ cafes reviewed across the Gold Coast. The Must Visit cafes (7.5+) are concentrated in just three suburbs: Burleigh Heads, Southport, and Robina.\n\nThe Gold Coast average sits slightly below Brisbane. But the top end matches anything in the state. The issue is consistency. Tourist pressure means many cafes coast on location, not craft. The ones that care about coffee stand out dramatically.\n\nIf you know where to go, the Gold Coast has genuinely excellent coffee. If you walk in blind, you are rolling the dice.",
+        links: [
+          { text: "All Gold Coast cafes", url: "/city/gold-coast" },
+          { text: "Best coffee Gold Coast", url: "/best-coffee-gold-coast" }
+        ]
+      },
+      {
+        heading: "Burleigh Heads (The Coffee Capital)",
+        body: "Burleigh Heads owns Gold Coast coffee. Multiple cafes scoring 7.5+ within walking distance of each other.\n\n<a href=\"/review/next-door-burleigh-burleigh-heads\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Next Door Burleigh (7.8)</a>. Confident execution, smooth full body, silky milk. Every element locked in. No frills, just quality.\n\nBurleigh works because the cafes compete on coffee, not location. They are not on the main tourist strip. You have to know about them. That self selection means only serious coffee drinkers find them, which means the cafes have to be good.\n\nIf you are visiting the Gold Coast and want one guaranteed great coffee experience, go to Burleigh Heads.",
+        links: [
+          { text: "Best espresso Gold Coast", url: "/best-espresso-gold-coast" },
+          { text: "Best latte Gold Coast", url: "/best-latte-gold-coast" }
+        ]
+      },
+      {
+        heading: "Southport (Upscale and Reliable)",
+        body: "<a href=\"/review/silipo-coffee-southport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Silipo Coffee Southport (7.8)</a>. Balanced, repeatable, quality beans. The cafe is objectively gorgeous. But we scored it on coffee, not location. The coffee happens to be excellent too.\n\nThis is rare. Most beautiful cafes hide weak extraction behind their fit out. Silipo does not. The setting is stunning and the coffee matches it. That combination almost never happens.\n\nSouthport has more consistency than most GC suburbs. Less tourist pressure than Surfers, more competition than the northern suburbs.",
+        links: [
+          { text: "Compare with Brisbane", url: "/blog/brisbane-vs-gold-coast-coffee" }
+        ]
+      },
+      {
+        heading: "Robina (The Shopping Centre Surprise)",
+        body: "<a href=\"/review/the-market-place-cafe-robina\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Market Place Cafe Robina (7.6)</a>. Bold, balanced, consistent. Own roast dialled in.\n\nA shopping centre area cafe scoring 7.6 is unusual. Most shopping centre cafes score below 6.0 because captive audiences do not demand quality. The Market Place Cafe is the exception. Someone there cares about the coffee.\n\nIf you are at Robina Town Centre and need coffee, this is the only option worth your money.",
+        links: [
+          { text: "Best value Gold Coast", url: "/best-value-gold-coast" }
+        ]
+      },
+      {
+        heading: "Coolangatta and Currumbin (Worth the Drive)",
+        body: "The southern end of the Gold Coast has a different coffee personality. Less tourist, more local. The cafes serve regulars, not visitors.\n\nCoolangatta and Currumbin have solid cafes scoring 7.0 to 7.3. Not Must Visit territory but reliably good. Different bean profiles too. More experimentation with Southeast Asian origins. If you want something different from the standard Brisbane blend, head south.\n\nThese suburbs punch above their weight because competition drives quality. Multiple good cafes in a small area means nobody can coast.",
+        links: [
+          { text: "Coffee bean origins guide", url: "/blog/coffee-bean-origins-guide" },
+          { text: "Browse by roaster", url: "/roaster" }
+        ]
+      },
+      {
+        heading: "Where to Skip",
+        body: "Surfers Paradise. Main Beach. Broadbeach main strip. The tourist corridors.\n\nThese suburbs have high foot traffic cafes charging $7+ for mediocre lattes. Captive audience. No competitive pressure. The coffee reflects that.\n\nIf you are staying in Surfers, walk 10 minutes inland or drive 10 minutes south to Burleigh. The difference is immediate and dramatic. Do not settle for tourist strip coffee when genuinely good coffee is a short trip away.\n\nAirport coffee is also consistently terrible on the Gold Coast. Same problem as Brisbane Airport. Captive audience, zero incentive to improve.",
+        links: [
+          { text: "Gold Coast cafes to avoid", url: "/gold-coast-cafes-to-avoid" },
+          { text: "Coffee near Gold Coast Airport", url: "/coffee-near/gold-coast-airport" }
+        ]
+      },
+      {
+        heading: "The Verdict",
+        body: "The Gold Coast is not a coffee city in the way Brisbane or Melbourne is. It is a beach city that happens to have some excellent coffee.\n\nThe difference: you have to know where to look. Brisbane forgives a blind choice. The Gold Coast punishes it. Walk into a random GC cafe and you might get a 7.8 or a 4.5. The variance is higher than anywhere else we review.\n\nBut if you follow the data, Burleigh Heads, Southport, and Robina will deliver. Every time. That is why we exist. To tell you where to go before you waste $7 on a bad latte with an ocean view.",
+        links: [
+          { text: "All Gold Coast cafes ranked", url: "/city/gold-coast" },
+          { text: "Best coffee Gold Coast", url: "/best-coffee-gold-coast" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Gold Coast roasters", url: "/gold-coast-coffee-roasters" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Where is the best coffee on the Gold Coast?", a: "Burleigh Heads. Multiple cafes scoring 7.5+ within walking distance. Next Door Burleigh (7.8) and Silipo Coffee Southport (7.8) are our top picks based on 80+ Gold Coast reviews." },
+      { q: "Is Gold Coast coffee better than Brisbane?", a: "The Gold Coast top end matches Brisbane. But the average is lower and the variance is higher. Brisbane is more consistent. Gold Coast has higher highs and lower lows. See our full Brisbane vs Gold Coast comparison for the data." },
+      { q: "Should I skip Surfers Paradise for coffee?", a: "Yes. Tourist strip cafes in Surfers charge $7+ for mediocre lattes. Drive 10 minutes south to Burleigh Heads for genuinely excellent coffee. The difference is immediate." },
+      { q: "How many Gold Coast cafes has Koffee Review tested?", a: "80+ cafes across the Gold Coast, all reviewed with the same methodology: one latte, one double shot espresso, scored out of 10. Part of our 600+ total reviews across Australia." }
+    ]
   }
 ];
 
