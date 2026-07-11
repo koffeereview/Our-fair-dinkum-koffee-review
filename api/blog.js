@@ -1218,6 +1218,129 @@ var POSTS = [
       { q: "Should I skip Surfers Paradise for coffee?", a: "Yes. Tourist strip cafes in Surfers charge $7+ for mediocre lattes. Drive 10 minutes south to Burleigh Heads for genuinely excellent coffee. The difference is immediate." },
       { q: "How many Gold Coast cafes has Koffee Review tested?", a: "80+ cafes across the Gold Coast, all reviewed with the same methodology: one latte, one double shot espresso, scored out of 10. Part of our 600+ total reviews across Australia." }
     ]
+  },
+  {
+    slug: "best-coffee-suburbs-brisbane",
+    title: "Best Coffee Suburbs in Brisbane 2026 \u2014 Ranked by Our Reviews",
+    ogImage: "https://koffeereview.com.au/og-blog-19.png",
+    description: "Not every Brisbane suburb is equal for coffee. After 600+ cafe reviews, clear patterns have emerged. Here are the suburbs that consistently deliver, and the ones that do not.",
+    date: "2026-09-19", readingTime: "7 min",
+    keywords: ["best coffee suburbs brisbane","best coffee west end","best coffee newstead","brisbane coffee by suburb","where to get coffee brisbane"],
+    intro: "Not every Brisbane suburb is equal when it comes to coffee.\n\nAfter 600+ reviews across Australia using the same method, clear patterns have emerged. Some suburbs consistently produce 7.0+ scores. Others are a coin flip. A few are avoid at all costs territory.\n\nHere are the suburbs currently standing out based on average scores and consistency.",
+    sections: [
+      {
+        heading: "The Top Tier",
+        body: "West End leads Brisbane for coffee right now. Strong concentration of high scores with multiple cafes in the 7.0 to 7.8 range. <a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin (7.8)</a> shows what is possible when everything clicks. But it is not just one cafe. The whole suburb has a coffee culture that raises the floor. Walk into almost any West End cafe and you will get a 6.5 minimum. That consistency is rare.\n\nNewstead sits close behind. <a href=\"/review/coffee-speed-dial-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Speed Dial (7.5)</a> and a few others regularly hit Must Visit territory. The suburb has good potential and is still growing. More cafes are opening and the standard is rising.\n\nManly is the quiet achiever. <a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista (7.8)</a> is one of the highest consistent performers we have seen across 600+ reviews. Manly does not get the hype of West End or Newstead but the data speaks for itself.",
+        links: [
+          { text: "West End suburb guide", url: "/guide/west-end-brisbane-coffee" },
+          { text: "Newstead suburb guide", url: "/guide/newstead-brisbane-coffee" }
+        ]
+      },
+      {
+        heading: "The Solid Middle",
+        body: "Woolloongabba and Paddington both have multiple cafes in the 7.0 to 7.5 range with good consistency. Not as many standouts as West End but fewer disappointments too. These are suburbs where you can walk in confident you will get a decent cup.\n\n<a href=\"/review/blackout-paddington-paddington\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Blackout Paddington (7.5)</a> is a hole in the wall that produces silky smooth coffee with DIBS beans. Every element controlled.\n\nSouth Brisbane is another strong performer. <a href=\"/review/coffeeish-south-brisbane\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">CoffeeIsh (7.8)</a> anchors the suburb. The flavour hits the upper palate and does not leave.\n\nNorman Park has <a href=\"/review/clancys-espresso-norman-park\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clancys Espresso (7.9)</a>. Punchy start, smooth body, lingering finish. One of the highest scores in our entire system.",
+        links: [
+          { text: "Paddington suburb page", url: "/suburb/paddington-brisbane" },
+          { text: "Browse all Brisbane suburbs", url: "/best-coffee-brisbane" }
+        ]
+      },
+      {
+        heading: "The Hit and Miss Zone",
+        body: "The CBD has big variation. Some solid options sitting next to plenty of average ones. The problem is foot traffic. High volume locations do not need to be good because customers come regardless. Competition exists but it is diluted by chain cafes and food court coffee.\n\nFortitude Valley has a few standouts but they are surrounded by weaker results. The nightlife and hospitality focus means coffee is sometimes an afterthought. When a Valley cafe is good, it is genuinely good. But you need to know which one to walk into.\n\nChermside and North Lakes are still developing. A couple of good cafes in each but not enough volume yet for a clear verdict. These suburbs are growing fast and the coffee scene is following. Check back in a year.",
+        links: [
+          { text: "Brisbane CBD guide", url: "/guide/cbd-brisbane-coffee" },
+          { text: "Fortitude Valley guide", url: "/guide/fortitude-valley-brisbane-coffee" }
+        ]
+      },
+      {
+        heading: "How to Use This",
+        body: "The easiest way to find good coffee in any Brisbane suburb is to check the suburb page on our site. You will see every cafe ranked with exact scores and colour coding.\n\nFor deeper dives, read our editorial suburb guides. These cover not just the scores but the vibe, what to expect, and which cafe to visit first.\n\nThese rankings shift as we review more places. Every new review updates the suburb averages automatically. The suburbs at the top today earned it through consistent quality across multiple cafes, not just one hero location.",
+        links: [
+          { text: "Interactive map", url: "/map" },
+          { text: "Coffee near you (90+ locations)", url: "/coffee-near" },
+          { text: "Neighbourhood guides", url: "/explore" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "If you want the highest chance of great coffee in Brisbane, head to West End, Newstead, or Manly. These three suburbs have the data to back up the reputation.\n\nIf you are in the CBD or Fortitude Valley, use our suburb pages to find the specific cafes worth visiting. Do not walk in blind.\n\nIf you are in the outer suburbs, check the coffee near pages for the closest reviewed cafe to your location. There are hidden gems everywhere. You just need the data to find them.",
+        links: [
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best latte Brisbane", url: "/best-latte-brisbane" },
+          { text: "Best espresso Brisbane", url: "/best-espresso-brisbane" },
+          { text: "Best value Brisbane", url: "/best-value-brisbane" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the best suburb for coffee in Brisbane?", a: "West End leads based on 600+ reviews. Highest concentration of 7.0+ scores, best consistency, and multiple Must Visit cafes including The Twin (7.8). Newstead and Manly are close behind." },
+      { q: "Where should I avoid coffee in Brisbane?", a: "The CBD is the most inconsistent. High foot traffic means many cafes do not need to be good. Fortitude Valley is hit and miss. Use our suburb pages or cafes to avoid list to check specific locations before visiting." },
+      { q: "Are outer suburbs good for coffee?", a: "Some outer suburbs have hidden gems. Manly (7.8 at Zen Barista) and Norman Park (7.9 at Clancys Espresso) prove great coffee exists outside the inner city. Check our coffee near pages for reviewed cafes close to you." }
+    ]
+  },
+  {
+    slug: "west-end-vs-newstead-vs-fortitude-valley",
+    title: "West End vs Newstead vs Fortitude Valley \u2014 Which Has the Best Coffee?",
+    ogImage: "https://koffeereview.com.au/og-blog-20.png",
+    description: "Three inner Brisbane suburbs. One latte and one double shot at every cafe. After 600+ reviews, here is which suburb actually has the best coffee and why.",
+    date: "2026-10-03", readingTime: "7 min",
+    keywords: ["west end coffee brisbane","newstead coffee","fortitude valley coffee","best coffee inner brisbane","brisbane suburbs coffee comparison"],
+    intro: "These three inner Brisbane suburbs get a lot of attention for coffee. But which one actually delivers?\n\nWe have reviewed cafes in all three using the same method we use across 600+ reviews Australia wide. One latte, one double shot espresso, every cafe.\n\nHere is what the data actually shows when we compare them head to head.",
+    sections: [
+      {
+        heading: "West End (Currently Leading)",
+        body: "West End has the highest concentration of strong scores in Brisbane.\n\n<a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin (7.8)</a> is one of the standout performers. But West End is not a one cafe suburb. Multiple cafes score 7.0+ which means the suburb average is strong regardless of which door you walk through.\n\nWhat makes West End work: owner operated cafes (people who care), local roaster partnerships, a coffee culture that expects quality. The regulars know good coffee. They hold cafes accountable. That pressure keeps standards high.\n\nConsistency is noticeably better here than the other two suburbs. The floor is higher. Even the average West End cafes score 6.5+. In Fortitude Valley, the floor drops to 5.5.",
+        links: [
+          { text: "West End suburb guide", url: "/guide/west-end-brisbane-coffee" },
+          { text: "West End suburb page", url: "/suburb/west-end-brisbane" }
+        ]
+      },
+      {
+        heading: "Newstead (Strong Second)",
+        body: "Newstead sits in second place. <a href=\"/review/coffee-speed-dial-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Speed Dial (7.5)</a> is reliable and a few other spots are close behind.\n\nNewstead has a different personality from West End. More polished, more commercial, higher investment in fit out and equipment. The cafes look better. The coffee is slightly less consistent but the top end is comparable.\n\nThe suburb has good potential but still has some inconsistency. A couple of cafes are riding on the suburb reputation without matching the quality. Our scores reflect that.\n\nNewstead is worth checking if you are already in the area. It is not quite worth a special trip the way West End is. But the gap is closing.",
+        links: [
+          { text: "Newstead suburb guide", url: "/guide/newstead-brisbane-coffee" },
+          { text: "Coffee near Fortitude Valley Station", url: "/coffee-near/fortitude-valley-station" }
+        ]
+      },
+      {
+        heading: "Fortitude Valley (Most Hit and Miss)",
+        body: "Fortitude Valley is the most mixed of the three. There are a couple of decent cafes but the overall average is pulled down by several places scoring in the 5.5 to 6.5 range.\n\nThe Valley has a nightlife and hospitality focus. Many venues serve coffee as an afterthought. The espresso machine exists because it has to, not because anyone cares about extraction quality.\n\nWhen a Valley cafe is good, it can be genuinely good. <a href=\"/review/fave-specialty-coffee-fortitude-valley\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Fave Specialty Coffee</a> uses quality beans. But the execution does not always match the potential.\n\nFortitude Valley needs more careful selection than the other two suburbs. You cannot walk in blind. Use the map and check our scores first.",
+        links: [
+          { text: "Fortitude Valley suburb guide", url: "/guide/fortitude-valley-brisbane-coffee" },
+          { text: "James Street landmark page", url: "/coffee-near/james-street" }
+        ]
+      },
+      {
+        heading: "Head to Head Comparison",
+        body: "Consistency: West End wins. Smallest gap between the best and worst cafes.\n\nTop end quality: West End and Newstead are close. Both have 7.5+ cafes. Fortitude Valley does not consistently reach this level.\n\nValue: all three are similar pricing ($6 to $6.50 for a latte). No cost advantage.\n\nVariety: Fortitude Valley has the most variety of cafe styles but that variety includes mediocre options. West End has the most consistent quality. Newstead has the most polished fit outs.\n\nFor espresso specifically: West End leads. The baristas in West End tend to have stronger extraction technique. Newstead leans more toward milk based drinks.\n\nOverall: West End takes it on consistency and depth. Newstead is a solid second with room to grow. Fortitude Valley needs selective navigation.",
+        links: [
+          { text: "Best espresso Brisbane", url: "/best-espresso-brisbane" },
+          { text: "Best latte Brisbane", url: "/best-latte-brisbane" }
+        ]
+      },
+      {
+        heading: "The Verdict",
+        body: "If you want the highest chance of a good coffee, start in West End. Walk into almost any cafe and you will get a 6.5 minimum. The standouts reach 7.8.\n\nNewstead is worth checking if you are already in the area. Coffee Speed Dial is reliable and the suburb is improving.\n\nFortitude Valley needs more careful selection. Use the map and avoid the obvious tourist traps. Check our suburb page before walking in.\n\nAll three suburbs are better than the Brisbane average. The question is how much effort you want to put into finding the right cafe. West End requires zero effort. Fortitude Valley requires homework.",
+        links: [
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Interactive map", url: "/map" },
+          { text: "Cafe comparisons", url: "/vs" },
+          { text: "Best suburbs ranked", url: "/blog/best-coffee-suburbs-brisbane" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Which Brisbane suburb has the best coffee?", a: "West End currently leads based on our review data. Highest concentration of 7.0+ scores, best consistency, and multiple Must Visit cafes. Newstead is a strong second. Fortitude Valley is the most inconsistent of the three." },
+      { q: "Is Fortitude Valley good for coffee?", a: "Mixed. A few decent cafes but the overall average is lower than West End and Newstead. Several Valley cafes score 5.5 to 6.5. Use our suburb guide or map to find the specific good ones rather than walking in blind." },
+      { q: "Should I go to West End or Newstead for coffee?", a: "West End if you want the highest consistency and best overall scores. Newstead if you want a more polished cafe experience. Both have Must Visit cafes (7.5+). West End requires less effort to find a good cup." }
+    ]
   }
 ];
 
