@@ -992,29 +992,12 @@ export default function App() {
               <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Avoid</div>
             </div>
             <div onClick={function() { handleNearMe(); setQuickFilter(null); if (view === "map") setView("list"); }}
-              style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 40%, rgba(230,192,115,0.08), transparent 70%)", pointerEvents: "none" }} />
-              <div style={{ height: 32, display: "flex", alignItems: "center", justifyContent: "center", overflow: "visible" }}>
-                <svg width="38" height="44" viewBox="4 2 56 56" fill="none" style={{ overflow: "visible", filter: "drop-shadow(0 0 5px rgba(245,210,122,0.5))" }}>
-                  <defs>
-                    <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
-                      <stop stopColor="#F5D27A" />
-                      <stop offset="1" stopColor="#D4AF37" />
-                    </linearGradient>
-                    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
-                      <feGaussianBlur stdDeviation="3" result="blur" />
-                      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.9 0 1 0 0 0.65 0 0 1 0 0.18 0 0 0 0.35 0" />
-                      <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
-                  </defs>
-                  <path d="M32 58C32 58 12 35.5 12 23.5C12 12.7 20.9 4 32 4C43.1 4 52 12.7 52 23.5C52 35.5 32 58 32 58Z" fill="url(#goldPin)" filter="url(#goldGlow)" />
-                  <circle cx="32" cy="24" r="13.5" fill="#111111" opacity="0.92" />
-                  <ellipse cx="32" cy="24" rx="7" ry="10" fill="url(#goldPin)" />
-                  <path d="M36.5 15.5C31.5 20.5 33.5 27.5 27.5 32.5" stroke="#111111" strokeWidth="2.4" strokeLinecap="round" />
-                </svg>
+              style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: nearMe ? "#E6C073" : "#E6C073", lineHeight: 1, textAlign: "center" }}>
+                {locationLoading ? "..." : "\u{1F4CD}"}
               </div>
-              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0", width: "100%" }} />
-              <div style={{ fontSize: 10, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.3, textAlign: "center", whiteSpace: "nowrap" }}>
+              <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
+              <div style={{ fontSize: 11, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>
                 {locationLoading ? "..." : "Near Me"}
               </div>
             </div>
@@ -1288,10 +1271,10 @@ export default function App() {
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
                 <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Privacy</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
+                <a href="/how-we-score" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
               <div style={{ margin: "8px 0" }}>
-                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 10, letterSpacing: 4, color: "rgba(230,192,115,0.5)", fontWeight: 400, marginBottom: 8 }}>EXPLORE</div>
+                <a href="/explore" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 10, letterSpacing: 4, color: "rgba(230,192,115,0.5)", fontWeight: 400, marginBottom: 8, textDecoration: "none", display: "block" }}>EXPLORE →</a>
                 <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
                   <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
@@ -1316,10 +1299,10 @@ export default function App() {
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
                 <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Privacy</a>
                 <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-                <a href="/how-we-score.html" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
+                <a href="/how-we-score" style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>How We Score</a>
               </div>
               <div style={{ margin: "8px 0" }}>
-                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 10, letterSpacing: 4, color: "rgba(230,192,115,0.5)", fontWeight: 400, marginBottom: 8 }}>EXPLORE</div>
+                <a href="/explore" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 10, letterSpacing: 4, color: "rgba(230,192,115,0.5)", fontWeight: 400, marginBottom: 8, textDecoration: "none", display: "block" }}>EXPLORE →</a>
                 <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "nowrap" }}>
                   <a href="/best-latte-brisbane" style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", textDecoration: "none", whiteSpace: "nowrap" }}>Best Latte Brisbane</a>
                   <span style={{ color: "rgba(197,157,80,0.3)" }}>·</span>
