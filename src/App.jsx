@@ -975,19 +975,19 @@ export default function App() {
           <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
               style={{ flex: "1 1 0", minWidth: 0, background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#fff", lineHeight: 1 }}>{cafes.length}</span</div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#fff", lineHeight: 1 }}>{cafes.length}</span></div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 11, color: "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Reviewed</div>
             </div>
             <div onClick={function() { handleStatClick("must"); setView("list"); }}
               style={{ flex: "1 1 0", minWidth: 0, background: quickFilter === "must" ? "rgba(78,220,119,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "must" ? "rgba(78,220,119,0.5)" : "rgba(78,220,119,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#4EDC77", lineHeight: 1 }}>{mustVisit}</span</div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#4EDC77", lineHeight: 1 }}>{mustVisit}</span></div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 10, color: quickFilter === "must" ? "#4EDC77" : "#D9D9D9", letterSpacing: 0.3, whiteSpace: "nowrap", textAlign: "center" }}>Must Visit</div>
             </div>
             <div onClick={function() { handleStatClick("avoid"); setView("list"); }}
               style={{ flex: "1 1 0", minWidth: 0, background: quickFilter === "avoid" ? "rgba(255,94,102,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "avoid" ? "rgba(255,94,102,0.5)" : "rgba(255,94,102,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#FF5E66", lineHeight: 1 }}>{avoid}</span</div>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#FF5E66", lineHeight: 1 }}>{avoid}</span></div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Avoid</div>
             </div>
