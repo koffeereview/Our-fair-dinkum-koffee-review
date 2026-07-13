@@ -993,8 +993,8 @@ export default function App() {
             </div>
             <div onClick={function() { handleNearMe(); setQuickFilter(null); if (view === "map") setView("list"); }}
               style={{ flex: "1 1 0", minWidth: 0, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="24" height="32" viewBox="4 2 56 56" fill="none">
+              <div style={{ height: 38, display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "visible", marginTop: -8 }}>
+                <svg width="30" height="40" viewBox="4 2 56 56" fill="none" style={{ filter: "drop-shadow(0 0 4px rgba(245,210,122,0.4))" }}>
                   <defs>
                     <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
                       <stop stopColor="#F5D27A" />
