@@ -974,27 +974,38 @@ export default function App() {
         {!loading && (
           <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
             <div onClick={handleReviewedClick}
-              style={{ flex: 1, background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#fff", lineHeight: 1, textAlign: "center" }}>{cafes.length}</div>
+              style={{ flex: "1 1 0", minWidth: 0, background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#fff", lineHeight: 1 }}>{cafes.length}</span</div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 11, color: "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Reviewed</div>
             </div>
             <div onClick={function() { handleStatClick("must"); setView("list"); }}
-              style={{ flex: 1, background: quickFilter === "must" ? "rgba(78,220,119,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "must" ? "rgba(78,220,119,0.5)" : "rgba(78,220,119,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#4EDC77", lineHeight: 1, textAlign: "center" }}>{mustVisit}</div>
+              style={{ flex: "1 1 0", minWidth: 0, background: quickFilter === "must" ? "rgba(78,220,119,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "must" ? "rgba(78,220,119,0.5)" : "rgba(78,220,119,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#4EDC77", lineHeight: 1 }}>{mustVisit}</span</div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 10, color: quickFilter === "must" ? "#4EDC77" : "#D9D9D9", letterSpacing: 0.3, whiteSpace: "nowrap", textAlign: "center" }}>Must Visit</div>
             </div>
             <div onClick={function() { handleStatClick("avoid"); setView("list"); }}
-              style={{ flex: 1, background: quickFilter === "avoid" ? "rgba(255,94,102,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "avoid" ? "rgba(255,94,102,0.5)" : "rgba(255,94,102,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#FF5E66", lineHeight: 1, textAlign: "center" }}>{avoid}</div>
+              style={{ flex: "1 1 0", minWidth: 0, background: quickFilter === "avoid" ? "rgba(255,94,102,0.15)" : "#0D0D0D", border: "1px solid " + (quickFilter === "avoid" ? "rgba(255,94,102,0.5)" : "rgba(255,94,102,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: "#FF5E66", lineHeight: 1 }}>{avoid}</span</div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 11, color: quickFilter === "avoid" ? "#FF5E66" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>Avoid</div>
             </div>
             <div onClick={function() { handleNearMe(); setQuickFilter(null); if (view === "map") setView("list"); }}
-              style={{ flex: 1, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
-              <div style={{ fontFamily: "'Bebas Neue', 'Bebas Neue Fallback', sans-serif", fontSize: 32, color: nearMe ? "#E6C073" : "#E6C073", lineHeight: 1, textAlign: "center" }}>
-                {locationLoading ? "..." : "\u{1F4CD}"}
+              style={{ flex: "1 1 0", minWidth: 0, background: nearMe ? "rgba(230,192,115,0.15)" : "#0D0D0D", border: "1px solid " + (nearMe ? "rgba(230,192,115,0.5)" : "rgba(230,192,115,0.3)"), borderRadius: 16, padding: "14px 16px", cursor: "pointer", transition: "all 0.2s" }}>
+              <div style={{ height: 38, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="24" height="32" viewBox="4 2 56 56" fill="none">
+                  <defs>
+                    <linearGradient id="goldPin" x1="16" y1="8" x2="48" y2="58">
+                      <stop stopColor="#F5D27A" />
+                      <stop offset="1" stopColor="#D4AF37" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M32 58C32 58 12 35.5 12 23.5C12 12.7 20.9 4 32 4C43.1 4 52 12.7 52 23.5C52 35.5 32 58 32 58Z" fill="url(#goldPin)" />
+                  <circle cx="32" cy="24" r="13.5" fill="#111111" opacity="0.92" />
+                  <ellipse cx="32" cy="24" rx="7" ry="10" fill="url(#goldPin)" />
+                  <path d="M36.5 15.5C31.5 20.5 33.5 27.5 27.5 32.5" stroke="#111111" strokeWidth="2.4" strokeLinecap="round" />
+                </svg>
               </div>
               <div style={{ height: 2, background: "linear-gradient(90deg, #E6C073, #F6DDAA)", borderRadius: 2, margin: "8px 0" }} />
               <div style={{ fontSize: 11, color: nearMe ? "#E6C073" : "#D9D9D9", letterSpacing: 0.5, textAlign: "center" }}>
