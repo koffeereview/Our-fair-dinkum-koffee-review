@@ -1341,6 +1341,76 @@ var POSTS = [
       { q: "Is Fortitude Valley good for coffee?", a: "Mixed. A few decent cafes but the overall average is lower than West End and Newstead. Several Valley cafes score 5.5 to 6.5. Use our suburb guide or map to find the specific good ones rather than walking in blind." },
       { q: "Should I go to West End or Newstead for coffee?", a: "West End if you want the highest consistency and best overall scores. Newstead if you want a more polished cafe experience. Both have Must Visit cafes (7.5+). West End requires less effort to find a good cup." }
     ]
+  },
+  {
+    slug: "timeout-best-coffee-brisbane-review",
+    title: "We Visited Every Cafe on Timeout's Best Coffee in Brisbane List \u2014 Here Is What We Actually Found",
+    ogImage: "https://koffeereview.com.au/og-blog-21.png",
+    description: "Timeout published their 12 best coffee spots in Brisbane. We visited all twelve with the same order. 5 hit our Loved tier. 3 fell below 6.5. Here is the honest scoreboard.",
+    date: "2026-10-17", readingTime: "10 min",
+    keywords: ["timeout best coffee brisbane","timeout cafe review","best coffee brisbane","bellissimo coffee","john mills himself","coffee anthology","industry beans"],
+    intro: "Timeout published their list of the best coffee in Brisbane. Twelve cafes. Award winners, heritage buildings, converted bomb shelters, 24 hour espresso bars.\n\nWe visited all twelve.\n\nSame order every time: one latte, one double shot espresso. Same scoring system we use across 600+ reviews. No press invites, no free coffees, no interviews with owners. Just what is in the cup on the day.\n\nHere is every cafe on their list, scored.",
+    sections: [
+      {
+        heading: "The Scoreboard",
+        body: "Timeout hit rate: 5 of 12 hit Loved territory (7.5+). 7 of 12 cleared 7.0. 3 of 12 fell below 6.5.\n\nNot bad. Not perfect either.\n\n<a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo Coffee Bulimba: 7.9 LOVED</a> — Timeout calls them the highest awarded roaster. The awards match the cup. Rich, full bodied, cocoa and caramel, long finish.\n\n<a href=\"/review/john-mills-himself-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">John Mills Himself CBD: 7.8 LOVED</a> — Bold from the first sip. Silky microfoam. Sample Coffee on the bar. The hidden CBD gem tag is earned.\n\n<a href=\"/review/coffee-anthology-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Anthology CBD: 7.5 LOVED</a> — Bold, fruity, bright on arrival, smooth body carrying all the way through.\n\n<a href=\"/review/industry-beans-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Industry Beans Newstead: 7.5 LOVED</a> — Punchy. Dark chocolate, fruit and hazelnut through a full body. The Newstead Blend doing its job.\n\n<a href=\"/review/bunker-coffee-milton\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bunker Coffee Milton: 7.5 LOVED</a> — The converted WWII bomb shelter. Cool story. Better story: the coffee holds up. Nutty, chocolatey, gets better every sip.",
+        links: [
+          { text: "Must Visit cafes (all 7.5+)", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" }
+        ]
+      },
+      {
+        heading: "The Middle Tier",
+        body: "Strauss CBD scored 7.4. Confident from the first sip, hazelnut and caramel, velvety milk, long finish. A whisker off Loved. Timeout's claim of some of Brisbane's best is close enough to true.\n\nDeath Before Decaf Fortitude Valley scored 7.1. Bold, chocolatey, smooth body. The 24 hour angle is the headline but the coffee works at 3am and 3pm. Solid, not spectacular. On a best of list for coffee alone it is borderline. For coffee at 3am there is no competition.\n\nThe New Black Fortitude Valley scored 6.9. Confident, earthy, nutty, consistent. Parallel Roasters doing its job. Good cafe. Best in Brisbane is a stretch.\n\n<a href=\"/review/coffee-mentality-roastery-woolloongabba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Mentality Woolloongabba: 6.9</a> — Timeout leans on the Champion Coffee award. Awards judge roasts in competition conditions. We judge the cup you are actually served. Well made. Just did not tip over into special.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" }
+        ]
+      },
+      {
+        heading: "The Ones That Did Not Hold Up",
+        body: "<a href=\"/review/tobys-estate-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Toby's Estate Newstead: 6.1 TAKE OR LEAVE</a> — Their own roast, their own bar. Arrived moderate, stayed moderate, left moderate. Nothing wrong. Nothing right either. Beautiful space. But you drink the coffee, not the fit out.\n\nSingle O Newstead scored 5.8. Timeout calls them leaders in the coffee industry. In Sydney that reputation is earned. On the day we visited Newstead, it was not. Soft from the first sip, nothing builds through the middle. Great beans do not survive an average bar. This is the difference between reviewing a brand and reviewing a cup.\n\nBlackstar Coffee Roasters West End scored 5.8. A pioneer since 2007. Sustainability credentials, carbon neutral operation, genuine local legacy. All true. None of it is extraction. Slow start, drops off before it finds anything. The story is 20 years old. The shot was pulled today.",
+        links: [
+          { text: "Chain vs independent", url: "/blog/chain-vs-independent-coffee" },
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" }
+        ]
+      },
+      {
+        heading: "Why Our List Looks Different",
+        body: "Timeout reviews cafes. We review coffee.\n\nTheir list weighs award history, heritage buildings, brand reputation, concept and atmosphere. That is a legitimate way to pick a cafe for a Saturday morning.\n\nOur list weighs one thing: what is in the cup. Crema, extraction, milk texture, balance, finish. Same order at all 600+ cafes we have reviewed. Same scale.\n\nThat is why Single O sits at 5.8. We did not score their reputation. We scored the shot we were served. And it is why five of Timeout's twelve landed in our Loved tier. When the coffee backs the hype, we say so.",
+        links: [
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "What Timeout's List Misses",
+        body: "Three of Brisbane's genuinely elite cafes do not appear on Timeout's list at all.\n\n<a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a> — golden crema, perfect timing, every visit identical.\n\n<a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin West End (7.8)</a> — flawless execution in a quiet street.\n\n<a href=\"/review/clancys-espresso-norman-park\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clancys Espresso Norman Park (7.9)</a> — punchy, smooth, a hidden gem.\n\nNo awards. No bomb shelters. No 24 hour trading. Just better coffee than most of the list above.\n\nThat is the gap between a media list and a scored database.",
+        links: [
+          { text: "Hidden gems Brisbane", url: "/hidden-gem-cafes-brisbane" },
+          { text: "Best suburbs for coffee", url: "/blog/best-coffee-suburbs-brisbane" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Timeout's hit rate: 7 of 12 above 7.0. Respectable.\n\nBut best coffee in Brisbane is a measurable claim, and on measurement, the list is half right. The top half is genuinely excellent. The bottom half is reputation outrunning the cup.\n\nThe overlap matters. Bellissimo, John Mills Himself, Coffee Anthology, Industry Beans and Bunker are on both their list and ours. That overlap is the real best of Brisbane shortlist.\n\nUse their list for a nice morning out. Use ours to know what the coffee will actually taste like before you order.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Best suburbs Brisbane", url: "/blog/best-coffee-suburbs-brisbane" },
+          { text: "What makes good coffee", url: "/blog/what-makes-good-coffee" },
+          { text: "Cafe comparisons", url: "/vs" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "How many of Timeout's best coffee picks did we agree with?", a: "5 of 12 hit our Loved tier (7.5+): Bellissimo (7.9), John Mills Himself (7.8), Coffee Anthology (7.5), Industry Beans (7.5), and Bunker Coffee (7.5). 7 of 12 cleared 7.0. 3 fell below 6.5." },
+      { q: "Why does Koffee Review disagree with Timeout?", a: "Timeout reviews the cafe experience including awards, atmosphere, and brand reputation. We review only what is in the cup. Same order at every cafe, scored on crema, extraction, milk texture, balance, and finish. Different criteria produce different rankings." },
+      { q: "What cafes does Timeout miss?", a: "Three of Brisbane's highest scoring cafes are not on Timeout's list: Zen Barista Manly (7.8), The Twin West End (7.8), and Clancys Espresso Norman Park (7.9). No awards, no gimmicks, just excellent coffee." },
+      { q: "What was the lowest scoring cafe on Timeout's list?", a: "Single O Newstead and Blackstar Coffee Roasters West End both scored 5.8. Both are respected roasters with strong reputations, but on the day we visited, the cups did not match the brand." }
+    ]
   }
 ];
 
