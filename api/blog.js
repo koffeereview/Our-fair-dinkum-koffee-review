@@ -1411,6 +1411,83 @@ var POSTS = [
       { q: "What cafes does Timeout miss?", a: "Three of Brisbane's highest scoring cafes are not on Timeout's list: Zen Barista Manly (7.8), The Twin West End (7.8), and Clancys Espresso Norman Park (7.9). No awards, no gimmicks, just excellent coffee." },
       { q: "What was the lowest scoring cafe on Timeout's list?", a: "Single O Newstead and Blackstar Coffee Roasters West End both scored 5.8. Both are respected roasters with strong reputations, but on the day we visited, the cups did not match the brand." }
     ]
+  },
+  {
+    slug: "worlds-best-coffee-shop-scored-6-2",
+    title: "We Visited the World's Best Coffee Shop. We Scored It 6.2.",
+    ogImage: "https://koffeereview.com.au/og-blog-22.png",
+    description: "Toby's Estate was crowned the world's number one coffee shop. We visited with the same order we use at 600+ cafes. We scored it 6.2. TAKE OR LEAVE. Here is what happened.",
+    date: "2026-10-31", readingTime: "9 min",
+    keywords: ["worlds best coffee shop","tobys estate review","best coffee shop world","coffee ranking","world 100 best coffee"],
+    intro: "There is a list called the World's 100 Best Coffee Shops. It is voted by the public and an expert panel, and it carries real weight. Cafes put the ranking in their windows. Media runs the story every year.\n\nToby's Estate in Chippendale was crowned the world's number one. This year it still sits in the global top five, alongside cafes from Norway, El Salvador and Singapore.\n\nWe visited. Same order we have used at 600+ cafes across Australia: one latte, one double shot espresso. Same scoring system. No panel, no votes, no vibes.\n\nWe scored the world's best coffee shop 6.2 out of 10. TAKE OR LEAVE.",
+    sections: [
+      {
+        heading: "What 6.2 Tastes Like",
+        body: "Nothing was broken. That is the point. Nothing was exceptional either.\n\nThe shot arrived moderate, stayed moderate, left moderate. Clean enough extraction, forgettable finish. The latte was competently made. If a suburban cafe served us this cup, we would call it a fair Tuesday coffee and move on.\n\nBut this is not a suburban cafe. This is a bar that wore the world's best crown, pulling their own roast on their own machines with every advantage a coffee company can have.\n\nExpected more from a pedigree like that. Got a 6.2.",
+        links: [
+          { text: "Tobys Estate review", url: "/review/tobys-estate-newstead" },
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" }
+        ]
+      },
+      {
+        heading: "The Australians on the World List",
+        body: "The world's 100 best includes a handful of Australian cafes. We have visited three of the ranked names with the same order and the same scale.\n\n<a href=\"/review/tobys-estate-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Tobys Estate (former world number 1, current top 5): 6.2 TAKE OR LEAVE</a>.\n\n<a href=\"/review/coffee-anthology-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Anthology Brisbane (world top 30): 7.5 LOVED</a>.\n\nSingle O Brisbane bar (Surry Hills original ranked top 60): 5.8 AVERAGE.\n\nOne honest note: the ranked Single O is the Surry Hills original in Sydney. We visited their Brisbane bar in Newstead. Same brand, same beans, different bar. Which is exactly the problem we will get to.",
+        links: [
+          { text: "Our Timeout comparison", url: "/blog/timeout-best-coffee-brisbane-review" }
+        ]
+      },
+      {
+        heading: "The One That Earns It: Coffee Anthology",
+        body: "Brisbane's <a href=\"/review/coffee-anthology-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Anthology</a> sits in the world's top 30. Our visit backs it.\n\nBold from the first sip, landing at the front of the mouth. Fruity and bright on arrival, smooth body with the fruit carrying all the way through. Consistent from first sip to last, long lingering finish.\n\nThat is what a world ranked cafe should taste like. Brisbane's benchmark specialty bar, doing exactly what it is built for.\n\nWhen the ranking and the cup agree, we say so. Here, they agree.",
+        links: [
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" }
+        ]
+      },
+      {
+        heading: "Why the World's Best Scored 6.2",
+        body: "Three possible explanations. None of them are complicated.\n\nFirst: lists rank reputation, not extraction. The world's 100 best is part public vote. Public votes measure fame, queue length, Instagram presence and brand loyalty. None of those are in the cup.\n\nSecond: big operations drift. Tobys Estate is a large company with cafes, wholesale accounts and supermarket beans. Flagship bars in big operations serve volume. Volume smooths everything toward the middle. Moderate in, moderate out.\n\nThird: one visit is one visit. Maybe we caught an off morning. But a world's best cafe does not get to have off mornings. Consistency is the entire job. We score what is served, and every cafe on our leaderboard was scored the same way. The 7.5+ cafes passed that test. The world's best did not.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "The Cafes That Beat the World's Best",
+        body: "On our scale, these cafes all out-scored the former world number one. Zero global rankings. Zero panels. Zero press.\n\n<a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo Coffee Bulimba (7.9)</a> — cocoa and caramel, long finish. Australia's most awarded roaster pulling on their own turf, and it shows.\n\n<a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a> — identical quality every visit. Golden crema, perfect timing.\n\n<a href=\"/review/john-mills-himself-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">John Mills Himself CBD (7.8)</a> — heritage hole in the wall. Bold from the first sip.\n\n<a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin West End (7.8)</a> — flawless execution in a quiet street.\n\nA Bulimba cafe out-pulled the world's best coffee shop by 1.7 points. Nobody voted for it. It just makes better coffee.",
+        links: [
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "Hidden gems Brisbane", url: "/hidden-gem-cafes-brisbane" }
+        ]
+      },
+      {
+        heading: "What This Says About Coffee Lists",
+        body: "We are not saying the World's 100 Best is worthless. It maps the most influential, most loved, most famous coffee shops on earth. That is a real thing worth measuring.\n\nIt is just not measuring the coffee.\n\nFame is a lagging indicator. A cafe earns a reputation over years, then coasts on it while the panel keeps voting. The cup you are served today can be years behind the ranking on the wall.\n\nOur system has no memory and no loyalty. Every cafe starts at zero, every visit. One latte, one double shot, scored on crema, extraction, milk texture, balance and finish. A world ranking cannot add a single point to that. Only the cup can.",
+        links: [
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Chain vs independent", url: "/blog/chain-vs-independent-coffee" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "The world's best coffee shop served us a 6.2.\n\nA cafe in Bulimba with no world ranking served us a 7.9.\n\nTrust lists for atmosphere, history and hype. Trust the cup for coffee. And if you cannot taste 600+ cafes yourself, we already did.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Timeout comparison", url: "/blog/timeout-best-coffee-brisbane-review" },
+          { text: "What makes good coffee", url: "/blog/what-makes-good-coffee" },
+          { text: "Best suburbs Brisbane", url: "/blog/best-coffee-suburbs-brisbane" },
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What did the world's best coffee shop score?", a: "Tobys Estate, formerly ranked world number one and currently in the global top five, scored 6.2 out of 10 in our review. TAKE OR LEAVE. Moderate extraction, forgettable finish." },
+      { q: "Which Australian cafes beat the world's best?", a: "Multiple cafes scored higher than the world's number one: Bellissimo Coffee Bulimba (7.9), Zen Barista Manly (7.8), John Mills Himself CBD (7.8), and The Twin West End (7.8). None have world rankings. All make better coffee." },
+      { q: "Why do world rankings not match coffee quality?", a: "The world's 100 best is partly a public vote measuring fame, Instagram presence, and brand loyalty. Our system measures only what is in the cup: crema, extraction, milk texture, balance, and finish. Rankings follow brands. Coffee comes from bars." },
+      { q: "Did Coffee Anthology deserve its world ranking?", a: "Yes. Coffee Anthology in Brisbane CBD is ranked in the world's top 30 and scored 7.5 in our system. Bold, fruity, smooth body, consistent finish. When the ranking matches the cup, we say so." }
+    ]
   }
 ];
 
