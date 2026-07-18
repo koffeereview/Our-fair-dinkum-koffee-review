@@ -48,6 +48,14 @@ export default async function handler(req, res) {
     const suburbName = toTitleCase(filtered[0].suburb);
     const cityName = toTitleCase(filtered[0].city || "Brisbane");
     const cityLower = cityName.toLowerCase().replace(/\s+/g, "-");
+    const expectedSlug = suburbToSlug(filtered[0].suburb) + "-" + cityLower;
+
+    // 301 redirect if URL doesn't match canonical (fixes "alternate page with proper canonical" in GSC)
+    if (suburb !== expectedSlug) {
+      res.setHeader("Location", "/suburb/" + expectedSlug);
+      return res.status(301).send("");
+    }
+
     const topCafe = filtered[0];
     const avgScore = (filtered.reduce(function(s,c){return s+c.score;},0)/filtered.length).toFixed(1);
     const mustVisit = filtered.filter(function(c){return c.score>=7.5;}).length;
@@ -108,6 +116,7 @@ export default async function handler(req, res) {
     .hero-sub{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:540px;margin:0 auto}
     .gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(230,192,115,0.3),transparent);margin:14px 0}
     .stats{display:flex;gap:0;margin:0 auto 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden}.stat{flex:1;text-align:center;padding:14px 8px;border-right:1px solid rgba(255,255,255,0.04)}.stat:last-child{border:none}.stat-n{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#E6C073;line-height:1}.stat-l{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-top:2px}
+    .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.04);padding:12px 8px}.stat:nth-child(odd){border-right:1px solid rgba(255,255,255,0.04)}.stat:nth-last-child(-n+2){border-bottom:none}.cc-nm{font-size:13px}}
     .top-pick{background:linear-gradient(135deg,rgba(230,192,115,0.08),rgba(230,192,115,0.02));border:1px solid rgba(230,192,115,0.2);border-radius:14px;padding:18px 20px;margin:16px 0;text-align:left;text-decoration:none;display:block;color:inherit;transition:all 0.15s}.top-pick:hover{border-color:rgba(230,192,115,0.4)}.tp-label{font-size:10px;letter-spacing:3px;color:#E6C073;font-weight:700;margin-bottom:6px}.tp-row{display:flex;align-items:center;gap:14px}.tp-sc{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1}.tp-nm{font-size:16px;font-weight:600;color:#fff}.tp-meta{font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px}.tp-notes{font-size:13px;color:rgba(255,255,255,0.5);font-style:italic;margin-top:10px;line-height:1.6}
     .section-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,0.4);margin-bottom:12px}
     .cc{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);margin-bottom:6px;text-decoration:none;color:inherit;transition:all 0.15s;position:relative;overflow:hidden}.cc:hover{border-color:rgba(230,192,115,0.2);background:rgba(255,255,255,0.035);transform:translateX(2px)}
@@ -122,6 +131,7 @@ export default async function handler(req, res) {
     .related{margin-top:24px}.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:10px}.rl{padding:12px 14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;color:#E6C073;text-decoration:none;font-size:12px;transition:all 0.15s}.rl:hover{background:rgba(230,192,115,0.06);border-color:rgba(230,192,115,0.2)}
     .faq{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.04)}.fi{margin-bottom:6px;border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden}.fi[open]{border-color:rgba(230,192,115,0.2)}.fq{padding:12px 14px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;list-style:none}.fq::-webkit-details-marker{display:none}.fq::after{content:"+";color:#E6C073;font-size:14px;float:right}.fi[open] .fq::after{content:"-"}.fa{padding:0 14px 12px;font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7}
     .ft{margin-top:36px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.04);text-align:center}.ft p{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.7;margin-bottom:10px}.ft a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:11px}.ft a:hover{color:#E6C073}
+      .sub-grid{grid-template-columns:1fr!important}
   </style>
 </head>
 <body>
