@@ -9,7 +9,9 @@ var POSTS = [
     title: "How to Find Good Coffee (The Real Way)",
     ogImage: "https://koffeereview.com.au/og-blog-1.png",
     description: "We have reviewed 600+ cafes across Australia with a locked scoring system. No sponsorships, no bias. Here is how to use our data to find genuinely great coffee every time.",
-    date: "2026-01-10", readingTime: "8 min",
+    date: "2026-01-07", readingTime: "8 min",
+    category: "education",
+   
     keywords: ["how to find good coffee","best coffee brisbane","coffee guide australia","cafe reviews brisbane","best latte brisbane","coffee scoring system"],
     intro: "Most people find coffee the same way they find restaurants: Google Maps, star ratings, and hope. They see a 4.8-star cafe, walk in expecting something special, and get a mediocre flat white from someone who does not care about extraction.\n\nWe have been to 600+ cafes across Australia. Same order every time \u2014 one latte, one double shot espresso. No exceptions. And here is what we learned: most review systems are broken. So we built one that works.",
     sections: [
@@ -84,7 +86,9 @@ var POSTS = [
     title: "Coffee Terminology Explained: The Complete Guide",
     ogImage: "https://koffeereview.com.au/og-blog-2.png",
     description: "We have reviewed 600+ cafes across Australia and use these terms in every review. From extraction to microfoam, this guide decodes every coffee word so you know exactly what baristas are talking about.",
-    date: "2026-01-24", readingTime: "9 min",
+    date: "2026-01-14", readingTime: "9 min",
+    category: "education",
+   
     keywords: ["coffee terminology","coffee terms explained","what is extraction coffee","microfoam meaning","coffee guide australia","espresso terms"],
     intro: "Every Koffee Review uses specific language. Extraction. Body. Microfoam. Crema. These are not fancy words for the sake of it \u2014 each one describes something real about what is happening in your cup.\n\nIf you have ever read one of our reviews and wondered what balanced with a clean finish actually means, this guide is for you. We have reviewed 600+ cafes using these terms. Here is what every single one means.",
     sections: [
@@ -159,7 +163,9 @@ var POSTS = [
     title: "Best Coffee by Australian Region \u2014 Where to Go",
     ogImage: "https://koffeereview.com.au/og-blog-3.png",
     description: "We have reviewed 600+ cafes across Australia. Here is where to find the best coffee in Brisbane, Gold Coast, Melbourne, Sunshine Coast, and beyond. Regional breakdown with data.",
-    date: "2026-02-07", readingTime: "8 min",
+    date: "2026-01-21", readingTime: "8 min",
+    category: "guides",
+   
     keywords: ["best coffee australia","best coffee brisbane","best coffee melbourne","best coffee gold coast","australian coffee culture","best cafes australia"],
     intro: "Australia has a fragmented coffee culture. What works in Melbourne does not work in Brisbane. What is standard in Sydney is rare on the Gold Coast.\n\nWe have reviewed 600+ cafes across Australia. Same order every time. One latte, one double shot espresso. And we have learned something: each region has its own coffee personality.\n\nHere is where to find genuinely good coffee, region by region.",
     sections: [
@@ -235,7 +241,9 @@ var POSTS = [
     title: "Why Our Scoring System Works",
     ogImage: "https://koffeereview.com.au/og-blog-4.png",
     description: "Why a 0 to 10 scale with locked verdict tiers is the most honest way to rate coffee. No hedging. Here is how we score 600+ cafes consistently across Australia.",
-    date: "2026-02-21", readingTime: "7 min",
+    date: "2026-01-28", readingTime: "7 min",
+    category: "data",
+   
     keywords: ["coffee scoring system","how to rate coffee","coffee rating scale","cafe ratings","coffee quality assessment","koffee review scoring"],
     intro: "Most cafe reviews are garbage.\n\nThey waffle. They hedge. They will tell you a cafe is great for the vibe or not bad actually and you still do not know if the coffee is worth your time.\n\nWe do not do that.\n\nWe built a scoring system that works because it is simple, consistent, and leaves no room for ambiguity. After 600+ reviews across Australia, it has proven itself.\n\nHere is why it works.",
     sections: [
@@ -300,7 +308,9 @@ var POSTS = [
     title: "Brisbane vs Gold Coast Coffee \u2014 What 350+ Reviews Tell Us",
     ogImage: "https://koffeereview.com.au/og-blog-5.png",
     description: "We have reviewed 350+ cafes across Brisbane and the Gold Coast. Same order every time. Here is which city does coffee better, the best suburbs in each, and where to actually go.",
-    date: "2026-03-07", readingTime: "8 min",
+    date: "2026-02-04", readingTime: "8 min",
+    category: "versus",
+   
     keywords: ["brisbane vs gold coast coffee","best coffee brisbane","best coffee gold coast","brisbane coffee","gold coast coffee","queensland coffee"],
     intro: "Two cities. One state. Completely different coffee cultures.\n\nWe have reviewed 350+ cafes across Brisbane and the Gold Coast. Same order every time. One latte, one double shot espresso. No vibe scores. No nostalgia. Just the coffee.\n\nAfter all those visits, the data tells a clear story. Here is who wins, where to go, and why the two cities feel nothing alike in the cup.",
     sections: [
@@ -365,7 +375,9 @@ var POSTS = [
     title: "Coffee Bean Origins Guide \u2014 What Every Region Actually Tastes Like",
     ogImage: "https://koffeereview.com.au/og-blog-6.png",
     description: "Ethiopian coffees are not all fruity. Brazilian coffees are not all chocolate. Here is what actually happens when you drink single origins from 8 major coffee regions.",
-    date: "2026-03-21", readingTime: "9 min",
+    date: "2026-02-11", readingTime: "9 min",
+    category: "education",
+   
     keywords: ["coffee bean origins","single origin coffee","Ethiopian coffee","Colombian coffee","coffee regions","where coffee comes from","coffee taste guide"],
     intro: "Coffee tastes like geography. Not metaphorically. Literally. Where a bean grows, the altitude, soil, rainfall, processing, determines what you taste when you drink it.\n\nMost people do not care. They see single origin and assume it matters. It does. But not how most cafes explain it.\n\nHere is what actually happens when you drink coffee from different parts of the world.",
     sections: [
@@ -429,7 +441,9 @@ var POSTS = [
     title: "Starbucks vs Independent Brisbane \u2014 We Reviewed Them the Same Way",
     ogImage: "https://koffeereview.com.au/og-blog-7.png",
     description: "We reviewed Starbucks the same way we review every cafe: one latte, one double shot espresso, no excuses. No frappes. No matcha. Just the coffee. Here is what the data shows.",
-    date: "2026-04-04", readingTime: "7 min",
+    date: "2026-02-18", readingTime: "7 min",
+    category: "versus",
+   
     keywords: ["starbucks brisbane","starbucks coffee quality","independent coffee brisbane","best coffee brisbane","starbucks vs local cafes","chain vs independent coffee"],
     intro: "We do not make exceptions.\n\nSame order, every time. One latte, one double shot espresso. Not a frappuccino. Not a matcha oat milk latte. Not whatever seasonal drink is on the menu. We do not care about any of that. We test the coffee.\n\nWe have reviewed independent cafes, chains, hidden laneways, and shopping malls with zero bias. When Starbucks came up, we treated it the same way.\n\nThe results were not close.",
     sections: [
@@ -485,7 +499,9 @@ var POSTS = [
     title: "What Makes Good Coffee \u2014 The Complete Guide",
     ogImage: "https://koffeereview.com.au/og-blog-8.png",
     description: "What actually separates good coffee from mediocre. Based on 600+ cafe reviews and a simple methodology: fresh beans, proper extraction, and milk execution. Three rules. That is it.",
-    date: "2026-04-18", readingTime: "10 min",
+    date: "2026-02-25", readingTime: "10 min",
+    category: "education",
+   
     keywords: ["what makes good coffee","how to choose good coffee","quality coffee","specialty coffee","good coffee taste","coffee quality","how to find good coffee"],
     intro: "Most people cannot define good coffee. They know it when they taste it, but they cannot say why.\n\nAfter 600+ cafe reviews across Australia, same order every time, no exceptions, we can tell you exactly what separates a 7.5 cafe from a 5.2.\n\nIt is not subjective. It is not about your personal preference. It is measurable.\n\nHere is what makes coffee good, and how to spot it every single time.",
     sections: [
@@ -556,7 +572,9 @@ var POSTS = [
     title: "The Science Behind Every Score \u2014 What Separates a 2.1 from a 7.8",
     ogImage: "https://koffeereview.com.au/og-blog-9.png",
     description: "After 600+ cafe reviews, here is exactly what makes good coffee and why most cafes get it wrong. Four pillars: bean quality, extraction, milk work, and consistency.",
-    date: "2026-05-02", readingTime: "8 min",
+    date: "2026-03-04", readingTime: "8 min",
+    category: "data",
+   
     keywords: ["what makes good coffee","good coffee vs bad coffee","coffee quality","espresso extraction","milk texture coffee","best coffee brisbane","coffee scoring"],
     intro: "We have reviewed 600+ cafes across Australia.\n\nSame order every time. One latte. One double shot espresso. One score.\n\nAfter that many cups, patterns emerge. The difference between a 2.1 and a 7.8 is not random. It is not subjective. It is not vibes. It comes down to four things, and most cafes fail at least one.\n\nHere is what separates good coffee from everything else.",
     sections: [
@@ -613,7 +631,9 @@ var POSTS = [
     title: "Chain vs Independent \u2014 Do Big Names Actually Make Better Coffee?",
     ogImage: "https://koffeereview.com.au/og-blog-10.png",
     description: "We have reviewed Stellarossa, Hudson Coffee, and dozens of chains alongside 600+ independents. Same order, same scoring. The data is clear and it is not close.",
-    date: "2026-05-16", readingTime: "7 min",
+    date: "2026-03-11", readingTime: "7 min",
+    category: "versus",
+   
     keywords: ["chain coffee vs independent","best coffee australia","stellarossa review","independent cafes brisbane","best cafes brisbane","chain cafe review"],
     intro: "We have reviewed 600+ cafes across Australia.\n\nSome are chains with hundreds of locations. Some are hole in the wall independents with one espresso machine and a dream. We order the same thing at every single one. One latte, one double shot espresso. Score purely on taste.\n\nNo loyalty. No bias. No freebies. Just the cup.\n\nAfter 600+ reviews, the data is clear. And it is not close.",
     sections: [
@@ -674,7 +694,9 @@ var POSTS = [
     title: "Australia\u2019s Coffee Ranking \u2014 Where We Stand Globally",
     ogImage: "https://koffeereview.com.au/og-blog-11.png",
     description: "Is Australian coffee the best in the world? We have reviewed 600+ cafes across Australia and tested international standards. Here is where Australia actually ranks and how we score it.",
-    date: "2026-05-30", readingTime: "10 min",
+    date: "2026-03-18", readingTime: "10 min",
+    category: "data",
+   
     keywords: ["australian coffee","best coffee australia","australia coffee quality","australian coffee culture","is australian coffee good","australia vs world coffee"],
     intro: "Australia has a coffee reputation. Flat whites, microfoam, cafe culture. The internet says Australian coffee is world class. But is it? And how do we actually know?\n\nWe have reviewed 600+ cafes across Brisbane, Melbourne, Gold Coast, and regional areas. We have also tasted coffee in Barcelona. We used the same methodology everywhere. One latte, one double shot espresso, every time.\n\nHere is what the data actually shows.",
     sections: [
@@ -752,7 +774,9 @@ var POSTS = [
     title: "What Makes a 7.5+ Cafe \u2014 Reverse Engineering Our Highest Scores",
     ogImage: "https://koffeereview.com.au/og-blog-12.png",
     description: "We have 23+ cafes scoring 7.5 or above. What do they all have in common? We reverse engineered every single one. Five patterns, zero exceptions.",
-    date: "2026-06-13", readingTime: "8 min",
+    date: "2026-03-25", readingTime: "8 min",
+    category: "data",
+   
     keywords: ["what makes good cafe","how to find good coffee","cafe quality","must visit cafe","best coffee australia","coffee quality signals"],
     intro: "We have 23+ cafes scoring 7.5 or above out of 600+ reviewed.\n\nThat is less than 4% of all cafes we have tested. What separates them from the other 96%?\n\nWe reverse engineered every single one. Five patterns emerged. Zero exceptions.",
     sections: [
@@ -819,7 +843,9 @@ var POSTS = [
     title: "Australian Barista Training \u2014 Why It Matters and What We Found",
     ogImage: "https://koffeereview.com.au/og-blog-13.png",
     description: "Australian baristas are trained differently than anywhere else. After 600+ cafe reviews, we can see the difference in scores. Training equals quality. Here is the data.",
-    date: "2026-06-27", readingTime: "7 min",
+    date: "2026-04-01", readingTime: "7 min",
+    category: "education",
+   
     keywords: ["barista training australia","australian coffee culture","specialty coffee australia","SCA certification","barista skills","coffee quality training"],
     intro: "Australian baristas are trained differently than anywhere else in the world.\n\nWe have reviewed 600+ cafes and worked backwards from the scores. The correlation between barista training and cafe quality is not subtle. It is direct and measurable.\n\nHere is what we found about Australian barista culture and why it matters for the coffee in your cup.",
     sections: [
@@ -888,7 +914,9 @@ var POSTS = [
     title: "Why Most Cafes Score Between 6.0 and 6.9 \u2014 The Stuck Zone",
     ogImage: "https://koffeereview.com.au/og-blog-14.png",
     description: "After 600+ reviews, we found that most Australian cafes cluster between 6.0 and 6.9. Not bad. Not good. Just stuck. Here is why, and what separates the stuck from the great.",
-    date: "2026-07-11", readingTime: "8 min",
+    date: "2026-04-08", readingTime: "8 min",
+    category: "data",
+   
     keywords: ["why cafes are average","coffee quality","good vs great coffee","cafe improvement","coffee scoring","decent coffee"],
     intro: "Here is something nobody talks about in Australian coffee.\n\nMost cafes are fine. Not bad. Not great. Just fine.\n\nAfter 600+ reviews, the data shows a clear bell curve. The peak sits right between 6.0 and 6.9. DECENT to TAKE OR LEAVE territory. More cafes live in this range than any other.\n\nThey are not failing. They are stuck. And most of them do not know it.",
     sections: [
@@ -947,7 +975,9 @@ var POSTS = [
     title: "What 600+ Reviews Taught Us \u2014 Patterns, Surprises, and the Truth About Australian Coffee",
     ogImage: "https://koffeereview.com.au/og-blog-15.png",
     description: "After reviewing 600+ cafes across Australia with the same order every time, here are the patterns we did not expect, the suburbs that surprised us, and the truths nobody talks about.",
-    date: "2026-07-25", readingTime: "9 min",
+    date: "2026-04-15", readingTime: "9 min",
+    category: "data",
+   
     keywords: ["cafe reviews australia","coffee patterns","best coffee lessons","australian coffee culture","coffee review insights","600 cafe reviews"],
     intro: "We did not plan to review 600+ cafes.\n\nIt started as a hobby. Two coffees at a cafe. One latte, one double shot. Score it. Move on. Repeat.\n\nBut after 600+, something happened. Patterns emerged that we never expected. Assumptions we had about coffee turned out to be wrong. Suburbs we dismissed turned out to be brilliant. Cafes we expected to love disappointed us.\n\nHere is what 600+ reviews actually taught us.",
     sections: [
@@ -1018,7 +1048,9 @@ var POSTS = [
     title: "The 5 Worst Coffee Mistakes We See \u2014 Based on 600+ Reviews",
     ogImage: "https://koffeereview.com.au/og-blog-16.png",
     description: "After 600+ cafe reviews, these are the five most common defects that kill coffee quality. Every cafe scoring below 5.0 makes at least two of them.",
-    date: "2026-08-08", readingTime: "7 min",
+    date: "2026-04-22", readingTime: "7 min",
+    category: "data",
+   
     keywords: ["bad coffee","coffee mistakes","why is my coffee bad","common coffee defects","scorched milk","stale coffee beans","worst cafes"],
     intro: "Bad coffee does not happen randomly. It happens for specific, identifiable, fixable reasons.\n\nAfter 600+ reviews, we have catalogued every defect we encounter. Five come up over and over. Every cafe scoring below 5.0 makes at least two of them. Most make three or more.\n\nHere are the five worst coffee mistakes and how to spot them before you waste $6.",
     sections: [
@@ -1082,7 +1114,9 @@ var POSTS = [
     title: "Worst Coffee in Queensland \u2014 The Complete List",
     ogImage: "https://koffeereview.com.au/og-blog-17.png",
     description: "After 600+ cafe reviews across Australia, we found the worst. Scores below 3.0. Harsh, bitter, undrinkable. Here is the full breakdown of what to avoid.",
-    date: "2026-08-22", readingTime: "8 min",
+    date: "2026-04-29", readingTime: "8 min",
+    category: "guides",
+   
     keywords: ["worst coffee queensland","cafes to avoid brisbane","worst cafe brisbane","bad coffee","coffee to avoid queensland"],
     intro: "You want to know the bad ones.\n\nNot the mediocre, average, forgettable ones. The actually bad ones. The cafes that make you question if they hate coffee.\n\nAfter 600+ reviews across Australia, we found them. Here is the brutal truth.",
     sections: [
@@ -1149,7 +1183,9 @@ var POSTS = [
     title: "Gold Coast Coffee by Suburb \u2014 Where to Go and Where to Skip",
     ogImage: "https://koffeereview.com.au/og-blog-18.png",
     description: "We reviewed 80+ Gold Coast cafes with the same order every time. Here is which suburbs have the best coffee, ranked by score. Burleigh Heads leads. Not everything near the beach is good.",
-    date: "2026-09-05", readingTime: "8 min",
+    date: "2026-05-06", readingTime: "8 min",
+    category: "guides",
+   
     keywords: ["best coffee gold coast","gold coast cafe","burleigh heads coffee","southport coffee","coolangatta cafe","gold coast suburbs coffee"],
     intro: "You came to the Gold Coast for the beaches.\n\nBut you also want decent coffee. Not chain coffee. Not airport coffee. Real coffee.\n\nWe have reviewed 80+ Gold Coast cafes. Same order every visit: one latte, one double shot espresso. Same scoring system we use across 600+ cafes Australia wide. No exceptions.\n\nHere is the breakdown by suburb, ranked by score.",
     sections: [
@@ -1224,7 +1260,9 @@ var POSTS = [
     title: "Best Coffee Suburbs in Brisbane 2026 \u2014 Ranked by Our Reviews",
     ogImage: "https://koffeereview.com.au/og-blog-19.png",
     description: "Not every Brisbane suburb is equal for coffee. After 600+ cafe reviews, clear patterns have emerged. Here are the suburbs that consistently deliver, and the ones that do not.",
-    date: "2026-09-19", readingTime: "7 min",
+    date: "2026-05-13", readingTime: "7 min",
+    category: "guides",
+   
     keywords: ["best coffee suburbs brisbane","best coffee west end","best coffee newstead","brisbane coffee by suburb","where to get coffee brisbane"],
     intro: "Not every Brisbane suburb is equal when it comes to coffee.\n\nAfter 600+ reviews across Australia using the same method, clear patterns have emerged. Some suburbs consistently produce 7.0+ scores. Others are a coin flip. A few are avoid at all costs territory.\n\nHere are the suburbs currently standing out based on average scores and consistency.",
     sections: [
@@ -1286,7 +1324,9 @@ var POSTS = [
     title: "West End vs Newstead vs Fortitude Valley \u2014 Which Has the Best Coffee?",
     ogImage: "https://koffeereview.com.au/og-blog-20.png",
     description: "Three inner Brisbane suburbs. One latte and one double shot at every cafe. After 600+ reviews, here is which suburb actually has the best coffee and why.",
-    date: "2026-10-03", readingTime: "7 min",
+    date: "2026-05-20", readingTime: "7 min",
+    category: "versus",
+   
     keywords: ["west end coffee brisbane","newstead coffee","fortitude valley coffee","best coffee inner brisbane","brisbane suburbs coffee comparison"],
     intro: "These three inner Brisbane suburbs get a lot of attention for coffee. But which one actually delivers?\n\nWe have reviewed cafes in all three using the same method we use across 600+ reviews Australia wide. One latte, one double shot espresso, every cafe.\n\nHere is what the data actually shows when we compare them head to head.",
     sections: [
@@ -1347,7 +1387,9 @@ var POSTS = [
     title: "We Visited Every Cafe on Timeout's Best Coffee in Brisbane List \u2014 Here Is What We Actually Found",
     ogImage: "https://koffeereview.com.au/og-blog-21.png",
     description: "Timeout published their 12 best coffee spots in Brisbane. We visited all twelve with the same order. 5 hit our Loved tier. 3 fell below 6.5. Here is the honest scoreboard.",
-    date: "2026-10-17", readingTime: "10 min",
+    date: "2026-05-27", readingTime: "10 min",
+    category: "versus",
+   
     keywords: ["timeout best coffee brisbane","timeout cafe review","best coffee brisbane","bellissimo coffee","john mills himself","coffee anthology","industry beans"],
     intro: "Timeout published their list of the best coffee in Brisbane. Twelve cafes. Award winners, heritage buildings, converted bomb shelters, 24 hour espresso bars.\n\nWe visited all twelve.\n\nSame order every time: one latte, one double shot espresso. Same scoring system we use across 600+ reviews. No press invites, no free coffees, no interviews with owners. Just what is in the cup on the day.\n\nHere is every cafe on their list, scored.",
     sections: [
@@ -1417,7 +1459,9 @@ var POSTS = [
     title: "We Visited the World's Best Coffee Shop. We Scored It 6.2.",
     ogImage: "https://koffeereview.com.au/og-blog-22.png",
     description: "Toby's Estate was crowned the world's number one coffee shop. We visited with the same order we use at 600+ cafes. We scored it 6.2. TAKE OR LEAVE. Here is what happened.",
-    date: "2026-10-31", readingTime: "9 min",
+    date: "2026-06-03", readingTime: "9 min",
+    category: "versus",
+   
     keywords: ["worlds best coffee shop","tobys estate review","best coffee shop world","coffee ranking","world 100 best coffee"],
     intro: "There is a list called the World's 100 Best Coffee Shops. It is voted by the public and an expert panel, and it carries real weight. Cafes put the ranking in their windows. Media runs the story every year.\n\nToby's Estate in Chippendale was crowned the world's number one. This year it still sits in the global top five, alongside cafes from Norway, El Salvador and Singapore.\n\nWe visited. Same order we have used at 600+ cafes across Australia: one latte, one double shot espresso. Same scoring system. No panel, no votes, no vibes.\n\nWe scored the world's best coffee shop 6.2 out of 10. TAKE OR LEAVE.",
     sections: [
@@ -1559,12 +1603,52 @@ function footer() {
 }
 
 function renderIndex() {
-  var cards = POSTS.map(function(p) {
-    return '<a href="/blog/' + p.slug + '" class="pc"><div class="pd">' + p.date + ' &middot; ' + p.readingTime + '</div><h2 class="pt">' + esc(p.title) + '</h2><p class="pp">' + esc(p.description) + '</p><span class="pl">Read article &rarr;</span></a>';
+  var sorted = POSTS.slice().sort(function(a,b){return b.date.localeCompare(a.date);});
+  var featured = sorted[0];
+  var CAT_NAMES = {"versus":"VERSUS & COMPARISONS","data":"DATA & ANALYSIS","guides":"CITY & SUBURB GUIDES","education":"EDUCATION & GUIDES"};
+  var CAT_COLORS = {"versus":"#f87171","data":"#60a5fa","guides":"#4ade80","education":"#a78bfa"};
+  var CAT_ORDER = ["versus","guides","data","education"];
+
+  // Featured card
+  var featuredHTML = '<a href="/blog/'+featured.slug+'" style="display:block;background:rgba(230,192,115,0.04);border:1px solid rgba(230,192,115,0.2);border-radius:18px;padding:24px;margin-bottom:28px;text-decoration:none;color:inherit">'
+    +'<div style="font-size:10px;letter-spacing:3px;color:#E6C073;margin-bottom:10px;font-weight:700">LATEST POST</div>'
+    +'<h2 style="font-family:Bebas Neue,sans-serif;font-size:clamp(22px,5vw,30px);color:#fff;letter-spacing:1px;margin-bottom:8px;line-height:1.2">'+esc(featured.title)+'</h2>'
+    +'<p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:12px">'+esc(featured.description)+'</p>'
+    +'<div style="display:flex;align-items:center;gap:12px"><span style="font-size:12px;color:rgba(255,255,255,0.3)">'+featured.date+'</span><span style="padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;background:rgba(230,192,115,0.1);color:#E6C073;border:1px solid rgba(230,192,115,0.2)">'+featured.readingTime+'</span></div>'
+    +'</a>';
+
+  // Group by category
+  var catSections = CAT_ORDER.map(function(cat) {
+    var posts = sorted.filter(function(p){return p.category===cat;});
+    if(!posts.length) return "";
+    var color = CAT_COLORS[cat]||"#E6C073";
+    var cards = posts.map(function(p) {
+      return '<a href="/blog/'+p.slug+'" style="display:block;padding:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;text-decoration:none;color:inherit;transition:border 0.2s"'
+        +' onmouseover="this.style.borderColor=\'rgba(230,192,115,0.25)\'" onmouseout="this.style.borderColor=\'rgba(255,255,255,0.06)\'">'
+        +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">'
+        +'<span style="font-size:11px;color:rgba(255,255,255,0.3)">'+p.date+'</span>'
+        +'<span style="padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">'+p.readingTime+'</span></div>'
+        +'<div style="font-size:15px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:4px">'+esc(p.title)+'</div>'
+        +'<div style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.5">'+esc(p.description.substring(0,100))+'...</div>'
+        +'</a>';
+    }).join("");
+    return '<div style="margin-bottom:28px">'
+      +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.04)">'
+      +'<div style="width:8px;height:8px;border-radius:50%;background:'+color+'"></div>'
+      +'<div style="font-family:Bebas Neue,sans-serif;font-size:13px;letter-spacing:3px;color:rgba(255,255,255,0.35)">'+(CAT_NAMES[cat]||cat.toUpperCase())+'</div>'
+      +'<div style="font-size:11px;color:rgba(255,255,255,0.2)">'+posts.length+'</div></div>'
+      +'<div style="display:flex;flex-direction:column;gap:8px">'+cards+'</div></div>';
   }).join("");
+
+  // Stats bar
+  var statsBar = '<div style="display:flex;gap:0;margin-bottom:24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden">'
+    +'<div style="flex:1;text-align:center;padding:14px 8px;border-right:1px solid rgba(255,255,255,0.03)"><div style="font-family:Bebas Neue,sans-serif;font-size:26px;color:#E6C073">'+POSTS.length+'</div><div style="font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3)">ARTICLES</div></div>'
+    +'<div style="flex:1;text-align:center;padding:14px 8px;border-right:1px solid rgba(255,255,255,0.03)"><div style="font-family:Bebas Neue,sans-serif;font-size:26px;color:#E6C073">600+</div><div style="font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3)">CAFES REVIEWED</div></div>'
+    +'<div style="flex:1;text-align:center;padding:14px 8px"><div style="font-family:Bebas Neue,sans-serif;font-size:26px;color:#E6C073">4</div><div style="font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3)">CATEGORIES</div></div></div>';
+
   var schema = JSON.stringify({"@context":"https://schema.org","@type":"Blog","name":"Koffee Review Blog","url":"https://koffeereview.com.au/blog","publisher":{"@type":"Organization","name":"Koffee Review","url":"https://koffeereview.com.au"},"blogPost":POSTS.map(function(p){return{"@type":"BlogPosting","headline":p.title,"url":"https://koffeereview.com.au/blog/"+p.slug,"datePublished":p.date}})});
   var bc = JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Koffee Review","item":"https://koffeereview.com.au"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://koffeereview.com.au/blog"}]});
-  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blog &mdash; Koffee Review</title><meta name="description" content="Coffee guides, scoring methodology, and tasting tips. 600+ cafes reviewed across Australia."><link rel="canonical" href="https://koffeereview.com.au/blog"><link rel="alternate" hreflang="en-AU" href="https://koffeereview.com.au/blog"><meta property="og:title" content="Blog &mdash; Koffee Review"><meta property="og:url" content="https://koffeereview.com.au/blog"><meta property="og:image" content="https://koffeereview.com.au/logo.webp"><link rel="icon" href="/logo.webp"><script type="application/ld+json">' + schema + '<\/script><script type="application/ld+json">' + bc + '<\/script><style>' + css() + '</style></head><body><div class="c">' + nav('<a href="/city/brisbane">Brisbane</a><a href="/leaderboard">Leaderboard</a>') + '<div class="bc"><a href="/">Home</a> &middot; <span>Blog</span></div><header class="bh"><h1>The Koffee Review Blog</h1><p>Guides, methodology, and everything we have learned reviewing 600+ cafes across Australia.</p></header>' + cards + footer() + '</div></body></html>';
+  return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blog &mdash; Koffee Review</title><meta name="description" content="Coffee guides, scoring methodology, and tasting tips. 600+ cafes reviewed across Australia. '+POSTS.length+' articles."><link rel="canonical" href="https://koffeereview.com.au/blog"><link rel="alternate" hreflang="en-AU" href="https://koffeereview.com.au/blog"><meta property="og:title" content="Blog &mdash; Koffee Review"><meta property="og:url" content="https://koffeereview.com.au/blog"><meta property="og:image" content="https://koffeereview.com.au/logo.webp"><link rel="icon" href="/logo.webp"><script type="application/ld+json">' + schema + '<\/script><script type="application/ld+json">' + bc + '<\/script><style>' + css() + '</style></head><body><div class="c">' + nav('<a href="/city/brisbane">Brisbane</a><a href="/leaderboard">Leaderboard</a>') + '<div class="bc"><a href="/">Home</a> &middot; <span>Blog</span></div><header class="bh"><h1>The Koffee Review Blog</h1><p>Guides, data, and everything we have learned reviewing 600+ cafes across Australia.</p></header>' + statsBar + featuredHTML + catSections + '<div style="margin-top:20px;display:flex;flex-direction:column;gap:8px"><a href="/explore" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.12);border-radius:14px;text-decoration:none;color:#E6C073;font-size:13px">Explore Koffee Review &rarr;</a><a href="/must-visit-cafes" style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;text-decoration:none;color:rgba(255,255,255,0.5);font-size:13px">Must Visit Cafes &rarr;</a></div>' + footer() + '</div></body></html>';
 }
 
 function renderPost(post) {
