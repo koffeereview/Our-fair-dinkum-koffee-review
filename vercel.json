@@ -24,6 +24,7 @@
     { "source": "/sitemap-suburbs.xml", "destination": "/api/sitemap?type=suburbs" },
     { "source": "/review/:slug", "destination": "/api/review?slug=:slug" },
     { "source": "/city/:city", "destination": "/api/city?city=:city" },
+    { "source": "/suburbs", "destination": "/api/suburbs" },
     { "source": "/suburb/:suburb", "destination": "/api/suburb?suburb=:suburb" },
     { "source": "/best-cafes-australia", "destination": "/must-visit-cafes" },
     { "source": "/best-coffee-australia", "destination": "/leaderboard" },
