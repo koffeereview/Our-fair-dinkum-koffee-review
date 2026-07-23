@@ -25,6 +25,8 @@
     { "source": "/review/:slug", "destination": "/api/review?slug=:slug" },
     { "source": "/city/:city", "destination": "/api/city?city=:city" },
     { "source": "/suburbs", "destination": "/api/suburbs" },
+    { "source": "/tags", "destination": "/api/tags" },
+    { "source": "/tag/:tag", "destination": "/api/tags?tag=:tag" },
     { "source": "/suburb/:suburb", "destination": "/api/suburb?suburb=:suburb" },
     { "source": "/best-cafes-australia", "destination": "/must-visit-cafes" },
     { "source": "/best-coffee-australia", "destination": "/leaderboard" },
