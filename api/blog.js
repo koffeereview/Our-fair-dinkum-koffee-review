@@ -1532,6 +1532,76 @@ var POSTS = [
       { q: "Why do world rankings not match coffee quality?", a: "The world's 100 best is partly a public vote measuring fame, Instagram presence, and brand loyalty. Our system measures only what is in the cup: crema, extraction, milk texture, balance, and finish. Rankings follow brands. Coffee comes from bars." },
       { q: "Did Coffee Anthology deserve its world ranking?", a: "Yes. Coffee Anthology in Brisbane CBD is ranked in the world's top 30 and scored 7.5 in our system. Bold, fruity, smooth body, consistent finish. When the ranking matches the cup, we say so." }
     ]
+  },
+  {
+    slug: "google-reviews-vs-coffee-scores",
+    title: "Google Reviews vs Us \u2014 Star Ratings vs Actual Coffee Scores",
+    ogImage: "https://koffeereview.com.au/og-blog-23.png",
+    description: "A cafe with 4.6 stars on Google scored 5.8 with us. The best coffee in the country has 4.4 stars. We compared Google ratings to our locked coffee scores across 600+ cafes. Stars cannot measure coffee.",
+    date: "2026-06-10", readingTime: "9 min",
+    category: "versus",
+    keywords: ["google reviews coffee","are google reviews accurate","best coffee brisbane","google rating vs quality","coffee shop reviews","how to find good coffee"],
+    intro: "You pick a cafe the same way everyone does. You check Google. 4.5 stars, 800 reviews, looks safe. You go.\n\nAnd half the time the coffee is average.\n\nWe wanted to know why. So we lined up Google star ratings against our own coffee scores across 600+ cafes we have reviewed. Same order at every one: one latte, one double shot espresso. Scored on crema, extraction, milk, balance and finish. Nothing else.\n\nThe two systems barely agree. Here is the proof.",
+    sections: [
+      {
+        heading: "The World's Best Coffee Shop Has 4.1 Stars",
+        body: "<a href=\"/review/tobys-estate-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Tobys Estate</a> was crowned the world's best coffee shop. On Google, it sits at 4.1 stars.\n\nThere are cafes in Brisbane suburbs with 4.7 stars that nobody has ever heard of. By Google's maths, they beat the world champion.\n\nWe scored Tobys Estate 6.2 TAKE OR LEAVE. Moderate in, moderate out. Google's 4.1 is actually closer to our read than the world ranking is. But 4.1 still does not tell you the coffee is average. You would assume 4.1 means pretty good.\n\nA star rating is an average of everyone's feelings about everything. Service, seats, pastries, the wait. It is not a measure of the coffee.",
+        links: [
+          { text: "World's best coffee shop scored 6.2", url: "/blog/worlds-best-coffee-shop-scored-6-2" }
+        ]
+      },
+      {
+        heading: "4.6 Stars, We Scored It 5.8",
+        body: "Single O's Brisbane bar in Newstead has 4.6 stars on Google. Glowing reviews. Consistently excellent coffee. Rich flavours. A gem.\n\nWe scored it 5.8 AVERAGE.\n\nSoft from the first sip, nothing built through the middle, gone before it left anything behind. A genuinely great roaster, an average pull on the day.\n\nSo how does an average pull get 4.6 stars? Google reviewers are rating the skylight, the cork banquettes, the oat latte on tap, the pastries, the friendly staff. All of that is legitimately nice. None of it is the espresso.\n\nThe gap: 4.6 stars measured the cafe. Our 5.8 measured the cup.",
+        links: [
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" }
+        ]
+      },
+      {
+        heading: "Where Google Under-Rates the Coffee",
+        body: "Here is the part a lazy takedown would leave out.\n\n<a href=\"/best-coffee-gold-coast\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Quest Coffee Roasters in Burleigh Heads</a> has 4.4 stars on Google. Lower than Single O's 4.6.\n\nWe scored Quest 8.1 GREAT. The best coffee we have had in Australia.\n\nSo Google has an average pull cafe rated higher than the best coffee in the country. The 0.2 star gap points the wrong way entirely.\n\nWhy? Quest is a tiny grab and go roastery. Not much room to sit. Reviewers ding it on seating and space. Those complaints drag the star rating down even though the coffee is elite. Google punishes Quest for having no couches. We rewarded it for having the best shot.\n\nThis is the whole problem in one comparison. Stars go up for ambience and down for hard chairs. The coffee barely moves the number either way.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "Best coffee Gold Coast", url: "/best-coffee-gold-coast" }
+        ]
+      },
+      {
+        heading: "Why Google Stars Cannot Measure Coffee",
+        body: "First: they average everything into one number. Coffee, food, service, price, wifi, parking, the vibe. A 4.5 could be brilliant coffee and slow service, or average coffee and a beautiful room. You cannot tell which. We only score the coffee.\n\nSecond: they reward nice, punish inconvenient. Comfortable seats, friendly staff and good pastries lift stars. Small spaces, queues and no parking drop them. None of that is extraction quality.\n\nThird: they are loyalty contests. Regulars leave five stars for their local because it is their local. That is affection, not assessment. A cafe with a warm community gets a halo the coffee did not earn.\n\nFourth: they never reset. A cafe coasts on years old five star reviews written when the head barista was better. The number remembers the good old days. Your cup this morning does not.\n\nFifth: nobody is using the same order. One reviewer had a mocha, one had a chai, one had a babyccino for their toddler. They are all rating the coffee having drunk completely different drinks. We order the same two things every single time. That is the only way the number means anything.",
+        links: [
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "What Stars Are Actually Good For",
+        body: "Google reviews are not useless. They are a great read on service and friendliness, whether the room is nice, food and pastries, parking, seating, wait times, and whether the place is clean and open when it says.\n\nThat is genuinely worth knowing before you go. Just do not read a star rating as a coffee score. It was never built to be one.\n\nUse Google to find out if you will enjoy sitting there. Use us to find out if you will enjoy the coffee.",
+        links: [
+          { text: "Coffee guide", url: "/coffee-guide" },
+          { text: "How to find good coffee", url: "/blog/how-to-find-good-coffee" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "A cafe with 4.6 stars served us a 5.8. The best coffee in the country only rates 4.4 because the room is small. The world's best coffee shop sits at 4.1.\n\nStar ratings measure the experience. We measure the cup. Both are useful but only one of them tells you the coffee is good, and it is not the stars.\n\nNext time Google shows you 4.5, ask what it is actually counting.",
+        links: [
+          { text: "Browse all 600+ cafes scored on coffee alone", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Timeout comparison", url: "/blog/timeout-best-coffee-brisbane-review" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Browse by suburb", url: "/suburbs" },
+          { text: "Browse by tag", url: "/tags" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Are Google reviews accurate for coffee quality?", a: "No. Google star ratings average everything together: service, ambience, food, parking, and coffee. A cafe can have 4.6 stars with average coffee because reviewers loved the fit out. We score only the coffee using the same order at every cafe." },
+      { q: "What is the difference between Google stars and Koffee Review scores?", a: "Google stars are crowd-sourced averages of the total experience. Our scores measure one thing: coffee quality. Same order (one latte, one double shot), same scale, same criteria at every cafe. A 7.5 from us means the coffee is genuinely good regardless of the chairs or the wifi." },
+      { q: "Can a cafe have high Google stars but bad coffee?", a: "Yes. Single O Newstead has 4.6 stars on Google but scored 5.8 with us. The fit out and service are excellent. The coffee on the day we visited was average. Stars rewarded the room. Our score measured the cup." },
+      { q: "Can a cafe have low Google stars but great coffee?", a: "Yes. Quest Coffee Roasters in Burleigh Heads has 4.4 stars because the space is small. We scored it 8.1 GREAT, the best coffee in our entire database. Google punished it for hard chairs. We rewarded it for the best shot in Australia." }
+    ]
   }
 ];
 
