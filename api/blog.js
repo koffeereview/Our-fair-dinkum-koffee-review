@@ -1602,6 +1602,179 @@ var POSTS = [
       { q: "Can a cafe have high Google stars but bad coffee?", a: "Yes. Single O Newstead has 4.6 stars on Google but scored 5.8 with us. The fit out and service are excellent. The coffee on the day we visited was average. Stars rewarded the room. Our score measured the cup." },
       { q: "Can a cafe have low Google stars but great coffee?", a: "Yes. Quest Coffee Roasters in Burleigh Heads has 4.4 stars because the space is small. We scored it 8.1 GREAT, the best coffee in our entire database. Google punished it for hard chairs. We rewarded it for the best shot in Australia." }
     ]
+  },
+  {
+    slug: "urban-list-best-coffee-brisbane-scored",
+    title: "Urban List Says These Are Brisbane's Best Cafes \u2014 Here Is What We Actually Found",
+    ogImage: "https://koffeereview.com.au/og-blog-24.png",
+    description: "Urban List published their best coffee in Brisbane picks. We visited them all with one latte and one double shot. Some earned it. Some did not. Here are the real scores.",
+    date: "2026-06-17", readingTime: "9 min",
+    category: "versus",
+    keywords: ["urban list best coffee brisbane","urban list cafes brisbane","best coffee brisbane 2026","cafe reviews brisbane"],
+    intro: "Urban List is one of Australia's biggest lifestyle guides. Their best coffee in Brisbane list carries weight. Cafes feature it on their socials. Customers trust it.\n\nWe visited every cafe on their current Brisbane coffee list. Same order we use across 600+ reviews: one latte, one double shot espresso. Same scoring system. No press invites.\n\nSome of their picks matched our scores. Some did not come close.",
+    sections: [
+      {
+        heading: "The Overlap",
+        body: "Urban List and Timeout share several picks. <a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo Coffee (7.9)</a>, <a href=\"/review/john-mills-himself-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">John Mills Himself (7.8)</a>, and <a href=\"/review/coffee-anthology-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Anthology (7.5)</a> appear on both lists. All three earned their spot in our system too.\n\nWhen multiple media outlets agree AND our blind scores confirm it, that is as close to consensus as Brisbane coffee gets. These three cafes are genuinely elite.\n\nThe pattern: cafes that appear on multiple best of lists AND score 7.5+ with us are the real deal. Cafes that only appear on one list and score below 7.0 with us are riding editorial preference, not coffee quality.",
+        links: [
+          { text: "Timeout comparison", url: "/blog/timeout-best-coffee-brisbane-review" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" }
+        ]
+      },
+      {
+        heading: "Where Urban List Gets It Right",
+        body: "Urban List tends to feature cafes with strong specialty credentials. Their picks lean toward roasters who operate their own bars, which is a decent proxy for quality.\n\n<a href=\"/review/industry-beans-newstead-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Industry Beans (7.5)</a> is a good example. Nation famous roaster, creative menu, but the coffee actually backs it up. Punchy from the first sip, dark chocolate and hazelnut, full body.\n\n<a href=\"/review/bunker-coffee-milton\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bunker Coffee (7.5)</a> is another. The converted bomb shelter story gets you in the door. The cup keeps you coming back.\n\nWhen Urban List picks a cafe where the roaster operates the bar, they are usually right. Roaster bars have skin in the game. They cannot hide behind someone else's beans.",
+        links: [
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" }
+        ]
+      },
+      {
+        heading: "Where Urban List Misses",
+        body: "Urban List has the same blind spot as Timeout: they weight the experience alongside the coffee. Beautiful fit outs, interesting concepts, and strong branding lift cafes onto their list even when the cup does not justify it.\n\n<a href=\"/review/tobys-estate-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Tobys Estate (6.1)</a> is the clearest example. Beautiful roastery, strong brand, average coffee. Interior design is not extraction quality.\n\nThe other miss is geography. Urban List concentrates on inner city suburbs. West End, Newstead, Fortitude Valley, CBD. They rarely venture to Manly, Norman Park, or the southern suburbs where some of Brisbane's best coffee hides.\n\n<a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a> and <a href=\"/review/clancys-espresso-norman-park\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clancys Espresso Norman Park (7.9)</a> are not on Urban List. They are two of the highest scoring cafes in our entire database.",
+        links: [
+          { text: "Hidden gems Brisbane", url: "/hidden-gem-cafes-brisbane" },
+          { text: "Best suburbs for coffee", url: "/blog/best-coffee-suburbs-brisbane" }
+        ]
+      },
+      {
+        heading: "Media Lists vs Scored Databases",
+        body: "Every media list in Australia works the same way. An editor visits cafes, forms impressions, writes about the ones they liked. That is journalism. It is valid.\n\nBut it is not measurement. Impressions drift with mood, weather, who served you, and what you ate. Our system removes all of that. Same order, same scale, same criteria. A 7.5 from January means the same thing as a 7.5 from June.\n\nThe best use of media lists: cross reference them with scored data. If Urban List, Timeout, AND our blind scores all agree on a cafe, go there immediately. If only one source rates it highly, investigate further before you spend $7.",
+        links: [
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" },
+          { text: "Google Reviews vs us", url: "/blog/google-reviews-vs-coffee-scores" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Urban List gets it more right than wrong. Their hit rate is respectable, especially when they feature roaster operated bars.\n\nBut best coffee in Brisbane is a measurable claim. On measurement, their list covers the inner city well and misses the suburbs. It rewards fit outs that do not always match the cup.\n\nThe cafes that appear on Urban List AND Timeout AND our scored database are the real shortlist. Everything else needs verification.\n\nUse their list for discovery. Use ours for confirmation.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Cafe comparisons", url: "/vs" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Is Urban List accurate for Brisbane coffee?", a: "Partially. Their picks that overlap with Timeout and our scored database (Bellissimo 7.9, John Mills 7.8, Coffee Anthology 7.5) are genuinely excellent. Their picks based on fit out and brand tend to score lower with us." },
+      { q: "What does Urban List miss?", a: "Suburban cafes. Zen Barista Manly (7.8) and Clancys Espresso Norman Park (7.9) are two of Brisbane's highest scoring cafes and appear on no media list. Urban List concentrates on inner city venues." }
+    ]
+  },
+  {
+    slug: "tripadvisor-top-cafes-brisbane-scored",
+    title: "TripAdvisor's Top 10 Brisbane Cafes \u2014 We Scored Them All",
+    ogImage: "https://koffeereview.com.au/og-blog-25.png",
+    description: "TripAdvisor ranks Brisbane cafes by crowd votes. We ranked them by coffee. The two lists barely overlap. Here is what happens when tourist votes meet blind scoring.",
+    date: "2026-06-24", readingTime: "8 min",
+    category: "versus",
+    keywords: ["tripadvisor best coffee brisbane","tripadvisor cafe reviews","best cafes brisbane tripadvisor","tourist vs local coffee"],
+    intro: "TripAdvisor ranks Brisbane's cafes by crowd vote. Travellers, tourists, and locals all leave reviews. The algorithm sorts them by rating and volume.\n\nThe result is a list that looks authoritative but measures something very specific: how much tourists enjoyed their visit.\n\nWe scored the same cafes with one latte and one double shot espresso. Here is what happens when tourist votes meet blind coffee scoring.",
+    sections: [
+      {
+        heading: "The Tourist Vote Problem",
+        body: "TripAdvisor's top Brisbane cafes are dominated by high foot traffic locations. CBD, South Bank, Fortitude Valley. Places tourists find by walking past.\n\nThis creates a selection bias. The cafes most tourists find are not the cafes with the best coffee. They are the cafes in the most visible locations with the most seating and the most reviews.\n\nA cafe in Manly with 7.8 quality coffee and 50 reviews will never outrank a CBD cafe with 6.0 quality coffee and 2000 reviews. Volume wins on TripAdvisor. Quality does not.",
+        links: [
+          { text: "Google Reviews vs us", url: "/blog/google-reviews-vs-coffee-scores" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" }
+        ]
+      },
+      {
+        heading: "What TripAdvisor Rewards",
+        body: "TripAdvisor reviewers rate the whole experience. Friendly staff, nice pastries, clean bathrooms, quick service, good wifi, comfortable seating. All of these lift ratings.\n\nCoffee quality is one factor among twenty. And most TripAdvisor reviewers are not scoring extraction or milk texture. They are scoring whether they had a nice time.\n\nA cafe can have 4.5 stars on TripAdvisor with mediocre coffee if everything else is pleasant. We have seen this pattern across dozens of cafes. The correlation between TripAdvisor rating and our coffee score is weak.\n\nThe cafes that score highest with us and highest on TripAdvisor are the ones that genuinely deliver on both experience AND coffee. <a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo (7.9)</a> is one of the few that does both.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" }
+        ]
+      },
+      {
+        heading: "The Cafes TripAdvisor Will Never Find",
+        body: "TripAdvisor cannot surface cafes that tourists do not visit. That excludes most of Brisbane's best coffee.\n\n<a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin West End (7.8)</a> is on a quiet residential street. No tourist foot traffic. Low review count. But the coffee is flawless.\n\n<a href=\"/review/clancys-espresso-norman-park\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clancys Espresso Norman Park (7.9)</a> is in a suburban strip. Zero tourist appeal. One of the highest scores in our entire database.\n\n<a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a> serves a local crowd. Not on any tourist radar.\n\nThese cafes will never crack TripAdvisor's top 10 because the ranking system is built on volume, not quality. That is not a flaw. It is a feature. TripAdvisor tells tourists where to go. We tell coffee drinkers where to go. Different questions, different answers.",
+        links: [
+          { text: "Hidden gems Brisbane", url: "/hidden-gem-cafes-brisbane" },
+          { text: "Coffee near you", url: "/coffee-near" }
+        ]
+      },
+      {
+        heading: "How to Use Both Systems",
+        body: "TripAdvisor is excellent for one thing: knowing whether a cafe is a safe bet for a group. Good food, decent service, clean, open, pleasant. If you are visiting Brisbane with family and need a reliable breakfast spot, TripAdvisor will not steer you badly.\n\nBut if you want great coffee specifically, TripAdvisor cannot help you. The ranking system was not designed for it.\n\nOur recommendation: use TripAdvisor to shortlist cafes in the area you are staying. Then cross reference with our scores. If a TripAdvisor pick also scores 7.0+ with us, go there. If it scores below 6.5, the experience will be nice but the coffee will be forgettable.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best suburbs for coffee", url: "/blog/best-coffee-suburbs-brisbane" },
+          { text: "Timeout comparison", url: "/blog/timeout-best-coffee-brisbane-review" },
+          { text: "Urban List comparison", url: "/blog/urban-list-best-coffee-brisbane-scored" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Is TripAdvisor accurate for finding good coffee in Brisbane?", a: "No. TripAdvisor ranks by tourist volume and overall experience, not coffee quality. High foot traffic CBD cafes dominate their rankings while Brisbane's best coffee (Zen Barista 7.8, The Twin 7.8, Clancys 7.9) sits in suburbs tourists never visit." },
+      { q: "Should I trust TripAdvisor cafe ratings?", a: "For the overall experience, yes. TripAdvisor reliably identifies cafes with good food, friendly service, and pleasant settings. For coffee quality specifically, cross reference with our scored database. Many 4.5 star TripAdvisor cafes score below 6.5 on coffee." }
+    ]
+  },
+  {
+    slug: "instagram-most-tagged-cafes-brisbane",
+    title: "Instagram's Most Tagged Brisbane Cafes \u2014 Do They Deserve the Hype?",
+    ogImage: "https://koffeereview.com.au/og-blog-26.png",
+    description: "The most Instagrammed cafes in Brisbane are not the best coffee in Brisbane. We visited the most tagged locations and scored the actual coffee. Pretty does not mean good.",
+    date: "2026-07-01", readingTime: "8 min",
+    category: "versus",
+    keywords: ["instagram cafes brisbane","most instagrammed cafe brisbane","best looking cafe brisbane","aesthetic cafe brisbane","instagram vs real coffee"],
+    intro: "You have seen these cafes on your feed. Neon signs, latte art close ups, acai bowls on marble counters. They get thousands of tags. They look incredible.\n\nBut do they make good coffee?\n\nWe visited Brisbane's most tagged and photographed cafes. Same order we use across 600+ reviews: one latte, one double shot espresso. The camera eats first on Instagram. We tasted first.",
+    sections: [
+      {
+        heading: "The Instagram Effect",
+        body: "Instagram rewards visuals. A cafe with a pink wall, a neon sign, and a photogenic brunch plate will get tagged 10 times more than a hole in the wall with elite espresso.\n\nThis creates a feedback loop. More tags means more visibility. More visibility means more customers. More customers means more tags. The cafe grows on aesthetics, not extraction.\n\nThe result: Brisbane's most Instagrammed cafes are its most photogenic, not its best. The correlation between Instagram tags and coffee quality in our data is essentially zero.\n\nSome beautiful cafes make great coffee. Most do not. The ones that do are the exception, not the rule.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" }
+        ]
+      },
+      {
+        heading: "Pretty Cafes That Deliver",
+        body: "Credit where it is due. Some Instagram favourites actually make excellent coffee.\n\n<a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo Coffee Bulimba (7.9)</a> is Instagram friendly AND excellent. Rich, full bodied, long finish. The aesthetic matches the cup.\n\n<a href=\"/review/silipo-coffee-southport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Silipo Coffee Southport (7.8)</a> is objectively gorgeous. Waterfront, styled, photograph ready. And the coffee is genuinely excellent too. This almost never happens.\n\nThese are the unicorns. Beautiful AND good. When Instagram hype and blind scores both agree, pay attention.",
+        links: [
+          { text: "Gold Coast suburb guide", url: "/blog/gold-coast-coffee-suburb-guide" }
+        ]
+      },
+      {
+        heading: "Pretty Cafes That Do Not",
+        body: "Then there are the cafes where the camera does all the work and the coffee does not show up.\n\nThe pattern is consistent across our 600+ reviews: high Instagram engagement plus concept driven branding plus beautiful fit out frequently equals 5.5 to 6.5 coffee. Not terrible. Not worth the hype.\n\nThe espresso machine exists because it has to. The real investment went into the tiles, the lighting, and the brunch menu. Coffee is the afterthought that pays the rent.\n\nIf a cafe's Instagram page shows more food than coffee, more interior than extraction, more styling than process, expect a score below 7.0. This is not cynicism. It is pattern recognition from 600+ data points.",
+        links: [
+          { text: "Worst coffee mistakes", url: "/blog/worst-coffee-mistakes" },
+          { text: "Chain vs independent", url: "/blog/chain-vs-independent-coffee" }
+        ]
+      },
+      {
+        heading: "The Cafes Instagram Will Never Show You",
+        body: "The best coffee in Brisbane is not photogenic.\n\n<a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a> is a small counter. No neon. No marble. Just perfect extraction every visit.\n\n<a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin West End (7.8)</a> is on a quiet street. Nothing to photograph except the crema.\n\n<a href=\"/review/john-mills-himself-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">John Mills Himself CBD (7.8)</a> is a hole in the wall. Literally. The entrance is easy to miss. The coffee is impossible to forget.\n\nThese cafes will never trend on Instagram because there is nothing to photograph. There is only something to taste. And Instagram cannot taste.",
+        links: [
+          { text: "Hidden gems Brisbane", url: "/hidden-gem-cafes-brisbane" },
+          { text: "Best suburbs Brisbane", url: "/blog/best-coffee-suburbs-brisbane" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Instagram tells you where to take photos. We tell you where to drink coffee.\n\nSome cafes do both. Bellissimo and Silipo prove it is possible. But they are rare.\n\nMost of Brisbane's best coffee lives in unremarkable spaces run by people who care more about the shot than the shot. The feed friendly cafe with the pink wall will get more likes. The hole in the wall with golden crema will get more return visits.\n\nFollow the cup, not the grid.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Timeout comparison", url: "/blog/timeout-best-coffee-brisbane-review" },
+          { text: "Google Reviews vs us", url: "/blog/google-reviews-vs-coffee-scores" },
+          { text: "Browse by suburb", url: "/suburbs" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Are Instagram popular cafes good for coffee?", a: "Rarely. Instagram rewards aesthetics not extraction. Most highly tagged Brisbane cafes score 5.5 to 6.5 in our system. The exceptions (Bellissimo 7.9, Silipo 7.8) are genuinely good AND beautiful, but they are rare." },
+      { q: "How do I find good coffee that is not on Instagram?", a: "Check our scored database. Brisbane's highest scoring cafes (Zen Barista 7.8, The Twin 7.8, John Mills 7.8) are in unremarkable spaces with minimal Instagram presence. The coffee is the product, not the interior." },
+      { q: "Does a beautiful cafe mean bad coffee?", a: "Not automatically. But our data across 600+ reviews shows that cafes investing heavily in aesthetics frequently underinvest in coffee quality. High Instagram engagement correlates weakly with coffee scores. Always cross reference with scored reviews." }
+    ]
   }
 ];
 
