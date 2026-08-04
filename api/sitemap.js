@@ -85,6 +85,8 @@ export default async function handler(req,res){
       xml+=url(BASE+"/coffee-guide",today,"monthly","0.85");
       xml+=url(BASE+"/suburbs",today,"weekly","0.85");
       xml+=url(BASE+"/tags",today,"weekly","0.85");
+      xml+=url(BASE+"/crawl",today,"weekly","0.85");
+      xml+=url(BASE+"/for-cafes",today,"monthly","0.80");
       xml+=url(BASE+"/guess-the-score",today,"weekly","0.75");
       xml+=url(BASE+"/score-battle",today,"weekly","0.75");
       xml+=url(BASE+"/guess-the-suburb",today,"weekly","0.75");
