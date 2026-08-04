@@ -68,8 +68,8 @@ export default async function handler(req,res){
     // REQUEST A REVIEW
     +'<div class="sec"><h2>REQUEST A REVIEW</h2>'
     +'<p>We do not accept payment for reviews. We do not guarantee timing. But if your cafe is in Southeast Queensland and you want us to visit, let us know.</p>'
-    +'<div style="text-align:center;margin-top:16px"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfX1234567890/viewform" style="display:inline-block;padding:16px 36px;border-radius:14px;background:linear-gradient(135deg,#c8a96e,#E6C073);color:#0a0a0c;font-size:15px;font-weight:700;text-decoration:none;font-family:DM Sans,sans-serif">Suggest Your Cafe &rarr;</a></div>'
-    +'<p style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px">Suggestion does not guarantee a review. We visit on our own schedule.</p></div>'
+    +'<div style="text-align:center;margin-top:16px"><a href="/" style="display:inline-block;padding:16px 36px;border-radius:14px;background:linear-gradient(135deg,#c8a96e,#E6C073);color:#0a0a0c;font-size:15px;font-weight:700;text-decoration:none;font-family:DM Sans,sans-serif">Suggest Your Cafe &rarr;</a></div>'
+    +'<p style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px">Tap "Suggest a Cafe" on our homepage. Suggestion does not guarantee a review.</p></div>'
 
     // LINKS
     +'<div style="margin-top:20px;display:flex;flex-direction:column;gap:8px">'
