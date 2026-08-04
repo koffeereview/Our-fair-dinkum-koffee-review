@@ -227,6 +227,8 @@ export default async function handler(req,res){
         ${pageCard("Neighbourhood Guides","Editorial suburb coffee guides","/guide/west-end-brisbane-coffee","#60a5fa")}
         ${pageCard("All Suburbs","Every suburb reviewed and ranked","/suburbs","#60a5fa")}
         ${pageCard("Browse by Tag","Dog friendly, outdoor, own roast","/tags","#fb923c")}
+        ${pageCard("Coffee Crawls","Walking routes through top suburbs","/crawl","#4ade80")}
+        ${pageCard("For Cafe Owners","See your score, get your badge","/for-cafes","#E6C073")}
         ${pageCard("Coffee Near You","90+ stations, hospitals, unis","/coffee-near","#38bdf8")}
         ${pageCard("Cafe Comparisons","Head to head matchups","/vs","#a78bfa")}
         ${pageCard("Best Coffee Gold Coast","GC rankings","/best-coffee-gold-coast","#E6C073")}
