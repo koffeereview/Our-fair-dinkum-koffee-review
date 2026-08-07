@@ -1775,6 +1775,91 @@ var POSTS = [
       { q: "How do I find good coffee that is not on Instagram?", a: "Check our scored database. Brisbane's highest scoring cafes (Zen Barista 7.8, The Twin 7.8, John Mills 7.8) are in unremarkable spaces with minimal Instagram presence. The coffee is the product, not the interior." },
       { q: "Does a beautiful cafe mean bad coffee?", a: "Not automatically. But our data across 600+ reviews shows that cafes investing heavily in aesthetics frequently underinvest in coffee quality. High Instagram engagement correlates weakly with coffee scores. Always cross reference with scored reviews." }
     ]
+  },
+  {
+    slug: "state-of-brisbane-coffee-2026",
+    title: "The State of Brisbane Coffee 2026 \u2014 What 600+ Reviews Reveal",
+    ogImage: "https://koffeereview.com.au/og-blog-27.png",
+    description: "We reviewed 600+ cafes with the same order every time. The data shows only 1 in 4 is worth visiting, price barely predicts quality, and the best coffee hides in suburbs you would least expect.",
+    date: "2026-07-08", readingTime: "10 min",
+    category: "data",
+    keywords: ["brisbane coffee 2026","brisbane coffee statistics","best coffee brisbane data","australian coffee quality","brisbane cafe rankings"],
+    intro: "We have reviewed 600+ cafes across Australia. Same order at every single one: one latte, one double shot espresso. Scored on crema, extraction, milk, balance and finish. No freebies, no sponsorships, no exceptions.\n\nThat is one of the largest single methodology cafe datasets in the country. Here is what it says about coffee in 2026.",
+    sections: [
+      {
+        heading: "The Headline Numbers",
+        body: "600+ cafes reviewed across multiple cities and states. Average score: approximately 6.2 out of 10. Only about 1 in 4 cafes score 7.0 or above, which is our worth visiting line. Just under 10% score 7.5+, earning our Must Visit sticker. About 1 in 5 score below 5.5, which means they are actively not worth your money.\n\nThe blunt takeaway: walk into a random cafe and you have roughly a 1 in 4 chance of genuinely good coffee, and a 1 in 5 chance of a cup you should have skipped.\n\nThe curve peaks hard in the 5.5 to 6.4 band. The single most common cafe experience in Brisbane is a cup that is fine and forgettable. Not bad, not good. Average is the norm. Genuinely good coffee is the exception, not the rule.",
+        links: [
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" },
+          { text: "National leaderboard", url: "/leaderboard" }
+        ]
+      },
+      {
+        heading: "Finding 1: Price Barely Predicts Quality",
+        body: "Everyone assumes dearer coffee is better coffee. The data says: only at the extremes.\n\nThe vast majority of cafes sit at the same price point and swing wildly in quality. Within the price bracket you will actually encounter, price tells you almost nothing. A cafe charging the same as its neighbour can score anywhere from 1.1 to 8.1.\n\nThe number on the board does not move with the number on the menu. Some of our highest scoring cafes charge less than the worst ones. Price is marketing. Quality is craft.",
+        links: [
+          { text: "Best value Brisbane", url: "/best-value-brisbane" },
+          { text: "Best value Gold Coast", url: "/best-value-gold-coast" }
+        ]
+      },
+      {
+        heading: "Finding 2: The Best Coffee Is Not Where You Would Guess",
+        body: "Ranked by average score, the strongest suburbs are not the trendy ones.\n\nBurleigh Heads leads with a 7.5+ average. Nundah and Kenmore, quiet residential suburbs rarely on a best coffee list, out-average Fortitude Valley and match inner city trend suburbs.\n\nMeanwhile the weakest suburbs are a clear tier below. Chermside, one of Brisbane's biggest retail hubs, averages around 5.4 across 13+ cafes. Volume without quality.\n\nThe further you get from the coast and inner city, the harder good coffee is to find. But there are exceptions in every direction. <a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista Manly (7.8)</a> is proof that geography is not destiny.",
+        links: [
+          { text: "Best suburbs Brisbane", url: "/blog/best-coffee-suburbs-brisbane" },
+          { text: "All suburbs ranked", url: "/suburbs" },
+          { text: "Nundah guide", url: "/guide/nundah-brisbane-coffee" }
+        ]
+      },
+      {
+        heading: "Finding 3: Chains Are the Floor",
+        body: "We score chains exactly like everyone else. Same order, same scale. They occupy the bottom of the dataset almost without exception.\n\nMerlo is the lone chain that clears DECENT territory. Everything else built to scale sits in AVOID territory. Starbucks, San Churro, Hudsons, Stellarossa — all below 3.0.\n\nThe pattern is consistent: the more locations a brand runs, the more it optimises for speed and standardisation, and the further the cup drifts from good. Volume smooths everything toward the middle, then below it.\n\n<a href=\"/review/stellarossa-forest-lake-forest-lake\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Stellarossa Forest Lake (1.1)</a> remains our lowest ever score. Charred beans, scalded milk, over extracted. The cup was technically hot. That is the only positive.",
+        links: [
+          { text: "Chain vs independent", url: "/blog/chain-vs-independent-coffee" },
+          { text: "Starbucks vs independent", url: "/blog/starbucks-vs-independent-brisbane" },
+          { text: "Cafes to avoid Brisbane", url: "/brisbane-cafes-to-avoid" }
+        ]
+      },
+      {
+        heading: "Finding 4: The Roaster Matters But Is Not a Guarantee",
+        body: "Averaging every cafe by the roaster on its bar shows real separation at the top. Five Senses and Sample Coffee cafes average in the Loved band. But the spread within a single roaster is wide: the same beans score a 7.5 at one cafe and a 5.8 at another.\n\nThe roaster sets the ceiling. The barista decides where in the range you land. Great beans do not survive an average bar. This is the single most repeated lesson across all 600+ reviews.\n\nThis is why we review the cup, not the brand. A roaster can provide excellent beans. If the barista does not dial in, does not taste test shots, does not steam milk properly, those beans become a 6.0 anyway.",
+        links: [
+          { text: "Browse by roaster", url: "/roaster" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" },
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" }
+        ]
+      },
+      {
+        heading: "Finding 5: Gold Coast Quietly Wins",
+        body: "The Gold Coast quietly out-averages Brisbane. Fewer cafes, higher concentration of good ones, led by Burleigh Heads. Brisbane has more total cafes and more depth in the 7.0 to 7.4 range. The Gold Coast has a higher floor.\n\nThe further you get from the coast, the harder good coffee is to find. Ipswich and Moreton Bay sit a full point below Brisbane's average. Redland is lower still.\n\nMelbourne, on the small sample we have reviewed, matches Brisbane's best but with more consistency across the middle. We plan to expand Melbourne coverage significantly.",
+        links: [
+          { text: "Brisbane vs Gold Coast", url: "/blog/brisbane-vs-gold-coast-coffee" },
+          { text: "Gold Coast suburb guide", url: "/blog/gold-coast-coffee-suburb-guide" },
+          { text: "Best coffee Gold Coast", url: "/best-coffee-gold-coast" }
+        ]
+      },
+      {
+        heading: "What It All Means",
+        body: "Five patterns from 600+ cups.\n\nFirst: average is the default. The most common cafe experience is a forgettable 6. Good coffee is a minority event.\n\nSecond: price is a weak signal. In the bracket you will actually encounter, it tells you almost nothing.\n\nThird: geography lies. The trendy suburb is not the best suburb. Nundah and Kenmore beat the Valley.\n\nFourth: scale kills quality. Every major chain sits at or below the avoid line, bar one.\n\nFifth: the barista is the variable. The roaster sets the ceiling. The person on the machine decides the cup.\n\nNone of this is opinion. It is 600+ cafes, one order, one scale. The full searchable dataset is public.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Interactive map", url: "/map" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "What 600+ reviews taught us", url: "/blog/what-600-reviews-taught-us" },
+          { text: "Australian barista training", url: "/blog/australian-barista-training" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "How many cafes has Koffee Review reviewed?", a: "600+ cafes across Australia, all reviewed with the same methodology: one latte, one double shot espresso, scored on crema, extraction, milk texture, balance, and finish." },
+      { q: "What is the average cafe score in Brisbane?", a: "Approximately 6.2 out of 10. Only about 1 in 4 cafes score 7.0 or above. The most common experience is a forgettable cup in the 5.5 to 6.4 range." },
+      { q: "Does expensive coffee mean better coffee?", a: "No. Our data shows price barely predicts quality within the bracket most cafes charge. Some of our highest scoring cafes cost less than the worst ones. Quality comes from craft, not pricing." },
+      { q: "Which Brisbane suburb has the best coffee?", a: "Burleigh Heads on the Gold Coast leads by average score. In Brisbane proper, West End, Nundah, and South Brisbane are among the strongest. Quiet suburbs like Nundah and Kenmore outperform trendier areas like Fortitude Valley." },
+      { q: "Are chain cafes worth visiting?", a: "Almost never. Every major chain in our database except Merlo sits at or below our avoid line. The more locations a brand operates, the more quality declines. Independent cafes consistently outperform chains." }
+    ]
   }
 ];
 
