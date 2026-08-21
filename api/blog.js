@@ -1860,6 +1860,91 @@ var POSTS = [
       { q: "Which Brisbane suburb has the best coffee?", a: "Burleigh Heads on the Gold Coast leads by average score. In Brisbane proper, West End, Nundah, and South Brisbane are among the strongest. Quiet suburbs like Nundah and Kenmore outperform trendier areas like Fortitude Valley." },
       { q: "Are chain cafes worth visiting?", a: "Almost never. Every major chain in our database except Merlo sits at or below our avoid line. The more locations a brand operates, the more quality declines. Independent cafes consistently outperform chains." }
     ]
+  },
+  {
+    slug: "coffee-franchises-ranked",
+    title: "Every Coffee Franchise in Queensland, Ranked",
+    ogImage: "https://koffeereview.com.au/og-blog-28.png",
+    description: "Starbucks, The Coffee Club, Merlo, Hudsons, San Churro — we ordered the same latte and double shot at the big chains. Most sit in avoid territory. Average franchise score: 3.3 out of 10.",
+    date: "2026-07-15", readingTime: "9 min",
+    category: "versus",
+    keywords: ["coffee franchises australia","best coffee chain australia","starbucks australia review","coffee club review","merlo coffee","worst coffee chain","coffee chains ranked"],
+    intro: "Franchises promise one thing: consistency. Same cup in Chermside as the CBD as the airport. You always know what you are getting.\n\nWe tested whether what you are getting is any good.\n\nSame order at every chain we have hit. One latte, one double shot espresso. Scored on crema, extraction, milk and finish. The exact scale we use on 600+ cafes. No special treatment because it is a big brand.\n\nThe results are not kind. Most franchises live in the bottom fifth of our entire dataset. Here is the ranking, worst to best.",
+    sections: [
+      {
+        heading: "The Franchise Scoreboard",
+        body: "Merlo Springfield Lakes: 6.7 DECENT. Carpe Diem Mitchelton: 6.7 DECENT. The Coffee Club Capalaba: 4.1 NOT FOR US. Starbucks Edward St CBD: 3.3 AVOID. Starbucks Chermside: 2.1 AVOID. San Churro South Bank: 2.1 AVOID. <a href=\"/review/hudsons-coffee-brisbane-int-airport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Hudsons Coffee Airport: 2.1 AVOID</a>. Carpe Diem Capalaba: 2.1 AVOID. <a href=\"/review/stellarossa-forest-lake-forest-lake\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Stellarossa Forest Lake: 1.1 AVOID</a>.\n\nThe average franchise score: 3.3 out of 10. The average across all 600+ cafes we have reviewed: approximately 6.2. Chains run nearly three full points below the field.",
+        links: [
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Cafes to avoid Brisbane", url: "/brisbane-cafes-to-avoid" }
+        ]
+      },
+      {
+        heading: "The Bottom: Stellarossa 1.1",
+        body: "The worst coffee we have ever scored, full stop. Served scalding hot. Could not drink it for minutes. By the time it cooled there was nothing left worth drinking. Burnt beans, no structure, a bitter finish that overstayed its welcome.\n\n1.1 out of 10. A franchise built on the promise of reliability delivered a cup reliably no one should order.",
+        links: [
+          { text: "Worst coffee Queensland", url: "/blog/worst-coffee-mistakes-queensland" }
+        ]
+      },
+      {
+        heading: "The Avoid Tier: Starbucks, San Churro, Hudsons 2.1",
+        body: "Four franchises tie at 2.1 and they fail the same way.\n\nStarbucks Chermside: completely off from the first sip. The latte was flavoured milk, the espresso nowhere to be found. The world's biggest coffee brand cannot locate the coffee in its own cup.\n\nSan Churro South Bank: Fairtrade beans on paper, harsh cup in the glass. A chocolate franchise that also does coffee, and it shows which one they care about.\n\nHudsons Coffee Brisbane Airport: airport coffee at its worst. Harsh from the first sip, bitter finish, no structure. A captive audience and it tastes like it.\n\nThe pattern is identical across all three: mass beans, over roasted to survive standardisation, scalded milk, automated machines with no one dialling anything in. Speed and uniformity, engineered at the cost of the cup.",
+        links: [
+          { text: "Starbucks vs independent", url: "/blog/starbucks-vs-independent-brisbane" },
+          { text: "5 worst coffee mistakes", url: "/blog/worst-coffee-mistakes" }
+        ]
+      },
+      {
+        heading: "The Starbucks Split: 3.3 vs 2.1",
+        body: "Starbucks is the cleanest illustration of the franchise problem. Their two Brisbane locations scored 3.3 (Edward St) and 2.1 (Chermside). Over a full point apart.\n\nSame brand. Same beans. Same training manual. Same espresso machines. The only variable is the person operating them. Even inside the most standardised coffee company on earth, the barista decides the cup. And both are still in avoid territory. Standardisation set a low ceiling and the floor fell out below it.",
+        links: [
+          { text: "Google Reviews vs us", url: "/blog/google-reviews-vs-coffee-scores" }
+        ]
+      },
+      {
+        heading: "The Carpe Diem Paradox: 6.7 vs 2.1",
+        body: "The single most revealing result in the whole franchise dataset.\n\nTwo Carpe Diem cafes. Mitchelton scored 6.7 DECENT. A confident start, smooth balanced body, Tobys Estate beans handled properly. Capalaba scored 2.1 AVOID. Scalding, hollow, nothing left once it cooled.\n\nSame franchise name, a 4.6 point gap. This is the franchise promise falling apart in real time. The sign out front guarantees nothing. Whoever is on the machine guarantees everything.\n\nThis confirms the single most repeated lesson across 600+ reviews: the roaster sets the ceiling. The barista decides where in the range you land.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "Australian barista training", url: "/blog/australian-barista-training" }
+        ]
+      },
+      {
+        heading: "The Top: Merlo 6.7",
+        body: "The best performing franchise, and it is no accident that it is the one that roasts its own beans. Merlo at Springfield Lakes: confident start, consistent all the way through, clean exit, their own coffee on their own bar. A DECENT cup. Genuinely fine.\n\nIt is the exception that proves the rule. The one chain that controls its beans end to end is the one chain that clears the bar. Everywhere else, scale is the enemy of the cup.",
+        links: [
+          { text: "Browse by roaster", url: "/roaster" }
+        ]
+      },
+      {
+        heading: "Why Franchises Score So Low",
+        body: "Four failures show up again and again across the chain results.\n\nFirst: over roasted beans. Dark uniform roasts hide inconsistency and survive months of supply chain. They also taste burnt. Standardisation favours beans that cannot taste bright or complex.\n\nSecond: scalded milk. Speed over temperature. Milk blasted hot for faster service, arriving eggy and sulphuric.\n\nThird: automated machines. Push button espresso means no one tastes a shot, adjusts a grind, or dials anything in. Every cup is identical, which is the point, and identical happens to be average at best.\n\nFourth: captive audiences. Airports, food courts, shopping centres. Locations where you buy coffee because it is there, not because it is good. No competitive pressure, no reason to improve.",
+        links: [
+          { text: "Chain vs independent deep dive", url: "/blog/chain-vs-independent-coffee" },
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "The franchise promise is consistency, and they deliver it. Consistently average to bad. Eight of nine chain locations we scored sit below the worth visiting line. The one that clears it roasts its own beans.\n\nNext time you are standing in a food court weighing up a familiar logo, the data is blunt: you are paying chain prices for a cup that averages 3.3 out of 10. Walk the extra block. The independent down the road is a far better bet. That is what 600+ reviews say.\n\nPlenty of independents score badly too. A chain logo is not the only way to make bad coffee. But the concentration is stark: nearly every franchise sits in the bottom fifth, while 30+ independents clear 7.5. If you want good coffee, the odds are overwhelmingly with the independent.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Best value Brisbane", url: "/best-value-brisbane" },
+          { text: "State of Brisbane Coffee 2026", url: "/blog/state-of-brisbane-coffee-2026" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the best coffee franchise in Australia?", a: "Merlo scored 6.7 out of 10, the highest of any franchise we tested. It is the only chain that roasts its own beans end to end. Every other franchise scored below 4.5." },
+      { q: "Why is franchise coffee so bad?", a: "Four reasons: over roasted beans designed for standardisation not flavour, scalded milk for speed, automated machines with no manual dialling in, and captive audiences in airports and food courts that remove competitive pressure to improve." },
+      { q: "Is Starbucks coffee bad in Australia?", a: "Yes. Starbucks scored 3.3 and 2.1 at their two Brisbane locations. Over roasted beans, automated extraction, and scalded milk. The world's biggest coffee brand consistently underperforms independent cafes by 3+ points in our system." },
+      { q: "Should I get coffee at the airport?", a: "No. Hudsons Coffee at Brisbane Airport scored 2.1 out of 10. Airport cafes have captive audiences and zero incentive to improve. Drink water. Get coffee after you land." },
+      { q: "Can a franchise cafe be good?", a: "Rarely. Merlo (6.7) and one Carpe Diem location (6.7) prove it is possible when the franchise controls its beans or the barista genuinely cares. But the same Carpe Diem brand scored 2.1 at another location. The sign guarantees nothing." }
+    ]
   }
 ];
 
