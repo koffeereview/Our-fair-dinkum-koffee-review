@@ -1945,6 +1945,77 @@ var POSTS = [
       { q: "Should I get coffee at the airport?", a: "No. Hudsons Coffee at Brisbane Airport scored 2.1 out of 10. Airport cafes have captive audiences and zero incentive to improve. Drink water. Get coffee after you land." },
       { q: "Can a franchise cafe be good?", a: "Rarely. Merlo (6.7) and one Carpe Diem location (6.7) prove it is possible when the franchise controls its beans or the barista genuinely cares. But the same Carpe Diem brand scored 2.1 at another location. The sign guarantees nothing." }
     ]
+  },
+  {
+    slug: "best-coffee-not-in-the-valley-nundah-kenmore",
+    title: "Brisbane's Best Coffee Is Not in the Valley \u2014 It Is in Nundah and Kenmore",
+    ogImage: "https://koffeereview.com.au/og-blog-29.png",
+    description: "Everyone chases coffee in Fortitude Valley and New Farm. Our data from 600+ reviews says the quiet suburbs are quietly winning. Nundah and Kenmore out-score the trendy postcodes.",
+    date: "2026-07-22", readingTime: "8 min",
+    category: "guides",
+    keywords: ["best coffee nundah","best coffee kenmore","nundah cafe","kenmore cafe","best coffee brisbane suburbs","underrated coffee brisbane"],
+    intro: "Ask anyone where Brisbane's coffee lives and you will hear the same postcodes. Fortitude Valley. New Farm. West End. The suburbs with the laneways, the neon, the queues out the door.\n\nWe have now scored 600+ cafes with the same order every time. One latte, one double shot espresso. And the data says something the hype does not: two of Brisbane's strongest coffee suburbs are places nobody puts on a list.\n\nNundah. Kenmore.\n\nQuiet. Residential. School run suburbs. And they are out-pulling the cool ones.",
+    sections: [
+      {
+        heading: "The Numbers Nobody Expects",
+        body: "Kenmore, a suburb best known for a shopping village and a lot of families, has the highest coffee average of any postcode we cover with four or more cafes. It beats Fortitude Valley and sits well above New Farm.\n\nNew Farm, the postcard of inner Brisbane cafe culture, sits below Nundah on the numbers.\n\nThe trendy suburbs are not losing badly. They are just not winning. And that alone should change how you pick a cafe.",
+        links: [
+          { text: "All suburbs ranked", url: "/suburbs" },
+          { text: "Best suburbs Brisbane", url: "/blog/best-coffee-suburbs-brisbane" }
+        ]
+      },
+      {
+        heading: "Kenmore: Brisbane's Quiet Leader",
+        body: "Four cafes, three of them SOLID or better, and a top end that would hold its own anywhere in the city.\n\nBRU CRU Coffee (7.5 LOVED). The best coffee in Kenmore and a genuine destination cup. Hits strong from the first sip and never lets up. The Wolff Hero Blend doing exactly what it promises. Rich and full bodied. If this cafe were in the Valley it would have a queue and a write up. In Kenmore it just quietly makes the best coffee for miles.\n\nBlackjam Bakers (7.3 SOLID). Strong first hit, smooth body, sits well in the mouth. D and D Espresso (7.2 SOLID). Punchy start, balanced, clean finish. A second SOLID cafe in a four cafe suburb is the whole point: Kenmore's floor is high.\n\nWhy Kenmore wins: three cafes at 7.2 or higher out of four. No dead weight at the top. A family suburb has quietly built one of Brisbane's most reliable coffee strips.",
+        links: [
+          { text: "Kenmore suburb page", url: "/suburb/kenmore-brisbane" },
+          { text: "Browse by roaster (Wolff)", url: "/roaster" }
+        ]
+      },
+      {
+        heading: "Nundah: Two Cafes in the Loved Tier",
+        body: "No other outer suburb we cover has two cafes at 7.5. Nundah does.\n\n<a href=\"/guide/nundah-brisbane-coffee\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clubhouse (7.5 LOVED)</a>. Hit from the first sip, smooth body, strong flavour, lingering finish. Coffee Supreme and Cavalier on rotation, handled with real care. A destination grade cup on a suburban village strip.\n\nEmbargos On Chapel (7.5 LOVED). Strong from the first hit, lingering long after the finish. Clandestino's Magneto Blend doing exactly what it is built to. Nundah's second 7.5. The reason this suburb punches so far above its profile.\n\nThe DECENT middle means you rarely go wrong. A northside village most people drive through is a suburb they should be stopping in.",
+        links: [
+          { text: "Nundah suburb page", url: "/suburb/nundah-brisbane" },
+          { text: "Nundah editorial guide", url: "/guide/nundah-brisbane-coffee" }
+        ]
+      },
+      {
+        heading: "Meanwhile in the Suburbs You Would Expect",
+        body: "Fortitude Valley has the most cafes of any suburb outside the CBD and not one cracks 7.5. Its best, Reverends Fine Coffee, tops out at 7.2. A score three separate cafes in Kenmore and Nundah match or beat. The Valley has breadth. It does not have a peak.\n\nNew Farm, the spiritual home of inner Brisbane cafe culture, sits below Nundah on the numbers. Reputation earned over a decade. A cup that no longer clearly leads.\n\nNeither is bad. That is not the point. The point is that fame and coffee quality have drifted apart, and the map in your head is out of date.",
+        links: [
+          { text: "Fortitude Valley guide", url: "/guide/fortitude-valley-brisbane-coffee" },
+          { text: "WE vs Newstead vs Valley", url: "/blog/west-end-vs-newstead-vs-fortitude-valley" }
+        ]
+      },
+      {
+        heading: "Why the Quiet Suburbs Are Winning",
+        body: "Three things the data keeps pointing to.\n\nFirst: locals not tourists. A cafe in a residential suburb lives or dies on regulars. Regulars notice a bad cup and do not come back. A cafe with laneway foot traffic can serve a queue of one time visitors an average coffee forever. Accountability runs deeper where everyone is a local.\n\nSecond: no rent driven shortcuts. Prime inner city rent has to come out of somewhere, often speed, volume and margin on the cup. A suburban cafe with lower overheads can afford to slow down and make it properly.\n\nThird: nothing to coast on. Kenmore and Nundah cafes have no reputation to trade on, no listicle glow, no queue signalling quality. All they have is the cup. So the cup has to be good.\n\nThe trendy suburbs sell an experience. The quiet ones just sell coffee. On our scale, which only measures the coffee, the quiet ones win.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" }
+        ]
+      },
+      {
+        heading: "The Takeaway",
+        body: "Next time you are deciding where to drive for a good coffee, skip the reflex. The Valley and New Farm will give you atmosphere and a solid at best cup. Kenmore and Nundah will give you a better one, with a park to drink it in.\n\nBrisbane's best coffee suburb is not the one with the queue. It is the one with the regulars.\n\nGo west to Kenmore for BRU CRU. Go north to Nundah for Clubhouse or Embargos. The data has been pointing there the whole time.",
+        links: [
+          { text: "Kenmore suburb page", url: "/suburb/kenmore-brisbane" },
+          { text: "Nundah suburb page", url: "/suburb/nundah-brisbane" },
+          { text: "Hidden gems Brisbane", url: "/hidden-gem-cafes-brisbane" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "State of Brisbane Coffee 2026", url: "/blog/state-of-brisbane-coffee-2026" },
+          { text: "Coffee crawls", url: "/crawl" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the best coffee suburb in Brisbane?", a: "Kenmore has the highest average score of any Brisbane suburb with four or more reviewed cafes. Nundah is the only outer suburb with two cafes scoring 7.5 or above. Both outperform trendy suburbs like Fortitude Valley and New Farm." },
+      { q: "Is Fortitude Valley good for coffee?", a: "The Valley has the most cafes of any suburb outside the CBD but not one cracks 7.5 in our system. Its best cafe tops out at 7.2. It has breadth without a peak. Kenmore and Nundah both beat it on average score." },
+      { q: "Why do quiet suburbs have better coffee?", a: "Three reasons: local accountability (regulars notice bad cups), lower rent (allows slower more careful preparation), and nothing to coast on (no reputation or foot traffic to hide behind). The cup has to be good because it is all they have." }
+    ]
   }
 ];
 
