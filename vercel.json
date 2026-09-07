@@ -22,6 +22,7 @@
     { "source": "/sitemap-reviews.xml", "destination": "/api/sitemap?type=reviews" },
     { "source": "/sitemap-cities.xml", "destination": "/api/sitemap?type=cities" },
     { "source": "/sitemap-suburbs.xml", "destination": "/api/sitemap?type=suburbs" },
+    { "source": "/sitemap-comparisons.xml", "destination": "/api/sitemap?type=comparisons" },
     { "source": "/review/:slug", "destination": "/api/review?slug=:slug" },
     { "source": "/city/:city", "destination": "/api/city?city=:city" },
     { "source": "/suburbs", "destination": "/api/suburbs" },
