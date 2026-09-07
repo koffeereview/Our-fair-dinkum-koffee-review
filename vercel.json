@@ -31,6 +31,8 @@
     { "source": "/crawl", "destination": "/api/crawl" },
     { "source": "/crawl/:crawl", "destination": "/api/crawl?crawl=:crawl" },
     { "source": "/for-cafes", "destination": "/api/for-cafes" },
+    { "source": "/monthly", "destination": "/api/monthly" },
+    { "source": "/monthly/:month", "destination": "/api/monthly?month=:month" },
     { "source": "/suburb/:suburb", "destination": "/api/suburb?suburb=:suburb" },
     { "source": "/best-cafes-australia", "destination": "/must-visit-cafes" },
     { "source": "/best-coffee-australia", "destination": "/leaderboard" },
