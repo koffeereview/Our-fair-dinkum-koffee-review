@@ -28,7 +28,7 @@ export default async function handler(req,res){
     // SITEMAP INDEX — /sitemap.xml
     if(type==="index"){
       var xml=xmlHeader()+'<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-      ["static","reviews","cities","suburbs"].forEach(function(s){
+      ["static","reviews","cities","suburbs","comparisons"].forEach(function(s){
         xml+='<sitemap><loc>'+BASE+'/sitemap-'+s+'.xml</loc><lastmod>'+today+'</lastmod></sitemap>\n';
       });
       xml+='</sitemapindex>';
@@ -138,12 +138,50 @@ export default async function handler(req,res){
       Object.values(subMap).forEach(function(s){
         var subSlug=slug(s.suburb+"-"+s.city);
         xml+=url(BASE+"/suburb/"+subSlug,today,"weekly","0.75");
-        // Neighbourhood guide for suburbs with 3+ cafes
         if(s.count>=3){
           var guideSlug=slug(s.suburb+"-"+s.city+"-coffee");
           xml+=url(BASE+"/guide/"+guideSlug,today,"weekly","0.80");
         }
       });
+    }
+
+    // COMPARISONS — /sitemap-comparisons.xml
+    if(type==="comparisons"){
+      xml+=url(BASE+"/vs",today,"weekly","0.80");
+      // Same-suburb pairs (highest quality comparisons)
+      var vsGenerated={};
+      for(var i=0;i<cafes.length;i++){
+        for(var j=i+1;j<cafes.length;j++){
+          var a=cafes[i],b=cafes[j];
+          if(a.suburb.toLowerCase()!==b.suburb.toLowerCase())continue;
+          var diff=Math.abs(a.score-b.score);
+          if(diff<0.3)continue;
+          var slugA=makeSlug(a.name,a.suburb);
+          var slugB=makeSlug(b.name,b.suburb);
+          var pair=[slugA,slugB].sort();
+          var vsSlug=pair[0]+"-vs-"+pair[1];
+          if(!vsGenerated[vsSlug]){
+            vsGenerated[vsSlug]=true;
+            xml+=url(BASE+"/vs/"+vsSlug,today,"monthly","0.60");
+          }
+        }
+      }
+      // Cross-suburb top cafe pairs (7.0+ cafes compared across suburbs)
+      var topCafes=cafes.filter(function(c){return c.score>=7.0;});
+      for(var i=0;i<topCafes.length;i++){
+        for(var j=i+1;j<topCafes.length;j++){
+          var a=topCafes[i],b=topCafes[j];
+          if(a.suburb.toLowerCase()===b.suburb.toLowerCase())continue;
+          var slugA=makeSlug(a.name,a.suburb);
+          var slugB=makeSlug(b.name,b.suburb);
+          var pair=[slugA,slugB].sort();
+          var vsSlug=pair[0]+"-vs-"+pair[1];
+          if(!vsGenerated[vsSlug]){
+            vsGenerated[vsSlug]=true;
+            xml+=url(BASE+"/vs/"+vsSlug,today,"monthly","0.55");
+          }
+        }
+      }
     }
 
     xml+='</urlset>';
