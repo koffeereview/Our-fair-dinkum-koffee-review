@@ -229,6 +229,7 @@ export default async function handler(req,res){
         ${pageCard("Browse by Tag","Dog friendly, outdoor, own roast","/tags","#fb923c")}
         ${pageCard("Coffee Crawls","Walking routes through top suburbs","/crawl","#4ade80")}
         ${pageCard("For Cafe Owners","See your score, get your badge","/for-cafes","#E6C073")}
+        ${pageCard("Monthly Recaps","Best and worst each month","/monthly","#60a5fa")}
         ${pageCard("Coffee Near You","90+ stations, hospitals, unis","/coffee-near","#38bdf8")}
         ${pageCard("Cafe Comparisons","Head to head matchups","/vs","#a78bfa")}
         ${pageCard("Best Coffee Gold Coast","GC rankings","/best-coffee-gold-coast","#E6C073")}
