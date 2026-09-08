@@ -750,12 +750,12 @@ function renderHTML(cafe, allCafes) {
     }
 
     // VOTING SYSTEM
-    var VOTE_API = "https://script.google.com/macros/s/AKfycbzvcd03Sv0U-fl-NWQKN6aOPaReN0x-Bd16Nm9FqMp9Be5dEa8xolU-lZEI8PhVMvs/exec";
+    var VOTE_API = "https://script.google.com/macros/s/AKfycbzp0RhHNuOGotjv8gr5noFpSTlKFc1GC-7h0sgRpehdXRitDvqpQDN44RCPgxRpS9jS/exec";
     var CAFE_SLUG = "${slug}";
     var hasVoted = localStorage.getItem("vote_" + CAFE_SLUG);
 
     function loadVotes() {
-      fetch(VOTE_API + "?slug=" + encodeURIComponent(CAFE_SLUG))
+      fetch(VOTE_API + "?slug=" + encodeURIComponent(CAFE_SLUG), {redirect: "follow"})
         .then(function(r) { return r.json(); })
         .then(function(d) {
           document.getElementById("upCount").textContent = d.up || 0;
@@ -787,8 +787,9 @@ function renderHTML(cafe, allCafes) {
       if (navigator.vibrate) navigator.vibrate(30);
       fetch(VOTE_API, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: CAFE_SLUG, vote: vote })
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ slug: CAFE_SLUG, vote: vote }),
+        redirect: "follow"
       }).catch(function() {});
     }
 
