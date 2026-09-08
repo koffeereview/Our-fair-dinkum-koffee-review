@@ -33,6 +33,7 @@
     { "source": "/for-cafes", "destination": "/api/for-cafes" },
     { "source": "/monthly", "destination": "/api/monthly" },
     { "source": "/monthly/:month", "destination": "/api/monthly?month=:month" },
+    { "source": "/api/votes", "destination": "/api/votes" },
     { "source": "/suburb/:suburb", "destination": "/api/suburb?suburb=:suburb" },
     { "source": "/best-cafes-australia", "destination": "/must-visit-cafes" },
     { "source": "/best-coffee-australia", "destination": "/leaderboard" },
