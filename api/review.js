@@ -750,30 +750,21 @@ function renderHTML(cafe, allCafes) {
     }
 
     // VOTING SYSTEM
-    var VOTE_API = "https://script.google.com/macros/s/AKfycbxkjSu9sB2yB4fkqbyD2sOV7uIplW8TTR4IXtCQDuHm3cFlThyFYlUnJxqIF6FzEhM/exec";
+    var VOTE_API = "/api/votes";
     var CAFE_SLUG = "${slug}";
     var hasVoted = localStorage.getItem("vote_" + CAFE_SLUG);
 
     function loadVotes() {
-      // Try fetching from Apps Script
-      var loaded = false;
       fetch(VOTE_API + "?slug=" + encodeURIComponent(CAFE_SLUG))
-        .then(function(r) {
-          if (!r.ok) throw new Error("not ok");
-          return r.json();
-        })
+        .then(function(r) { return r.json(); })
         .then(function(d) {
-          loaded = true;
           document.getElementById("upCount").textContent = d.up || 0;
           document.getElementById("downCount").textContent = d.down || 0;
           applyVotedState();
         })
-        .catch(function(err) {
-          // Fallback: show localStorage counts
-          var localUp = parseInt(localStorage.getItem("votecount_up_" + CAFE_SLUG) || "0");
-          var localDown = parseInt(localStorage.getItem("votecount_down_" + CAFE_SLUG) || "0");
-          document.getElementById("upCount").textContent = localUp;
-          document.getElementById("downCount").textContent = localDown;
+        .catch(function() {
+          document.getElementById("upCount").textContent = "0";
+          document.getElementById("downCount").textContent = "0";
           applyVotedState();
         });
     }
@@ -794,24 +785,14 @@ function renderHTML(cafe, allCafes) {
       }
       hasVoted = vote;
       localStorage.setItem("vote_" + CAFE_SLUG, vote);
-
-      // Update display immediately
       var el = document.getElementById(vote === "up" ? "upCount" : "downCount");
-      var newCount = parseInt(el.textContent || "0") + 1;
-      el.textContent = newCount;
-
-      // Save to localStorage as backup
-      localStorage.setItem("votecount_" + vote + "_" + CAFE_SLUG, newCount);
-
+      el.textContent = parseInt(el.textContent || "0") + 1;
       applyVotedState();
       document.getElementById("voteMsg").textContent = vote === "up" ? "Thanks! You agree with this score." : "Noted! You think this score is off.";
       if (navigator.vibrate) navigator.vibrate(30);
-
-      // Send to Apps Script (no-cors = fire and forget, no CORS issues)
       fetch(VOTE_API, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug: CAFE_SLUG, vote: vote })
       }).catch(function() {});
     }
