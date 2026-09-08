@@ -750,26 +750,41 @@ function renderHTML(cafe, allCafes) {
     }
 
     // VOTING SYSTEM
-    var VOTE_API = "https://script.google.com/macros/s/AKfycbzp0RhHNuOGotjv8gr5noFpSTlKFc1GC-7h0sgRpehdXRitDvqpQDN44RCPgxRpS9jS/exec";
+    var VOTE_API = "https://script.google.com/macros/s/AKfycbxkjSu9sB2yB4fkqbyD2sOV7uIplW8TTR4IXtCQDuHm3cFlThyFYlUnJxqIF6FzEhM/exec";
     var CAFE_SLUG = "${slug}";
     var hasVoted = localStorage.getItem("vote_" + CAFE_SLUG);
 
     function loadVotes() {
-      fetch(VOTE_API + "?slug=" + encodeURIComponent(CAFE_SLUG), {redirect: "follow"})
-        .then(function(r) { return r.json(); })
+      // Try fetching from Apps Script
+      var loaded = false;
+      fetch(VOTE_API + "?slug=" + encodeURIComponent(CAFE_SLUG))
+        .then(function(r) {
+          if (!r.ok) throw new Error("not ok");
+          return r.json();
+        })
         .then(function(d) {
+          loaded = true;
           document.getElementById("upCount").textContent = d.up || 0;
           document.getElementById("downCount").textContent = d.down || 0;
-          if (hasVoted) {
-            document.getElementById("voteMsg").textContent = "You voted " + (hasVoted === "up" ? "👍" : "👎");
-            document.getElementById("vote" + (hasVoted === "up" ? "Up" : "Down")).style.borderColor = hasVoted === "up" ? "#4ade80" : "#f87171";
-            document.getElementById("vote" + (hasVoted === "up" ? "Up" : "Down")).style.background = hasVoted === "up" ? "rgba(74,222,128,0.15)" : "rgba(248,113,113,0.15)";
-          }
+          applyVotedState();
         })
-        .catch(function() {
-          document.getElementById("upCount").textContent = "0";
-          document.getElementById("downCount").textContent = "0";
+        .catch(function(err) {
+          // Fallback: show localStorage counts
+          var localUp = parseInt(localStorage.getItem("votecount_up_" + CAFE_SLUG) || "0");
+          var localDown = parseInt(localStorage.getItem("votecount_down_" + CAFE_SLUG) || "0");
+          document.getElementById("upCount").textContent = localUp;
+          document.getElementById("downCount").textContent = localDown;
+          applyVotedState();
         });
+    }
+
+    function applyVotedState() {
+      if (hasVoted) {
+        document.getElementById("voteMsg").textContent = "You voted " + (hasVoted === "up" ? "\\ud83d\\udc4d" : "\\ud83d\\udc4e");
+        var btn = document.getElementById(hasVoted === "up" ? "voteUp" : "voteDown");
+        btn.style.borderColor = hasVoted === "up" ? "#4ade80" : "#f87171";
+        btn.style.background = hasVoted === "up" ? "rgba(74,222,128,0.15)" : "rgba(248,113,113,0.15)";
+      }
     }
 
     function castVote(vote) {
@@ -779,19 +794,29 @@ function renderHTML(cafe, allCafes) {
       }
       hasVoted = vote;
       localStorage.setItem("vote_" + CAFE_SLUG, vote);
+
+      // Update display immediately
       var el = document.getElementById(vote === "up" ? "upCount" : "downCount");
-      el.textContent = parseInt(el.textContent || "0") + 1;
-      document.getElementById("vote" + (vote === "up" ? "Up" : "Down")).style.borderColor = vote === "up" ? "#4ade80" : "#f87171";
-      document.getElementById("vote" + (vote === "up" ? "Up" : "Down")).style.background = vote === "up" ? "rgba(74,222,128,0.15)" : "rgba(248,113,113,0.15)";
+      var newCount = parseInt(el.textContent || "0") + 1;
+      el.textContent = newCount;
+
+      // Save to localStorage as backup
+      localStorage.setItem("votecount_" + vote + "_" + CAFE_SLUG, newCount);
+
+      applyVotedState();
       document.getElementById("voteMsg").textContent = vote === "up" ? "Thanks! You agree with this score." : "Noted! You think this score is off.";
       if (navigator.vibrate) navigator.vibrate(30);
+
+      // Send to Apps Script (no-cors = fire and forget, no CORS issues)
       fetch(VOTE_API, {
         method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ slug: CAFE_SLUG, vote: vote }),
-        redirect: "follow"
+        body: JSON.stringify({ slug: CAFE_SLUG, vote: vote })
       }).catch(function() {});
     }
+
+    loadVotes();
 
     loadVotes();
   </script>
