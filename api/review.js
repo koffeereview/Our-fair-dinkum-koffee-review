@@ -456,6 +456,21 @@ function renderHTML(cafe, allCafes) {
       <div class="notes-box">${cafe.notes || "No notes available."}</div>
     </div>
 
+    <div class="vote-section" id="voteSection">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:rgba(197,157,80,0.6);margin-bottom:12px;text-align:center">DO YOU AGREE WITH THIS SCORE?</div>
+      <div style="display:flex;gap:12px;justify-content:center;align-items:center">
+        <button id="voteUp" onclick="castVote('up')" style="display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:14px;background:rgba(74,222,128,0.06);border:2px solid rgba(74,222,128,0.2);color:#4ade80;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span style="font-size:20px">👍</span>
+          <span id="upCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">-</span>
+        </button>
+        <button id="voteDown" onclick="castVote('down')" style="display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:14px;background:rgba(248,113,113,0.06);border:2px solid rgba(248,113,113,0.2);color:#f87171;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span style="font-size:20px">👎</span>
+          <span id="downCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">-</span>
+        </button>
+      </div>
+      <div id="voteMsg" style="text-align:center;font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px;min-height:18px"></div>
+    </div>
+
     <div class="action-btns">
       <a class="btn btn-maps" href="${getMapsUrl(cafe)}" target="_blank">📍 Maps</a>
       ${cafe.link ? `<a class="btn btn-review" href="${cafe.link}" target="_blank">▶ Our Review</a>` : ""}
@@ -733,6 +748,51 @@ function renderHTML(cafe, allCafes) {
         });
       } else { saveCard(); }
     }
+
+    // VOTING SYSTEM
+    var VOTE_API = "https://script.google.com/macros/s/AKfycbzvcd03Sv0U-fl-NWQKN6aOPaReN0x-Bd16Nm9FqMp9Be5dEa8xolU-lZEI8PhVMvs/exec";
+    var CAFE_SLUG = "${slug}";
+    var hasVoted = localStorage.getItem("vote_" + CAFE_SLUG);
+
+    function loadVotes() {
+      fetch(VOTE_API + "?slug=" + encodeURIComponent(CAFE_SLUG))
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          document.getElementById("upCount").textContent = d.up || 0;
+          document.getElementById("downCount").textContent = d.down || 0;
+          if (hasVoted) {
+            document.getElementById("voteMsg").textContent = "You voted " + (hasVoted === "up" ? "👍" : "👎");
+            document.getElementById("vote" + (hasVoted === "up" ? "Up" : "Down")).style.borderColor = hasVoted === "up" ? "#4ade80" : "#f87171";
+            document.getElementById("vote" + (hasVoted === "up" ? "Up" : "Down")).style.background = hasVoted === "up" ? "rgba(74,222,128,0.15)" : "rgba(248,113,113,0.15)";
+          }
+        })
+        .catch(function() {
+          document.getElementById("upCount").textContent = "0";
+          document.getElementById("downCount").textContent = "0";
+        });
+    }
+
+    function castVote(vote) {
+      if (hasVoted) {
+        document.getElementById("voteMsg").textContent = "You already voted on this cafe";
+        return;
+      }
+      hasVoted = vote;
+      localStorage.setItem("vote_" + CAFE_SLUG, vote);
+      var el = document.getElementById(vote === "up" ? "upCount" : "downCount");
+      el.textContent = parseInt(el.textContent || "0") + 1;
+      document.getElementById("vote" + (vote === "up" ? "Up" : "Down")).style.borderColor = vote === "up" ? "#4ade80" : "#f87171";
+      document.getElementById("vote" + (vote === "up" ? "Up" : "Down")).style.background = vote === "up" ? "rgba(74,222,128,0.15)" : "rgba(248,113,113,0.15)";
+      document.getElementById("voteMsg").textContent = vote === "up" ? "Thanks! You agree with this score." : "Noted! You think this score is off.";
+      if (navigator.vibrate) navigator.vibrate(30);
+      fetch(VOTE_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: CAFE_SLUG, vote: vote })
+      }).catch(function() {});
+    }
+
+    loadVotes();
   </script>
 </body>
 </html>`;
