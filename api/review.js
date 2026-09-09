@@ -456,27 +456,29 @@ function renderHTML(cafe, allCafes) {
       <div class="notes-box">${cafe.notes || "No notes available."}</div>
     </div>
 
-    <div class="vote-section" id="voteSection">
-      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px">
-        <button id="saveBtn" onclick="toggleSave()" style="display:flex;align-items:center;gap:6px;padding:10px 18px;border-radius:12px;background:rgba(230,192,115,0.06);border:1px solid rgba(230,192,115,0.2);color:#E6C073;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span id="saveIcon">♡</span> <span id="saveText">Save</span>
+    <div style="margin:24px 0;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:24px;overflow:hidden">
+      <div style="display:flex;gap:8px;margin-bottom:16px">
+        <button id="saveBtn" onclick="toggleSave()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(230,192,115,0.04);border:1.5px solid rgba(230,192,115,0.15);color:#E6C073;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span id="saveIcon" style="font-size:18px">♡</span> <span id="saveText">Save</span>
         </button>
-        <button id="visitedBtn" onclick="toggleVisited()" style="display:flex;align-items:center;gap:6px;padding:10px 18px;border-radius:12px;background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.2);color:#4ade80;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span id="visitedIcon">○</span> <span id="visitedText">Been here</span>
+        <button id="visitedBtn" onclick="toggleVisited()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(74,222,128,0.04);border:1.5px solid rgba(74,222,128,0.15);color:#4ade80;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span id="visitedIcon" style="font-size:18px">○</span> <span id="visitedText">Been here</span>
         </button>
       </div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:rgba(197,157,80,0.6);margin-bottom:12px;text-align:center">DO YOU AGREE WITH THIS SCORE?</div>
-      <div style="display:flex;gap:12px;justify-content:center;align-items:center">
-        <button id="voteUp" onclick="castVote('up')" style="display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:14px;background:rgba(74,222,128,0.06);border:2px solid rgba(74,222,128,0.2);color:#4ade80;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span style="font-size:20px">👍</span>
+      <a href="/saved" id="myListLink" style="display:none;text-align:center;padding:10px;margin-bottom:14px;border-radius:10px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.08);font-size:12px;color:rgba(230,192,115,0.5);text-decoration:none;letter-spacing:0.5px">View My Coffee List &rarr;</a>
+      <div style="height:1px;background:rgba(255,255,255,0.04);margin-bottom:16px"></div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:14px;letter-spacing:0.5px">Do you agree with this score?</div>
+      <div style="display:flex;gap:10px;justify-content:center;align-items:center">
+        <button id="voteUp" onclick="castVote('up')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(74,222,128,0.04);border:1.5px solid rgba(74,222,128,0.15);color:#4ade80;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span style="font-size:18px">👍</span>
           <span id="upCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">0</span>
         </button>
-        <button id="voteDown" onclick="castVote('down')" style="display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:14px;background:rgba(248,113,113,0.06);border:2px solid rgba(248,113,113,0.2);color:#f87171;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span style="font-size:20px">👎</span>
+        <button id="voteDown" onclick="castVote('down')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(248,113,113,0.04);border:1.5px solid rgba(248,113,113,0.15);color:#f87171;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span style="font-size:18px">👎</span>
           <span id="downCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">0</span>
         </button>
       </div>
-      <div id="voteMsg" style="text-align:center;font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px;min-height:18px"></div>
+      <div id="voteMsg" style="text-align:center;font-size:12px;color:rgba(255,255,255,0.25);margin-top:10px;min-height:18px"></div>
     </div>
 
     <div class="action-btns">
@@ -813,15 +815,16 @@ function renderHTML(cafe, allCafes) {
     var isVisited = visitedList.indexOf(CAFE_SLUG) !== -1;
 
     function updateSaveBtn() {
-      document.getElementById("saveIcon").textContent = isSaved ? "\\u2665" : "\\u2661";
+      document.getElementById("saveIcon").textContent = isSaved ? "\u2665" : "\u2661";
       document.getElementById("saveText").textContent = isSaved ? "Saved" : "Save";
       var btn = document.getElementById("saveBtn");
       btn.style.background = isSaved ? "rgba(230,192,115,0.15)" : "rgba(230,192,115,0.06)";
       btn.style.borderColor = isSaved ? "#E6C073" : "rgba(230,192,115,0.2)";
+      if (savedList.length > 0) document.getElementById("myListLink").style.display = "block";
     }
 
     function updateVisitedBtn() {
-      document.getElementById("visitedIcon").textContent = isVisited ? "\\u2713" : "\\u25cb";
+      document.getElementById("visitedIcon").textContent = isVisited ? "\u2713" : "\u25cb";
       document.getElementById("visitedText").textContent = isVisited ? "Visited" : "Been here";
       var btn = document.getElementById("visitedBtn");
       btn.style.background = isVisited ? "rgba(74,222,128,0.15)" : "rgba(74,222,128,0.06)";
