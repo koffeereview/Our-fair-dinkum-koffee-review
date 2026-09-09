@@ -154,24 +154,60 @@
       OneSignalDeferred.push(function(OneSignal) {
         OneSignal.init({
           appId: "8b5a4bcc-deb0-46ab-94f0-20c1515731b7",
-          notifyButton: { enable: true },
           promptOptions: {
             slidedown: {
               prompts: [{
                 type: "push",
                 autoPrompt: true,
                 text: {
-                  actionMessage: "Get notified when we review new cafes!",
-                  acceptButton: "Allow",
-                  cancelButton: "Later"
+                  actionMessage: "New cafe reviews, scores, and hidden gems — straight to your phone.",
+                  acceptButton: "Yes, notify me",
+                  cancelButton: "Not now"
                 },
-                delay: { pageViews: 1, timeDelay: 3 }
+                delay: { pageViews: 1, timeDelay: 5 }
               }]
             }
           }
         });
       });
     </script>
+    <style>
+      /* OneSignal prompt brand override */
+      .onesignal-slidedown-container {
+        font-family: 'DM Sans', sans-serif !important;
+      }
+      .onesignal-slidedown-dialog {
+        background: #111827 !important;
+        border: 1px solid rgba(230,192,115,0.2) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+      }
+      .onesignal-slidedown-body-message {
+        color: rgba(255,255,255,0.7) !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 14px !important;
+      }
+      .onesignal-slidedown-dialog .primary {
+        background: linear-gradient(135deg, #c8a96e, #E6C073) !important;
+        color: #0a0a0c !important;
+        border: none !important;
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+        font-family: 'DM Sans', sans-serif !important;
+        padding: 10px 20px !important;
+      }
+      .onesignal-slidedown-dialog .secondary {
+        background: transparent !important;
+        color: rgba(255,255,255,0.4) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: 12px !important;
+        font-family: 'DM Sans', sans-serif !important;
+        padding: 10px 20px !important;
+      }
+      .onesignal-slidedown-dialog .slidedown-button:hover {
+        opacity: 0.9 !important;
+      }
+    </style>
   </head>
   <body style="background:#0a0a0a;margin:0;padding:0;">
     <div id="root" style="background:#0a0a0a;min-height:100vh;"></div>
