@@ -154,60 +154,44 @@
       OneSignalDeferred.push(function(OneSignal) {
         OneSignal.init({
           appId: "8b5a4bcc-deb0-46ab-94f0-20c1515731b7",
-          promptOptions: {
-            slidedown: {
-              prompts: [{
-                type: "push",
-                autoPrompt: true,
-                text: {
-                  actionMessage: "New cafe reviews, scores, and hidden gems — straight to your phone.",
-                  acceptButton: "Yes, notify me",
-                  cancelButton: "Not now"
-                },
-                delay: { pageViews: 1, timeDelay: 5 }
-              }]
-            }
-          }
+          autoPrompt: false
         });
       });
+
+      // Custom branded prompt
+      function showKRPrompt() {
+        if (localStorage.getItem("kr_prompt_dismissed")) return;
+        if (Notification && Notification.permission === "granted") return;
+        var overlay = document.createElement("div");
+        overlay.id = "krPromptOverlay";
+        overlay.innerHTML = '<div style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99998;backdrop-filter:blur(4px)" onclick="dismissKRPrompt()"></div>'
+          + '<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;width:min(340px,90vw);background:linear-gradient(145deg,#111827,#0a0a0c);border:1px solid rgba(230,192,115,0.25);border-radius:20px;padding:28px;text-align:center;box-shadow:0 16px 48px rgba(0,0,0,0.6)">'
+          + '<img src="/logo.webp" style="width:56px;height:56px;border-radius:50%;margin-bottom:14px;border:2px solid rgba(230,192,115,0.3)">'
+          + '<div style="font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:3px;color:#E6C073;margin-bottom:6px">KOFFEE REVIEW</div>'
+          + '<div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:8px;font-family:DM Sans,sans-serif;line-height:1.4">Never miss a new review</div>'
+          + '<div style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:20px;font-family:DM Sans,sans-serif;line-height:1.6">New scores, hidden gems, and the occasional controversial take. Straight to your phone.</div>'
+          + '<button onclick="acceptKRPrompt()" style="width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,#c8a96e,#E6C073);border:none;color:#0a0a0c;font-size:14px;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;letter-spacing:0.5px;margin-bottom:8px">Yes, notify me ☕</button>'
+          + '<button onclick="dismissKRPrompt()" style="width:100%;padding:12px;border-radius:14px;background:transparent;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.35);font-size:13px;cursor:pointer;font-family:DM Sans,sans-serif">Not now</button>'
+          + '</div>';
+        document.body.appendChild(overlay);
+      }
+
+      function acceptKRPrompt() {
+        document.getElementById("krPromptOverlay").remove();
+        localStorage.setItem("kr_prompt_dismissed", "1");
+        OneSignalDeferred.push(function(OneSignal) {
+          OneSignal.Slidedown.promptPush();
+        });
+      }
+
+      function dismissKRPrompt() {
+        document.getElementById("krPromptOverlay").remove();
+        localStorage.setItem("kr_prompt_dismissed", "1");
+      }
+
+      // Show after 5 seconds
+      setTimeout(showKRPrompt, 5000);
     </script>
-    <style>
-      /* OneSignal prompt brand override */
-      .onesignal-slidedown-container {
-        font-family: 'DM Sans', sans-serif !important;
-      }
-      .onesignal-slidedown-dialog {
-        background: #111827 !important;
-        border: 1px solid rgba(230,192,115,0.2) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
-      }
-      .onesignal-slidedown-body-message {
-        color: rgba(255,255,255,0.7) !important;
-        font-family: 'DM Sans', sans-serif !important;
-        font-size: 14px !important;
-      }
-      .onesignal-slidedown-dialog .primary {
-        background: linear-gradient(135deg, #c8a96e, #E6C073) !important;
-        color: #0a0a0c !important;
-        border: none !important;
-        border-radius: 12px !important;
-        font-weight: 700 !important;
-        font-family: 'DM Sans', sans-serif !important;
-        padding: 10px 20px !important;
-      }
-      .onesignal-slidedown-dialog .secondary {
-        background: transparent !important;
-        color: rgba(255,255,255,0.4) !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
-        border-radius: 12px !important;
-        font-family: 'DM Sans', sans-serif !important;
-        padding: 10px 20px !important;
-      }
-      .onesignal-slidedown-dialog .slidedown-button:hover {
-        opacity: 0.9 !important;
-      }
-    </style>
   </head>
   <body style="background:#0a0a0a;margin:0;padding:0;">
     <div id="root" style="background:#0a0a0a;min-height:100vh;"></div>
