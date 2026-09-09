@@ -456,29 +456,23 @@ function renderHTML(cafe, allCafes) {
       <div class="notes-box">${cafe.notes || "No notes available."}</div>
     </div>
 
-    <div style="margin:24px 0;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:24px;overflow:hidden">
-      <div style="display:flex;gap:8px;margin-bottom:16px">
-        <button id="saveBtn" onclick="toggleSave()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(230,192,115,0.04);border:1.5px solid rgba(230,192,115,0.15);color:#E6C073;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span id="saveIcon" style="font-size:18px">♡</span> <span id="saveText">Save</span>
-        </button>
-        <button id="visitedBtn" onclick="toggleVisited()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(74,222,128,0.04);border:1.5px solid rgba(74,222,128,0.15);color:#4ade80;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span id="visitedIcon" style="font-size:18px">○</span> <span id="visitedText">Been here</span>
-        </button>
-      </div>
-      <a href="/saved" id="myListLink" style="display:none;text-align:center;padding:10px;margin-bottom:14px;border-radius:10px;background:rgba(230,192,115,0.03);border:1px solid rgba(230,192,115,0.08);font-size:12px;color:rgba(230,192,115,0.5);text-decoration:none;letter-spacing:0.5px">View My Coffee List &rarr;</a>
-      <div style="height:1px;background:rgba(255,255,255,0.04);margin-bottom:16px"></div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:14px;letter-spacing:0.5px">Do you agree with this score?</div>
-      <div style="display:flex;gap:10px;justify-content:center;align-items:center">
-        <button id="voteUp" onclick="castVote('up')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(74,222,128,0.04);border:1.5px solid rgba(74,222,128,0.15);color:#4ade80;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span style="font-size:18px">👍</span>
-          <span id="upCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">0</span>
-        </button>
-        <button id="voteDown" onclick="castVote('down')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:rgba(248,113,113,0.04);border:1.5px solid rgba(248,113,113,0.15);color:#f87171;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
-          <span style="font-size:18px">👎</span>
-          <span id="downCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">0</span>
-        </button>
-      </div>
-      <div id="voteMsg" style="text-align:center;font-size:12px;color:rgba(255,255,255,0.25);margin-top:10px;min-height:18px"></div>
+    <div style="display:flex;gap:8px;margin:16px 0">
+      <button id="saveBtn" onclick="toggleSave()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:rgba(230,192,115,0.04);border:1px solid rgba(230,192,115,0.12);color:#E6C073;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+        <span id="saveIcon" style="font-size:16px">♡</span><span id="saveText">Save</span>
+      </button>
+      <button id="visitedBtn" onclick="toggleVisited()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.12);color:#4ade80;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+        <span id="visitedIcon" style="font-size:16px">○</span><span id="visitedText">Been here</span>
+      </button>
+      <button id="voteUp" onclick="castVote('up')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.12);color:#4ade80;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+        👍 <span id="upCount" style="font-family:'Bebas Neue',sans-serif;font-size:16px">0</span>
+      </button>
+      <button id="voteDown" onclick="castVote('down')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:rgba(248,113,113,0.04);border:1px solid rgba(248,113,113,0.12);color:#f87171;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+        👎 <span id="downCount" style="font-family:'Bebas Neue',sans-serif;font-size:16px">0</span>
+      </button>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div id="voteMsg" style="font-size:11px;color:rgba(255,255,255,0.25);min-height:16px"></div>
+      <a href="/saved" id="myListLink" style="display:none;font-size:11px;color:rgba(230,192,115,0.4);text-decoration:none">My List &rarr;</a>
     </div>
 
     <div class="action-btns">
