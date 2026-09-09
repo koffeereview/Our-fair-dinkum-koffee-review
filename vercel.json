@@ -90,6 +90,8 @@
     { "source": "/score-battle", "destination": "/api/score-battle" },
     { "source": "/guess-the-suburb", "destination": "/api/guess-the-suburb" },
     { "source": "/the-gauntlet", "destination": "/api/the-gauntlet" },
+    { "source": "/quiz", "destination": "/api/quiz" },
+    { "source": "/saved", "destination": "/api/saved" },
     { "source": "/countries", "destination": "/api/countries" },
     { "source": "/countries/:country", "destination": "/api/countries?country=:country" },
     { "source": "/how-we-score", "destination": "/how-we-score.html" },
