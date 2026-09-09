@@ -457,6 +457,14 @@ function renderHTML(cafe, allCafes) {
     </div>
 
     <div class="vote-section" id="voteSection">
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px">
+        <button id="saveBtn" onclick="toggleSave()" style="display:flex;align-items:center;gap:6px;padding:10px 18px;border-radius:12px;background:rgba(230,192,115,0.06);border:1px solid rgba(230,192,115,0.2);color:#E6C073;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span id="saveIcon">♡</span> <span id="saveText">Save</span>
+        </button>
+        <button id="visitedBtn" onclick="toggleVisited()" style="display:flex;align-items:center;gap:6px;padding:10px 18px;border-radius:12px;background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.2);color:#4ade80;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+          <span id="visitedIcon">○</span> <span id="visitedText">Been here</span>
+        </button>
+      </div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:rgba(197,157,80,0.6);margin-bottom:12px;text-align:center">DO YOU AGREE WITH THIS SCORE?</div>
       <div style="display:flex;gap:12px;justify-content:center;align-items:center">
         <button id="voteUp" onclick="castVote('up')" style="display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:14px;background:rgba(74,222,128,0.06);border:2px solid rgba(74,222,128,0.2);color:#4ade80;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
@@ -798,8 +806,44 @@ function renderHTML(cafe, allCafes) {
       }).catch(function() {});
     }
 
-    loadVotes();
+    // SAVE & VISITED SYSTEM
+    var savedList = JSON.parse(localStorage.getItem("kr_saved") || "[]");
+    var visitedList = JSON.parse(localStorage.getItem("kr_visited") || "[]");
+    var isSaved = savedList.indexOf(CAFE_SLUG) !== -1;
+    var isVisited = visitedList.indexOf(CAFE_SLUG) !== -1;
 
+    function updateSaveBtn() {
+      document.getElementById("saveIcon").textContent = isSaved ? "\\u2665" : "\\u2661";
+      document.getElementById("saveText").textContent = isSaved ? "Saved" : "Save";
+      var btn = document.getElementById("saveBtn");
+      btn.style.background = isSaved ? "rgba(230,192,115,0.15)" : "rgba(230,192,115,0.06)";
+      btn.style.borderColor = isSaved ? "#E6C073" : "rgba(230,192,115,0.2)";
+    }
+
+    function updateVisitedBtn() {
+      document.getElementById("visitedIcon").textContent = isVisited ? "\\u2713" : "\\u25cb";
+      document.getElementById("visitedText").textContent = isVisited ? "Visited" : "Been here";
+      var btn = document.getElementById("visitedBtn");
+      btn.style.background = isVisited ? "rgba(74,222,128,0.15)" : "rgba(74,222,128,0.06)";
+      btn.style.borderColor = isVisited ? "#4ade80" : "rgba(74,222,128,0.2)";
+    }
+
+    function toggleSave() {
+      if (isSaved) { savedList = savedList.filter(function(s){return s!==CAFE_SLUG;}); isSaved = false; }
+      else { savedList.push(CAFE_SLUG); isSaved = true; if(navigator.vibrate)navigator.vibrate(30); }
+      localStorage.setItem("kr_saved", JSON.stringify(savedList));
+      updateSaveBtn();
+    }
+
+    function toggleVisited() {
+      if (isVisited) { visitedList = visitedList.filter(function(s){return s!==CAFE_SLUG;}); isVisited = false; }
+      else { visitedList.push(CAFE_SLUG); isVisited = true; if(navigator.vibrate)navigator.vibrate(30); }
+      localStorage.setItem("kr_visited", JSON.stringify(visitedList));
+      updateVisitedBtn();
+    }
+
+    updateSaveBtn();
+    updateVisitedBtn();
     loadVotes();
   </script>
 </body>
