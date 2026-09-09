@@ -323,6 +323,8 @@ export default async function handler(req,res){
         ${pageCard("Score Battle","Which cafe scored higher?","/score-battle","#f472b6")}
         ${pageCard("Guess the Suburb","Pick the right suburb from 4","/guess-the-suburb","#a78bfa")}
         ${pageCard("The Gauntlet","20 cafes. 60 seconds. Survive.","/the-gauntlet","#f87171")}
+        ${pageCard("Coffee Personality","5 questions. Find your cafe match.","/quiz","#E6C073")}
+        ${pageCard("My Coffee List","Your saved and visited cafes","/saved","#E6C073")}
       </div>
     </div>
 
