@@ -461,11 +461,11 @@ function renderHTML(cafe, allCafes) {
       <div style="display:flex;gap:12px;justify-content:center;align-items:center">
         <button id="voteUp" onclick="castVote('up')" style="display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:14px;background:rgba(74,222,128,0.06);border:2px solid rgba(74,222,128,0.2);color:#4ade80;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
           <span style="font-size:20px">👍</span>
-          <span id="upCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">-</span>
+          <span id="upCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">0</span>
         </button>
         <button id="voteDown" onclick="castVote('down')" style="display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:14px;background:rgba(248,113,113,0.06);border:2px solid rgba(248,113,113,0.2);color:#f87171;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
           <span style="font-size:20px">👎</span>
-          <span id="downCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">-</span>
+          <span id="downCount" style="font-family:'Bebas Neue',sans-serif;font-size:22px">0</span>
         </button>
       </div>
       <div id="voteMsg" style="text-align:center;font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px;min-height:18px"></div>
@@ -786,7 +786,8 @@ function renderHTML(cafe, allCafes) {
       hasVoted = vote;
       localStorage.setItem("vote_" + CAFE_SLUG, vote);
       var el = document.getElementById(vote === "up" ? "upCount" : "downCount");
-      el.textContent = parseInt(el.textContent || "0") + 1;
+      var current = parseInt(el.textContent) || 0;
+      el.textContent = current + 1;
       applyVotedState();
       document.getElementById("voteMsg").textContent = vote === "up" ? "Thanks! You agree with this score." : "Noted! You think this score is off.";
       if (navigator.vibrate) navigator.vibrate(30);
