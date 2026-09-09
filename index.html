@@ -152,7 +152,24 @@
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(function(OneSignal) {
-        OneSignal.init({ appId: "8b5a4bcc-deb0-46ab-94f0-20c1515731b7" });
+        OneSignal.init({
+          appId: "8b5a4bcc-deb0-46ab-94f0-20c1515731b7",
+          notifyButton: { enable: true },
+          promptOptions: {
+            slidedown: {
+              prompts: [{
+                type: "push",
+                autoPrompt: true,
+                text: {
+                  actionMessage: "Get notified when we review new cafes!",
+                  acceptButton: "Allow",
+                  cancelButton: "Later"
+                },
+                delay: { pageViews: 1, timeDelay: 3 }
+              }]
+            }
+          }
+        });
       });
     </script>
   </head>
