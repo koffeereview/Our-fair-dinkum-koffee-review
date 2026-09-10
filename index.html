@@ -154,7 +154,9 @@
       OneSignalDeferred.push(function(OneSignal) {
         OneSignal.init({
           appId: "8b5a4bcc-deb0-46ab-94f0-20c1515731b7",
-          autoPrompt: false
+          autoPrompt: false,
+          welcomeNotification: { disable: true },
+          notifyButton: { enable: false }
         });
       });
 
