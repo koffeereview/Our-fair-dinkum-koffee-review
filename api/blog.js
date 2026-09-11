@@ -2016,6 +2016,81 @@ var POSTS = [
       { q: "Is Fortitude Valley good for coffee?", a: "The Valley has the most cafes of any suburb outside the CBD but not one cracks 7.5 in our system. Its best cafe tops out at 7.2. It has breadth without a peak. Kenmore and Nundah both beat it on average score." },
       { q: "Why do quiet suburbs have better coffee?", a: "Three reasons: local accountability (regulars notice bad cups), lower rent (allows slower more careful preparation), and nothing to coast on (no reputation or foot traffic to hide behind). The cup has to be good because it is all they have." }
     ]
+  },
+  {
+    slug: "we-checked-the-lists",
+    title: "We Checked the Lists \u2014 Every Best Coffee Ranking, Fact-Checked Against the Cup",
+    ogImage: "https://koffeereview.com.au/og-blog-30.png",
+    description: "Timeout, the World's 100 Best, Google Reviews, Urban List, TripAdvisor, Instagram, the big franchises. Everyone has a best coffee list. We visited the cafes and scored them all. Here is where the lists were right and where they were not.",
+    date: "2026-07-29", readingTime: "7 min",
+    category: "versus",
+    keywords: ["best coffee brisbane","is timeout right","worlds best coffee shop","google reviews coffee accurate","best coffee list brisbane","coffee rankings compared"],
+    intro: "Everyone has a best coffee list. Media outlets, global panels, star ratings, franchise marketing. Most of them are built on reputation, atmosphere, awards, or a public vote.\n\nWe build ours on one thing: the cup. Same order at every cafe. One latte, one double shot espresso. Scored on crema, extraction, milk, balance and finish. 600+ cafes, one scale, zero freebies.\n\nSo we did the obvious thing. We took the lists everyone trusts, visited the cafes, and scored them ourselves. Here is where the hype held up and where it did not.",
+    sections: [
+      {
+        heading: "Timeout's Best Coffee in Brisbane",
+        body: "Timeout named twelve. We visited all twelve. Five landed in our Loved tier and genuinely earned it: <a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo</a>, <a href=\"/review/john-mills-himself-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">John Mills Himself</a>, <a href=\"/review/coffee-anthology-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Anthology</a>, <a href=\"/review/industry-beans-newstead-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Industry Beans</a> and <a href=\"/review/bunker-coffee-milton\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bunker</a>. But three sat below 6.5, including a famous roaster at 5.8. The list is a solid map of Brisbane's most interesting cafes. It is only half a map of its best coffee.",
+        links: [
+          { text: "Read the full Timeout breakdown", url: "/blog/timeout-best-coffee-brisbane-review" }
+        ]
+      },
+      {
+        heading: "The World's Best Coffee Shop",
+        body: "<a href=\"/review/tobys-estate-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Tobys Estate</a> was crowned the world's number one coffee shop by a global panel. We ordered our usual and scored it 6.2 TAKE OR LEAVE. Moderate in, moderate out. Meanwhile a cafe in Bulimba with no ranking, no press and no panel out-scored it by 1.7 points. The lesson: global lists rank fame. Fame is a lagging indicator. The cup you are served today can be years behind the sticker in the window.",
+        links: [
+          { text: "Read the World's Best breakdown", url: "/blog/worlds-best-coffee-shop-scored-6-2" }
+        ]
+      },
+      {
+        heading: "Google Reviews",
+        body: "The default way everyone picks a cafe and it barely correlates with the coffee. A cafe with 4.6 Google stars scored 5.8 with us. The best coffee in the country (Quest, 8.1) sits at just 4.4 stars on Google, marked down for having a small room. Star ratings measure the experience: the seats, the service, the pastries, the wait. They were never built to measure the coffee, and the numbers prove it.",
+        links: [
+          { text: "Read Google Reviews vs Us", url: "/blog/google-reviews-vs-coffee-scores" }
+        ]
+      },
+      {
+        heading: "Urban List and TripAdvisor",
+        body: "Urban List shares several picks with Timeout. The overlap between both lists AND our blind scores is the real shortlist: <a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo</a>, <a href=\"/review/john-mills-himself-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">John Mills</a>, <a href=\"/review/coffee-anthology-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Anthology</a>. If all three sources agree, go there immediately.\n\nTripAdvisor ranks by tourist volume, not quality. A cafe in Manly with 7.8 quality and 50 reviews will never outrank a CBD cafe with 6.0 quality and 2000 reviews. Volume wins on TripAdvisor. Quality does not.",
+        links: [
+          { text: "Read Urban List comparison", url: "/blog/urban-list-best-coffee-brisbane-scored" },
+          { text: "Read TripAdvisor comparison", url: "/blog/tripadvisor-top-cafes-brisbane-scored" }
+        ]
+      },
+      {
+        heading: "Instagram's Most Tagged Cafes",
+        body: "The most Instagrammed cafes in Brisbane are not the best coffee in Brisbane. Instagram rewards aesthetics not extraction. Most highly tagged cafes score 5.5 to 6.5 in our system. A cafe with a pink wall and a photogenic brunch plate will get tagged 10 times more than a hole in the wall with elite espresso. Follow the cup, not the grid.",
+        links: [
+          { text: "Read Instagram comparison", url: "/blog/instagram-most-tagged-cafes-brisbane" }
+        ]
+      },
+      {
+        heading: "The Coffee Franchises",
+        body: "The chains promise consistency. We tested whether what you are consistently getting is any good. The average franchise scored 3.3 against a field average of 6.2. Nearly three points below. Starbucks, Hudsons, San Churro and <a href=\"/review/stellarossa-forest-lake-forest-lake\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Stellarossa (1.1)</a> all sit in avoid territory. The one chain that cleared the bar (Merlo) is the one that roasts its own beans. Scale is the enemy of the cup.",
+        links: [
+          { text: "Read the Franchise ranking", url: "/blog/coffee-franchises-ranked" }
+        ]
+      },
+      {
+        heading: "The Pattern Across All Six",
+        body: "Line the lists up and the same truth falls out every time.\n\nLists measure everything except the coffee. Awards, fame, atmosphere, loyalty, brand, comfort, convenience. All legitimate things to care about. None of them the espresso.\n\nReputation lags reality. A cafe earns a name over years, then coasts on it. The panel keeps voting, the stars keep averaging, the marketing keeps running. Long after the cup has drifted. Our scale has no memory. Every cafe starts at zero, every visit.\n\nThe best coffee hides. Across all six comparisons, the cafes that beat the famous ones were the ones nobody writes about. Burleigh Heads, Nundah, Kenmore, Manly. No queue, no laneway, no sticker. Just a better cup.\n\nThat is the whole reason we score coffee the way we do. Not to argue with the lists for sport. But because if you actually want to know where the good coffee is, someone has to taste it. Same order, every time. We already did.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Must Visit cafes (7.5+)", url: "/must-visit-cafes" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "Hidden gems Brisbane", url: "/hidden-gem-cafes-brisbane" },
+          { text: "State of Brisbane Coffee 2026", url: "/blog/state-of-brisbane-coffee-2026" },
+          { text: "Browse by suburb", url: "/suburbs" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Which best coffee list is most accurate?", a: "No single list is fully accurate. Timeout got 5 of 12 right. Google Reviews barely correlate with coffee quality. The most reliable method: cross reference multiple lists with blind scored data like ours. If Timeout, Urban List, AND our scores all agree on a cafe, it is genuinely excellent." },
+      { q: "Why do media lists disagree with coffee scores?", a: "Media lists weight atmosphere, awards, brand reputation, and concept alongside the coffee. Our scores weight only the cup. A cafe can be famous, beautiful, and award winning while serving average coffee. Different criteria produce different rankings." },
+      { q: "Are franchise coffees worth buying?", a: "Almost never. The average franchise scores 3.3 out of 10 in our system, nearly three points below the field average of 6.2. The only chain that clears decent is Merlo, which roasts its own beans." }
+    ]
   }
 ];
 
