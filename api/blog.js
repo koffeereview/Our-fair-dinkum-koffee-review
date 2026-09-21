@@ -2162,6 +2162,218 @@ var POSTS = [
       { q: "How rare is an 8.0 score?", a: "Extremely rare. Only 5 out of 600+ cafes have ever scored 8.0 or above. That is less than 1 percent. The next best cafe in our database sits at 7.9. There is clear air between the 8.0 club and everyone else." },
       { q: "What makes 8.0+ coffee different?", a: "Three things: full body with a lingering finish, total control over the beans from roast to cup, and consistency where every sip is as good as the first. These cafes do not rely on atmosphere or brand. The cup carries everything." }
     ]
+  },
+  {
+    slug: "roaster-rankings-best-cafes",
+    title: "The Roaster Rankings \u2014 Which Coffee Roasters Produce the Best Cafes?",
+    ogImage: "https://koffeereview.com.au/og-blog-32.png",
+    description: "We averaged every cafe score by the roaster on its bar. Five Senses and Sample lead. Merlo lags. The same beans score 7.5 at one cafe and 5.8 at another. Here is the full roaster ranking.",
+    date: "2026-08-12", readingTime: "8 min",
+    category: "data",
+    keywords: ["best coffee roaster brisbane","coffee roasters ranked","five senses coffee","sample coffee","wolff coffee","coffee supreme"],
+    intro: "Everyone argues about beans. Which roaster is best. Which origin is superior. Which blend wins.\n\nWe have 600+ cafes in our database, each tagged with the roaster on its bar. So we did the maths: averaged every cafe's score by the roaster serving it. Minimum three cafes to qualify.\n\nThe results settle some arguments and start new ones.",
+    sections: [
+      {
+        heading: "The Roaster Leaderboard",
+        body: "Five Senses and Sample Coffee lead the field, averaging in the Loved band across every cafe we have visited serving their beans. Seven Miles sits solidly above average. Wolff Coffee clears 7.0. Coffee Supreme, despite appearing at more cafes than anyone else, averages 6.8.\n\nThe bottom of the table is instructive too. Some well known roasters average below 6.0 across their network. Brand recognition does not equal cup quality.",
+        links: [
+          { text: "Browse all roasters", url: "/roaster" },
+          { text: "Brisbane coffee roasters", url: "/brisbane-coffee-roasters" }
+        ]
+      },
+      {
+        heading: "The Spread Problem",
+        body: "Here is the number that matters more than the average: the spread within a single roaster.\n\nThe same Coffee Supreme beans score 7.5 at one cafe and 5.8 at another. The same Wolff blend scores 7.5 at BRU CRU in Kenmore and under 6.5 elsewhere. Same beans. Same roast profile. Completely different cups.\n\nThis is the single most important finding in our roaster data. The roaster sets the ceiling. The barista decides where in the range you land. A great roaster gives you the ingredients. Only the person on the machine can deliver the cup.\n\nThis is why we review cafes, not roasters. Beans are potential. Extraction is reality.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "Australian barista training", url: "/blog/australian-barista-training" }
+        ]
+      },
+      {
+        heading: "Roaster-Operated Bars Win",
+        body: "The data has a clear pattern: cafes where the roaster operates the bar score higher than cafes serving someone else's beans.\n\n<a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo (7.9)</a> pulls their own roast. <a href=\"/review/industry-beans-newstead-newstead\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Industry Beans (7.5)</a> pulls their own. Quest Coffee Roasters (8.1) pulls their own. The 8.0+ club has four out of five cafes that either roast in house or work exclusively with a single roaster.\n\nWhen you control the beans from roast to cup, there are no excuses and no variables. The quality is entirely on you. That accountability shows up in the scores.",
+        links: [
+          { text: "The 8.0+ Club", url: "/blog/the-8-plus-club" },
+          { text: "Chain vs independent", url: "/blog/chain-vs-independent-coffee" }
+        ]
+      },
+      {
+        heading: "What This Means For You",
+        body: "Three practical takeaways.\n\nFirst: check the roaster. A cafe serving Five Senses or Sample has a higher floor than average. The beans give them a head start.\n\nSecond: do not assume. A great roaster name on the hopper does not guarantee a great cup. The cafe still has to dial in, steam properly, and taste their own product.\n\nThird: seek roaster bars. If a cafe roasts its own coffee, the odds of a good cup go up significantly. They have skin in the game that a cafe buying wholesale does not.\n\nThe roaster matters. It is just not the whole story.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "For cafe owners", url: "/for-cafes" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the best coffee roaster in Brisbane?", a: "By average cafe score, Five Senses and Sample Coffee lead the field. Both average in the Loved tier (7.5+) across every cafe we have visited serving their beans." },
+      { q: "Do good beans guarantee good coffee?", a: "No. The same beans score 7.5 at one cafe and 5.8 at another. The roaster sets the ceiling but the barista decides the cup. Beans are potential. Extraction is reality." },
+      { q: "Should I choose a cafe based on its roaster?", a: "It helps. Cafes serving Five Senses, Sample, or Seven Miles have a higher floor. But the strongest signal is whether the cafe roasts its own coffee. Roaster operated bars consistently outperform wholesale accounts." }
+    ]
+  },
+  {
+    slug: "best-coffee-near-brisbane-airport",
+    title: "Best Coffee Near Brisbane Airport \u2014 What to Drink Before You Fly",
+    ogImage: "https://koffeereview.com.au/og-blog-33.png",
+    description: "Hudsons at the airport scored 2.1. Skip it. Here are the best cafes within 10 minutes of Brisbane Airport, all scored with one latte and one double shot.",
+    date: "2026-08-19", readingTime: "5 min",
+    category: "guides",
+    keywords: ["best coffee brisbane airport","coffee near brisbane airport","brisbane airport cafe","good coffee before flight","hamilton cafe","eagle farm cafe"],
+    intro: "<a href=\"/review/hudsons-coffee-brisbane-int-airport\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Hudsons Coffee at Brisbane International Airport scored 2.1 out of 10.</a> Harsh from the first sip, bitter finish, no structure. A captive audience and it tastes like it.\n\nYou deserve better before a flight. Here is the move: leave 15 minutes earlier, stop at one of these cafes on the way to the airport, and board with a genuinely good cup.",
+    sections: [
+      {
+        heading: "The Airport Coffee Problem",
+        body: "Airport cafes have zero incentive to be good. You are a captive audience. You are stressed. You are in a hurry. You will pay $7 for whatever they serve because your only alternative is the water fountain.\n\nEvery airport cafe we have scored sits in avoid territory. Hudsons Brisbane is 2.1. The pattern is global: captive audience plus no competition equals bad coffee.\n\nThe fix is simple. Do not buy coffee at the airport. Buy it on the way.",
+        links: [
+          { text: "Franchise rankings", url: "/blog/coffee-franchises-ranked" }
+        ]
+      },
+      {
+        heading: "Your Pre-Flight Coffee Options",
+        body: "These cafes are all within a 10 minute drive of Brisbane Airport, on the route most people take.\n\nHamilton and Eagle Farm are the closest suburbs. Nundah and Albion are slightly further but still on the way from most of Brisbane. All scored with our standard order.\n\nCheck our suburb pages for Hamilton, Eagle Farm, and Nundah to see which cafes score highest near the airport. Two of Nundah's cafes score 7.5 — <a href=\"/guide/nundah-brisbane-coffee\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Clubhouse and Embargos On Chapel</a> are both worth the extra five minutes.\n\nEven a 6.5 cafe on the way to the airport is three times better than the 2.1 inside it.",
+        links: [
+          { text: "Nundah coffee guide", url: "/guide/nundah-brisbane-coffee" },
+          { text: "Coffee near Brisbane Airport", url: "/coffee-near/brisbane-domestic-airport" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Leave 15 minutes earlier. Stop at a real cafe. Board your flight with a 7.0 instead of a 2.1. That is a 5 point upgrade for the price of slightly less terminal lounge time.\n\nYour mouth will thank you at 35,000 feet.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Coffee near landmarks", url: "/coffee-near" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "Nundah suburb page", url: "/suburb/nundah-brisbane" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Is airport coffee good in Brisbane?", a: "No. Hudsons Coffee at Brisbane International scored 2.1 out of 10. Airport cafes have captive audiences and no competitive pressure. Leave 15 minutes earlier and stop at a cafe on the way instead." },
+      { q: "Where is the best coffee near Brisbane Airport?", a: "Nundah is 10 minutes from the airport and has two cafes scoring 7.5: Clubhouse and Embargos On Chapel. Hamilton and Eagle Farm are even closer with several reviewed cafes." }
+    ]
+  },
+  {
+    slug: "the-milk-problem",
+    title: "The Milk Problem \u2014 Why 80% of Brisbane Lattes Are Under-Textured",
+    ogImage: "https://koffeereview.com.au/og-blog-34.png",
+    description: "We score milk texture on every latte. The data is clear: most baristas over-heat, under-texture, and serve foam instead of microfoam. Here is what separates a 6.0 latte from a 7.5.",
+    date: "2026-08-26", readingTime: "7 min",
+    category: "education",
+    keywords: ["milk texture coffee","latte milk steaming","microfoam latte","barista milk technique","coffee milk too hot","latte art milk"],
+    intro: "We score five elements at every cafe: crema, extraction, milk texture, balance, and finish. After 600+ reviews, one element fails more often than any other.\n\nMilk.\n\nThe latte is Brisbane's default order. It is also the drink most baristas get wrong. Not catastrophically wrong. Just consistently, quietly, forgettably wrong. The kind of wrong that turns a 7.0 espresso into a 6.2 latte.",
+    sections: [
+      {
+        heading: "What We See in the Data",
+        body: "Roughly 4 out of 5 lattes we score have at least one milk problem. The three most common:\n\nOver-heated milk. The number one offender. Milk steamed past 65 degrees tastes eggy and sulphuric. It kills sweetness and adds bitterness. We see this at chains, franchise cafes, and busy independent cafes running on speed. If you cannot hold the cup comfortably, the milk is too hot.\n\nFoam instead of microfoam. Big bubbles on top instead of silky integrated texture throughout. This happens when the barista introduces too much air or introduces it too late. The result is a layer of foam sitting on coffee, not milk and coffee integrated together.\n\nMilk that overwhelms the coffee. Too much milk, poured too fast, temperature mismatch. The espresso disappears into the dairy. You are drinking warm milk that remembers being near coffee.",
+        links: [
+          { text: "5 worst coffee mistakes", url: "/blog/worst-coffee-mistakes" },
+          { text: "Why most cafes score 6.0 to 6.9", url: "/blog/why-most-cafes-score-6" }
+        ]
+      },
+      {
+        heading: "What Great Milk Looks Like",
+        body: "Every cafe that scores 7.5+ on a latte does the same thing.\n\nIntroduce air at 0 to 2 seconds. Just a brief kiss of air at the surface to create microfoam. You hear a gentle tss tss, not a roaring scream.\n\nDunk and swirl at 2 to 4 seconds. Submerge the tip and create a whirlpool that folds the air into the milk. This is where texture happens.\n\nFinish at 60 to 65 degrees. No higher. The milk should be hot enough to drink immediately but cool enough to taste sweet. Above 65, proteins break down and the milk turns bitter.\n\nThe result: silk. Glossy, integrated, pourable. When you tilt the jug, it flows like wet paint, not like whipped cream. That is the texture that separates a 7.5 latte from a 6.0.\n\n<a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista (7.8)</a> does this perfectly every visit. <a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin (7.8)</a> does this perfectly every visit. It is not magic. It is 4 seconds of technique that most baristas never practise.",
+        links: [
+          { text: "What makes a 7.5+ cafe", url: "/blog/what-makes-a-75-cafe" },
+          { text: "For cafe owners — how to improve", url: "/for-cafes" }
+        ]
+      },
+      {
+        heading: "Why It Keeps Happening",
+        body: "Three reasons the same milk mistakes repeat across 600+ cafes.\n\nSpeed. A busy cafe steams milk as fast as possible. Faster means hotter, and hotter means worse. The barista who slows down for 4 extra seconds produces a noticeably better cup, but 4 seconds per order adds up in a rush.\n\nTraining gaps. Many baristas are trained on espresso but not on milk. They can dial in a grinder but cannot describe what good microfoam feels like. Milk technique is physical. It requires practice and feedback, not a manual.\n\nNobody tastes the latte. Cafes taste espresso shots to dial in. Almost nobody tastes the latte to check the milk. If you are not tasting your own product, you cannot know it is wrong.",
+        links: [
+          { text: "Australian barista training", url: "/blog/australian-barista-training" },
+          { text: "Science behind every score", url: "/blog/science-behind-every-score" }
+        ]
+      },
+      {
+        heading: "The Bottom Line",
+        body: "The milk is the most failed element in our scoring system. It is also the easiest to fix. Four seconds of technique, a thermometer, and the willingness to taste your own lattes.\n\nIf you are a barista reading this: practise your milk before your latte art. Nobody cares about a pretty rosetta on top of scalded, foamy milk. Texture first. Art second.\n\nIf you are a customer: order a flat white instead of a latte at an unfamiliar cafe. Less milk means less room to fail. Or ask for your latte not too hot. That one request improves your odds significantly.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Must Visit cafes", url: "/must-visit-cafes" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Coffee terminology", url: "/blog/coffee-terminology-explained" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Why do lattes taste bad at most cafes?", a: "Three main reasons: milk steamed too hot (past 65 degrees kills sweetness), foam instead of microfoam (big bubbles instead of silky texture), and too much milk overwhelming the espresso. About 80 percent of lattes we score have at least one of these problems." },
+      { q: "What temperature should latte milk be?", a: "60 to 65 degrees Celsius. Above 65, milk proteins break down and the taste turns bitter and eggy. If you cannot hold the cup comfortably, the milk is too hot." },
+      { q: "How do I order a better latte?", a: "Ask for it not too hot. Or order a flat white instead, which has less milk and less room for milk texture failures. At an unfamiliar cafe, these two requests significantly improve your odds of a good cup." }
+    ]
+  },
+  {
+    slug: "what-your-coffee-order-says-about-you",
+    title: "What Your Coffee Order Says About You \u2014 According to 600+ Reviews",
+    ogImage: "https://koffeereview.com.au/og-blog-35.png",
+    description: "We have watched 600+ cafes make every order imaginable. Here is what your go-to drink actually reveals, from the double shot purist to the oat milk adventurer.",
+    date: "2026-09-02", readingTime: "6 min",
+    category: "education",
+    keywords: ["what coffee order says about you","coffee personality","latte person","long black person","flat white personality","coffee order meaning"],
+    intro: "After 600+ cafe visits we have watched thousands of orders go across the bar. We have also noticed patterns. Not scientific, not peer reviewed. Just 600+ observations about the kind of person who orders each drink.\n\nDo not take this too seriously. But also, do not be surprised when it is accurate.",
+    sections: [
+      {
+        heading: "The Double Shot Espresso",
+        body: "You are either a coffee professional, a former Italian, or someone who has given up pretending milk makes anything better. You drink the espresso straight because you want to taste the extraction, not the dairy. You have opinions about crema. You can tell when a shot is over-extracted by looking at it.\n\nYou are also the person most likely to be quietly disappointed at every cafe you visit, because you know exactly what a good shot tastes like and most cafes do not hit it.\n\nYour match: <a href=\"/review/zen-barista-manly\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Zen Barista (7.8)</a>. Perfect timing, every visit.",
+        links: []
+      },
+      {
+        heading: "The Flat White",
+        body: "The sensible Australian. You want coffee and milk in balance, not coffee drowned in milk. You have quietly strong opinions and a low tolerance for nonsense. You tried a latte once, found it milky, and never went back.\n\nFlat white people are the backbone of every good cafe's revenue. You visit 5 days a week, you tip occasionally, and you notice when they change the beans.\n\nYour match: <a href=\"/review/the-twin-west-end\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">The Twin (7.8)</a>. Flawless execution, no fuss.",
+        links: []
+      },
+      {
+        heading: "The Latte",
+        body: "You want coffee but you also want comfort. The latte is a hug in a cup. You do not need to prove anything to anyone. You are the most common order in Australia and you are completely fine with that.\n\nThe downside: you are the order most affected by bad milk technique. 80 percent of lattes we score have at least one milk problem. Your drink is the one most cafes get wrong. You deserve better.\n\nYour match: <a href=\"/review/bellissimo-coffee-bulimba\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Bellissimo (7.9)</a>. Rich, smooth, and the milk is always right.",
+        links: [
+          { text: "The milk problem", url: "/blog/the-milk-problem" }
+        ]
+      },
+      {
+        heading: "The Long Black",
+        body: "You are the espresso person who wants to make it last longer. Practical. No nonsense. You probably drink it while reading something or working. The long black is the drink of people who treat coffee as fuel with standards.\n\nYou also have the best palate for detecting bad water. A long black in a cafe with old pipes or a dirty machine tastes immediately wrong. You know things other customers do not.\n\nYour match: <a href=\"/review/coffee-anthology-cbd\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Coffee Anthology (7.5)</a>. Bold, bright, built for sipping.",
+        links: []
+      },
+      {
+        heading: "The Oat Milk Order",
+        body: "You are either lactose intolerant or you decided oat milk tastes better. Both are valid. You are the order that tests a cafe's adaptability. Good cafes have dialled in their alternative milks. Average cafes treat oat milk as an afterthought and charge you 80 cents for the privilege.\n\nThe oat milk latte is the hardest drink to make well. It froths differently, burns faster, and separates if the barista is not paying attention. If a cafe makes a great oat latte, the barista is better than average.\n\nYour match: anywhere scoring 7.5+ with us. If they can nail dairy, they have probably dialled in their alternatives too.",
+        links: [
+          { text: "Must Visit cafes", url: "/must-visit-cafes" }
+        ]
+      },
+      {
+        heading: "The Mocha",
+        body: "You are not here for the coffee. You are here for the chocolate with a caffeine bonus. That is completely fine. But we cannot help you, because we score coffee, not dessert.\n\nNo judgement. Okay, a little judgement.\n\nYour match: honestly, anywhere. The chocolate covers everything.",
+        links: []
+      },
+      {
+        heading: "The Chai Latte",
+        body: "You walked into a coffee shop and ordered tea. Bold move. You are either pregnant, quitting caffeine, or you genuinely just like chai. All are valid reasons. You have also just ordered the one drink we definitely do not score.\n\nYour match: <a href=\"/quiz\" style=\"color:#E6C073;border-bottom:1px solid rgba(230,192,115,0.3);text-decoration:none\">Take our coffee personality quiz</a> and find out what you should actually be drinking.",
+        links: []
+      },
+      {
+        heading: "The Bottom Line",
+        body: "Your coffee order is a personality test you take every morning. The double shot is discipline. The flat white is balance. The latte is comfort. The long black is patience. The oat milk is adaptability.\n\nWhatever you order, order it somewhere that scores 7.0 or above with us. Life is too short for a 5.8.",
+        links: [
+          { text: "Browse all 600+ cafes", url: "/" },
+          { text: "Coffee personality quiz", url: "/quiz" },
+          { text: "Best coffee Brisbane", url: "/best-coffee-brisbane" },
+          { text: "How we score", url: "/how-we-score" },
+          { text: "Explore Koffee Review", url: "/explore" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the most popular coffee order in Australia?", a: "The latte is Australia's most common order. It is also the drink most affected by bad milk technique. About 80 percent of lattes we score have at least one milk texture problem." },
+      { q: "Which coffee order is hardest to make well?", a: "The oat milk latte. Oat milk froths differently, burns faster, and separates if the barista is not careful. A cafe that makes a great oat latte has above average barista skills." }
+    ]
   }
 ];
 
