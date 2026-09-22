@@ -52,9 +52,9 @@ function getScoreColor(score) {
 }
 
 function getScoreLabel(score) {
-  if (score >= 9.1) return "Elite / Anytime Coffee";
-  if (score >= 8.1) return "Great Coffee";
-  if (score >= 7.5) return "Loved";
+  if (score >= 9.1) return "Elite";
+  if (score >= 8.1) return "Great";
+  if (score >= 7.5) return "Must Visit";
   if (score >= 7.1) return "Solid";
   if (score >= 6.5) return "Decent";
   if (score >= 6.1) return "Take or Leave";
@@ -78,17 +78,34 @@ function renderHTML(cafe, allCafes) {
   
   // FAQ DATA — auto-generated per cafe
   const safeNotes = (cafe.notes || "").replace(/"/g, "'").replace(/\\/g, "").substring(0, 200);
-  const nearbyInSuburb = allCafes.filter(function(c) { return c.suburb.toLowerCase() === cafe.suburb.toLowerCase() && c.name !== cafe.name; });
-  const bestNearby = nearbyInSuburb.length > 0 ? nearbyInSuburb.sort(function(a, b) { return b.score - a.score; })[0] : null;
+  
+  // Find best nearby: prefer distance-based (within 3km), fallback to same suburb
+  var bestNearby = null;
+  var nearbyLabel = "";
+  if (cafe.lat && cafe.lng && Math.abs(cafe.lat) > 1) {
+    var withinRange = allCafes.filter(function(c) {
+      if (c.name === cafe.name) return false;
+      if (!c.lat || !c.lng || Math.abs(c.lat) < 1) return false;
+      var R=6371;var dLat=(c.lat-cafe.lat)*Math.PI/180;var dLon=(c.lng-cafe.lng)*Math.PI/180;
+      var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(cafe.lat*Math.PI/180)*Math.cos(c.lat*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
+      var d=R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+      return d <= 3;
+    }).sort(function(a,b){return b.score-a.score;});
+    if (withinRange.length > 0) { bestNearby = withinRange[0]; nearbyLabel = "within 3km of"; }
+  }
+  if (!bestNearby) {
+    var nearbyInSuburb = allCafes.filter(function(c) { return c.suburb.toLowerCase() === cafe.suburb.toLowerCase() && c.name !== cafe.name; });
+    if (nearbyInSuburb.length > 0) { bestNearby = nearbyInSuburb.sort(function(a,b){return b.score-a.score;})[0]; nearbyLabel = "in " + cafe.suburb + " near"; }
+  }
   
   const reviewFaqs = [
-    { q: "Is " + cafe.name + " worth visiting?", a: cafe.score >= 7.5 ? cafe.name + " scored " + cafe.score + "/10 in our review — a must-visit. " + (safeNotes ? "Our take: " + safeNotes : "") : cafe.score >= 6 ? cafe.name + " scored " + cafe.score + "/10 — decent but not one of our top picks in " + cafe.suburb + "." : cafe.name + " scored " + cafe.score + "/10 — we would not recommend this one. " + (bestNearby ? "Try " + bestNearby.name + " (" + bestNearby.score + "/10) nearby instead." : "") },
+    { q: "Is " + cafe.name + " worth visiting?", a: cafe.score >= 7.5 ? cafe.name + " scored " + cafe.score + "/10 in our review — a Must Visit. " + (safeNotes ? "Our take: " + safeNotes : "") : cafe.score >= 6 ? cafe.name + " scored " + cafe.score + "/10 — decent but not one of our top picks in " + cafe.suburb + "." : cafe.name + " scored " + cafe.score + "/10 — we would not recommend this one. " + (bestNearby ? "Try " + bestNearby.name + " (" + bestNearby.score + "/10) nearby instead." : "") },
     { q: "What did " + cafe.name + " score?", a: cafe.name + " in " + cafe.suburb + ", " + cafe.city + " scored " + cafe.score + " out of 10 in our review. We rate this as " + verdict + "." },
     { q: "Where is " + cafe.name + "?", a: cafe.name + " is located in " + cafe.suburb + ", " + cafe.city + ", Australia." + (cafe.price ? " Price range: " + cafe.price + "." : "") },
-    { q: "How does Koffee Review rate cafes?", a: "We order one latte and one double espresso at every cafe. Same order, same size, every time. We score on taste, consistency, and value. No freebies, no sponsorships, no exceptions." }
+    { q: "How does Koffee Review rate cafes?", a: "We order one latte and one double espresso at every cafe. Same order, same size, every time. We score on crema, extraction, milk texture, balance and finish. No freebies, no sponsorships, no exceptions." }
   ];
   if (bestNearby) {
-    reviewFaqs.push({ q: "What is the best cafe near " + cafe.name + "?", a: "The highest-rated cafe near " + cafe.name + " in " + cafe.suburb + " is " + bestNearby.name + " with a score of " + bestNearby.score + "/10." });
+    reviewFaqs.push({ q: "What is the best cafe near " + cafe.name + "?", a: "The highest-rated cafe " + nearbyLabel + " " + cafe.name + " is " + bestNearby.name + " in " + bestNearby.suburb + " with a score of " + bestNearby.score + "/10." });
   }
   
   const faqSchemaJSON = JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":reviewFaqs.map(function(f){return{"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}})});
