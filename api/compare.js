@@ -4,7 +4,7 @@ function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace
 function makeSlug(n,s){return(n+"-"+s).toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-");}
 function splitCSV(line){var r=[],c="",q=false;for(var i=0;i<line.length;i++){var ch=line[i];if(ch==='"')q=!q;else if(ch===","&&!q){r.push(c.trim());c="";}else c+=ch;}r.push(c.trim());return r;}
 function getColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
-function getVerdict(s){if(s>=9)return"ELITE";if(s>=8)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7)return"SOLID";if(s>=6)return"DECENT";if(s>=5)return"JUST OKAY";return"AVOID";}
+function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=6.1)return"TAKE OR LEAVE";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";if(s>=4.1)return"NOT FOR US";return"AVOID";}
 function haversine(lat1,lng1,lat2,lng2){var R=6371,dLat=(lat2-lat1)*Math.PI/180,dLng=(lng2-lng1)*Math.PI/180;var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
 
 function parseCSV(text){
@@ -37,7 +37,7 @@ function renderSearch(cafes){
   +'<footer class="ft"><p>&copy; 2026 Our Fair Dinkum Koffee Review</p><div style="margin-top:10px"><a href="/">All Reviews</a> &middot; <a href="/leaderboard">Leaderboard</a> &middot; <a href="/blog">Blog</a></div></footer>'
   +'</div><script>'
   +'var D=' + dataJSON + ';var selA=null,selB=null;'
-  +'function gc(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}'
+  +'function gc(s){if(s>=9.1)return"#ffffff";if(s>=8.1)return"#4ade80";if(s>=7.5)return"#2dd4bf";if(s>=7.1)return"#2dd4bf";if(s>=6.5)return"#facc15";if(s>=6.1)return"#facc15";if(s>=5.5)return"#fb923c";if(s>=5.1)return"#fb923c";return"#f87171";}'
   +'function fl(side){var inp=document.getElementById("s"+side).value.toLowerCase();var div=document.getElementById("r"+side);if(inp.length<2){div.style.display="none";return;}var m=D.filter(function(c){return c.n.toLowerCase().indexOf(inp)>-1||c.s.toLowerCase().indexOf(inp)>-1;}).slice(0,8);if(m.length===0){div.style.display="none";return;}div.innerHTML=m.map(function(c){var col=gc(c.sc);return\'<div class="ri" onclick="sel(\\\'\'+side+\'\\\',\\\'\'+c.sl+\'\\\')"><span style="font-size:16px;font-weight:700;min-width:32px;text-align:center;color:\'+col+\'">\'+ c.sc.toFixed(1)+\'</span><div><div style="font-size:13px;color:#fff">\'+c.n+\'</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">\'+c.s+", "+c.c+\'</div></div></div>\';}).join("");div.style.display="block";}'
   +'function sel(side,slug){var c=D.find(function(x){return x.sl===slug;});if(!c)return;if(side==="A"){selA=c;document.getElementById("sA").value=c.n;}else{selB=c;document.getElementById("sB").value=c.n;}document.getElementById("r"+side).style.display="none";if(selA&&selB)document.getElementById("goBtn").style.display="block";}'
   +'function go(){if(!selA||!selB)return;window.location.href="/compare?a="+selA.sl+"&b="+selB.sl;}'
