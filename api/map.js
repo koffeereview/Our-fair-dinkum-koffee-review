@@ -4,7 +4,7 @@ function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace
 function makeSlug(n,s){return(n+"-"+s).toLowerCase().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-");}
 function splitCSV(line){var r=[],c="",q=false;for(var i=0;i<line.length;i++){var ch=line[i];if(ch==='"')q=!q;else if(ch===","&&!q){r.push(c.trim());c="";}else c+=ch;}r.push(c.trim());return r;}
 function getColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
-function getVerdict(s){if(s>=9)return"ELITE";if(s>=8)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7)return"SOLID";if(s>=6)return"DECENT";if(s>=5)return"JUST OKAY";return"AVOID";}
+function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=6.1)return"TAKE OR LEAVE";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";if(s>=4.1)return"NOT FOR US";return"AVOID";}
 
 function parseCSV(text){
   var lines=text.split("\n").filter(function(l){return l&&l.trim();});
@@ -78,8 +78,8 @@ export default async function handler(req,res){
     +'.faq{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.04)}.faq-t{font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:4px;color:#E6C073;margin-bottom:12px}.fi{margin-bottom:6px;border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden}.fi[open]{border-color:rgba(230,192,115,0.2)}.fq{padding:12px 14px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;list-style:none}.fq::-webkit-details-marker{display:none}.fq::after{content:"+";color:#E6C073;font-size:14px;float:right}.fi[open] .fq::after{content:"-"}.fa{padding:0 14px 12px;font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7}'
     +'.ft{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.04);text-align:center;font-size:11px;color:rgba(255,255,255,0.35)}.ft a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 8px}'
     +'.leaflet-popup-content-wrapper{background:#1a1a1e!important;border:1px solid rgba(230,192,115,0.2)!important;border-radius:12px!important;box-shadow:0 8px 24px rgba(0,0,0,0.5)!important}.leaflet-popup-content{margin:12px 14px!important;color:#fff!important;font-family:"DM Sans",sans-serif!important}.leaflet-popup-tip{background:#1a1a1e!important}'
-    +'@media(max-width:480px){#map{height:340px}.hero h1{font-size:28px}.hz-grid{grid-template-columns:1fr}.stats{max-width:100%}}'
-    +'</style></head><body><div class="c">'
+    +'.hero h1{font-size:28px}.hz-grid{grid-template-columns:1fr}.stats{max-width:100%}}'
+    +'    </style></head><body><div class="c">'
 
     +'<nav class="nav"><a href="/" class="nav-logo"><img src="/logo.webp" alt="KR"><span>KOFFEE REVIEW</span></a><div class="nav-links"><a href="/compare">Compare</a><a href="/blog">Blog</a><a href="/leaderboard">Leaderboard</a></div></nav>'
 
@@ -126,8 +126,8 @@ export default async function handler(req,res){
     +'var map=L.map("map",{zoomControl:true,scrollWheelZoom:true}).setView([-27.47,153.02],11);'
     +'L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{maxZoom:19,attribution:"Koffee Review"}).addTo(map);'
     +'var markers=[];var heatLayer=null;var mode="heat";'
-    +'function gc(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}'
-    +'function gv(s){if(s>=9)return"ELITE";if(s>=8)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7)return"SOLID";if(s>=6)return"DECENT";if(s>=5)return"JUST OKAY";return"AVOID";}'
+    +'function gc(s){if(s>=9.1)return"#ffffff";if(s>=8.1)return"#4ade80";if(s>=7.5)return"#2dd4bf";if(s>=7.1)return"#2dd4bf";if(s>=6.5)return"#facc15";if(s>=6.1)return"#facc15";if(s>=5.5)return"#fb923c";if(s>=5.1)return"#fb923c";return"#f87171";}'
+    +'function gv(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=6.1)return"TAKE OR LEAVE";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";if(s>=4.1)return"NOT FOR US";return"AVOID";}'
 
     // Add heat layer
     +'function addHeat(list){'
