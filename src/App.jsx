@@ -835,8 +835,8 @@ export default function App() {
 
         {/* HERO TEXT */}
         <div style={{ marginBottom: 16 }}>
-          <p style={{ color: "#ffffff", fontSize: 15, fontWeight: 600, margin: "0 0 3px", letterSpacing: 0.3 }}>600+ cafés reviewed across Australia</p>
-          <p style={{ color: "#E6C073", fontSize: 13, margin: 0 }}>Know before you go.</p>
+          <p style={{ color: "#ffffff", fontSize: 15, fontWeight: 600, margin: "0 0 5px", letterSpacing: 0.3 }}>See the best coffee within 4 km.</p>
+          <p style={{ color: "#E6C073", fontSize: 13, margin: 0, letterSpacing: 0.3 }}>Know before you go.</p>
         </div>
 
         {/* BRAND RULE */}
