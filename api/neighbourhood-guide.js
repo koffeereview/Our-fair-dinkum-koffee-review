@@ -314,6 +314,11 @@ export default async function handler(req,res){
     if(cafes.length===0)return res.status(404).send("No cafes found");
 
     var canonicalUrl="https://koffeereview.com.au/guide/"+guideSlug(matched,matchedCity);
+    var expectedSlug=guideSlug(matched,matchedCity).replace(/-coffee$/,"");
+    if(suburbSlug!==expectedSlug){
+      res.setHeader("Location","/guide/"+guideSlug(matched,matchedCity));
+      return res.status(301).send("");
+    }
     var html=renderGuide(matched,matchedCity,cafes,allCafes,canonicalUrl);
 
     res.setHeader("Content-Type","text/html; charset=utf-8");
