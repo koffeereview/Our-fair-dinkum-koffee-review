@@ -111,7 +111,7 @@ export default async function handler(req,res){
     res.setHeader("Content-Type","text/html; charset=utf-8");
     res.setHeader("Cache-Control","public, s-maxage=3600, stale-while-revalidate=86400");
 
-    if(!a||!b){cafes.sort(function(x,y){return y.score-x.score;});return res.status(200).send(renderSearch(cafes));}
+    if(!a||!b){cafes.sort(function(x,y){return y.score-x.score;});res.setHeader("X-Robots-Tag","noindex");return res.status(200).send(renderSearch(cafes));}
 
     var cafeA=cafes.find(function(c){return makeSlug(c.name,c.suburb)===a;});
     var cafeB=cafes.find(function(c){return makeSlug(c.name,c.suburb)===b;});
