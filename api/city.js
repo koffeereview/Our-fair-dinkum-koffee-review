@@ -17,7 +17,7 @@ function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace
 function splitCSVLine(line){const r=[];let c="",q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"')q=!q;else if(ch===","&&!q){r.push(c.trim());c="";}else c+=ch;}r.push(c.trim());return r;}
 function parseCSV(text){const lines=text.trim().split("\n");const h=splitCSVLine(lines[0]);return lines.slice(1).map(function(line){const v=splitCSVLine(line);const o={};h.forEach(function(k,i){o[k]=v[i]||"";});o.score=parseFloat(o.score)||0;o.lat=parseFloat(o.lat)||0;o.lng=parseFloat(o.lng)||0;return o;}).filter(function(c){return c.name&&c.score>0&&!SPAIN_CITIES.includes((c.city||"").toLowerCase());});}
 function getScoreColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
-function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";return"AVOID";}
+function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=6.1)return"TAKE OR LEAVE";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";if(s>=4.1)return"NOT FOR US";return"AVOID";}
 
 function renderCityPage(citySlug, cafes) {
   const cityCafes = cafes.filter(function(c){return makeCitySlug(c.city)===citySlug;}).sort(function(a,b){return b.score-a.score;});
@@ -112,7 +112,8 @@ function renderCityPage(citySlug, cafes) {
     .ft{margin-top:36px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.04);text-align:center}.ft p{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.7;margin-bottom:12px}.ft a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:11px}.ft a:hover{color:#E6C073}
     .browse-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,#c8a96e,#f5e6c8);color:#0a0a0a;font-weight:700;font-size:13px;text-decoration:none;margin-bottom:16px}.browse-btn img{width:20px;height:20px;border-radius:50%}
     .avoid-link{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:12px;border:1px solid rgba(248,113,113,0.25);background:rgba(248,113,113,0.05);color:#f87171;text-decoration:none;font-size:12px;font-weight:600;margin-bottom:16px}
-    @media(max-width:480px){.stats{flex-wrap:wrap}.stat{min-width:45%}.cc-nm{font-size:13px}}
+    .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.04);padding:12px 8px;min-width:0}.stat:nth-child(odd){border-right:1px solid rgba(255,255,255,0.04)}.stat:nth-last-child(-n+2){border-bottom:none}.cc-nm{font-size:13px}}
+      .top3{gap:6px}
   </style>
 </head>
 <body>
@@ -182,7 +183,7 @@ function renderCityPage(citySlug, cafes) {
 
   <script>
     var AC=${cafeData};var page=0;var PP=10;var filtered=AC;var nearMode=false;
-    function gc(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
+    function gc(s){if(s>=9.1)return"#ffffff";if(s>=8.1)return"#4ade80";if(s>=7.5)return"#2dd4bf";if(s>=7.1)return"#2dd4bf";if(s>=6.5)return"#facc15";if(s>=6.1)return"#facc15";if(s>=5.5)return"#fb923c";if(s>=5.1)return"#fb923c";return"#f87171";}
     function render(){
       var show=filtered.slice(0,(page+1)*PP);
       var h="";show.forEach(function(c){var col=gc(c.sc);
