@@ -45,8 +45,11 @@ export default async function handler(req,res){
     +'<div class="tier"><div class="tier-score" style="color:#2dd4bf">7.5-8.0</div><div><div class="tier-name">Must Visit</div><div class="tier-desc">Earns our sticker and badge. Top 4% of all cafes.</div></div></div>'
     +'<div class="tier"><div class="tier-score" style="color:#2dd4bf">7.1-7.4</div><div><div class="tier-name">Solid</div><div class="tier-desc">Reliable. Good coffee. Worth visiting if nearby.</div></div></div>'
     +'<div class="tier"><div class="tier-score" style="color:#facc15">6.5-7.0</div><div><div class="tier-name">Decent</div><div class="tier-desc">Fine. Nothing wrong, nothing memorable.</div></div></div>'
-    +'<div class="tier"><div class="tier-score" style="color:#fb923c">5.5-6.4</div><div><div class="tier-name">Average to Take or Leave</div><div class="tier-desc">Forgettable. One or more elements weak.</div></div></div>'
-    +'<div class="tier"><div class="tier-score" style="color:#f87171">Below 5.5</div><div><div class="tier-name">Not Recommended</div><div class="tier-desc">Significant quality issues.</div></div></div></div>'
+    +'<div class="tier"><div class="tier-score" style="color:#facc15">6.0-6.4</div><div><div class="tier-name">Take or Leave</div><div class="tier-desc">Forgettable. Might have one weak element.</div></div></div>'
+    +'<div class="tier"><div class="tier-score" style="color:#fb923c">5.5-5.9</div><div><div class="tier-name">Average</div><div class="tier-desc">Below the line. Not worth a trip.</div></div></div>'
+    +'<div class="tier"><div class="tier-score" style="color:#fb923c">5.0-5.4</div><div><div class="tier-name">Just Okay</div><div class="tier-desc">Multiple weak elements.</div></div></div>'
+    +'<div class="tier"><div class="tier-score" style="color:#f87171">4.0-4.9</div><div><div class="tier-name">Not For Us</div><div class="tier-desc">Significant quality issues.</div></div></div>'
+    +'<div class="tier"><div class="tier-score" style="color:#f87171">Below 4.0</div><div><div class="tier-name">Avoid</div><div class="tier-desc">Do not order coffee here.</div></div></div></div>'
 
     // GET YOUR BADGE
     +'<div class="sec"><h2>GET YOUR KOFFEE REVIEW BADGE</h2>'
