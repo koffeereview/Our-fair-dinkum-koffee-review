@@ -5,7 +5,7 @@ function suburbToSlug(s){return String(s||"").toLowerCase().trim().replace(/[^a-
 function toTitleCase(s){return(s||"").split(" ").map(function(w){return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase();}).join(" ");}
 function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
 function getScoreColor(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
-function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";return"AVOID";}
+function getVerdict(s){if(s>=9.1)return"ELITE";if(s>=8.1)return"GREAT";if(s>=7.5)return"MUST VISIT";if(s>=7.1)return"SOLID";if(s>=6.5)return"DECENT";if(s>=6.1)return"TAKE OR LEAVE";if(s>=5.5)return"AVERAGE";if(s>=5.1)return"JUST OKAY";if(s>=4.1)return"NOT FOR US";return"AVOID";}
 
 function splitCSVLine(line){const r=[];let c="",q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"')q=!q;else if(ch===","&&!q){r.push(c.trim());c="";}else c+=ch;}r.push(c.trim());return r;}
 function parseCSV(text){const lines=text.split("\n").filter(function(l){return l.trim();});if(lines.length<2)return[];const h=splitCSVLine(lines[0]).map(function(x){return x.trim().toLowerCase();});const ni=h.indexOf("name"),si=h.indexOf("suburb"),ci=h.indexOf("city"),sci=h.indexOf("score"),pi=h.indexOf("price"),noi=h.indexOf("notes"),lai=h.indexOf("lat"),lni=h.indexOf("lng");if(ni===-1||si===-1)return[];return lines.slice(1).map(function(line){const p=splitCSVLine(line);return{name:p[ni]||"",suburb:p[si]||"",city:p[ci]||"",score:parseFloat(p[sci])||0,price:p[pi]||"$$$",notes:p[noi]||"",lat:parseFloat(p[lai])||0,lng:parseFloat(p[lni])||0};}).filter(function(c){return c.name&&c.suburb;});}
@@ -201,7 +201,7 @@ export default async function handler(req, res) {
 
   <script>
     var AC=${cafeData};var page=0;var PP=10;
-    function gc(s){if(s>=9)return"#ffffff";if(s>=8)return"#4ade80";if(s>=7)return"#2dd4bf";if(s>=6)return"#facc15";if(s>=5)return"#fb923c";return"#f87171";}
+    function gc(s){if(s>=9.1)return"#ffffff";if(s>=8.1)return"#4ade80";if(s>=7.5)return"#2dd4bf";if(s>=7.1)return"#2dd4bf";if(s>=6.5)return"#facc15";if(s>=6.1)return"#facc15";if(s>=5.5)return"#fb923c";if(s>=5.1)return"#fb923c";return"#f87171";}
     function render(){
       var show=AC.slice(0,(page+1)*PP);
       var h="";show.forEach(function(c){var col=gc(c.sc);
