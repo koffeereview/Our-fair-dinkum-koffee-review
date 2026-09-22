@@ -849,11 +849,18 @@ function renderHTML(cafe, allCafes) {
 
 export default async function handler(req, res) {
   try {
-    const slug = (req.query.slug || "").replace(/-+/g, "-");
+    const rawSlug = req.query.slug || "";
+    const slug = rawSlug.replace(/-+/g, "-").replace(/^-|-$/g, "");
 
     if (!slug) {
       res.status(404).send("Not found");
       return;
+    }
+
+    // 301 redirect if URL had double dashes or trailing dashes
+    if (rawSlug !== slug) {
+      res.setHeader("Location", "/review/" + slug);
+      return res.status(301).send("");
     }
 
     const response = await fetch(SHEET_URL);
