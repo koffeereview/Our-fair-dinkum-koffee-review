@@ -92,6 +92,8 @@
     { "source": "/the-gauntlet", "destination": "/api/the-gauntlet" },
     { "source": "/quiz", "destination": "/api/quiz" },
     { "source": "/saved", "destination": "/api/saved" },
+    { "source": "/passport", "destination": "/api/passport" },
+    { "source": "/find-my-coffee", "destination": "/api/find-my-coffee" },
     { "source": "/countries", "destination": "/api/countries" },
     { "source": "/countries/:country", "destination": "/api/countries?country=:country" },
     { "source": "/how-we-score", "destination": "/how-we-score.html" },
