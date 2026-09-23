@@ -492,7 +492,7 @@ function renderHTML(cafe, allCafes) {
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
       <div id="voteMsg" style="font-size:11px;color:rgba(255,255,255,0.25);min-height:16px"></div>
-      <a href="/passport" id="myListLink" style="display:none;font-size:11px;color:rgba(255,255,255,0.5);text-decoration:none">My Passport &rarr;</a>
+      <a href="/passport" style="font-size:11px;color:rgba(255,255,255,0.5);text-decoration:none">My Passport &rarr;</a>
     </div>
 
     <div class="action-btns">
@@ -834,7 +834,6 @@ function renderHTML(cafe, allCafes) {
       var btn = document.getElementById("saveBtn");
       btn.style.background = isSaved ? "rgba(230,192,115,0.15)" : "rgba(230,192,115,0.06)";
       btn.style.borderColor = isSaved ? "#E6C073" : "rgba(230,192,115,0.2)";
-      if (savedList.length > 0) document.getElementById("myListLink").style.display = "block";
     }
 
     function updateVisitedBtn() {
