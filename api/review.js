@@ -480,6 +480,9 @@ function renderHTML(cafe, allCafes) {
       <button id="visitedBtn" onclick="toggleVisited()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.12);color:#4ade80;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
         <span id="visitedIcon" style="font-size:16px">○</span><span id="visitedText">Been here</span>
       </button>
+      <button id="returnBtn" onclick="toggleReturn()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:rgba(45,212,191,0.04);border:1px solid rgba(45,212,191,0.12);color:#2dd4bf;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
+        <span id="returnIcon" style="font-size:14px">&#8634;</span><span id="returnText">Return</span>
+      </button>
       <button id="voteUp" onclick="castVote('up')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.12);color:#4ade80;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s">
         👍 <span id="upCount" style="font-family:'Bebas Neue',sans-serif;font-size:16px">0</span>
       </button>
@@ -489,7 +492,7 @@ function renderHTML(cafe, allCafes) {
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
       <div id="voteMsg" style="font-size:11px;color:rgba(255,255,255,0.25);min-height:16px"></div>
-      <a href="/saved" id="myListLink" style="display:none;font-size:11px;color:rgba(230,192,115,0.4);text-decoration:none">My List &rarr;</a>
+      <a href="/passport" id="myListLink" style="display:none;font-size:11px;color:rgba(230,192,115,0.4);text-decoration:none">My List &rarr;</a>
     </div>
 
     <div class="action-btns">
@@ -856,8 +859,28 @@ function renderHTML(cafe, allCafes) {
       updateVisitedBtn();
     }
 
+    // WOULD RETURN
+    var returnList = JSON.parse(localStorage.getItem("kr_return") || "[]");
+    var isReturn = returnList.indexOf(CAFE_SLUG) !== -1;
+
+    function updateReturnBtn() {
+      document.getElementById("returnIcon").innerHTML = isReturn ? "&#10003;" : "&#8634;";
+      document.getElementById("returnText").textContent = isReturn ? "Would Return" : "Return";
+      var btn = document.getElementById("returnBtn");
+      btn.style.background = isReturn ? "rgba(45,212,191,0.15)" : "rgba(45,212,191,0.04)";
+      btn.style.borderColor = isReturn ? "#2dd4bf" : "rgba(45,212,191,0.12)";
+    }
+
+    function toggleReturn() {
+      if (isReturn) { returnList = returnList.filter(function(s){return s!==CAFE_SLUG;}); isReturn = false; }
+      else { returnList.push(CAFE_SLUG); isReturn = true; if(navigator.vibrate)navigator.vibrate(30); }
+      localStorage.setItem("kr_return", JSON.stringify(returnList));
+      updateReturnBtn();
+    }
+
     updateSaveBtn();
     updateVisitedBtn();
+    updateReturnBtn();
     loadVotes();
   </script>
 </body>
