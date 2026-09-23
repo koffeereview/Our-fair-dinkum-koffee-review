@@ -492,7 +492,7 @@ function renderHTML(cafe, allCafes) {
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
       <div id="voteMsg" style="font-size:11px;color:rgba(255,255,255,0.25);min-height:16px"></div>
-      <a href="/passport" style="font-size:11px;color:rgba(255,255,255,0.5);text-decoration:none">My Passport &rarr;</a>
+      <a href="/passport" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.3px">My Koffee Passport &rarr;</a>
     </div>
 
     <div class="action-btns">
