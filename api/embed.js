@@ -38,8 +38,9 @@ function parseCSV(text) {
       var p = splitCSVLine(lines[i]);
       var name = p[idx.name] || "";
       var suburb = p[idx.suburb] || "";
-      if (!name || !suburb) continue;
-      out.push({ name: name, suburb: suburb, city: p[idx.city] || "", score: parseFloat(p[idx.score]) || 0 });
+      var sc = parseFloat(p[idx.score]) || 0;
+      if (!name || !suburb || sc <= 0) continue;
+      out.push({ name: name, suburb: suburb, city: p[idx.city] || "", score: sc });
     } catch (e) {}
   }
   return out;
