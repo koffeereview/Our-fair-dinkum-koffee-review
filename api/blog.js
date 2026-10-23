@@ -2374,6 +2374,264 @@ var POSTS = [
       { q: "What is the most popular coffee order in Australia?", a: "The latte is Australia's most common order. It is also the drink most affected by bad milk technique. About 80 percent of lattes we score have at least one milk texture problem." },
       { q: "Which coffee order is hardest to make well?", a: "The oat milk latte. Oat milk froths differently, burns faster, and separates if the barista is not careful. A cafe that makes a great oat latte has above average barista skills." }
     ]
+  },
+  {
+    slug: "sunshine-coast-coffee-guide",
+    title: "Sunshine Coast Coffee — We Reviewed 13 Cafes and Most Were Disappointing",
+    ogImage: "https://koffeereview.com.au/og-blog-36.png",
+    description: "We took the same blind test to the Sunshine Coast. 13 cafes, same order, same scoring. The average score was 5.8 — well below Brisbane’s 6.2. Here is what we found.",
+    date: "2026-10-23", readingTime: "7 min",
+    category: "regional",
+    keywords: ["best coffee sunshine coast","sunshine coast cafe reviews","coffee noosa","coffee maroochydore","coffee caloundra","best latte sunshine coast","sunshine coast cafe guide 2026"],
+    intro: "The Sunshine Coast sells itself on lifestyle. Beach, hinterland, relaxed mornings. You would think the coffee would match. We took our blind test to 13 cafes across Noosa, Maroochydore, Caloundra, Baringa, and Maleny. Same order every time — one latte, one double shot espresso.\n\nThe average score was 5.8. That is below Brisbane (6.2), below the Gold Coast (6.1), and well below our national must-visit threshold of 7.5. Only three cafes cracked 7.0.\n\nThis is not a hit piece. There is genuine quality on the Sunshine Coast — you just need to know exactly where to find it.",
+    sections: [
+      {
+        heading: "The Top 3 — Where the Sunshine Coast Gets It Right",
+        body: "Noosa Social Espresso & Wine Bar in Noosa scored 7.4 — the highest on the Coast. Clean extraction, balanced body, consistent across both drinks. This is a cafe that takes its coffee as seriously as its wine list. If you are in Noosa, this is your first stop.\n\nCapo Cafe in Baringa came in at 7.3. A newer suburb, a newer cafe, and genuine quality in the cup. Punchy espresso with structure. The kind of place that could anchor an entire neighbourhood’s coffee reputation.\n\nSlide Coffee House in Caloundra scored 7.1. Own-roast operation doing things properly. When a cafe roasts its own beans and pulls its own shots well, you get consistency that franchise operations cannot match.",
+        links: [
+          { text: "Noosa Social full review", url: "/review/noosa-social-espresso-wine-bar-noosa" },
+          { text: "Capo Cafe full review", url: "/review/capo-cafe-baringa" },
+          { text: "Slide Coffee House full review", url: "/review/slide-coffee-house-caloundra" }
+        ]
+      },
+      {
+        heading: "The Middle — Decent But Not Worth Travelling For",
+        body: "Six cafes landed between 5.7 and 6.5. Criminal Coffee Company in Maroochydore (6.5) and Maleny Food Co (6.5) sit at the top of this middle tier — decent coffee, smooth enough, but missing that extra gear.\n\nCoffee@4551 in Caloundra (6.4) and Espresso Bar International in Maroochydore (6.3) are perfectly acceptable morning coffees. Nothing wrong, nothing memorable. You will drink them, move on, and not think about them again.\n\nRhythm Espresso in Baringa (5.9) and Little Sparrow in Maroochydore (5.7) round out the middle. Average by our scoring — meaning they are forgettable cups that do the minimum job."
+      },
+      {
+        heading: "The Bottom — Skip These Entirely",
+        body: "Four cafes scored below 5.0, which is our threshold for genuinely bad coffee.\n\nEvolution Fuel in Maroochydore scored 4.6. WildHorse Coffee in Coochin Creek scored 4.5. The Nines in Maroochydore came in at 4.2. And Noosa Chocolate Factory’s Maroochydore location scored 3.5 — the worst coffee we found on the Sunshine Coast.\n\nThe pattern across these low-scoring cafes was the same: under-extracted espresso, poorly textured milk, and beans that tasted stale or over-roasted. These are fixable problems, but until they fix them, your money is better spent elsewhere.",
+        links: [
+          { text: "See all Sunshine Coast reviews", url: "/city/sunshine-coast" }
+        ]
+      },
+      {
+        heading: "Maroochydore Has a Problem",
+        body: "Five of our 13 Sunshine Coast reviews were in Maroochydore — the hub of the Coast. The average score across those five was 5.1. That includes both the worst cafe on the Coast (Noosa Chocolate Factory at 3.5) and only one above 6.0 (Criminal Coffee Company at 6.5).\n\nFor a town that positions itself as the centre of Sunshine Coast culture, the coffee scene is underperforming. Compare this to Burleigh Heads on the Gold Coast, where five cafes average 7.5.\n\nMaroochydore is not short on cafes. It is short on cafes that take extraction seriously."
+      },
+      {
+        heading: "The Verdict — Come for the Beach, Bring Low Expectations for Coffee",
+        body: "The Sunshine Coast has three genuinely good cafes and a lot of mediocrity. If you are visiting, Noosa Social, Capo Cafe, and Slide Coffee House are your targets. Everything else is a gamble.\n\nThe Coast’s average score of 5.8 puts it behind every other region we cover with more than 10 reviews. The potential is there — Capo Cafe proves a new cafe in a new suburb can deliver quality from day one. The Coast just needs more operators who care about what is in the cup, not just the view from the table.\n\nOne latte. One double shot. Same test, same standard. The coffee speaks for itself.",
+        links: [
+          { text: "Compare: Gold Coast coffee by suburb", url: "/blog/gold-coast-coffee-suburb-guide" },
+          { text: "Best coffee suburbs in Brisbane", url: "/blog/best-coffee-suburbs-brisbane" },
+          { text: "National leaderboard", url: "/leaderboard" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the best coffee on the Sunshine Coast?", a: "Noosa Social Espresso & Wine Bar scored highest at 7.4, followed by Capo Cafe in Baringa at 7.3 and Slide Coffee House in Caloundra at 7.1." },
+      { q: "Is coffee on the Sunshine Coast good?", a: "Mixed. The average score across 13 reviewed cafes is 5.8, which is below the Brisbane average of 6.2. There are three standout cafes but the overall standard is lower than other Queensland regions." },
+      { q: "Where should I get coffee in Noosa?", a: "Noosa Social Espresso & Wine Bar is the top-scoring cafe in our Noosa reviews at 7.4." },
+      { q: "Where should I get coffee in Maroochydore?", a: "Criminal Coffee Company scored 6.5 — the only Maroochydore cafe above 6.0 in our reviews. We recommend it as the safest choice in the area." }
+    ]
+  },
+  {
+    slug: "scalding-hot-coffee-problem",
+    title: "Scalding Hot Coffee Is Killing Your Latte — The Pattern We Keep Seeing",
+    ogImage: "https://koffeereview.com.au/og-blog-37.png",
+    description: "Across 411 reviews, we found a clear pattern: cafes that serve coffee too hot almost always score below 3.0. Here is why overheating milk destroys everything and which cafes are guilty.",
+    date: "2026-10-23", readingTime: "6 min",
+    category: "analysis",
+    keywords: ["coffee too hot","scalding hot latte","overheated milk coffee","worst coffee australia","coffee temperature","burnt milk latte","why is my coffee too hot"],
+    intro: "We have reviewed 411 cafes. Same order every time — one latte, one double shot espresso. And across that dataset, one pattern shows up again and again at the very bottom of our scores.\n\nScalding hot coffee.\n\nNot warm. Not hot. Scalding — as in, you physically cannot drink it. You wait five minutes. By the time it cools, the flavour is gone. The milk has broken down. What is left in the cup is a biology lesson in protein denaturation, not a coffee.\n\nEvery cafe that served us scalding hot coffee scored 2.1 or below. Every single one.",
+    sections: [
+      {
+        heading: "The Science — What Happens When You Overheat Milk",
+        body: "Milk contains proteins — primarily casein and whey. When you steam milk for a latte, you are denaturing those proteins in a controlled way, creating microfoam. The sweet spot is between 55°C and 65°C. In that range, lactose breaks down into sweeter-tasting sugars, proteins unfold to create smooth texture, and the milk integrates with espresso to produce the drink you are paying for.\n\nAbove 70°C, the whey proteins fully denature. The milk tastes flat and slightly sulphuric. Above 75°C, you are actively destroying flavour compounds. The sweetness disappears. The texture becomes thin and watery despite feeling hot. By 80°C+, you have scalded the milk — it tastes burnt, the proteins have coagulated, and no amount of waiting will bring back what you lost.\n\nThis is not opinion. This is food chemistry. Every barista course in Australia teaches this. Every cafe that serves scalding coffee is choosing to ignore it."
+      },
+      {
+        heading: "The Offenders — Every Scalding Coffee in Our Database",
+        body: "Stellarossa Forest Lake — 1.1/10. Our review: Scalding hot, could not drink. By the time it cooled there was nothing left.\n\nCarpe Diem Capalaba — 2.1/10. Scalding hot, could not drink for five minutes. By the time it cooled there was nothing left.\n\nHoney Cafe & Restaurant Stafford — 2.1/10. Served so hot it was undrinkable. By the time it cooled, flavour was gone.\n\nSalt by Cafe One North Lakes — 2.1/10. Flat from the first sip, latte served hotter than coal. By the time it was drinkable there was nothing left.\n\nFlow Cafe Burpengary — 2.1/10. Could not even touch the cup, served scalding hot. Watery through the middle, bitter exit.\n\nFive cafes, same exact problem, same bottom-tier scores. The pattern is not a coincidence.",
+        links: [
+          { text: "Full list of cafes to avoid", url: "/brisbane-cafes-to-avoid" },
+          { text: "Stellarossa Forest Lake review", url: "/review/stellarossa-forest-lake-forest-lake" }
+        ]
+      },
+      {
+        heading: "Why Cafes Do This",
+        body: "There are three reasons a cafe serves scalding coffee, and none of them are good.\n\nFirst — they think customers want it hot. Some older customers do ask for extra hot. But extra hot is not a quality request. It is a preference that directly conflicts with flavour. A cafe that adjusts temperature to customer requests without explaining the trade-off is not doing the customer any favours.\n\nSecond — they are using automatic steam wands with no manual override. Cheaper machines and poorly calibrated equipment overheat by default. The barista is not steaming the milk — the machine is, and the machine does not care about 65°C.\n\nThird — they do not care. The espresso extraction is poor, the beans are stale, and the overheated milk masks how bad the underlying coffee is. You cannot taste bad extraction when you cannot taste anything at all.\n\nOption three is the most common."
+      },
+      {
+        heading: "The Temperature Test — How to Check Before You Sip",
+        body: "Touch the side of the cup. If you can hold it comfortably, the temperature is probably in the right range. If you cannot touch the cup for more than a second, it is too hot. Walk away.\n\nA properly made latte should be drinkable immediately. Not lukewarm — pleasantly warm. You should be able to take a full sip within 30 seconds of receiving it. If you are waiting five minutes, the cafe has failed.\n\nSome cafes will offer extra hot as an option. That is fine as a stated choice. But a cafe that serves extra hot by default without telling you is making a decision about your coffee that you did not ask for.",
+        cta: { text: "See which cafes get temperature right", url: "/leaderboard" }
+      },
+      {
+        heading: "What Good Temperature Looks Like in Our Data",
+        body: "Our highest-scoring cafes — Brunells (8.6), Espresso Mafia (8.4), Quest Coffee Roasters (8.1) — never mention temperature as a negative. Temperature is invisible when it is correct. You only notice it when it is wrong.\n\nAcross our 37 cafes scoring 7.5 or above, not a single one served coffee too hot. Zero. The correlation between proper temperature and high scores is absolute in our dataset.\n\nTemperature is the easiest thing in coffee to get right. It costs nothing extra. It requires no special beans or equipment — just a barista who knows when to stop steaming. The fact that cafes still get this wrong in 2026 tells you everything about their standards.\n\nOne latte. One double shot. No exceptions. And definitely not scalding.",
+        links: [
+          { text: "Must-visit cafes — all served at proper temperature", url: "/must-visit-cafes" },
+          { text: "How we score", url: "/how-we-score" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What temperature should a latte be served at?", a: "Between 55°C and 65°C. Above 70°C, milk proteins denature and flavour is destroyed. A properly made latte should be drinkable immediately." },
+      { q: "Why is my coffee always served too hot?", a: "Usually poorly calibrated equipment, automatic steam wands, or a cafe that prioritises perceived hotness over flavour. All cafes in our dataset that served scalding coffee scored 2.1 or below." },
+      { q: "Does coffee temperature affect taste?", a: "Yes. Milk overheated beyond 70°C loses sweetness and develops a flat, sulphuric taste. Every cafe that served us scalding hot coffee received a bottom-tier score." }
+    ]
+  },
+  {
+    slug: "own-roast-cafes-queensland",
+    title: "Own-Roast Cafes in Queensland — Do They Actually Make Better Coffee?",
+    ogImage: "https://koffeereview.com.au/og-blog-38.png",
+    description: "We found 17 cafes that roast their own beans. Their average score is 6.8 — higher than the overall average of 6.1. But the gap is smaller than you would expect. Here is the full breakdown.",
+    date: "2026-10-23", readingTime: "7 min",
+    category: "analysis",
+    keywords: ["own roast cafes brisbane","coffee roasters brisbane","best own roast cafe","micro roastery brisbane","coffee roasters queensland","specialty coffee roasters brisbane"],
+    intro: "There is a story the coffee industry loves to tell: if a cafe roasts its own beans, the coffee will be better. Fresher beans, more control, more passion. It sounds right.\n\nWe tested it against our data. Out of 411 cafes reviewed, 17 roast their own beans on-site. Their average score is 6.8. The overall average across all 411 cafes is 6.1.\n\nSo own-roast cafes do score higher — but only by 0.7 points. That is not the gap you would expect if roasting your own beans was a guaranteed quality advantage. The real picture is more complicated.",
+    sections: [
+      {
+        heading: "The Best Own-Roast Cafes — Where It Actually Works",
+        body: "First Batch Coffee Roaster in Noosaville scored 7.6. Dog-friendly, own-roast, and genuinely good coffee. This is the own-roast model working exactly as it should — total control from bean to cup, and a score that proves it.\n\nEdition Roasters in Sydney’s World Square came in at 7.6 as well. Clean, precise, and confident. When a roaster gets their profile dialled in and their baristas execute on it, the result is unmistakable.\n\nIndustry Beans Newstead (7.5), Third Space Collective in Woolloongabba (7.5), and The Coffee Commune in Bowen Hills (7.5) round out the top tier. All three are in Brisbane. All three roast on-site. All three score in must-visit territory.\n\nThis is the top of the own-roast game in Queensland. Five cafes out of 17 that genuinely justify the roast-your-own model.",
+        links: [
+          { text: "First Batch Coffee Roaster review", url: "/review/first-batch-coffee-roaster-noosaville" },
+          { text: "Industry Beans Newstead review", url: "/review/industry-beans-newstead-newstead" },
+          { text: "The Coffee Commune review", url: "/review/the-coffee-commune-bowen-hills" }
+        ]
+      },
+      {
+        heading: "The Middle Tier — Roasting Their Own Does Not Save Them",
+        body: "Old Quarter Coffee in Coolangatta scored 7.2 — solid, doing Southeast Asian beans that taste genuinely different. Slide Coffee House in Caloundra hit 7.1. Cubby House in Brendale and Fonzie Abbott in Albion both scored 6.9.\n\nThese are decent cafes. But they are not outperforming the best cafes that buy from established roasters. Clancys Espresso in Norman Park uses someone else’s beans and scored 7.9. Zen Barista in Manly scored 7.8 without roasting a single bean.\n\nThe lesson: roasting your own beans is not a shortcut to quality. Execution at the machine still matters more than what happens in the roaster."
+      },
+      {
+        heading: "The Underperformers — Own Roast, Average Coffee",
+        body: "Coffee Iconic in the CBD scored 6.7 despite roasting in-house. Cafe 33 in Woolloongabba came in at 6.3. Honey Dew Valley K-food in Fortitude Valley scored 6.1. Little Sparrow in Maroochydore managed 5.7.\n\nThese cafes roast their own beans and still produce average or below-average coffee. That should not be possible if the own-roast narrative was true. But it is possible — because roasting is only half the equation. If extraction is inconsistent, if milk technique is poor, if the barista does not care, it does not matter how fresh the beans are.\n\nA perfectly roasted bean pulled badly is still a bad coffee."
+      },
+      {
+        heading: "Own-Roast vs Best Roasters — The Real Comparison",
+        body: "The most interesting comparison is between own-roast cafes and cafes using top-tier external roasters.\n\nSample Coffee averages 7.47 across 3 cafes. Five Senses Coffee averages 7.42 across 5 cafes. Seven Miles Coffee Roasters averages 7.18 across 6 cafes.\n\nOwn-roast cafes average 6.8 across 17 cafes.\n\nCafes using the best external roasters actually outperform own-roast cafes on average. The gap is small but consistent. This tells us that a great roaster paired with a great barista beats a cafe trying to do everything itself — at least on average.\n\nThe standout own-roast cafes (First Batch, Edition, Industry Beans) compete with anyone. But the average own-roast cafe does not beat the average cafe using a top roaster.",
+        links: [
+          { text: "Full roaster rankings", url: "/blog/roaster-rankings-best-cafes" },
+          { text: "National leaderboard", url: "/leaderboard" }
+        ]
+      },
+      {
+        heading: "The Verdict — Should You Seek Out Own-Roast Cafes?",
+        body: "If you are choosing between an own-roast cafe and a random cafe with no reputation, pick the own-roast. They average 6.8 versus 6.1 overall — that is a meaningful edge.\n\nBut if you are choosing between an own-roast cafe and a cafe using Sample Coffee, Five Senses, or Seven Miles? Go with whoever has the higher score. The roaster badge on the wall does not guarantee a better cup.\n\nOwn-roast works when the cafe also invests in barista training, equipment maintenance, and consistency. When any of those slip, roasting your own beans just means you are failing at more things simultaneously.\n\nOne latte. One double shot. The beans only matter if the person pulling the shot knows what they are doing.",
+        links: [
+          { text: "All own-roast cafes", url: "/tags" },
+          { text: "Must-visit cafes", url: "/must-visit-cafes" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "Are own-roast cafes better than regular cafes?", a: "On average, yes — own-roast cafes score 6.8 versus the overall average of 6.1. But the best external roasters (Sample Coffee at 7.47 avg, Five Senses at 7.42 avg) outperform the own-roast average." },
+      { q: "What is the best own-roast cafe in Brisbane?", a: "Industry Beans Newstead and Third Space Collective in Woolloongabba both score 7.5. The Coffee Commune in Bowen Hills also scores 7.5." },
+      { q: "Does roasting your own beans guarantee better coffee?", a: "No. We found own-roast cafes scoring as low as 5.7. Roasting is only half the equation — extraction quality, milk technique, and consistency still determine the final score." }
+    ]
+  },
+  {
+    slug: "burleigh-heads-best-coffee-gold-coast",
+    title: "Burleigh Heads Has the Best Coffee on the Gold Coast — The Numbers Prove It",
+    ogImage: "https://koffeereview.com.au/og-blog-39.png",
+    description: "Five cafes reviewed in Burleigh Heads. Average score: 7.5. That is higher than any other suburb on the Gold Coast and most suburbs in Brisbane. Here is why Burleigh is the Gold Coast’s coffee capital.",
+    date: "2026-10-23", readingTime: "6 min",
+    category: "regional",
+    keywords: ["best coffee burleigh heads","burleigh heads cafes","best coffee gold coast","coffee burleigh heads 2026","best latte gold coast","gold coast coffee guide","burleigh heads cafe guide"],
+    intro: "We have reviewed 30 cafes across the Gold Coast. Every suburb gets the same test — one latte, one double shot espresso, scored blind with no exceptions.\n\nOne suburb stands above everything else: Burleigh Heads.\n\nFive cafes. Average score: 7.5. That is not just the best on the Gold Coast — it is one of the highest suburb averages in our entire 411-cafe dataset. For context, Brisbane’s CBD averages 6.2 across 36 cafes. Fortitude Valley averages 6.3 across 14.\n\nBurleigh is not just good for the Gold Coast. It is good for Australia.",
+    sections: [
+      {
+        heading: "The Rankings — Every Burleigh Cafe Scored",
+        body: "Quest Coffee Roasters — 8.1/10 (GREAT). The highest score on the entire Gold Coast. Own-roast operation pulling exceptional shots with depth, complexity, and consistency. This is destination-worthy coffee.\n\nFlockd Espresso Bar — 7.9/10 (MUST VISIT). Using Blackboard Coffee Roasters. Punchy, clean, and confident. The kind of cafe that makes you reconsider everything you thought about Gold Coast coffee.\n\nNext Door Burleigh — 7.8/10 (MUST VISIT). Balanced, well-extracted, textbook milk technique. A cafe doing everything right without trying to reinvent the wheel.\n\nDover’s Drop — 7.2/10 (SOLID). Reliable quality that sits just below must-visit territory. On a good day this could easily push higher.\n\nCoffee Bug Express outpost nearby in Burleigh Waters at Bell Jar Cafe — 7.4/10 (SOLID). Not technically Burleigh Heads but close enough to anchor the area’s reputation.\n\nFive cafes. Zero scored below 7.0. That consistency is almost unheard of across our entire dataset.",
+        links: [
+          { text: "Quest Coffee Roasters review", url: "/review/quest-coffee-roasters-burleigh-heads" },
+          { text: "Flockd Espresso Bar review", url: "/review/flockd-espresso-bar-burleigh-heads" },
+          { text: "All Gold Coast reviews", url: "/city/gold-coast" }
+        ]
+      },
+      {
+        heading: "Why Burleigh Works — The Competition Effect",
+        body: "When multiple good cafes operate within walking distance, they push each other. A barista at Flockd knows Quest Coffee Roasters is two streets away pulling 8.1-level shots. That awareness drives standards up.\n\nThis is the same effect we see in Brisbane suburbs like Nundah (Clubhouse and Embargos both scoring 7.5) and Newstead (Industry Beans 7.5, Coffee Speed Dial 7.5). When there is no nearby competition, cafes coast. When there is, they perform.\n\nBurleigh has the tightest cluster of high-scoring cafes on the Gold Coast. And that is not an accident — it is competition doing what competition does."
+      },
+      {
+        heading: "Burleigh vs the Rest of the Gold Coast",
+        body: "Southport has Silipo Coffee at 7.8 — excellent — but other Southport cafes pull the average down. Robina has The Marketplace Cafe at 7.6 but it is a standalone performer without the cluster effect.\n\nCoolangatta has Old Quarter Coffee at 7.2, doing interesting work with Southeast Asian beans. Currumbin Waters has Refinery Coffee at 7.3. Both solid, but neither suburb has the depth that Burleigh does.\n\nSurfers Paradise? Espresso Bonsai at 6.4 is the best we found. The tourist strip is exactly what you would expect — mediocre coffee at premium prices for people who do not know better.\n\nBurleigh wins because it has depth. Not one standout cafe surrounded by average neighbours, but five cafes all performing at or near must-visit level. That is a coffee suburb.",
+        links: [
+          { text: "Gold Coast coffee suburb guide", url: "/blog/gold-coast-coffee-suburb-guide" },
+          { text: "Suburb explorer", url: "/explore" }
+        ]
+      },
+      {
+        heading: "Burleigh vs Brisbane’s Best Suburbs",
+        body: "How does Burleigh stack up against Brisbane’s top coffee suburbs?\n\nBulimba has Bellissimo Coffee at 7.9 but a wider score spread. Newstead has two 7.5s but also some average performers. Norman Park has Clancys at 7.9 but fewer total cafes.\n\nBurleigh’s advantage is its floor. The lowest score in Burleigh Heads is 7.2. Most Brisbane suburbs have at least one cafe below 6.0 dragging their average down.\n\nIf you ranked every suburb in our dataset by minimum score, Burleigh Heads would be at or near the top. That floor — the guarantee that even the worst cafe in the suburb is still solid — is what makes it special.",
+        cta: { text: "Compare suburbs across Australia", url: "/explore" }
+      },
+      {
+        heading: "The Verdict — If You Are on the Gold Coast, Go to Burleigh",
+        body: "Start at Quest Coffee Roasters for the best single cup on the Gold Coast. Walk to Flockd for a different style. Hit Next Door Burleigh for a reliable third option. You could spend an entire morning hopping between these three and every cup would be worth it.\n\nBurleigh Heads proves that a great coffee suburb is not about having one famous cafe. It is about having a standard that every cafe in the area meets or exceeds. Five cafes, zero below 7.0, average of 7.5.\n\nThe Gold Coast’s coffee reputation might be mixed, but Burleigh is not. This is where the coast’s best coffee lives.\n\nOne latte. One double shot. Burleigh delivers every time.",
+        links: [
+          { text: "Plan your Burleigh coffee trail", url: "/suburb/burleigh-heads-gold-coast" },
+          { text: "National leaderboard", url: "/leaderboard" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "What is the best cafe in Burleigh Heads?", a: "Quest Coffee Roasters scored 8.1 — the highest on the entire Gold Coast. Flockd Espresso Bar (7.9) and Next Door Burleigh (7.8) are also must-visit." },
+      { q: "Is Burleigh Heads good for coffee?", a: "Yes. Five reviewed cafes average 7.5, which is one of the highest suburb averages in our 411-cafe dataset. Every cafe scored 7.0 or above." },
+      { q: "Where is the best coffee on the Gold Coast?", a: "Burleigh Heads has the highest concentration of quality. Quest Coffee Roasters (8.1), Flockd (7.9), and Next Door Burleigh (7.8) are all within walking distance." }
+    ]
+  },
+  {
+    slug: "400-cafes-reviewed-what-the-data-says",
+    title: "We Have Now Reviewed 411 Cafes — Here Is What the Data Actually Says",
+    ogImage: "https://koffeereview.com.au/og-blog-40.png",
+    description: "411 cafes. Same order every time. The average score is 6.1. Only 37 scored 7.5 or above. 13 scored below 3.0. Here is the complete picture of Australian coffee in 2026.",
+    date: "2026-10-23", readingTime: "9 min",
+    category: "analysis",
+    keywords: ["best coffee australia 2026","australian cafe reviews","coffee reviews australia","how many cafes reviewed","australian coffee scene","best cafes australia ranked","coffee data australia"],
+    intro: "When we started Koffee Review, the plan was simple: order one latte and one double shot espresso at every cafe, score them honestly, and publish the results. No sponsorships. No free coffees. No exceptions.\n\nWe have now done this 411 times.\n\n411 cafes across Brisbane, Gold Coast, Sunshine Coast, Moreton Bay, Ipswich, Logan, Redland, Melbourne, Sydney, Noosa, and even Barcelona. Same order, same scoring, same brutal honesty every single time.\n\nHere is what the data says about Australian coffee in 2026.",
+    sections: [
+      {
+        heading: "The Numbers — 411 Cafes at a Glance",
+        body: "Average score: 6.1 out of 10. That puts the typical Australian cafe firmly in our TAKE OR LEAVE tier — not bad enough to avoid, not good enough to recommend.\n\nMedian score: 6.4. The median being higher than the average tells you something important — there is a long tail of very bad cafes pulling the average down.\n\nHighest score: 8.6 (Brunells, Barcelona). Highest Australian score: 8.1 (Quest Coffee Roasters, Burleigh Heads and Dayo Cafe, Tweed Heads).\n\nLowest score: 1.1 (Stellarossa Forest Lake and On the Grind Coffee Camp Hill). Two cafes so far below the standard that we genuinely recommend you avoid them entirely.\n\n37 cafes scored 7.5 or above — our MUST VISIT threshold. That is 9% of the total. Fewer than one in ten cafes we reviewed deserves our sticker.\n\n13 cafes scored below 3.0. That is 3% of cafes producing coffee so poor it borders on undrinkable."
+      },
+      {
+        heading: "Brisbane Dominates — But It Is Not All Good",
+        body: "275 of our 411 reviews are Brisbane cafes. That makes Brisbane the most comprehensively reviewed coffee city in Australia by a single consistent methodology.\n\nBrisbane’s average is 6.2 — slightly above the national average. The city has genuine pockets of excellence: Norman Park, Bulimba, Newstead, Nundah, and West End all have cafes scoring 7.5 or above.\n\nBut Brisbane also has the CBD problem. 36 cafes reviewed in the CBD with an average of 6.2. For the centre of a major Australian city, that is average. Some of the worst coffee in our dataset comes from Brisbane CBD chains and franchise operations.\n\nThe inner suburbs are where Brisbane shines. The outer suburbs and franchise-heavy areas are where it falls flat.",
+        links: [
+          { text: "Best coffee suburbs in Brisbane", url: "/blog/best-coffee-suburbs-brisbane" },
+          { text: "Brisbane city reviews", url: "/city/brisbane" }
+        ]
+      },
+      {
+        heading: "The Regional Breakdown — Every City Ranked",
+        body: "Gold Coast — 30 cafes, average 6.1. Burleigh Heads alone lifts this number. Without Burleigh, the Gold Coast average drops below 6.0.\n\nMoreton Bay — 34 cafes, average 5.7. The weakest region in our dataset with enough reviews to be meaningful. North Lakes has 11 reviewed cafes but only one cracks 7.0.\n\nSunshine Coast — 13 cafes, average 5.8. Disappointing for a lifestyle region. Noosa Social (7.4) is the standout but the rest pulls it down.\n\nIpswich — 14 cafes, average 5.5. Limited options and limited quality. JimmyMax Cafe in Slacks Creek (7.5) is the lone bright spot.\n\nMelbourne — 5 cafes, average 7.1. Small sample but the standard is clearly higher. Two Birds One Stone in South Yarra (7.9) and several other 7+ performers.\n\nSydney — 4 cafes, average 7.4. Even smaller sample, but quality is obvious.",
+        links: [
+          { text: "Sunshine Coast guide", url: "/blog/sunshine-coast-coffee-guide" },
+          { text: "Gold Coast suburb guide", url: "/blog/gold-coast-coffee-suburb-guide" }
+        ]
+      },
+      {
+        heading: "The Roaster Effect — Which Beans Produce the Best Cafes",
+        body: "Across 411 reviews, clear roaster patterns emerge.\n\nSample Coffee leads with an average of 7.47 across 3 cafes. Every cafe using Sample Coffee scored 7.5 or above. That is a 100% must-visit rate.\n\nFive Senses Coffee averages 7.42 across 5 cafes. Another roaster where quality is almost guaranteed.\n\nSeven Miles Coffee Roasters averages 7.18 across 6 cafes. Consistent and reliable.\n\nAt the other end, Merlo Coffee averages around 4.8 across 7 cafes. Queensland’s most visible roaster has the worst average score among roasters with 3 or more cafes in our database. That is not a typo.\n\nThe roaster on the hopper tells you more about what is in your cup than the decor on the wall.",
+        links: [
+          { text: "Full roaster rankings", url: "/blog/roaster-rankings-best-cafes" }
+        ]
+      },
+      {
+        heading: "Patterns That Keep Showing Up",
+        body: "Own-roast cafes average 6.8 versus 6.1 overall. Roasting your own beans helps, but it is not a guarantee.\n\nCafes tagged as breakfast spots average 6.6 — half a point above overall average. Cafes that take food seriously tend to take coffee more seriously too.\n\nScalding hot coffee correlates with scores below 3.0. Every single cafe that served us undrinkably hot coffee scored in the bottom tier.\n\nThe biggest predictor of a high score is not the suburb, the roaster, or the equipment. It is whether the barista cares about extraction. Every 7.5+ cafe in our database demonstrates consistent extraction quality. Every sub-5.0 cafe does not."
+      },
+      {
+        heading: "What Comes Next — The Road to 500",
+        body: "We are 89 cafes away from 500. Brisbane still has hundreds of unreviewed cafes. Gold Coast coverage is growing. Melbourne and Sydney will expand.\n\nThe methodology does not change. One latte. One double shot espresso. Same order, same scoring, same honesty. The dataset grows, the insights sharpen, and the rankings get more useful every week.\n\n411 cafes reviewed. 37 worth a detour. 13 worth avoiding entirely. And one scoring system that treats every cup exactly the same.\n\nSame order. Every time. No exceptions.",
+        links: [
+          { text: "Browse all 411 cafes", url: "/" },
+          { text: "National leaderboard", url: "/leaderboard" },
+          { text: "Suggest a cafe for review", url: "/for-cafes" },
+          { text: "Must-visit cafes", url: "/must-visit-cafes" }
+        ]
+      }
+    ],
+    faqs: [
+      { q: "How many cafes has Koffee Review reviewed?", a: "411 cafes as of October 2026, across Brisbane, Gold Coast, Sunshine Coast, Moreton Bay, Ipswich, Logan, Melbourne, Sydney, and more." },
+      { q: "What is the average cafe score in Australia?", a: "6.1 out of 10 across our 411 reviews. The median is 6.4, meaning a small number of very low-scoring cafes pull the average down." },
+      { q: "What percentage of cafes score 7.5 or above?", a: "Only 9% — 37 out of 411 cafes. Fewer than one in ten cafes we reviewed meets our must-visit standard." },
+      { q: "What is the best cafe in Australia according to Koffee Review?", a: "Quest Coffee Roasters in Burleigh Heads and Dayo Cafe in Tweed Heads share the top Australian score at 8.1. Brunells in Barcelona holds our overall highest at 8.6." },
+      { q: "Which coffee roaster produces the best cafes?", a: "Sample Coffee leads with a 7.47 average across 3 cafes, followed by Five Senses Coffee at 7.42 across 5 cafes." }
+    ]
   }
 ];
 
