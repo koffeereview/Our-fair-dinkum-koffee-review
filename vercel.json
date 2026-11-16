@@ -73,6 +73,7 @@
     { "source": "/blog/:slug", "destination": "/api/blog?slug=:slug" },
     { "source": "/roaster", "destination": "/api/roaster" },
     { "source": "/roaster/:slug", "destination": "/api/roaster?slug=:slug" },
+    { "source": "/roaster-leaderboard", "destination": "/api/roaster-leaderboard" },
     { "source": "/brisbane-coffee-roasters", "destination": "/api/roaster?city=brisbane" },
     { "source": "/gold-coast-coffee-roasters", "destination": "/api/roaster?city=gold-coast" },
     { "source": "/melbourne-coffee-roasters", "destination": "/api/roaster?city=melbourne" },
