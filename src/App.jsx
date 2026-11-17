@@ -247,10 +247,18 @@ function MapView(props) {
           const userLng = position.coords.longitude;
           map.setView([userLat, userLng], 13);
           const youAreHereIcon = L.divIcon({
-            html: '<div style="background:#3b82f6;border:3px solid #fff;border-radius:50%;width:16px;height:16px;box-shadow:0 0 0 4px rgba(59,130,246,0.3);"></div>',
-            className: "", iconSize: [16, 16], iconAnchor: [8, 8],
+            html: '<div style="position:relative;display:flex;flex-direction:column;align-items:center">'
+              + '<style>@keyframes kr-pulse{0%{transform:scale(1);opacity:0.6}50%{transform:scale(2.2);opacity:0}100%{transform:scale(1);opacity:0}}</style>'
+              + '<div style="position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center">'
+              + '<div style="position:absolute;width:40px;height:40px;border-radius:50%;background:rgba(230,192,115,0.25);animation:kr-pulse 2s ease-out infinite"></div>'
+              + '<div style="position:absolute;width:24px;height:24px;border-radius:50%;background:rgba(230,192,115,0.15);animation:kr-pulse 2s ease-out 0.5s infinite"></div>'
+              + '<div style="position:relative;width:18px;height:18px;border-radius:50%;background:#E6C073;border:3px solid #fff;box-shadow:0 0 12px rgba(230,192,115,0.6),0 2px 8px rgba(0,0,0,0.4);z-index:2"></div>'
+              + '</div>'
+              + '<div style="margin-top:2px;background:#E6C073;color:#0d0d0f;font-size:9px;font-weight:800;letter-spacing:1.5px;padding:2px 8px;border-radius:8px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.4);z-index:2">YOU</div>'
+              + '</div>',
+            className: "", iconSize: [40, 58], iconAnchor: [20, 29],
           });
-          L.marker([userLat, userLng], { icon: youAreHereIcon }).addTo(map).bindPopup("You are here");
+          L.marker([userLat, userLng], { icon: youAreHereIcon, zIndexOffset: 1000 }).addTo(map).bindPopup("You are here");
         },
         function() { setLocationError(true); }
       );
